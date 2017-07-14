@@ -1,0 +1,12 @@
+<div class="quiz-list-panel">
+  <p>Quizzes</p>
+
+  <div *ngFor="let quiz of quizzes"
+    class="quiz-list-row clearfix">
+    <a class="gwt-InlineHyperlink" href="quiz/{{quiz.id}}">{{quiz.title}}</a>
+    <div class="quiz-list-row-buttons-panel">
+      <button type="button" class="gwt-Button button-answer-questions">Answer Questions</button>
+      <button type="button" class="gwt-Button button-history">History</button>
+    </div>
+  </div>
+</div>
