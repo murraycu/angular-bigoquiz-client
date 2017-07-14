@@ -1,1 +1,839 @@
-/* You can add global styles to this file, and also import other style files */
+/** Application-specific CSS rules. */
+
+/* Slightly-narrow screens:
+ *
+ * Only show links sidebar on wider screens. */
+@media screen and (max-width: 1100px)  {
+    .sidebar-panel-links { display: none; }
+}
+
+/* Narrow screens:
+ *
+ */
+@media screen and (max-width: 550px)  {
+    .sidebar-panel-sections { display: none; }
+}
+
+/* Not-narrow screens:
+ *
+ */
+@media screen and (min-width: 551px)  {
+}
+
+
+/* Wide (Not-slightly-narrow) screens:
+ *
+ * Stop the about text from filling the full page width,
+ * pushing the sidebars to the bottom. */
+@media screen and (min-width: 1100px)  {
+    /* TODO: Find some way to avoid this arbitrary value,
+     * which has to be just enough to show the content,
+     * but not so much that the empty extra width will
+     * push the sidebars down on typical screen widths.
+     */
+    .content-panel{ width: 500px }
+}
+
+
+
+/** Screens with less height: */
+@media screen and (max-height: 600px) {
+    /* TODO: Find some way to do this by just changing one variable instead.. */
+
+    .menu-panel {
+        margin-top: 0.3rem; /* between the banner ad and the menu-panel */
+        padding-bottom: 0.3rem;
+        padding-left: 0.3rem;
+
+    }
+
+    .menu-title {
+        margin-top: 0.3rem;
+        margin-right: 0.3rem;
+    }
+
+    .menu-others-panel {
+        margin-top: 0.3rem;
+        margin-right: 0.3rem;
+    }
+
+    .content-panel {
+        margin: 0.3rem;
+    }
+
+    .sidebar-panel-sections {
+        margin: 0.3rem;
+    }
+
+    .sidebar-panel-links {
+        margin: 0.3rem;
+    }
+
+    .quiz-panel {
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+    }
+}
+
+/* Screens with more height */
+@media screen and (min-height: 601px)  {
+    /* TODO: Find some way to do this by justing changing one variable instead.. */
+
+    .menu-panel {
+        margin-top: 1rem; /* between the banner ad and the menu-panel */
+        padding-bottom: 1rem;
+        padding-left: 1rem;
+    }
+
+    .menu-title {
+        margin-top: 1rem;
+        margin-right: 1rem;
+    }
+
+    .menu-others-panel {
+        margin-top: 1rem;
+        margin-right: 1rem;
+    }
+
+    .content-panel {
+        margin: 1rem;
+    }
+
+    .sidebar-panel-sections {
+        margin: 1rem;
+    }
+
+    .sidebar-panel-links {
+        margin: 1rem;
+    }
+
+    .quiz-panel {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* The text would be too big with this even for a normal laptop screen:
+    body {
+        font-size: medium !important;
+    }
+
+    .gwt-Button {
+        font-size: medium !important;
+    }
+    */
+}
+
+
+body {
+    /* Remove the clean.css margin around the whole page.
+     * We need the !important to override the body style in clean.css,
+     * for some reason.
+     */
+    margin: 0 !important;
+
+    background-color: #F4F4F9 !important;
+}
+
+/* This lets a parent <div> be as high as its children.
+ * See http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.sidebar-panel-sections {
+
+    /* See media query:
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    */
+
+    float: right;
+
+    /* TODO: Avoid this somehow? */
+    width: 330px; /* To avoid any text from making it too wide. Same as for sidebar-panel-links. */
+}
+
+.sidebar-panel-sections h2 {
+    margin-top: 1em;
+}
+
+/* TODO: Make this not apply to a h2 inside sub-divs? */
+.sidebar-panel-sections h2:first-child {
+    margin-top: 0;
+}
+
+.sidebar-panel-links {
+    /* See media query:
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    */
+
+    float: right;
+
+    /* TODO: Avoid this somehow? */
+    width: 330px; /* To avoid any text from making it too wide. Same as for sidebar-panel-userhistorysections. */
+}
+
+/* TODO: Make this not apply to a h2 inside sub-divs? */
+.sidebar-panel-links h2:first-child {
+    margin-top: 0;
+}
+
+.recommended-reading {
+    float: left;
+    clear: both;
+}
+
+.recommended-reading ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recommended-reading li {
+    margin-bottom: 0.5em;
+}
+
+.gwt-Label {
+    margin-bottom: 1em;
+}
+
+/* Contains content-panel
+   and sometimes contains a sidebar-panel-userhistorysections. */
+.parent-content-panel {
+    float: left;
+}
+
+.content-panel {
+    float: left;
+
+    /* same as for menu-title.
+     * We use less space, trying to fit into mobile screens.
+     */
+    /* See media query:
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    */
+}
+
+/* TODO: Make this not apply to a h2 inside sub-divs? */
+.content-panel h2:first-child {
+    margin-top: 0;
+}
+
+/* Show the main description in larger text. */
+.home-panel p {
+    font-size: medium;
+}
+
+.result-panel {
+
+}
+
+.choices-panel {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.question-label {
+
+}
+
+.question-anchor {
+
+}
+
+.sign-in-button {
+
+}
+
+.about-link {
+    float: right;
+    clear: both;
+    color: #2F4550;
+}
+
+a.gwt-Anchor.about-link {
+    color: #2F4550;
+}
+a.gwt-Anchor.about-link:visited {
+    color: #2F4550;
+}
+
+a.gwt-Anchor.user-name {
+    color: #2F4550;
+}
+a.gwt-Anchor.user-name:visited {
+    color: #2F4550;
+}
+
+.username-label {
+    margin-left: 1em;
+}
+
+.username-title-label {
+
+}
+
+.menu-panel {
+    background-color: #B6B2DD;
+    clear: both;
+
+    /** We give left and bottom padding to the parent div,
+     * and top-and-right margins to the child divs,
+     * so that the space between them is never double.
+     * Note that margins don't collapse on floated divs.
+     */
+    /* See media query:
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    */
+}
+
+.menu-title {
+    /* See media query:
+    margin-top: 1rem;
+    margin-right: 1rem;
+    */
+
+    display: inline-block; /* Don't stretch the empty api of the div across the whole screen. */
+    font-weight: 900;
+    font-family: 'Lato', sans-serif;
+    font-size: 2.5em;
+
+    /* TODO: Why doesn't any of this work to make the a text white, insead of gwt-Anchor.menu-title?
+    color: white;
+    background-color: #B6B2DD;
+    */
+}
+
+/* TODO: Why doesn't any of this work to make the a text white, insead of gwt-Anchor.menu-title?
+.menu-title.gwt-Label {
+margin-top: 0.2em;
+margin-bottom: 0.2em;
+}
+
+
+.menu-title.a, a:visited {
+color: white;
+background-color: #B6B2DD;
+}
+
+.menu-title.a:visited {
+color: white;
+background-color: #B6B2DD;
+}
+*/
+
+.gwt-Anchor.menu-title {
+    color: #2F4550;
+    background-color: #B6B2DD;
+}
+
+.menu-others-panel {
+    /* See media query:
+    margin-top: 1rem;
+    margin-right: 1rem;
+     */
+    display: inline-block; /* Don't stretch the empty api of the div across the whole screen. */
+    float: right;
+}
+
+.menu-others-panel .user-status-panel {
+    float: right;
+    clear: both;
+    color: #2F4550;
+}
+
+.status-panel {
+}
+
+.login-panel {
+}
+
+.login-failed {
+    font-weight: bold;
+}
+
+.score {
+
+}
+
+.user-name {
+
+}
+
+
+.version-label {
+
+}
+
+.logout-label {
+
+}
+
+.button-reset-sections {
+
+}
+
+.gwt-Button.button-answer-questions {
+    margin-left: 1em;
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+}
+
+.button-history {
+
+}
+
+.gwt-Button.button-history {
+    margin-left: 1em;
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+}
+
+.dialogMiddleCenterInner.dialogContent {
+    margin: 1em;
+}
+
+.reset-sections-confirm-dialog-buttons-panel {
+
+}
+
+.gwt-Button.reset-sections-confirm-dialog-ok-button {
+    background: red;
+    font-weight: bold;
+    float: right;
+}
+
+.gwt-Button.reset-sections-confirm-dialog-cancel-button {
+    font-weight: bold;
+    float: right;
+    margin-right: 1em;
+}
+
+h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #2F4550;
+}
+
+h1 * {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #2F4550;
+}
+
+h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #2F4550;
+}
+
+h2 * {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #2F4550;
+}
+
+h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #2F4550;
+}
+
+h3 * {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #2F4550;
+}
+
+h4 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #2F4550;
+}
+
+h4 * {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #2F4550;
+}
+
+* {
+    font-family: 'Merriweather', serif;;
+}
+
+.page-title-label {
+
+}
+
+.page-secondary-title-label {
+
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+.result-label {
+    font-weight: bold;
+}
+
+.note-label {
+    padding-top: 0.6rem;
+}
+
+.video-anchor {
+    padding-top: 0.6rem;
+}
+
+.code-anchor {
+    padding-top: 0.6rem;
+}
+
+.question-radio-button {
+    float: left;
+    clear: left;
+}
+
+.question-radio-button-correct {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.question-radio-button-wrong {
+    text-decoration: line-through;
+
+    animation-name: shake;
+    animation-duration: 1s;
+}
+
+/*
+.gwt-RadioButton {
+    line-height: 2em;
+}
+*/
+
+.choices-panel .question-radio-button {
+    margin-top: 1em;
+}
+
+.choices-panel .question-radio-button:first-child {
+    margin-top: 0;
+}
+
+/* Make sure that the start of the second row of the radio button's' label aligns with the first row,
+ * instead of being underneath the radio button itself.
+ */
+.gwt-RadioButton input {
+    float: left;
+}
+
+.gwt-RadioButton label {
+    margin-left: 2em;
+    display: block;
+    text-align: left;
+
+    /** Don't do this because it means 100% of the parent <span>,
+     * but that also contains an <input> radio button circle at the left,
+     * so this makes the text so wide that it can be partly off the screen.
+     */
+    /* width: 100%; */
+}
+
+.question-answer-textbox {
+    margin-right: 1em;
+    font-size: medium;
+}
+
+.gwt-TextBox.question-answer-textbox {
+    font-size: medium;
+}
+
+.user-history-recent-panel {
+    margin-bottom: 1em;
+    margin-left: 1rem;
+    margin-right: 0.3rem;
+    float: left;
+    clear: both;
+}
+
+.user-status-answers-panel {
+
+}
+
+.next-question-section-title {
+    /* Otherwise, combo boxes with long choices
+     * (long <option> entries in <select> tags in the HTML)
+     * cause the combo box to be wider than the div,
+     * up to the right edge of the screen, regardless of any margin or padding.
+     */
+    width: 100%
+}
+
+.next-question-section-title-label {
+    margin-right: 1em;
+}
+
+.section-title {
+    font-weight: bolder;
+}
+
+.user-answer-hyperlink {
+
+}
+
+.label-score {
+    color: #586F7C;
+}
+
+
+.progress-bar {
+
+}
+
+.progress-part-correct-once {
+    background-color: #B8DBD9;
+    padding: 0.3em;
+    width: 20%;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.progress-part-answered-once {
+    background-color: #B6B2DD;
+    padding: 0.3em;
+    width: 20%;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.progress-part-count {
+    background-color: #586F7C;
+    padding: 0.3em;
+    width: 20%;
+    margin: 0;
+    white-space: nowrap;
+
+}
+
+
+.label-problem-questions {
+    margin-bottom: 1em;
+}
+
+.panel-problem-questions {
+}
+
+.problem-answer-hyperlink {
+
+}
+
+.problem-answer-score {
+    margin-top: 0;
+    margin-right: 0.5em;
+    background: #B8DBD9;
+    color: #2F4550;
+    padding: 0.3em;
+    float: left;
+    clear: right;
+}
+
+.about-label {
+
+}
+
+.show-from-panel {
+    /* Otherewise there is a top margin. */
+    margin-top: 0;
+}
+
+.user-status-answers-panel h3 {
+    font-family: 'Lato', sans-serif;
+    margin-top: 1.5em;
+}
+
+.user-status-answers-panel h3:first-child {
+    margin-top: 0;
+}
+
+.gwt-Button.next-question-button {
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+}
+
+.gwt-Button.next-question-button:hover {
+    border-color: #2F4550;
+}
+
+.gwt-Button.show-answer-button {
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+}
+
+.gwt-Button.show-answer-button:hover {
+    border-color: #2F4550;
+}
+
+.gwt-Button.question-submit-button {
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+}
+
+.gwt-Button.question-submit-button:hover {
+    border-color: #2F4550;
+}
+
+.server-error-label {
+    font-weight: bold;
+    font-size: larger;
+    color: red;
+}
+
+.server-loading-label {
+
+}
+
+.quiz-list-panel {
+
+}
+
+.quiz-list-row {
+
+}
+
+.quiz-list-row-buttons-panel {
+    float: right;
+}
+
+.quiz-list-row .button-answer-questions {
+    float: right;
+    margin-bottom: 1em;
+}
+
+.quiz-list-row .button-history {
+    float: right;
+    margin-bottom: 1em;
+}
+
+.quiz-panel {
+
+}
+
+/* TODO: Make this not apply to a h2 inside sub-divs? */
+.quiz-panel h2:first-child {
+    margin-top: 0;
+}
+
+.quiz-panel h3:first-child {
+    margin-top: 0;
+}
+
+.quiz-panel h4:first-child {
+    margin-top: 0;
+}
+
+.quiz-section {
+
+}
+
+.quiz-sub-section {
+
+}
+
+.quiz-question-answer {
+    margin-bottom: 1em;
+}
+
+.quiz-question-answer  p {
+    margin-top: 0;
+    margin-bottom: 0.3em;
+}
+
+.quiz-question-title {
+    font-weight: bold;
+    margin-right: 0.5em; /* TODO: RTL */
+}
+
+.quiz-question p {
+    margin-bottom: 0;
+}
+
+.quiz-answer-title {
+    font-weight: bold;
+    margin-right: 0.5em; /* TODO: RTL */
+}
+
+.quiz-note-title {
+    font-weight: bold;
+    font-size: 80%;
+    margin-right: 0.5em; /* TODO: RTL */
+}
+
+.quiz-answer p {
+    margin-bottom: 0;
+}
+
+.quiz-note {
+    font-size: 80%;
+}
+
+.home-button-answer-questions {
+
+}
+
+.gwt-Button.home-button-answer-questions {
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+}
+
+.gwt-Button.quiz-list-button-answer-questions {
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 1em;
+}
+
+.gwt-Button.user-history-button-reset-sections {
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 1em;
+}
+

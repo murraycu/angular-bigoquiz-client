@@ -1,14 +1,107 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>AngularBigoquizClient</title>
+  <meta charset="utf-8"/>
+  <title>Big-O Quiz</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <meta name="description" content="Test your knowledge of the Big-O space and time complexity of common algorithms and data structures. See how many you know and work on the questions you most often get wrong. You may restrict questions to a particular section until you are ready to try another.">
+
+  <link href='https://fonts.googleapis.com/css?family=Lato:900,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,700' rel='stylesheet' type='text/css'>
+
+  <link type="text/css" rel="stylesheet" href="BigOQuiz.css">
+
+  <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+  <script type="text/javascript">
+    window.cookieconsent_options = {"message":"We use cookies to personalise content and ads and to analyse our traffic, via Google Adsense and Google Analytics.","dismiss":"OK","learnMore":"Details","link":"http://www.google.com/intl/en/policies/technologies/cookies/","theme":"dark-top"};
+  </script>
+
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+  <!-- End Cookie Consent plugin -->
+
+  <!-- Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-37755955-3', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!-- Use MathJax, because Chrome doesn't have native MathML support.
+       TODO: Inject this only when needed. -->
+  <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_CHTML">
+  </script>
+
+  <!-- Refresh MathJax syntax -->
+  <script type="text/javascript">
+    function reloadMathJax() {
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  </script>
 </head>
 <body>
   <app-root></app-root>
+
+  <div class="sidebar-panel-links">
+    <div>
+      <div class="recommended-reading">
+        <h2>Reference</h2>
+        <ul>
+          <li>
+            <a href="http://bigocheatsheet.com/">Big-O Cheat Sheet</a>
+          </li>
+          <li>
+            <a href="http://bigoref.com">Big O Reference</a>
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Master_theorem">Master Theorem</a>
+          </li>
+        </ul>
+        <h2>Recommended Reading</h2>
+        <ul>
+          <li>
+            <a href="http://amzn.to/2cYYRXO">The Algorithm Design Manual — Steven S Skiena</a>
+          </li>
+          <li>
+            <a href="http://amzn.to/2drCF9M">Algorithms — Robert Sedgewick and Kevin Wayne</a>
+          </li>
+          <li>
+            <a href="http://amzn.to/2dhDFtI">Introduction to Algorithms — Cormen, Leiserson, Rivest, Stein</a>
+          </li>
+          <li>
+            <a href="http://amzn.to/2cuClXL">Cracking the Coding Interview — Gayle Laakmann McDowell</a>
+          </li>
+          <li>
+            <a href="http://amzn.to/200UPOa">Head First Design Patterns — Freeman, Bates, Sierra, Robson</a>
+          </li>
+        </ul>
+        <h2>Other Quizzes</h2>
+        <ul>
+          <li>
+            <a href="http://quiz.geeksforgeeks.org/algorithms/">GeeksQuiz: Algorithms</a>
+          </li>
+          <li>
+            <a href="http://cppquiz.org/">C++ Quiz</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <script async="async" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- bigoquiz-sidebar-skyscraper -->
+      <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-7781900730613488" data-ad-slot="7120643214"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
 </body>
 </html>
