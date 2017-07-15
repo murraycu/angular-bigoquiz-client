@@ -64,8 +64,8 @@ export class QuizService {
       quiz.id = obj.id;
       quiz.title = obj.title;
     } else {
-      quiz.id = "none";
-      quiz.title = "no title";
+      quiz.id = "";
+      quiz.title = "";
     }
 
     return quiz;
