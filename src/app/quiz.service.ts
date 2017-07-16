@@ -107,6 +107,13 @@ export class QuizService {
       }
     }
 
+    if (obj.questions) {
+      quiz.questions = new Array<QuizQuestionAndAnswer>();
+      for (let jsonQA of obj.questions) {
+        quiz.questions.push(QuizService.jsonObjectToQuizQuestionAndAnswer(jsonQA));
+      }
+    }
+
     return quiz;
   }
 
@@ -125,9 +132,11 @@ export class QuizService {
       }
     }
 
-    section.questions = new Array<QuizQuestionAndAnswer>();
-    for (let jsonQA of obj.questions) {
-      section.questions.push(QuizService.jsonObjectToQuizQuestionAndAnswer(jsonQA));
+    if (obj.questions) {
+      section.questions = new Array<QuizQuestionAndAnswer>();
+      for (let jsonQA of obj.questions) {
+        section.questions.push(QuizService.jsonObjectToQuizQuestionAndAnswer(jsonQA));
+      }
     }
 
     return section;
