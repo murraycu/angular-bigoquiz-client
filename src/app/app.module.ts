@@ -9,8 +9,10 @@ import { HomeComponent } from './home.component';
 import { AboutComponent } from './about.component';
 import { QuizzesComponent } from './quizzes.component';
 import { QuizComponent } from './quiz.component';
+import { UserHistorySectionsComponent } from './user-history-sections.component';
 
 import { QuizService } from './quiz.service';
+import { UserHistoryService } from './user-history.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { QuizService } from './quiz.service';
     HomeComponent,
     AboutComponent,
     QuizzesComponent,
-    QuizComponent
+    QuizComponent,
+    UserHistorySectionsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import { QuizService } from './quiz.service';
     AppRoutingModule
   ],
   providers: [
-    QuizService
+    QuizService,
+    UserHistoryService
   ],
   bootstrap: [AppComponent]
 })
