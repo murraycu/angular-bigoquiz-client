@@ -108,9 +108,11 @@ export class QuizService {
     }
 
     if (obj.questions) {
-      quiz.questions = new Array<QuizQuestionAndAnswer>();
       for (let jsonQA of obj.questions) {
-        quiz.questions.push(QuizService.jsonObjectToQuizQuestionAndAnswer(jsonQA));
+        let qa: QuizQuestionAndAnswer = QuizService.jsonObjectToQuizQuestionAndAnswer(jsonQA);
+        if (!qa.question.sectionId) {
+          quiz.addQuestion(qa);
+        }
       }
     }
 
@@ -124,18 +126,30 @@ export class QuizService {
 
     if (obj.subSections) {
       section.subSections = new Array<QuizSubSection>();
+      section.subSectionsMap = new Map<string, QuizSubSection>();
+
       for (let jsonSubSectionId in obj.subSections) {
         // TODO: Keep the sequence from the JSON:
         let jsonSubSection = obj.subSections[jsonSubSectionId];
         let subSection = QuizService.jsonObjectToQuizSubSection(jsonSubSection);
         section.subSections.push(subSection);
+        section.subSectionsMap.set(subSection.id, subSection);
       }
     }
 
     if (obj.questions) {
       section.questions = new Array<QuizQuestionAndAnswer>();
       for (let jsonQA of obj.questions) {
-        section.questions.push(QuizService.jsonObjectToQuizQuestionAndAnswer(jsonQA));
+        let qa: QuizQuestionAndAnswer = QuizService.jsonObjectToQuizQuestionAndAnswer(jsonQA);
+
+        if (qa.question.subSectionId) {
+          let subSection: QuizSubSection = section.getSubSectionById(qa.question.subSectionId);
+          if (subSection) {
+            subSection.addQuestion(qa);
+          }
+        } else {
+          section.addQuestion(qa);
+        }
       }
     }
 

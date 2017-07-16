@@ -10,4 +10,13 @@ export class Quiz extends HasIdAndTitle {
 
   // Top-level questions, not in a section.
   questions: QuizQuestionAndAnswer[];
+
+  // TOOD: Avoid duplication with other addQuestion() methods.
+  addQuestion(qa: QuizQuestionAndAnswer): void {
+    if (!this.questions) {
+      this.questions = new Array<QuizQuestionAndAnswer>();
+    }
+
+    this.questions.push(qa);
+  }
 }
