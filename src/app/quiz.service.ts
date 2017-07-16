@@ -4,6 +4,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Quiz } from './quiz';
+import { QuizSection } from './quiz-section';
 
 @Injectable()
 export class QuizService {
@@ -24,7 +25,6 @@ export class QuizService {
         return result;
       })
       .catch(this.handleError);
-
 
     /*
     const QUIZZES: Quiz[] = [
@@ -63,11 +63,54 @@ export class QuizService {
     if (obj) {
       quiz.id = obj.id;
       quiz.title = obj.title;
+      quiz.isPrivate = obj.isPrivate;
+      quiz.usesMathML = obj.usesMathML;
     } else {
       quiz.id = "";
       quiz.title = "";
+      quiz.isPrivate = false;
+      quiz.usesMathML = false;
+    }
+
+    let jsonSections = obj.sections;
+    if (jsonSections) {
+      // TODO: We won't need to use this when the JSON of the sections is an array.
+      let sectionsSequence: string[] = jsonSections.sectionsSequence;
+
+      let jsonSectionsInner = jsonSections.sections;
+      if (jsonSectionsInner) {
+        quiz.sections = new Array<QuizSection>();
+
+        // The JSON here should really be an array,
+        // with a order in the JSON,
+        // but it is currently a map. See https://github.com/murraycu/gwt-bigoquiz/issues/1
+        // for (let jsonSection of jsonSectionsInner)
+
+        // Iterate over all properties in the object.
+        // The name of the property is the name of a key in the map
+        // (the ID of a section).
+        for (let id of sectionsSequence) {
+          let jsonSection: Object = jsonSectionsInner[id];
+          let section = this.jsonObjectToQuizSection(jsonSection);
+          quiz.sections.push(section);
+        }
+      }
     }
 
     return quiz;
+  }
+
+  private jsonObjectToQuizSection(obj: any): QuizSection {
+    let section: QuizSection = new QuizSection();
+
+    if (obj) {
+      section.id = obj.id;
+      section.title = obj.title;
+    } else {
+      section.id = "";
+      section.title = "";
+    }
+
+    return section;
   }
 }

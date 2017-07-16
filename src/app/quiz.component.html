@@ -1,5 +1,9 @@
-<h2>About</h2>
-<div *ngIf="quiz">
-  <p>id: {{quiz.id}}</p>
-  <p>title: {{quiz.title}}</p>
+<h2 class="page-title-label">About</h2>
+<div *ngIf="quiz" class="quiz-panel">
+  <h2 class="page-secondary-title-label">{{quiz.title}}</h2>
+
+  <div *ngFor="let section of quiz.sections"
+    class="quiz-section">
+    <h3>{{section.title}}</h3>
+  </div>
 </div>
