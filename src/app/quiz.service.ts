@@ -7,6 +7,9 @@ import { HasIdAndTitle } from './data-structure/has-id-and-title';
 import { Quiz } from './data-structure/quiz';
 import { QuizSection } from './data-structure/quiz-section';
 import { QuizSubSection } from './data-structure/quiz-sub-section';
+import { QuizQuestionAndAnswer } from './data-structure/quiz-question-and-answer';
+import { QuizQuestion } from './data-structure/quiz-question';
+import { QuizText } from './data-structure/quiz-text';
 
 @Injectable()
 export class QuizService {
@@ -22,7 +25,7 @@ export class QuizService {
       .then(response => {
         let json = response.json()
         let result: Quiz[] = json.map(o => {
-          return this.jsonObjectToQuiz(o);
+          return QuizService.jsonObjectToQuiz(o);
         });
         return result;
       })
@@ -43,7 +46,7 @@ export class QuizService {
     return this.http.get(url)
       .toPromise()
       .then(response => {
-        return this.jsonObjectToQuiz(response.json());
+        return QuizService.jsonObjectToQuiz(response.json());
       })
       .catch(this.handleError);
 
@@ -67,7 +70,7 @@ export class QuizService {
     }
   }
 
-  private jsonObjectToQuiz(obj: any): Quiz {
+  private static jsonObjectToQuiz(obj: any): Quiz {
     let quiz: Quiz = new Quiz();
 
     QuizService.jsonLoadHasIdAndTitle(obj, quiz);
@@ -98,7 +101,7 @@ export class QuizService {
         // (the ID of a section).
         for (let id of sectionsSequence) {
           let jsonSection: Object = jsonSectionsInner[id];
-          let section = this.jsonObjectToQuizSection(jsonSection);
+          let section = QuizService.jsonObjectToQuizSection(jsonSection);
           quiz.sections.push(section);
         }
       }
@@ -107,27 +110,79 @@ export class QuizService {
     return quiz;
   }
 
-  private jsonObjectToQuizSection(obj: any): QuizSection {
+  private static jsonObjectToQuizSection(obj: any): QuizSection {
     let section: QuizSection = new QuizSection();
 
     QuizService.jsonLoadHasIdAndTitle(obj, section);
 
-    section.subSections = new Array<QuizSubSection>();
-    for (let jsonSubSectionId in obj.subSections) {
-      // TODO: Keep the sequence from the JSON:
-      let jsonSubSection = obj.subSections[jsonSubSectionId];
-      let subSection = this.jsonObjectToQuizSubSection(jsonSubSection);
-      section.subSections.push(subSection);
+    if (obj.subSections) {
+      section.subSections = new Array<QuizSubSection>();
+      for (let jsonSubSectionId in obj.subSections) {
+        // TODO: Keep the sequence from the JSON:
+        let jsonSubSection = obj.subSections[jsonSubSectionId];
+        let subSection = QuizService.jsonObjectToQuizSubSection(jsonSubSection);
+        section.subSections.push(subSection);
+      }
+    }
+
+    section.questions = new Array<QuizQuestionAndAnswer>();
+    for (let jsonQA of obj.questions) {
+      section.questions.push(QuizService.jsonObjectToQuizQuestionAndAnswer(jsonQA));
     }
 
     return section;
   }
 
-  private jsonObjectToQuizSubSection(obj: any): QuizSubSection {
+  private static jsonObjectToQuizSubSection(obj: any): QuizSubSection {
     let subSection: QuizSubSection = new QuizSubSection();
 
     QuizService.jsonLoadHasIdAndTitle(obj, subSection);
 
     return subSection;
+  }
+
+  private static jsonObjectToQuizQuestionAndAnswer(obj: any): QuizQuestionAndAnswer {
+    let result: QuizQuestionAndAnswer = new QuizQuestionAndAnswer();
+    result.question = QuizService.jsonObjectToQuizQuestion(obj.question);
+    result.answer = QuizService.jsonObjectToQuizText(obj.answer);
+
+    return result;
+  }
+
+  private static jsonObjectToQuizQuestion(obj: any): QuizQuestion {
+    let result: QuizQuestion = new QuizQuestion();
+    result.id = obj.id;
+    result.sectionId = obj.sectionId;
+    result.subSectionId = obj.subSectionId;
+    result.text = QuizService.jsonObjectToQuizText(obj.text);
+    result.link = obj.link;
+
+    result.note = obj.note;
+    result.videoUrl = obj.videoUrl;
+    result.codeUrl = obj.codeUrl;
+
+    // These are in the JSON for convenience,
+    // so we don't need to get them from the quiz.
+    result.quizTitle = obj.quizTitle;
+
+    if (obj.section) {
+      result.section = QuizService.jsonObjectToQuizSection(obj.section);
+    }
+
+    if (obj.subSection) {
+      result.subSection = QuizService.jsonObjectToQuizSubSection(obj.subSection);
+    }
+
+    result.quizUsesMathML = obj.quizUsesMathML;
+
+    return result;
+  }
+
+  private static jsonObjectToQuizText(obj: any): QuizText {
+    let result: QuizText = new QuizText();
+    result.text = obj.text;
+    result.isHtml = obj.isHtml;
+
+    return result;
   }
 }
