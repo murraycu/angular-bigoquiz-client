@@ -1,5 +1,4 @@
-export class QuizSubSection {
-  id: string;
-  title: string;
-  link: string;
+import { HasIdAndTitle } from './has-id-and-title';
+
+export class QuizSubSection extends HasIdAndTitle {
 }

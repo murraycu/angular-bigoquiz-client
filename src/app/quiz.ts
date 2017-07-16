@@ -1,8 +1,7 @@
+import { HasIdAndTitle } from './has-id-and-title';
 import { QuizSection } from './quiz-section'
 
-export class Quiz {
-  id: string;
-  title: string;
+export class Quiz extends HasIdAndTitle {
   isPrivate: boolean;
   usesMathML: boolean;
 

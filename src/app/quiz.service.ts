@@ -3,6 +3,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import { HasIdAndTitle } from './has-id-and-title';
 import { Quiz } from './quiz';
 import { QuizSection } from './quiz-section';
 import { QuizSubSection } from './quiz-sub-section';
@@ -58,17 +59,22 @@ export class QuizService {
     return Promise.reject(error.message || error);
   }
 
+  private static jsonLoadHasIdAndTitle(obj: any, base: HasIdAndTitle) {
+    if (obj) {
+      base.id = obj.id;
+      base.title = obj.title;
+      base.link = obj.link;
+    }
+  }
+
   private jsonObjectToQuiz(obj: any): Quiz {
     let quiz: Quiz = new Quiz();
 
+    QuizService.jsonLoadHasIdAndTitle(obj, quiz);
     if (obj) {
-      quiz.id = obj.id;
-      quiz.title = obj.title;
       quiz.isPrivate = obj.isPrivate;
       quiz.usesMathML = obj.usesMathML;
     } else {
-      quiz.id = "";
-      quiz.title = "";
       quiz.isPrivate = false;
       quiz.usesMathML = false;
     }
@@ -104,13 +110,7 @@ export class QuizService {
   private jsonObjectToQuizSection(obj: any): QuizSection {
     let section: QuizSection = new QuizSection();
 
-    if (obj) {
-      section.id = obj.id;
-      section.title = obj.title;
-    } else {
-      section.id = "";
-      section.title = "";
-    }
+    QuizService.jsonLoadHasIdAndTitle(obj, section);
 
     section.subSections = new Array<QuizSubSection>();
     for (let jsonSubSectionId in obj.subSections) {
@@ -126,15 +126,7 @@ export class QuizService {
   private jsonObjectToQuizSubSection(obj: any): QuizSubSection {
     let subSection: QuizSubSection = new QuizSubSection();
 
-    if (obj) {
-      subSection.id = obj.id;
-      subSection.title = obj.title;
-      subSection.link = obj.link;
-    } else {
-      subSection.id = "";
-      subSection.title = "";
-      subSection.link = "";
-    }
+    QuizService.jsonLoadHasIdAndTitle(obj, subSection);
 
     return subSection;
   }
