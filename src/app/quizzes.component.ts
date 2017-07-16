@@ -3,7 +3,7 @@ import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from './quiz.service';
 
-import { Quiz } from './quiz';
+import { Quiz } from './data-structure/quiz';
 
 @Component({
   selector: 'quizzes',

@@ -4,7 +4,7 @@ import { OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
 import { QuizService } from './quiz.service';
-import { Quiz } from './quiz';
+import { Quiz } from './data-structure/quiz';
 
 @Component({
   selector: 'quiz',

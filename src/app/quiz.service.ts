@@ -3,10 +3,10 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { HasIdAndTitle } from './has-id-and-title';
-import { Quiz } from './quiz';
-import { QuizSection } from './quiz-section';
-import { QuizSubSection } from './quiz-sub-section';
+import { HasIdAndTitle } from './data-structure/has-id-and-title';
+import { Quiz } from './data-structure/quiz';
+import { QuizSection } from './data-structure/quiz-section';
+import { QuizSubSection } from './data-structure/quiz-sub-section';
 
 @Injectable()
 export class QuizService {
