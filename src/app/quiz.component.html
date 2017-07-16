@@ -1,17 +1,33 @@
-<h2 class="page-title-label">Quiz</h2>
-<div *ngIf="quiz" class="quiz-panel">
-  <h2 class="page-secondary-title-label">{{quiz.title}}</h2>
+<div class="content-panel">
+  <h2 class="page-title-label">Quiz</h2>
+  <div *ngIf="quiz" class="quiz-panel">
+    <h2 class="page-secondary-title-label">{{quiz.title}}</h2>
 
-  <div *ngFor="let section of quiz.sections"
-    class="quiz-section">
-    <h3>{{section.title}}</h3>
+    <div *ngFor="let section of quiz.sections"
+      class="quiz-section">
+      <h3>{{section.title}}</h3>
 
-    <div *ngFor="let subSection of section.subSections"
-      class="quiz-sub-section">
-      <h4>{{subSection.title}}</h4>
+      <div *ngFor="let subSection of section.subSections"
+        class="quiz-sub-section">
+        <h4>{{subSection.title}}</h4>
 
-      <!-- Questions in the sub-section. -->
-      <div *ngFor="let qa of subSection.questions"
+        <!-- Questions in the sub-section. -->
+        <div *ngFor="let qa of subSection.questions"
+          class="quiz-question-answer">
+          <p>
+            <span class="quiz-question-title">Question:</span>
+            <a *ngIf="qa.question.link" class="quiz-question" href={{qa.question.link}}>{{qa.question.text.text}}</a>
+            <span *ngIf="!(qa.question.link)" class="quiz-question">{{qa.question.text.text}}</span>
+          </p>
+          <p>
+            <span class="quiz-answer-title">Answer:</span>
+            <span class="quiz-answer">{{qa.answer.text}}</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Questions in the section, not in any sub-section. -->
+      <div *ngFor="let qa of section.questions"
         class="quiz-question-answer">
         <p>
           <span class="quiz-question-title">Question:</span>
@@ -25,8 +41,8 @@
       </div>
     </div>
 
-    <!-- Questions in the section, not in any sub-section. -->
-    <div *ngFor="let qa of section.questions"
+    <!-- Questions at the top level of the quiz, not in any section. -->
+    <div *ngFor="let qa of quiz.questions"
       class="quiz-question-answer">
       <p>
         <span class="quiz-question-title">Question:</span>
@@ -38,19 +54,5 @@
         <span class="quiz-answer">{{qa.answer.text}}</span>
       </p>
     </div>
-  </div>
-
-  <!-- Questions at the top level of the quiz, not in any section. -->
-  <div *ngFor="let qa of quiz.questions"
-    class="quiz-question-answer">
-    <p>
-      <span class="quiz-question-title">Question:</span>
-      <a *ngIf="qa.question.link" class="quiz-question" href={{qa.question.link}}>{{qa.question.text.text}}</a>
-      <span *ngIf="!(qa.question.link)" class="quiz-question">{{qa.question.text.text}}</span>
-    </p>
-    <p>
-      <span class="quiz-answer-title">Answer:</span>
-      <span class="quiz-answer">{{qa.answer.text}}</span>
-    </p>
   </div>
 </div>
