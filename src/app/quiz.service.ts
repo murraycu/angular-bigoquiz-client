@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Quiz } from './quiz';
 import { QuizSection } from './quiz-section';
+import { QuizSubSection } from './quiz-sub-section';
 
 @Injectable()
 export class QuizService {
@@ -111,6 +112,30 @@ export class QuizService {
       section.title = "";
     }
 
+    section.subSections = new Array<QuizSubSection>();
+    for (let jsonSubSectionId in obj.subSections) {
+      // TODO: Keep the sequence from the JSON:
+      let jsonSubSection = obj.subSections[jsonSubSectionId];
+      let subSection = this.jsonObjectToQuizSubSection(jsonSubSection);
+      section.subSections.push(subSection);
+    }
+
     return section;
+  }
+
+  private jsonObjectToQuizSubSection(obj: any): QuizSubSection {
+    let subSection: QuizSubSection = new QuizSubSection();
+
+    if (obj) {
+      subSection.id = obj.id;
+      subSection.title = obj.title;
+      subSection.link = obj.link;
+    } else {
+      subSection.id = "";
+      subSection.title = "";
+      subSection.link = "";
+    }
+
+    return subSection;
   }
 }
