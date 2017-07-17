@@ -12,8 +12,7 @@ import { Quiz } from './data-structure/quiz';
 export class QuizzesComponent implements OnInit {
   quizzes: Quiz[];
 
-  constructor(private quizService: QuizService,
-    private router : Router) { }
+  constructor(private quizService: QuizService) { }
 
   getQuizzes(): void {
     this.quizService.getQuizzes().then(quizzes => this.quizzes = quizzes);
