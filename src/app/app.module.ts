@@ -13,6 +13,7 @@ import { QuizzesComponent } from './quizzes.component';
 import { QuizComponent } from './quiz.component';
 import { UserHistorySectionsComponent } from './user-history-sections.component';
 
+import { UserService } from './user.service';
 import { QuizService } from './quiz.service';
 import { UserHistoryService } from './user-history.service';
 
@@ -33,6 +34,7 @@ import { UserHistoryService } from './user-history.service';
     AppRoutingModule
   ],
   providers: [
+    UserService,
     QuizService,
     UserHistoryService
   ],
