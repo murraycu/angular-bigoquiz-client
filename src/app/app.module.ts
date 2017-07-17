@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { UserStatusComponent } from './user-status.component';
 import { HomeComponent } from './home.component';
 import { AboutComponent } from './about.component';
 import { QuizzesComponent } from './quizzes.component';
@@ -17,6 +18,7 @@ import { UserHistoryService } from './user-history.service';
 @NgModule({
   declarations: [
     AppComponent,
+    UserStatusComponent,
     HomeComponent,
     AboutComponent,
     QuizzesComponent,
@@ -32,6 +34,9 @@ import { UserHistoryService } from './user-history.service';
     QuizService,
     UserHistoryService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    UserStatusComponent
+  ]
 })
 export class AppModule { }
