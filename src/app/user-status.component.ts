@@ -14,7 +14,12 @@ export class UserStatusComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUser().then(loginInfo => this.loginInfo = loginInfo);
+    // This only gives us part of the URL, such as "/quiz/algorithms".
+    // let currentUrl: string = this.location.prepareExternalUrl(this.location.path());
+
+    let currentUrl: string = window.location.href;
+
+    this.userService.getUser(currentUrl).then(loginInfo => this.loginInfo = loginInfo);
   }
 
   // TODO: Let the parent component specify whether the logout link should be visible,

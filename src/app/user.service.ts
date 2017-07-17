@@ -14,9 +14,9 @@ export class UserService {
 
   /** Get the overall history for the current user, for all quizzes.
    */
-  getUser(): Promise<LoginInfo> {
+  getUser(currentUrl: string): Promise<LoginInfo> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${this.baseUrl}/api/user`;
+    const url = `${this.baseUrl}/api/user?requestUrl=${currentUrl}`;
     return this.http.get(url)
       .toPromise()
       .then(response => {
