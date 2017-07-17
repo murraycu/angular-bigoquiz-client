@@ -72,6 +72,8 @@ export class JsonUtils {
       }
     }
 
+    section.questionsCount = JsonUtils.numberOrZero(obj.questionsCount);
+
     return section;
   }
 
@@ -134,5 +136,9 @@ export class JsonUtils {
       base.title = obj.title;
       base.link = obj.link;
     }
+  }
+
+  public static numberOrZero(obj: any): number {
+    return obj ? obj : 0;
   }
 }

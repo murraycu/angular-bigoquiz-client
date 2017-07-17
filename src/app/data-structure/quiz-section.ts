@@ -9,6 +9,8 @@ export class QuizSection extends HasIdAndTitle {
   // defaultChoices
   questions: QuizQuestionAndAnswer[];
 
+  questionsCount: number;
+
   public getSubSectionById(subSectionId: string): QuizSubSection {
     if (!this.subSectionsMap) {
       return null;
