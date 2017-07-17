@@ -1,0 +1,45 @@
+service: beta
+runtime: python27
+threadsafe: yes
+
+handlers:
+
+# Routing for bundles to serve directly
+- url: /((?:inline|main|polyfills|styles|vendor)\.[a-z0-9]+\.bundle\.js)
+  static_files: dist/\1
+  upload: dist/.*
+
+# Routing for a prod styles.bundle.css to serve directly
+- url: /(styles\.[a-z0-9]+\.bundle\.css)
+  static_files: dist/\1
+  upload: dist/.*
+
+# Routing for typedoc, assets and favicon.ico to serve directly
+- url: /((?:assets|docs)/.*|favicon\.ico)
+  static_files: dist/\1
+  upload: dist/.*
+
+- url: /
+  static_files: dist/index.html
+  upload: dist/index.html
+
+- url: /.*
+  static_files: dist/index.html
+  upload: dist/index.html
+
+# Temporary setting to keep gcloud from uploading not required files for deployment
+skip_files:
+- ^node_modules$
+- ^app\.yaml
+- ^README\..*
+- \.gitignore
+- ^\.git$
+- ^grunt\.js
+- ^src$
+- ^e2e$
+- \.editorconfig
+- ^karma\.config\.js
+- ^package\.json
+- ^protractor\.conf\.js
+- ^tslint\.json
+
