@@ -9,7 +9,7 @@ import { HasIdAndTitle } from './data-structure/has-id-and-title';
 export class JsonUtils {
   public static jsonObjectToQuizSections(obj: any): QuizSection[] {
     if (!obj) {
-      return null;
+      return undefined;
     }
 
     // TODO: We won't need to use this when the JSON of the sections is an array.
@@ -17,7 +17,7 @@ export class JsonUtils {
 
     let jsonSectionsInner = obj.sections;
     if (!jsonSectionsInner) {
-      return null;
+      return undefined;
     }
 
     let result = new Array<QuizSection>();

@@ -9,7 +9,7 @@ export class UserHistorySections {
 
   public getUserStatsForSection(sectionId: string): UserStats {
     if (!this.stats) {
-      return null;
+      return undefined;
     }
 
     return this.stats.get(sectionId);

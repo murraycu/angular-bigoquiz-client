@@ -13,7 +13,7 @@ export class QuizSection extends HasIdAndTitle {
 
   public getSubSectionById(subSectionId: string): QuizSubSection {
     if (!this.subSectionsMap) {
-      return null;
+      return undefined;
     }
 
     return this.subSectionsMap.get(subSectionId);

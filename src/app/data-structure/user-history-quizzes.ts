@@ -10,7 +10,7 @@ export class UserHistoryQuizzes {
 
   public getUserStatsForQuiz(quizId: string): UserStats {
     if (!this.stats) {
-      return null;
+      return undefined;
     }
 
     return this.stats.get(quizId);
