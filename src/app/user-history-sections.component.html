@@ -1,5 +1,14 @@
 <div class="sidebar-panel-sections">
   <div class="user-history-recent-panel">
     <h2>Sections</h2>
+    <div class="user-history-answers-panel">
+
+      <ng-container *ngIf="userHistorySections">
+        <div *ngFor="let section of userHistorySections.sections"
+          class="quiz-section">
+          <h3>{{section.title}}</h3>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>

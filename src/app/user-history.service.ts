@@ -4,6 +4,8 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { UserHistorySections} from './data-structure/user-history-sections';
+import { UserStats} from './data-structure/user-stats';
+import { JsonUtils } from './json-utils';
 
 @Injectable()
 export class UserHistoryService {
@@ -31,6 +33,29 @@ export class UserHistoryService {
 
   private static jsonObjectToUserHistorySections(obj: any): UserHistorySections {
     let result: UserHistorySections = new UserHistorySections();
+    result.sections = JsonUtils.jsonObjectToQuizSections(obj.sections);
+
+    // stats:
+    if (obj.stats) {
+      result.stats = new Map<string, UserStats>();
+
+      for (let sectionId in obj.stats) {
+        let jsonStats = obj.stats[sectionId];
+        let userStats = UserHistoryService.jsonObjectToUserStats(jsonStats);
+        result.stats.set(userStats.sectionId, userStats);
+      }
+    }
+
+    return result;
+  }
+
+  private static jsonObjectToUserStats(obj: any): UserStats {
+    let result: UserStats = new UserStats();
+    result.sectionId = obj.sectionId;
+    result.answered = obj.answered;
+    result.correct = obj.correct;
+    result.countQuestionsAnsweredOnce = obj.countQuestionsAnsweredOnce;
+    result.countQuestionsCorrectOnce = obj.countQuestionsCorrectOnce;
 
     return result;
   }
