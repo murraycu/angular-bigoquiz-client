@@ -52,10 +52,11 @@ export class UserHistoryService {
   private static jsonObjectToUserStats(obj: any): UserStats {
     let result: UserStats = new UserStats();
     result.sectionId = obj.sectionId;
-    result.answered = obj.answered;
-    result.correct = obj.correct;
-    result.countQuestionsAnsweredOnce = obj.countQuestionsAnsweredOnce;
-    result.countQuestionsCorrectOnce = obj.countQuestionsCorrectOnce;
+
+    result.answered = JsonUtils.numberOrZero(obj.answered);
+    result.correct = JsonUtils.numberOrZero(obj.correct);
+    result.countQuestionsAnsweredOnce = JsonUtils.numberOrZero(obj.countQuestionsAnsweredOnce);
+    result.countQuestionsCorrectOnce = JsonUtils.numberOrZero(obj.countQuestionsCorrectOnce);
 
     return result;
   }
