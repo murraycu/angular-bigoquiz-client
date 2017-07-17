@@ -14,7 +14,7 @@ export class UserHistoryService {
 
   constructor(private http: Http) { }
 
-  getUserHistorySections(quizId: string): Promise<UserHistorySections> {
+  getUserHistorySectionsForQuiz(quizId: string): Promise<UserHistorySections> {
     // Note: We must use backticks: This is a template literal.
     const url = `${this.baseUrl}/api/user-history/${quizId}`;
     return this.http.get(url)

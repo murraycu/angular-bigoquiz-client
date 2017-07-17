@@ -18,7 +18,7 @@ export class UserHistorySectionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.userHistoryService.getUserHistorySections(params.get('id')))
+      .switchMap((params: ParamMap) => this.userHistoryService.getUserHistorySectionsForQuiz(params.get('id')))
       .subscribe(userHistorySections => this.userHistorySections = userHistorySections);
   }
 }
