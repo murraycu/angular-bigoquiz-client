@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { UserStatusComponent } from './user-status.component';
 import { HomeComponent } from './home.component';
 import { AboutComponent } from './about.component';
+import { UserComponent } from './user.component';
 import { QuizzesComponent } from './quizzes.component';
 import { QuizComponent } from './quiz.component';
 import { UserHistorySectionsComponent } from './user-history-sections.component';
@@ -21,6 +22,7 @@ import { UserHistoryService } from './user-history.service';
     UserStatusComponent,
     HomeComponent,
     AboutComponent,
+    UserComponent,
     QuizzesComponent,
     QuizComponent,
     UserHistorySectionsComponent

@@ -3,6 +3,7 @@ import { QuizSubSection } from './data-structure/quiz-sub-section';
 import { QuizQuestionAndAnswer } from './data-structure/quiz-question-and-answer';
 import { QuizQuestion } from './data-structure/quiz-question';
 import { QuizText } from './data-structure/quiz-text';
+import { Quiz } from './data-structure/quiz';
 import { HasIdAndTitle } from './data-structure/has-id-and-title';
 
 export class JsonUtils {
@@ -140,5 +141,34 @@ export class JsonUtils {
 
   public static numberOrZero(obj: any): number {
     return obj ? obj : 0;
+  }
+
+  public static jsonObjectToQuiz(obj: any): Quiz {
+    let quiz: Quiz = new Quiz();
+
+    JsonUtils.jsonLoadHasIdAndTitle(obj, quiz);
+    if (obj) {
+      quiz.isPrivate = obj.isPrivate;
+      quiz.usesMathML = obj.usesMathML;
+    } else {
+      quiz.isPrivate = false;
+      quiz.usesMathML = false;
+    }
+
+    let jsonSections = obj.sections;
+    if (jsonSections) {
+      quiz.sections = JsonUtils.jsonObjectToQuizSections(jsonSections);
+    }
+
+    if (obj.questions) {
+      for (let jsonQA of obj.questions) {
+        let qa: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonQA);
+        if (!qa.question.sectionId) {
+          quiz.addQuestion(qa);
+        }
+      }
+    }
+
+    return quiz;
   }
 }

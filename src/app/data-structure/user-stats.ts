@@ -1,4 +1,5 @@
 export class UserStats {
+  quizId: string;
   sectionId: string;
 
   answered: number;

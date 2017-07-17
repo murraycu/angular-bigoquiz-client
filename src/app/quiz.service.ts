@@ -21,7 +21,7 @@ export class QuizService {
       .then(response => {
         let json = response.json()
         let result: Quiz[] = json.map(o => {
-          return QuizService.jsonObjectToQuiz(o);
+          return JsonUtils.jsonObjectToQuiz(o);
         });
         return result;
       })
@@ -42,7 +42,7 @@ export class QuizService {
     return this.http.get(url)
       .toPromise()
       .then(response => {
-        return QuizService.jsonObjectToQuiz(response.json());
+        return JsonUtils.jsonObjectToQuiz(response.json());
       })
       .catch(this.handleError);
 
@@ -56,34 +56,5 @@ export class QuizService {
     console.error('An error occurred', error);
     console.error('An error occurred: JSON:', error.json());
     return Promise.reject(error.message || error);
-  }
-
-  private static jsonObjectToQuiz(obj: any): Quiz {
-    let quiz: Quiz = new Quiz();
-
-    JsonUtils.jsonLoadHasIdAndTitle(obj, quiz);
-    if (obj) {
-      quiz.isPrivate = obj.isPrivate;
-      quiz.usesMathML = obj.usesMathML;
-    } else {
-      quiz.isPrivate = false;
-      quiz.usesMathML = false;
-    }
-
-    let jsonSections = obj.sections;
-    if (jsonSections) {
-      quiz.sections = JsonUtils.jsonObjectToQuizSections(jsonSections);
-    }
-
-    if (obj.questions) {
-      for (let jsonQA of obj.questions) {
-        let qa: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonQA);
-        if (!qa.question.sectionId) {
-          quiz.addQuestion(qa);
-        }
-      }
-    }
-
-    return quiz;
   }
 }

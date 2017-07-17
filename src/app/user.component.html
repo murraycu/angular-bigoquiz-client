@@ -1,0 +1,20 @@
+<h2 class="page-title-label">Profile</h2>
+<user-status></user-status>
+
+<div class="user-status-panel">
+  <h2>History</h2>
+  <div class="user-status-answers-panel">
+
+  <ng-container *ngIf="userHistoryQuizzes">
+    <div *ngFor="let quiz of userHistoryQuizzes.quizzes"
+      class="quiz-section">
+      <h3><a href="/history/quizId={{quiz.id}}">Quiz: {{quiz.title}}</a></h3>
+      <div *ngIf="userHistoryQuizzes.getUserStatsForSection(quiz.id); let stats" class="progress-bar">
+        <p class="progress-part-correct-once" [ngStyle]="{'width': stats.percentCorrectOnce(quiz.questionsCount)}">{{stats.countQuestionsCorrectOnce}} correct once</p>
+        <p class="progress-part-answered-once" [ngStyle]="{'width': stats.percentAnsweredOnce(quiz.questionsCount)}">{{stats.countQuestionsAnsweredOnce}} answered once</p>
+        <p class="progress-part-count" style="width: 100%">{{quiz.questionsCount}} questions</p>
+      </div>
+    </div>
+  </ng-container>
+  </div>
+</div>
