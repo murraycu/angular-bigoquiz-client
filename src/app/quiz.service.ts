@@ -84,27 +84,7 @@ export class QuizService {
 
     let jsonSections = obj.sections;
     if (jsonSections) {
-      // TODO: We won't need to use this when the JSON of the sections is an array.
-      let sectionsSequence: string[] = jsonSections.sectionsSequence;
-
-      let jsonSectionsInner = jsonSections.sections;
-      if (jsonSectionsInner) {
-        quiz.sections = new Array<QuizSection>();
-
-        // The JSON here should really be an array,
-        // with a order in the JSON,
-        // but it is currently a map. See https://github.com/murraycu/gwt-bigoquiz/issues/1
-        // for (let jsonSection of jsonSectionsInner)
-
-        // Iterate over all properties in the object.
-        // The name of the property is the name of a key in the map
-        // (the ID of a section).
-        for (let id of sectionsSequence) {
-          let jsonSection: Object = jsonSectionsInner[id];
-          let section = QuizService.jsonObjectToQuizSection(jsonSection);
-          quiz.sections.push(section);
-        }
-      }
+      quiz.sections = QuizService.jsonObjectToQuizSections(jsonSections);
     }
 
     if (obj.questions) {
@@ -117,6 +97,38 @@ export class QuizService {
     }
 
     return quiz;
+  }
+
+  private static jsonObjectToQuizSections(obj: any): QuizSection[] {
+    if (!obj) {
+      return null;
+    }
+
+    // TODO: We won't need to use this when the JSON of the sections is an array.
+    let sectionsSequence: string[] = obj.sectionsSequence;
+
+    let jsonSectionsInner = obj.sections;
+    if (!jsonSectionsInner) {
+      return null;
+    }
+
+    let result = new Array<QuizSection>();
+
+    // The JSON here should really be an array,
+    // with a order in the JSON,
+    // but it is currently a map. See https://github.com/murraycu/gwt-bigoquiz/issues/1
+    // for (let jsonSection of jsonSectionsInner)
+
+    // Iterate over all properties in the object.
+    // The name of the property is the name of a key in the map
+    // (the ID of a section).
+    for (let id of sectionsSequence) {
+      let jsonSection: Object = jsonSectionsInner[id];
+      let section = QuizService.jsonObjectToQuizSection(jsonSection);
+      result.push(section);
+    }
+
+    return result;
   }
 
   private static jsonObjectToQuizSection(obj: any): QuizSection {
