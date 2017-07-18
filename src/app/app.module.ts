@@ -12,6 +12,7 @@ import { UserComponent } from './user.component';
 import { HistoryComponent } from './history.component';
 import { QuizzesComponent } from './quizzes.component';
 import { QuizComponent } from './quiz.component';
+import { QuestionComponent } from './question.component';
 import { UserHistorySectionsComponent } from './user-history-sections.component';
 
 import { UserService } from './user.service';
@@ -28,6 +29,7 @@ import { UserHistoryService } from './user-history.service';
     HistoryComponent,
     QuizzesComponent,
     QuizComponent,
+    QuestionComponent,
     UserHistorySectionsComponent
   ],
   imports: [

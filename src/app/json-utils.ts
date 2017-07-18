@@ -94,7 +94,7 @@ export class JsonUtils {
     return result;
   }
 
-  private static jsonObjectToQuizQuestion(obj: any): QuizQuestion {
+  public static jsonObjectToQuizQuestion(obj: any): QuizQuestion {
     let result: QuizQuestion = new QuizQuestion();
     result.id = obj.id;
     result.sectionId = obj.sectionId;
@@ -109,6 +109,14 @@ export class JsonUtils {
     // These are in the JSON for convenience,
     // so we don't need to get them from the quiz.
     result.quizTitle = obj.quizTitle;
+
+    if (obj.choices) {
+      result.choices = new Array<QuizText>();
+      for (let jsonChoice of obj.choices) {
+        let choice = JsonUtils.jsonObjectToQuizText(jsonChoice);
+        result.choices.push(choice);
+      }
+    }
 
     if (obj.section) {
       result.section = JsonUtils.jsonObjectToQuizSection(obj.section);

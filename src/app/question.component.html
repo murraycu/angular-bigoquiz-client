@@ -1,0 +1,17 @@
+<div class="content-panel">
+  <h2 class="page-title-label">Question</h2>
+  <ng-container *ngIf="question">
+    <h2 *ngIf="question.quizTitle" class="page-secondary-title-label">{{question.quizTitle}}</h2>
+    <h3 *ngIf="question.section && question.section.title">{{question.section.title}}</h3> 
+    <h3 *ngIf="question.subSection && question.subSection.title">{{question.subSection.title}}</h3> 
+    <h3 *ngIf="question.text && question.text.text">{{question.text.text}}</h3> 
+
+    <div *ngIf="question.choices" class="choices-panel">
+      <span *ngFor="let choice of question.choices" class="question-radion-button">
+        <input id="foo" name="choices" value="on" type="radio"> 
+        <label for="foo">{{choice.text}}</label>
+      </span>
+    </div>
+  </ng-container>
+</div>
+<user-history-sections></user-history-sections>

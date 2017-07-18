@@ -7,6 +7,7 @@ import { UserComponent }   from './user.component';
 import { HistoryComponent }   from './history.component';
 import { QuizzesComponent }   from './quizzes.component';
 import { QuizComponent }   from './quiz.component';
+import { QuestionComponent }   from './question.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'quizzes', component: QuizzesComponent },
-  { path: 'quiz', component: QuizComponent }
+  { path: 'quiz', component: QuizComponent },
+  { path: 'question', component: QuestionComponent }
 ];
 
 @NgModule({

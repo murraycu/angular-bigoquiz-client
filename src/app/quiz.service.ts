@@ -4,7 +4,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Quiz } from './data-structure/quiz';
-import { QuizQuestionAndAnswer } from './data-structure/quiz-question-and-answer';
+import { QuizQuestion } from './data-structure/quiz-question';
 import { JsonUtils } from './json-utils';
 import { Config } from './config';
 
@@ -48,6 +48,17 @@ export class QuizService {
     const quiz: Quiz = {id: "123", title: "foo"};
     return Promise.resolve(quiz);
     */
+  }
+
+  getQuizQuestion(quizId: string, questionId: string): Promise<QuizQuestion> {
+    // Note: We must use backticks: This is a template literal.
+    const url = `${Config.baseUrl}/api/quiz/${quizId}/question/${questionId}`;
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+        return JsonUtils.jsonObjectToQuizQuestion(response.json());
+      })
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
