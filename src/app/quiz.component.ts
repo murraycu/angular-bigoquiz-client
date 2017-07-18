@@ -17,8 +17,8 @@ export class QuizComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.quizService.getQuiz(params.get('id')))
+    this.route.queryParamMap
+      .switchMap((params: ParamMap) => this.quizService.getQuiz(params.get('quizId')))
       .subscribe(quiz => this.quiz = quiz);
   }
 }
