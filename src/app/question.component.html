@@ -2,9 +2,18 @@
   <h2 class="page-title-label">Question</h2>
   <ng-container *ngIf="question">
     <h2 *ngIf="question.quizTitle" class="page-secondary-title-label">{{question.quizTitle}}</h2>
-    <h3 *ngIf="question.section && question.section.title">{{question.section.title}}</h3> 
-    <h3 *ngIf="question.subSection && question.subSection.title">{{question.subSection.title}}</h3> 
-    <h3 *ngIf="question.text && question.text.text">{{question.text.text}}</h3> 
+
+    <h3 *ngIf="question.section && question.section.title">
+      <a *ngIf="question.section.link" href="{{question.section.link}}">{{question.section.title}}</a>
+      <ng-container *ngIf="!question.section.link">{{question.section.title}}</ng-container>
+    </h3>
+
+    <h3 *ngIf="question.subSection && question.subSection.title">
+      <a *ngIf="question.subSection.link" href="{{question.subSection.link}}">{{question.subSection.title}}</a>
+      <ng-container *ngIf="!question.subSection.link">{{question.subSection.title}}</ng-container>
+    </h3>
+
+    <h3 *ngIf="question.text && question.text.text">{{question.text.text}}</h3>
 
     <div *ngIf="question.choices" class="choices-panel">
       <span *ngFor="let choice of question.choices" class="question-radion-button">
