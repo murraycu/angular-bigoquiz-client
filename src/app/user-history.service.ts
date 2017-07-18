@@ -8,19 +8,17 @@ import { UserHistoryQuizzes} from './data-structure/user-history-quizzes';
 import { UserStats} from './data-structure/user-stats';
 import { Quiz} from './data-structure/quiz';
 import { JsonUtils } from './json-utils';
+import { Config } from './config';
 
 @Injectable()
 export class UserHistoryService {
-  // When using gwt-bigoquiz with Jetty: private baseUrl = 'http://localhost:8080';
-  private baseUrl = 'http://bigoquiz.com';
-
   constructor(private http: Http) { }
 
   /** Get the history for each section in an individual quiz.
    */
   getUserHistorySectionsForQuiz(quizId: string): Promise<UserHistorySections> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${this.baseUrl}/api/user-history/${quizId}`;
+    const url = `${Config.baseUrl}/api/user-history/${quizId}`;
     return this.http.get(url)
       .toPromise()
       .then(response => {
@@ -33,7 +31,7 @@ export class UserHistoryService {
    */
   getUserHistoryForQuizzes(): Promise<UserHistoryQuizzes> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${this.baseUrl}/api/user-history`;
+    const url = `${Config.baseUrl}/api/user-history`;
     return this.http.get(url)
       .toPromise()
       .then(response => {

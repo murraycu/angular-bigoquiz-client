@@ -6,16 +6,14 @@ import 'rxjs/add/operator/toPromise';
 import { Quiz } from './data-structure/quiz';
 import { QuizQuestionAndAnswer } from './data-structure/quiz-question-and-answer';
 import { JsonUtils } from './json-utils';
+import { Config } from './config';
 
 @Injectable()
 export class QuizService {
-  // When using gwt-bigoquiz with Jetty: private baseUrl = 'http://localhost:8080';
-  private baseUrl = 'http://bigoquiz.com';
-
   constructor(private http: Http) { }
 
   getQuizzes(): Promise<Quiz[]> {
-   const url = this.baseUrl + '/api/quiz/?list-only=true';
+   const url = Config.baseUrl + '/api/quiz/?list-only=true';
    return this.http.get(url)
       .toPromise()
       .then(response => {
@@ -38,7 +36,7 @@ export class QuizService {
 
   getQuiz(id: string): Promise<Quiz> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${this.baseUrl}/api/quiz/${id}`;
+    const url = `${Config.baseUrl}/api/quiz/${id}`;
     return this.http.get(url)
       .toPromise()
       .then(response => {

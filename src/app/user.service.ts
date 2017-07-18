@@ -4,11 +4,10 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { LoginInfo} from './data-structure/login-info';
+import { Config } from './config';
 
 @Injectable()
 export class UserService {
-  // When using gwt-bigoquiz with Jetty: private baseUrl = 'http://localhost:8080';
-  private baseUrl = 'http://bigoquiz.com';
 
   constructor(private http: Http) { }
 
@@ -16,7 +15,7 @@ export class UserService {
    */
   getUser(currentUrl: string): Promise<LoginInfo> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${this.baseUrl}/api/user?requestUrl=${currentUrl}`;
+    const url = `${Config.baseUrl}/api/user?requestUrl=${currentUrl}`;
     return this.http.get(url)
       .toPromise()
       .then(response => {
