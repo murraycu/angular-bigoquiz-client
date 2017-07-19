@@ -1,8 +1,6 @@
 <div class="content-panel">
   <h2>Quizzes</h2>
   <div class="quiz-list-panel">
-    <p>Quizzes</p>
-
     <div *ngFor="let quiz of quizzes"
       class="quiz-list-row clearfix">
       <a [routerLink]="['/quiz']" [queryParams]="{'quiz-id': quiz.id}">{{quiz.title}}</a>
