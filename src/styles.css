@@ -298,20 +298,6 @@ body {
     color: #2F4550;
 }
 
-a.about-link {
-    color: #2F4550;
-}
-a.about-link:visited {
-    color: #2F4550;
-}
-
-a.user-name {
-    color: #2F4550;
-}
-a.user-name:visited {
-    color: #2F4550;
-}
-
 .username-label {
     margin-left: 1em;
 }
@@ -333,6 +319,14 @@ a.user-name:visited {
     padding-left: 1rem;
     padding-bottom: 1rem;
     */
+}
+
+.menu-panel a:link {
+  color: #2F4550;
+}
+
+.menu-panel a:visited {
+  color: #2F4550;
 }
 
 .menu-title {
