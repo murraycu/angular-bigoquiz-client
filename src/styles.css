@@ -814,6 +814,15 @@ h4 * {
 
 }
 
+.quiz-section h3 a:link {
+    color: #0066cc;
+}
+
+.quiz-section h3 a:visited {
+
+    color: #0066cc;
+}
+
 .quiz-sub-section {
 
 }
