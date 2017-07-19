@@ -16,25 +16,27 @@
     <h3 *ngIf="question.text && question.text.text">{{question.text.text}}</h3>
 
     <ng-container [ngModel]="submissionResult" name="result" ngDefaultControl>
-      <div *ngIf="question.choices" class="choices-panel">
+      <div *ngIf="question.choices" class="choices-panel clearfix">
         <span *ngFor="let choice of question.choices" class="question-radio-button">
           <input id="foo" name="choices" value="on" type="radio" [checked]="choiceIsCorrect(choice.text)" (click)="onChoiceClicked(choice.text)"/>
           <label for="foo" (click)="onChoiceClicked(choice.text)">{{choice.text}}</label>
         </span>
       </div>
 
-      <ng-container *ngIf="submissionResult" class="result-panel">
-        <p *ngIf="submissionResult.result" class="result-label">Correct</p>
-        <p *ngIf="!submissionResult.result && !showAnswer" class="result-label">Wrong</p>
+      <div class="result-panel">
+        <ng-container *ngIf="submissionResult">
+          <p *ngIf="submissionResult.result" class="result-label">Correct</p>
+          <p *ngIf="!submissionResult.result && !showAnswer" class="result-label">Wrong</p>
 
-        <p *ngIf="question.note" class="note-label">{{question.note}}</p>
-        <a *ngIf="question.videoUrl" class="video-anchor" href="{{question.videoUrl}}">Video</a>
-        <a *ngIf="question.codeUrl" class="code-anchor" href="{{question.codeUrl}}">Code</a>
+          <p *ngIf="question.note" class="note-label">{{question.note}}</p>
+          <a *ngIf="question.videoUrl" class="video-anchor" href="{{question.videoUrl}}">Video</a>
+          <a *ngIf="question.codeUrl" class="code-anchor" href="{{question.codeUrl}}">Code</a>
 
-        <a [routerLink]="['/question']" [queryParams]="queryParamsForNextQuestion()">Next</a>
-      </ng-container>
+          <a [routerLink]="['/question']" [queryParams]="queryParamsForNextQuestion()">Next</a>
+        </ng-container>
 
-      <button *ngIf="!submissionResult || !submissionResult.result" class="show-answer-button" type="button" (click)="onShowAnswer()">Show Answer</button>
+        <button *ngIf="!submissionResult || !submissionResult.result" class="show-answer-button" type="button" (click)="onShowAnswer()">Show Answer</button>
+      </div>
     </ng-container>
   </ng-container>
 </div>
