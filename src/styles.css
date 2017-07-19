@@ -241,10 +241,6 @@ body {
     margin-bottom: 0.5em;
 }
 
-.gwt-Label {
-    margin-bottom: 1em;
-}
-
 /* Contains content-panel
    and sometimes contains a sidebar-panel-userhistorysections. */
 .parent-content-panel {
@@ -302,17 +298,17 @@ body {
     color: #2F4550;
 }
 
-a.gwt-Anchor.about-link {
+a.about-link {
     color: #2F4550;
 }
-a.gwt-Anchor.about-link:visited {
+a.about-link:visited {
     color: #2F4550;
 }
 
-a.gwt-Anchor.user-name {
+a.user-name {
     color: #2F4550;
 }
-a.gwt-Anchor.user-name:visited {
+a.user-name:visited {
     color: #2F4550;
 }
 
@@ -353,7 +349,7 @@ a.gwt-Anchor.user-name:visited {
     color: #2F4550;
     background-color: #B6B2DD;
 
-    /* TODO: Why doesn't any of this work to make the a text white, insead of gwt-Anchor.menu-title?
+    /* TODO: Why doesn't any of this work to make the a text white, insead of menu-title?
     color: white;
     background-color: #B6B2DD;
     */
@@ -363,7 +359,7 @@ a.menu-title {
     color: #2F4550;
 }
 
-/* TODO: Why doesn't any of this work to make the a text white, insead of gwt-Anchor.menu-title?
+/* TODO: Why doesn't any of this work to make the a text white, insead of menu-title?
 .menu-title.gwt-Label {
 margin-top: 0.2em;
 margin-bottom: 0.2em;
@@ -427,7 +423,7 @@ background-color: #B6B2DD;
 
 }
 
-.gwt-Button.button-answer-questions {
+.button-answer-questions {
     margin-left: 1em;
     background: #B6B2DD;
     color: #2F4550;
@@ -438,7 +434,7 @@ background-color: #B6B2DD;
 
 }
 
-.gwt-Button.button-history {
+.button-history {
     margin-left: 1em;
     background: #B6B2DD;
     color: #2F4550;
@@ -453,13 +449,13 @@ background-color: #B6B2DD;
 
 }
 
-.gwt-Button.reset-sections-confirm-dialog-ok-button {
+.reset-sections-confirm-dialog-ok-button {
     background: red;
     font-weight: bold;
     float: right;
 }
 
-.gwt-Button.reset-sections-confirm-dialog-cancel-button {
+.reset-sections-confirm-dialog-cancel-button {
     font-weight: bold;
     float: right;
     margin-right: 1em;
@@ -575,12 +571,6 @@ h4 * {
     animation-name: shake;
     animation-duration: 1s;
 }
-
-/*
-.gwt-RadioButton {
-    line-height: 2em;
-}
-*/
 
 .choices-panel .question-radio-button {
     margin-top: 1em;
@@ -725,33 +715,33 @@ h4 * {
     margin-top: 0;
 }
 
-.gwt-Button.next-question-button {
+.next-question-button {
     background: #B6B2DD;
     color: #2F4550;
     font-family: 'Lato', sans-serif;
 }
 
-.gwt-Button.next-question-button:hover {
+.next-question-button:hover {
     border-color: #2F4550;
 }
 
-.gwt-Button.show-answer-button {
+.show-answer-button {
     background: #B6B2DD;
     color: #2F4550;
     font-family: 'Lato', sans-serif;
 }
 
-.gwt-Button.show-answer-button:hover {
+.show-answer-button:hover {
     border-color: #2F4550;
 }
 
-.gwt-Button.question-submit-button {
+.question-submit-button {
     background: #B6B2DD;
     color: #2F4550;
     font-family: 'Lato', sans-serif;
 }
 
-.gwt-Button.question-submit-button:hover {
+.question-submit-button:hover {
     border-color: #2F4550;
 }
 
@@ -853,20 +843,20 @@ h4 * {
 
 }
 
-.gwt-Button.home-button-answer-questions {
+.home-button-answer-questions {
     background: #B6B2DD;
     color: #2F4550;
     font-family: 'Lato', sans-serif;
 }
 
-.gwt-Button.quiz-list-button-answer-questions {
+.quiz-list-button-answer-questions {
     background: #B6B2DD;
     color: #2F4550;
     font-family: 'Lato', sans-serif;
     margin-bottom: 1em;
 }
 
-.gwt-Button.user-history-button-reset-sections {
+.user-history-button-reset-sections {
     background: #B6B2DD;
     color: #2F4550;
     font-family: 'Lato', sans-serif;
