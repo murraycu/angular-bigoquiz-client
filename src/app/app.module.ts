@@ -18,6 +18,7 @@ import { UserHistorySectionsComponent } from './user-history-sections.component'
 
 import { UserService } from './user.service';
 import { QuizService } from './quiz.service';
+import { QuestionService } from './question.service';
 import { UserHistoryService } from './user-history.service';
 
 @NgModule({
@@ -42,6 +43,7 @@ import { UserHistoryService } from './user-history.service';
   providers: [
     UserService,
     QuizService,
+    QuestionService,
     UserHistoryService
   ],
   bootstrap: [
