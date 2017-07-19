@@ -57,6 +57,14 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  queryParamsForNextQuestion() : Object {
+    if (this.sectionId) {
+      return {'quiz-id': this.quizId, 'section-id': this.sectionId};
+    } else {
+      return {'quiz-id': this.quizId};
+    }
+  }
+
   choiceIsCorrect(answerText: string): boolean {
   if (!this.submissionResult || !this.submissionResult.correctAnswer
     || !this.submissionResult.correctAnswer.text) {

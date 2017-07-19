@@ -31,7 +31,7 @@
         <a *ngIf="question.videoUrl" class="video-anchor" href="{{question.videoUrl}}">Video</a>
         <a *ngIf="question.codeUrl" class="code-anchor" href="{{question.codeUrl}}">Code</a>
 
-        <a [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': sectionId}">Next</a>
+        <a [routerLink]="['/question']" [queryParams]="queryParamsForNextQuestion()">Next</a>
       </ng-container>
 
       <button *ngIf="!submissionResult || !submissionResult.result" class="show-answer-button" type="button" (click)="onShowAnswer()">Show Answer</button>
