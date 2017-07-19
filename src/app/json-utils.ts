@@ -131,7 +131,7 @@ export class JsonUtils {
     return result;
   }
 
-  private static jsonObjectToQuizText(obj: any): QuizText {
+  public static jsonObjectToQuizText(obj: any): QuizText {
     let result: QuizText = new QuizText();
     result.text = obj.text;
     result.isHtml = obj.isHtml;

@@ -19,6 +19,7 @@ export class QuestionComponent implements OnInit {
   private sectionId: string;
   private question: QuizQuestion;
   private submissionResult: SubmissionResult;
+  private showAnswer: boolean;
 
   constructor(private quizService: QuizService,
     private questionService : QuestionService,
@@ -47,7 +48,7 @@ export class QuestionComponent implements OnInit {
     })
     .subscribe(question => {
       if (this.questionId) {
-        this.question = question
+        this.question = question;
       } else {
         // The question comes from getNextQuestion(),
         // so just navigate to the appropriate URL.
@@ -56,8 +57,28 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  choiceIsCorrect(answerText: string): boolean {
+  if (!this.submissionResult || !this.submissionResult.correctAnswer
+    || !this.submissionResult.correctAnswer.text) {
+      return false;
+    }
+
+    return answerText === this.submissionResult.correctAnswer.text;
+  }
+
   onChoiceClicked(answerText: string): void {
     this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText).
+      then(submissionResult => this.submissionResult = submissionResult);
+  }
+
+  onShowAnswer(): void {
+    // Update this ngModel used in the HTML.
+    // TODO: Is there some more direct way to do this?
+    this.showAnswer = true;
+
+    // This is much like submitting a wrong answer.
+    // It records it as a wrong answer on the server, and gives us the correct answer.
+    this.userHistoryService.submitDontKnowAnswer(this.quizId, this.questionId).
       then(submissionResult => this.submissionResult = submissionResult);
   }
 }

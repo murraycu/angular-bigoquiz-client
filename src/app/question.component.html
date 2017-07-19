@@ -15,24 +15,27 @@
 
     <h3 *ngIf="question.text && question.text.text">{{question.text.text}}</h3>
 
-    <div *ngIf="question.choices" class="choices-panel">
-      <span *ngFor="let choice of question.choices" class="question-radio-button">
-        <input id="foo" name="choices" value="on" type="radio" (click)="onChoiceClicked(choice.text)" />
-        <label for="foo" (click)="onChoiceClicked(choice.text)">{{choice.text}}</label>
-      </span>
-    </div>
+    <ng-container [ngModel]="submissionResult" name="result" ngDefaultControl>
+      <div *ngIf="question.choices" class="choices-panel">
+        <span *ngFor="let choice of question.choices" class="question-radio-button">
+          <input id="foo" name="choices" value="on" type="radio" [checked]="choiceIsCorrect(choice.text)" (click)="onChoiceClicked(choice.text)"/>
+          <label for="foo" (click)="onChoiceClicked(choice.text)">{{choice.text}}</label>
+        </span>
+      </div>
 
-    <div [ngModel]="submissionResult" name="result" ngDefaultControl *ngIf="submissionResult" class="result-panel">
-      <p *ngIf="submissionResult.result" class="result-label">Correct</p>
-      <p *ngIf="!submissionResult.result" class="result-label">Wrong</p>
+      <ng-container *ngIf="submissionResult" class="result-panel">
+        <p *ngIf="submissionResult.result" class="result-label">Correct</p>
+        <p *ngIf="!submissionResult.result && !showAnswer" class="result-label">Wrong</p>
 
-      <p *ngIf="question.note" class="note-label">{{question.note}}</p>
-      <a *ngIf="question.videoUrl" class="video-anchor" href="{{question.videoUrl}}">Video</a>
-      <a *ngIf="question.codeUrl" class="code-anchor" href="{{question.codeUrl}}">Code</a>
+        <p *ngIf="question.note" class="note-label">{{question.note}}</p>
+        <a *ngIf="question.videoUrl" class="video-anchor" href="{{question.videoUrl}}">Video</a>
+        <a *ngIf="question.codeUrl" class="code-anchor" href="{{question.codeUrl}}">Code</a>
 
-      <a [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': sectionId}">Next</a>
+        <a [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': sectionId}">Next</a>
+      </ng-container>
 
-    </div>
+      <button *ngIf="!submissionResult || !submissionResult.result" class="show-answer-button" type="button" (click)="onShowAnswer()">Show Answer</button>
+    </ng-container>
   </ng-container>
 </div>
 <user-history-sections></user-history-sections>

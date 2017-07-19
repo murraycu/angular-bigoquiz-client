@@ -50,7 +50,18 @@ export class UserHistoryService {
         return UserHistoryService.jsonObjectToSubmissionResult(response.json());
       })
       .catch(this.handleError);
-    }
+  }
+
+  submitDontKnowAnswer(quizId: string, questionId: string) : Promise<SubmissionResult> {
+    // Note: We must use backticks: This is a template literal.
+    const url = `${Config.baseUrl}/api/user-history/submit-dont-know-answer?quiz-id=${quizId}&question-id=${questionId}`;
+    return this.http.post(url, "")
+      .toPromise()
+      .then(response => {
+        return UserHistoryService.jsonObjectToSubmissionResult(response.json());
+      })
+      .catch(this.handleError);
+  }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -114,7 +125,8 @@ export class UserHistoryService {
   private static jsonObjectToSubmissionResult(obj: any): SubmissionResult {
     let result: SubmissionResult = new SubmissionResult();
     result.result = obj.result;
-    // TODO.
+    result.correctAnswer = JsonUtils.jsonObjectToQuizText(obj.correctAnswer);
+
     return result;
   }
 }
