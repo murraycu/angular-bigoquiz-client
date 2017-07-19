@@ -5,7 +5,7 @@
 
     <div *ngFor="let quiz of quizzes"
       class="quiz-list-row clearfix">
-      <a class="gwt-InlineHyperlink" [routerLink]="['/quiz']" [queryParams]="{'quiz-id': quiz.id}">{{quiz.title}}</a>
+      <a [routerLink]="['/quiz']" [queryParams]="{'quiz-id': quiz.id}">{{quiz.title}}</a>
       <div class="quiz-list-row-buttons-panel">
         <a class="button-answer-questions" [routerLink]="['/question']" [queryParams]="{'quiz-id': quiz.id}">Answer Questions</a>
         <a class="button-history" [routerLink]="['/history']" [queryParams]="{'quiz-id': quiz.id}">History</a>
