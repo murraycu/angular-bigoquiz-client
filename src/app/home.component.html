@@ -7,10 +7,10 @@
       </div>
     </div>
   </div>
-  <a class="home-button-answer-questions" href="question?quiz-id=bigo">Answer Questions</a>
+  <a class="home-button-answer-questions" [routerLink]="['/question']" [queryParams]="{'quiz-id': 'bigo'}">Answer Questions</a>
   <div class="home-panel">
     <div>
-      <p>Or try some other <a href="/quizzes">quizzes</a> to exercise your memory. The act of remembering strengthens the memory, so what you've learned doesn't fade away.</p>
+      <p>Or try some other <a [routerLink]="['/quizzes']">quizzes</a> to exercise your memory. The act of remembering strengthens the memory, so what you've learned doesn't fade away.</p>
     </div>
   </div>
 </div>

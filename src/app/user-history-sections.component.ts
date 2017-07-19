@@ -11,6 +11,7 @@ import { UserHistorySections} from './data-structure/user-history-sections';
   templateUrl: './user-history-sections.component.html',
 })
 export class UserHistorySectionsComponent implements OnInit {
+  private quizId: string;
   private userHistorySections: UserHistorySections;
 
   constructor(private userHistoryService: UserHistoryService,
@@ -18,7 +19,10 @@ export class UserHistorySectionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParamMap
-      .switchMap((params: ParamMap) => this.userHistoryService.getUserHistorySectionsForQuiz(params.get('quiz-id')))
-      .subscribe(userHistorySections => this.userHistorySections = userHistorySections);
+    .switchMap((params: ParamMap) => {
+      this.quizId = params.get('quiz-id');
+      return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId)
+    })
+    .subscribe(userHistorySections => this.userHistorySections = userHistorySections);
   }
 }
