@@ -6,7 +6,7 @@
       <ng-container *ngIf="userHistorySections">
         <div *ngFor="let section of userHistorySections.sections"
           class="quiz-section">
-          <h3><a href="/question/quizId={{section.id}}">{{section.title}}</a></h3>
+          <h3><a href="/question/quiz-id={{section.id}}">{{section.title}}</a></h3>
           <div *ngIf="userHistorySections.getUserStatsForSection(section.id); let stats" class="progress-bar">
             <p class="progress-part-correct-once" [ngStyle]="{'width': stats.percentCorrectOnce(section.questionsCount)}">{{stats.countQuestionsCorrectOnce}} correct once</p>
             <p class="progress-part-answered-once" [ngStyle]="{'width': stats.percentAnsweredOnce(section.questionsCount)}">{{stats.countQuestionsAnsweredOnce}} answered once</p>

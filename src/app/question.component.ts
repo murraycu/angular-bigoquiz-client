@@ -25,8 +25,8 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParamMap
     .switchMap((params: ParamMap) => {
-      this.quizId = params.get('quizId');
-      this.questionId = params.get('questionId');
+      this.quizId = params.get('quiz-id');
+      this.questionId = params.get('question-d');
       return this.quizService.getQuizQuestion(this.quizId, this.questionId)
     })
     .subscribe(question => this.question = question);
