@@ -1,3 +1,37 @@
+/** From GWT's clean.css:
+ */
+
+
+body, table td, select, button {
+  font-family: Arial Unicode MS, Arial, sans-serif;
+  font-size: small;
+}
+pre {
+  font-family: "courier new", courier;
+  font-size: small;
+}
+body {
+  color: black;
+  margin: 10px;
+  border: 0px;
+  padding: 0px;
+  background: #fff;
+  direction: ltr;
+}
+a, a:visited {
+  color: #0066cc;
+  text-decoration:none;
+}
+
+a:hover {
+  color: #0066cc;
+  text-decoration:underline;
+}
+
+select {
+  background: white;
+}
+
 /** Application-specific CSS rules. */
 
 /* Slightly-narrow screens:
@@ -316,10 +350,17 @@ a.gwt-Anchor.user-name:visited {
     font-family: 'Lato', sans-serif;
     font-size: 2.5em;
 
+    color: #2F4550;
+    background-color: #B6B2DD;
+
     /* TODO: Why doesn't any of this work to make the a text white, insead of gwt-Anchor.menu-title?
     color: white;
     background-color: #B6B2DD;
     */
+}
+
+a.menu-title {
+    color: #2F4550;
 }
 
 /* TODO: Why doesn't any of this work to make the a text white, insead of gwt-Anchor.menu-title?
@@ -339,11 +380,6 @@ color: white;
 background-color: #B6B2DD;
 }
 */
-
-.gwt-Anchor.menu-title {
-    color: #2F4550;
-    background-color: #B6B2DD;
-}
 
 .menu-others-panel {
     /* See media query:
