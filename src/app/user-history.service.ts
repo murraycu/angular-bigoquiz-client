@@ -7,6 +7,7 @@ import { UserHistorySections} from './data-structure/user-history-sections';
 import { UserHistoryQuizzes} from './data-structure/user-history-quizzes';
 import { UserStats} from './data-structure/user-stats';
 import { Quiz} from './data-structure/quiz';
+import { SubmissionResult} from './data-structure/submission-result';
 import { JsonUtils } from './json-utils';
 import { Config } from './config';
 
@@ -39,6 +40,17 @@ export class UserHistoryService {
       })
       .catch(this.handleError);
   }
+
+  submitAnswer(quizId: string, questionId: string, answerText: string) : Promise<SubmissionResult> {
+    // Note: We must use backticks: This is a template literal.
+    const url = Config.baseUrl + `/api/user-history/submit-answer?quizId=${quizId}&questionId=${questionId}&answer=${answerText}`;
+    return this.http.post(url, "")
+      .toPromise()
+      .then(response => {
+        return UserHistoryService.jsonObjectToSubmissionResult(response.json());
+      })
+      .catch(this.handleError);
+    }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -96,6 +108,13 @@ export class UserHistoryService {
     result.countQuestionsAnsweredOnce = JsonUtils.numberOrZero(obj.countQuestionsAnsweredOnce);
     result.countQuestionsCorrectOnce = JsonUtils.numberOrZero(obj.countQuestionsCorrectOnce);
 
+    return result;
+  }
+
+  private static jsonObjectToSubmissionResult(obj: any): SubmissionResult {
+    let result: SubmissionResult = new SubmissionResult();
+    result.result = obj.result;
+    // TODO.
     return result;
   }
 }

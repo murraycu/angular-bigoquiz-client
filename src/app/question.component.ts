@@ -4,14 +4,19 @@ import { OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
 import { QuizService } from './quiz.service';
+import { UserHistoryService } from './user-history.service';
 import { QuizQuestion } from './data-structure/quiz-question';
+import { SubmissionResult } from './data-structure/submission-result';
 
 @Component({
   selector: 'question',
   templateUrl: './question.component.html',
 })
 export class QuestionComponent implements OnInit {
-  question: QuizQuestion;
+  private quizId: string;
+  private questionId: string;
+  private question: QuizQuestion;
+  private submissionResult: SubmissionResult;
 
   constructor(private quizService: QuizService,
     private userHistoryService : UserHistoryService,
@@ -20,10 +25,15 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParamMap
     .switchMap((params: ParamMap) => {
-      let quizId: string = params.get('quizId');
-      let questionId: string = params.get('questionId');
-      return this.quizService.getQuizQuestion(quizId, questionId)
+      this.quizId = params.get('quizId');
+      this.questionId = params.get('questionId');
+      return this.quizService.getQuizQuestion(this.quizId, this.questionId)
     })
     .subscribe(question => this.question = question);
+  }
+
+  onChoiceClicked(answerText: string): void {
+    this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText).
+      then(submissionResult => this.submissionResult = submissionResult);
   }
 }

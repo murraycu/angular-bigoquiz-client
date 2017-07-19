@@ -16,10 +16,19 @@
     <h3 *ngIf="question.text && question.text.text">{{question.text.text}}</h3>
 
     <div *ngIf="question.choices" class="choices-panel">
-      <span *ngFor="let choice of question.choices" class="question-radion-button">
-        <input id="foo" name="choices" value="on" type="radio" />
-        <label for="foo">{{choice.text}}</label>
+      <span *ngFor="let choice of question.choices" class="question-radio-button">
+        <input id="foo" name="choices" value="on" type="radio" (click)="onChoiceClicked(choice.text)" />
+        <label for="foo" (click)="onChoiceClicked(choice.text)">{{choice.text}}</label>
       </span>
+    </div>
+
+    <div [ngModel]="submissionResult" name="result" ngDefaultControl *ngIf="submissionResult" class="result-panel">
+      <p *ngIf="submissionResult.result" class="result-label">Correct</p>
+      <p *ngIf="!submissionResult.result" class="result-label">Wrong</p>
+
+      <p *ngIf="question.note" class="note-label">{{question.note}}</p>
+      <a *ngIf="question.videoUrl" class="video-anchor" href="{{question.videoUrl}}">Video</a>
+      <a *ngIf="question.codeUrl" class="code-anchor" href="{{question.codeUrl}}">Code</a>
     </div>
   </ng-container>
 </div>

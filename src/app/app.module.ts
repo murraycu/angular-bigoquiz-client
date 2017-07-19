@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms'; // For ngModel, used in .html.
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -35,7 +36,8 @@ import { UserHistoryService } from './user-history.service';
   imports: [
     BrowserModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     UserService,
