@@ -11,7 +11,7 @@ import { UserHistorySections} from './data-structure/user-history-sections';
   templateUrl: './user-history-sections.component.html',
 })
 export class UserHistorySectionsComponent implements OnInit {
-  userHistorySections: UserHistorySections;
+  private userHistorySections: UserHistorySections;
 
   constructor(private userHistoryService: UserHistoryService,
     private route: ActivatedRoute) { }

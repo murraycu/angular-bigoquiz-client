@@ -9,7 +9,7 @@ import { UserHistoryQuizzes} from './data-structure/user-history-quizzes';
   templateUrl: './user.component.html',
 })
 export class UserComponent implements OnInit {
-  userHistoryQuizzes: UserHistoryQuizzes;
+  private userHistoryQuizzes: UserHistoryQuizzes;
 
   constructor(private userHistoryService: UserHistoryService) { }
 
