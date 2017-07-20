@@ -8,6 +8,7 @@ import { UserHistoryQuizzes} from './data-structure/user-history-quizzes';
 import { UserStats} from './data-structure/user-stats';
 import { Quiz} from './data-structure/quiz';
 import { SubmissionResult} from './data-structure/submission-result';
+import { UserQuestionHistory} from './data-structure/user-question-history';
 import { JsonUtils } from './json-utils';
 import { Config } from './config';
 
@@ -119,6 +120,29 @@ export class UserHistoryService {
     result.countQuestionsAnsweredOnce = JsonUtils.numberOrZero(obj.countQuestionsAnsweredOnce);
     result.countQuestionsCorrectOnce = JsonUtils.numberOrZero(obj.countQuestionsCorrectOnce);
 
+    result.problemQuestionHistoriesCount = JsonUtils.numberOrZero(obj.problemQuestionHistoriesCount);
+    if (obj.topProblemQuestionHistories) {
+      result.topProblemQuestionHistories = new Array<UserQuestionHistory>();
+      for (let jsonQuestionHistory of obj.topProblemQuestionHistories) {
+        let questionHistory = UserHistoryService.jsonObjectToUserQuestionHistory(jsonQuestionHistory);
+        result.topProblemQuestionHistories.push(questionHistory);
+      }
+    }
+
+    return result;
+  }
+
+  private static jsonObjectToUserQuestionHistory(obj: any):  UserQuestionHistory {
+    let result: UserQuestionHistory = new UserQuestionHistory();
+    result.questionId = obj.questionId
+
+    if (obj.questionTitle) {
+      result.questionTitle = JsonUtils.jsonObjectToQuizText(obj.questionTitle);
+    }
+
+    result.subSectionTitle = obj.sectionTitle;
+    result.answeredCorrectlyOnce = obj.answeredCorrectlyOnce;
+    result.countAnsweredWrong = obj.countAnsweredWrong;
     return result;
   }
 

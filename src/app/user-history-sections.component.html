@@ -7,11 +7,29 @@
         <div *ngFor="let section of userHistorySections.sections"
           class="quiz-section">
           <h3><a [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': section.id}">{{section.title}}</a></h3>
-          <div *ngIf="userHistorySections.getUserStatsForSection(section.id); let stats" class="progress-bar">
-            <p class="progress-part-correct-once" [ngStyle]="{'width': stats.percentCorrectOnce(section.questionsCount)}">{{stats.countQuestionsCorrectOnce}} correct once</p>
-            <p class="progress-part-answered-once" [ngStyle]="{'width': stats.percentAnsweredOnce(section.questionsCount)}">{{stats.countQuestionsAnsweredOnce}} answered once</p>
-            <p class="progress-part-count" style="width: 100%">{{section.questionsCount}} questions</p>
-          </div>
+          <ng-container *ngIf="userHistorySections.getUserStatsForSection(section.id); let stats">
+            <div class="progress-bar">
+              <p class="progress-part-correct-once" [ngStyle]="{'width': stats.percentCorrectOnce(section.questionsCount)}">{{stats.countQuestionsCorrectOnce}} correct once</p>
+              <p class="progress-part-answered-once" [ngStyle]="{'width': stats.percentAnsweredOnce(section.questionsCount)}">{{stats.countQuestionsAnsweredOnce}} answered once</p>
+              <p class="progress-part-count" style="width: 100%">{{section.questionsCount}} questions</p>
+            </div>
+
+            <h4>Problem Questions</h4>
+            <div class="panel-problem-questions">
+              <!-- TODO: Extra checks to get the real count. -->
+              <p *ngIf="stats.problemQuestionHistoriesCount <= 0" class="problem-answer clearfix">None Yet</p>
+
+              <ng-container *ngIf="stats.problemQuestionHistoriesCount > 0">
+                <ng-container *ngFor="let question of stats.topProblemQuestionHistories">
+                  <p class="problem-answer clearfix">
+                  <span class="problem-answer-score">-{{question.countAnsweredWrong}}</span>
+                    <a class="problem-answer-hyperlink" [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': section.id, 'question-id': question.questionId}">{{questionTitle(question)}}</a>
+                  </p>
+                </ng-container>
+              </ng-container>
+
+            </div>
+          </ng-container>
         </div>
       </ng-container>
     </div>

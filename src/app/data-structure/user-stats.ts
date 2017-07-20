@@ -1,3 +1,5 @@
+import { UserQuestionHistory } from './user-question-history';
+
 export class UserStats {
   quizId: string;
   sectionId: string;
@@ -6,6 +8,10 @@ export class UserStats {
   correct: number;
   countQuestionsAnsweredOnce: number;
   countQuestionsCorrectOnce: number;
+
+  problemQuestionHistoriesCount: number;
+
+  topProblemQuestionHistories: UserQuestionHistory[];
 
   // TODO: questionHistories
 
