@@ -12,7 +12,7 @@ import { UserHistorySections} from './data-structure/user-history-sections';
 })
 export class UserHistorySectionsComponent implements OnInit {
   private quizId: string;
-  private userHistorySections: UserHistorySections;
+  userHistorySections: UserHistorySections;
 
   constructor(private userHistoryService: UserHistoryService,
     private route: ActivatedRoute) { }

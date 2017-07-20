@@ -10,7 +10,7 @@ import { Quiz } from './data-structure/quiz';
   templateUrl: './quizzes.component.html',
 })
 export class QuizzesComponent implements OnInit {
-  private quizzes: Quiz[];
+  quizzes: Quiz[];
 
   constructor(private quizService: QuizService) { }
 

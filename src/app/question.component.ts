@@ -14,12 +14,12 @@ import { SubmissionResult } from './data-structure/submission-result';
   templateUrl: './question.component.html',
 })
 export class QuestionComponent implements OnInit {
-  private quizId: string;
+  quizId: string;
   private questionId: string;
   private sectionId: string;
-  private question: QuizQuestion;
-  private submissionResult: SubmissionResult;
-  private showAnswer: boolean;
+  question: QuizQuestion;
+  submissionResult: SubmissionResult;
+  showAnswer: boolean;
 
   constructor(private quizService: QuizService,
     private questionService : QuestionService,

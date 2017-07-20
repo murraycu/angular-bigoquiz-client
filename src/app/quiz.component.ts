@@ -11,7 +11,7 @@ import { Quiz } from './data-structure/quiz';
   templateUrl: './quiz.component.html',
 })
 export class QuizComponent implements OnInit {
-  private quiz: Quiz;
+  quiz: Quiz;
 
   constructor(private quizService: QuizService,
     private route: ActivatedRoute) { }
