@@ -5,7 +5,7 @@
 
       <ng-container *ngIf="userHistorySections">
         <div *ngFor="let section of userHistorySections.sections"
-          class="quiz-section">
+          class="user-history-quiz-section">
           <h3><a [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': section.id}">{{section.title}}</a></h3>
           <ng-container *ngIf="userHistorySections.getUserStatsForSection(section.id); let stats">
             <div class="progress-bar">

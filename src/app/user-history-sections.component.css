@@ -30,6 +30,15 @@
     clear: both;
 }
 
+.user-history-quiz-section h3 {
+    font-family: 'Lato', sans-serif;
+    margin-top: 1.5em;
+}
+
+.user-history-quiz-section h3:first-child {
+    margin-top: 0;
+}
+
 /* TODO: Unused? */
 .section-title {
     font-weight: bolder;
