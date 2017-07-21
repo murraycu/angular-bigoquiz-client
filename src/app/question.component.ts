@@ -12,6 +12,7 @@ import { SubmissionResult } from './data-structure/submission-result';
 @Component({
   selector: 'question',
   templateUrl: './question.component.html',
+  styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
   quizId: string;

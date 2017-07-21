@@ -1,0 +1,139 @@
+.question-radio-button {
+    float: left;
+    clear: left;
+}
+
+.question-radio-button-correct {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.question-radio-button-wrong {
+    text-decoration: line-through;
+
+    animation-name: shake;
+    animation-duration: 1s;
+}
+
+.choices-panel {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.choices-panel .question-radio-button {
+    margin-top: 1em;
+}
+
+.choices-panel .question-radio-button:first-child {
+    margin-top: 0;
+}
+
+/* Make sure that the start of the second row of the radio button's' label aligns with the first row,
+ * instead of being underneath the radio button itself.
+ */
+.gwt-RadioButton input {
+    float: left;
+}
+
+.gwt-RadioButton label {
+    margin-left: 2em;
+    display: block;
+    text-align: left;
+
+    /** Don't do this because it means 100% of the parent <span>,
+     * but that also contains an <input> radio button circle at the left,
+     * so this makes the text so wide that it can be partly off the screen.
+     */
+    /* width: 100%; */
+}
+
+.question-answer-textbox {
+    margin-right: 1em;
+    font-size: medium;
+}
+
+.question-answer-textbox {
+    font-size: medium;
+}
+
+.next-question-section-title {
+    /* Otherwise, combo boxes with long choices
+     * (long <option> entries in <select> tags in the HTML)
+     * cause the combo box to be wider than the div,
+     * up to the right edge of the screen, regardless of any margin or padding.
+     */
+    width: 100%
+}
+
+.next-question-section-title-label {
+    margin-right: 1em;
+}
+
+.show-from-panel {
+    /* Otherewise there is a top margin. */
+    margin-top: 0;
+}
+
+.next-question-button {
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+}
+
+.next-question-button:hover {
+    border-color: #2F4550;
+}
+
+.show-answer-button {
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+}
+
+.show-answer-button:hover {
+    border-color: #2F4550;
+}
+
+.question-submit-button {
+    background: #B6B2DD;
+    color: #2F4550;
+    font-family: 'Lato', sans-serif;
+}
+
+.question-submit-button:hover {
+    border-color: #2F4550;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+.result-label {
+    font-weight: bold;
+}
+
+.note-label {
+    padding-top: 0.6rem;
+}
+
+.video-anchor {
+    padding-top: 0.6rem;
+}
+
+.code-anchor {
+    padding-top: 0.6rem;
+}
