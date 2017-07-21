@@ -11,6 +11,7 @@ import { UserQuestionHistory} from './data-structure/user-question-history';
 @Component({
   selector: 'user-history-sections',
   templateUrl: './user-history-sections.component.html',
+  styleUrls: ['./user-history-sections.component.css']
 })
 export class UserHistorySectionsComponent implements OnInit {
   private quizId: string;

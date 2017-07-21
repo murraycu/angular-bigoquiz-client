@@ -1,0 +1,79 @@
+.sidebar-panel-sections {
+
+    /* See media query:
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    */
+
+    float: right;
+
+    /* TODO: Avoid this somehow? */
+    width: 330px; /* To avoid any text from making it too wide. Same as for sidebar-panel-links. */
+}
+
+.sidebar-panel-sections h2 {
+    margin-top: 1em;
+}
+
+/* TODO: Make this not apply to a h2 inside sub-divs? */
+.sidebar-panel-sections h2:first-child {
+    margin-top: 0;
+}
+
+.user-history-recent-panel {
+    margin-bottom: 1em;
+    margin-left: 1rem;
+    margin-right: 0.3rem;
+    float: left;
+    clear: both;
+}
+
+/* TODO: Unused? */
+.section-title {
+    font-weight: bolder;
+}
+
+.label-score {
+    color: #586F7C;
+}
+
+.progress-part-correct-once {
+    background-color: #B8DBD9;
+    padding: 0.3em;
+    width: 20%;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.progress-part-answered-once {
+    background-color: #B6B2DD;
+    padding: 0.3em;
+    width: 20%;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.progress-part-count {
+    background-color: #586F7C;
+    padding: 0.3em;
+    width: 20%;
+    margin: 0;
+    white-space: nowrap;
+
+}
+
+.label-problem-questions {
+    margin-bottom: 1em;
+}
+
+.problem-answer-score {
+    margin-top: 0;
+    margin-right: 0.5em;
+    background: #B8DBD9;
+    color: #2F4550;
+    padding: 0.3em;
+    float: left;
+    clear: right;
+}
