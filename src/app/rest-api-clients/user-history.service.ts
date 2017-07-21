@@ -153,7 +153,7 @@ export class UserHistoryService {
 
   private static jsonObjectToUserQuestionHistory(obj: any):  UserQuestionHistory {
     let result: UserQuestionHistory = new UserQuestionHistory();
-    result.questionId = obj.questionId
+    result.questionId = obj.questionId;
 
     if (obj.questionTitle) {
       result.questionTitle = JsonUtils.jsonObjectToQuizText(obj.questionTitle);

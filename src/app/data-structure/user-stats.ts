@@ -56,7 +56,7 @@ export class UserStats {
 
       history = new UserQuestionHistory();
       history.questionId = questionId;
-      this.questionHistories.set(questionId, history)
+      this.questionHistories.set(questionId, history);
     } else if (answerIsCorrect && !history.answeredCorrectlyOnce) {
       firstTimeCorrect = true;
     }

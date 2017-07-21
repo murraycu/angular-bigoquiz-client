@@ -1,5 +1,5 @@
 import { HasIdAndTitle } from './has-id-and-title';
-import { QuizSection } from './quiz-section'
+import { QuizSection } from './quiz-section';
 import { QuizQuestionAndAnswer } from './quiz-question-and-answer';
 
 export class Quiz extends HasIdAndTitle {

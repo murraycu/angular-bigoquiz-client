@@ -1,6 +1,6 @@
-import { HasIdAndTitle } from './has-id-and-title'
-import { QuizSubSection } from './quiz-sub-section'
-import { QuizText } from './quiz-text'
+import { HasIdAndTitle } from './has-id-and-title';
+import { QuizSubSection } from './quiz-sub-section';
+import { QuizText } from './quiz-text';
 
 export class QuizQuestion extends HasIdAndTitle {
   id: string;

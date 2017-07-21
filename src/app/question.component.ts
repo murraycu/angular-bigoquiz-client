@@ -10,7 +10,7 @@ import { QuizQuestion } from './data-structure/quiz-question';
 import { SubmissionResult } from './data-structure/submission-result';
 
 import { QuestionResultsService } from './question-results.service';
-import { QuestionResultEvent } from './question-result-event'
+import { QuestionResultEvent } from './question-result-event';
 
 @Component({
   selector: 'question',
@@ -41,10 +41,10 @@ export class QuestionComponent implements OnInit {
 
       if (this.questionId) {
         // Show the question specified by the URL:
-        return this.quizService.getQuizQuestion(this.quizId, this.questionId)
+        return this.quizService.getQuizQuestion(this.quizId, this.questionId);
       } else if (this.quizId) {
         // Show a random(ish) question chosen by the server:
-        return this.questionService.getNextQuestion(this.quizId, this.sectionId)
+        return this.questionService.getNextQuestion(this.quizId, this.sectionId);
         // TODO: Update the URL.
       } else {
         // TODO: Show an error message?
@@ -91,7 +91,7 @@ export class QuestionComponent implements OnInit {
   onChoiceClicked(answerText: string): void {
     this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText).
       then(submissionResult => {
-        this.submissionResult = submissionResult
+        this.submissionResult = submissionResult;
         this.updateSectionsSidebar(this.submissionResult.result);
       });
   }

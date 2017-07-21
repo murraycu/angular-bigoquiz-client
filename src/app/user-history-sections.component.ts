@@ -31,7 +31,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
     this.route.queryParamMap
     .switchMap((params: ParamMap) => {
       this.quizId = params.get('quiz-id');
-      return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId)
+      return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId);
     })
     .subscribe(userHistorySections => this.userHistorySections = userHistorySections);
 

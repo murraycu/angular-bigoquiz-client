@@ -1,4 +1,4 @@
-import { QuestionResultEvent } from './question-result-event'
+import { QuestionResultEvent } from './question-result-event';
 
 import { Injectable, Inject } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
