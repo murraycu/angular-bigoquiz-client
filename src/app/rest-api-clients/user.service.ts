@@ -21,10 +21,10 @@ export class UserService {
       .then(response => {
         return UserService.jsonObjectToLoginInfo(response.json());
       })
-      .catch(this.handleError);
+      .catch(UserService.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
+  private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     console.error('An error occurred: JSON:', error.json());
     return Promise.reject(error.message || error);

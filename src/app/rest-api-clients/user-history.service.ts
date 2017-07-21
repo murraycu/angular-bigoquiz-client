@@ -26,7 +26,7 @@ export class UserHistoryService {
       .then(response => {
         return UserHistoryService.jsonObjectToUserHistorySections(response.json());
       })
-      .catch(this.handleError);
+      .catch(UserHistoryService.handleError);
   }
 
   /** Get the overall history for the current user, for all quizzes.
@@ -39,7 +39,7 @@ export class UserHistoryService {
       .then(response => {
         return UserHistoryService.jsonObjectToUserHistoryQuizzes(response.json());
       })
-      .catch(this.handleError);
+      .catch(UserHistoryService.handleError);
   }
 
   submitAnswer(quizId: string, questionId: string, answerText: string): Promise<SubmissionResult> {
@@ -50,7 +50,7 @@ export class UserHistoryService {
       .then(response => {
         return UserHistoryService.jsonObjectToSubmissionResult(response.json());
       })
-      .catch(this.handleError);
+      .catch(UserHistoryService.handleError);
   }
 
   submitDontKnowAnswer(quizId: string, questionId: string): Promise<SubmissionResult> {
@@ -61,10 +61,10 @@ export class UserHistoryService {
       .then(response => {
         return UserHistoryService.jsonObjectToSubmissionResult(response.json());
       })
-      .catch(this.handleError);
+      .catch(UserHistoryService.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
+  private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     console.error('An error occurred: JSON:', error.json());
     return Promise.reject(error.message || error);

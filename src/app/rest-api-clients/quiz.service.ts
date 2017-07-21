@@ -23,7 +23,7 @@ export class QuizService {
         });
         return result;
       })
-      .catch(this.handleError);
+      .catch(QuizService.handleError);
 
     /*
     const QUIZZES: Quiz[] = [
@@ -42,7 +42,7 @@ export class QuizService {
       .then(response => {
         return JsonUtils.jsonObjectToQuiz(response.json());
       })
-      .catch(this.handleError);
+      .catch(QuizService.handleError);
 
     /*
     const quiz: Quiz = {id: "123", title: "foo"};
@@ -58,10 +58,10 @@ export class QuizService {
       .then(response => {
         return JsonUtils.jsonObjectToQuizQuestion(response.json());
       })
-      .catch(this.handleError);
+      .catch(QuizService.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
+  private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     console.error('An error occurred: JSON:', error.json());
     return Promise.reject(error.message || error);
