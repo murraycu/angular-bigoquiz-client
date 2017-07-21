@@ -3,9 +3,9 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
-import { QuizService } from './quiz.service';
-import { QuestionService } from './question.service';
-import { UserHistoryService } from './user-history.service';
+import { QuizService } from './rest-api-clients/quiz.service';
+import { QuestionService } from './rest-api-clients/question.service';
+import { UserHistoryService } from './rest-api-clients/user-history.service';
 import { QuizQuestion } from './data-structure/quiz-question';
 import { SubmissionResult } from './data-structure/submission-result';
 

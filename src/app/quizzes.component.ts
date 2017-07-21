@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { QuizService } from './quiz.service';
+import { QuizService } from './rest-api-clients/quiz.service';
 
 import { Quiz } from './data-structure/quiz';
 

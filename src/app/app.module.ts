@@ -16,10 +16,10 @@ import { QuizComponent } from './quiz.component';
 import { QuestionComponent } from './question.component';
 import { UserHistorySectionsComponent } from './user-history-sections.component';
 
-import { UserService } from './user.service';
-import { QuizService } from './quiz.service';
-import { QuestionService } from './question.service';
-import { UserHistoryService } from './user-history.service';
+import { UserService } from './rest-api-clients/user.service';
+import { QuizService } from './rest-api-clients/quiz.service';
+import { QuestionService } from './rest-api-clients/question.service';
+import { UserHistoryService } from './rest-api-clients/user-history.service';
 
 import { QuestionResultsService } from './question-results.service';
 

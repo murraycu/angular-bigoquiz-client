@@ -3,9 +3,9 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { QuizQuestion } from './data-structure/quiz-question';
-import { JsonUtils } from './json-utils';
-import { Config } from './config';
+import { QuizQuestion } from '../data-structure/quiz-question';
+import { JsonUtils } from '../json-utils';
+import { Config } from '../config';
 
 @Injectable()
 export class QuestionService {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 
-import { UserHistoryService } from './user-history.service';
+import { UserHistoryService } from './rest-api-clients/user-history.service';
 import { UserHistoryQuizzes} from './data-structure/user-history-quizzes';
 
 @Component({

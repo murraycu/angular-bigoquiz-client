@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
-import { QuizService } from './quiz.service';
+import { QuizService } from './rest-api-clients/quiz.service';
 import { Quiz } from './data-structure/quiz';
 
 @Component({

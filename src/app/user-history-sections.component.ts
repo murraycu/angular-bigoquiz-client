@@ -4,7 +4,7 @@ import { OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 
-import { UserHistoryService } from './user-history.service';
+import { UserHistoryService } from './rest-api-clients/user-history.service';
 import { UserHistorySections} from './data-structure/user-history-sections';
 import { QuizQuestion} from './data-structure/quiz-question';
 import { UserQuestionHistory} from './data-structure/user-question-history';

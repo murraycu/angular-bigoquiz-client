@@ -3,14 +3,14 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { UserHistorySections} from './data-structure/user-history-sections';
-import { UserHistoryQuizzes} from './data-structure/user-history-quizzes';
-import { UserStats} from './data-structure/user-stats';
-import { Quiz} from './data-structure/quiz';
-import { SubmissionResult} from './data-structure/submission-result';
-import { UserQuestionHistory} from './data-structure/user-question-history';
-import { JsonUtils } from './json-utils';
-import { Config } from './config';
+import { UserHistorySections} from '../data-structure/user-history-sections';
+import { UserHistoryQuizzes} from '../data-structure/user-history-quizzes';
+import { UserStats} from '../data-structure/user-stats';
+import { Quiz} from '../data-structure/quiz';
+import { SubmissionResult} from '../data-structure/submission-result';
+import { UserQuestionHistory} from '../data-structure/user-question-history';
+import { JsonUtils } from '../json-utils';
+import { Config } from '../config';
 
 @Injectable()
 export class UserHistoryService {

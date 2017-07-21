@@ -3,8 +3,8 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { LoginInfo} from './data-structure/login-info';
-import { Config } from './config';
+import { LoginInfo} from '../data-structure/login-info';
+import { Config } from '../config';
 
 @Injectable()
 export class UserService {
