@@ -6,7 +6,6 @@ import 'rxjs/add/operator/switchMap';
 
 import { UserHistoryService } from './rest-api-clients/user-history.service';
 import { UserHistorySections} from './data-structure/user-history-sections';
-import { QuizQuestion} from './data-structure/quiz-question';
 import { UserQuestionHistory} from './data-structure/user-question-history';
 import { UserStats} from './data-structure/user-stats';
 
