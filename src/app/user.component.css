@@ -1,0 +1,12 @@
+.user-status-answers-panel {
+
+}
+
+.user-status-answers-panel h3 {
+    font-family: 'Lato', sans-serif;
+    margin-top: 1.5em;
+}
+
+.user-status-answers-panel h3:first-child {
+    margin-top: 0;
+}

@@ -7,6 +7,7 @@ import { UserHistoryQuizzes} from './data-structure/user-history-quizzes';
 @Component({
   selector: 'user',
   templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
   userHistoryQuizzes: UserHistoryQuizzes;
