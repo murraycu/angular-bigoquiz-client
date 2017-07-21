@@ -7,6 +7,7 @@ import { LoginInfo } from './data-structure/login-info';
 @Component({
   selector: 'user-status',
   templateUrl: './user-status.component.html',
+  styleUrls: ['./user-status.component.css']
 })
 export class UserStatusComponent implements OnInit {
   loginInfo: LoginInfo;

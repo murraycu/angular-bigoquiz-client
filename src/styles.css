@@ -329,16 +329,6 @@ background-color: #B6B2DD;
     float: right;
 }
 
-.menu-others-panel .user-status-panel {
-    float: right;
-    clear: both;
-    color: #2F4550;
-}
-
-.login-failed {
-    font-weight: bold;
-}
-
 .button-answer-questions {
     /* Generic button style */
     margin: 0;

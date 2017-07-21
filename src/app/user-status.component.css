@@ -1,0 +1,13 @@
+.menu-others-panel .user-status-panel {
+    float: right;
+    clear: both;
+    color: #2F4550;
+}
+
+.username-label {
+    margin-left: 1em;
+}
+
+.login-failed {
+    font-weight: bold;
+}
