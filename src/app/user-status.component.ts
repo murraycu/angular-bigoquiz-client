@@ -18,7 +18,7 @@ export class UserStatusComponent implements OnInit {
     // This only gives us part of the URL, such as "/quiz/algorithms".
     // let currentUrl: string = this.location.prepareExternalUrl(this.location.path());
 
-    let currentUrl: string = window.location.href;
+    const currentUrl: string = window.location.href;
 
     this.userService.getUser(currentUrl).then(loginInfo => this.loginInfo = loginInfo);
   }

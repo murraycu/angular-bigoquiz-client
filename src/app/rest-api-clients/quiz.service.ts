@@ -17,8 +17,8 @@ export class QuizService {
    return this.http.get(url)
       .toPromise()
       .then(response => {
-        let json = response.json();
-        let result: Quiz[] = json.map(o => {
+        const json = response.json();
+        const result: Quiz[] = json.map(o => {
           return JsonUtils.jsonObjectToQuiz(o);
         });
         return result;

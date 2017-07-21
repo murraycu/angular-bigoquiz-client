@@ -71,7 +71,7 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserHistorySections(obj: any): UserHistorySections {
-    let result: UserHistorySections = new UserHistorySections();
+    const result: UserHistorySections = new UserHistorySections();
 
     if (obj.sections) {
       result.sections = JsonUtils.jsonObjectToQuizSections(obj.sections);
@@ -81,9 +81,9 @@ export class UserHistoryService {
     if (obj.stats) {
       result.stats = new Map<string, UserStats>();
 
-      for (let sectionId in obj.stats) {
-        let jsonStats = obj.stats[sectionId];
-        let userStats = UserHistoryService.jsonObjectToUserStats(jsonStats);
+      for (const sectionId in obj.stats) {
+        const jsonStats = obj.stats[sectionId];
+        const userStats = UserHistoryService.jsonObjectToUserStats(jsonStats);
         result.stats.set(userStats.sectionId, userStats);
       }
     }
@@ -92,10 +92,10 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserHistoryQuizzes(obj: any): UserHistoryQuizzes {
-    let result: UserHistoryQuizzes = new UserHistoryQuizzes();
+    const result: UserHistoryQuizzes = new UserHistoryQuizzes();
     result.quizzes = new Array<Quiz>();
-    for (let jsonQuiz in obj.quizzes) {
-      let quiz = JsonUtils.jsonObjectToQuiz(jsonQuiz);
+    for (const jsonQuiz in obj.quizzes) {
+      const quiz = JsonUtils.jsonObjectToQuiz(jsonQuiz);
       result.quizzes.push(quiz);
       }
 
@@ -103,9 +103,9 @@ export class UserHistoryService {
     if (obj.stats) {
       result.stats = new Map<string, UserStats>();
 
-      for (let quizId in obj.stats) {
-        let jsonStats = obj.stats[quizId];
-        let userStats = UserHistoryService.jsonObjectToUserStats(jsonStats);
+      for (const quizId in obj.stats) {
+        const jsonStats = obj.stats[quizId];
+        const userStats = UserHistoryService.jsonObjectToUserStats(jsonStats);
         result.stats.set(userStats.quizId, userStats);
       }
     }
@@ -114,7 +114,7 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserStats(obj: any): UserStats {
-    let result: UserStats = new UserStats();
+    const result: UserStats = new UserStats();
     result.quizId = obj.quizId;
     result.sectionId = obj.sectionId;
 
@@ -127,13 +127,13 @@ export class UserHistoryService {
 
     if (obj.questionHistories) {
       result.questionHistories = new Map<string, UserQuestionHistory>();
-      for (let questionId in obj.questionHistories) {
-        let jsonQuestionHistory = obj.questionHistories[questionId];
+      for (const questionId in obj.questionHistories) {
+        const jsonQuestionHistory = obj.questionHistories[questionId];
         if (!jsonQuestionHistory) {
           continue;
         }
 
-        let questionHistory = UserHistoryService.jsonObjectToUserQuestionHistory(jsonQuestionHistory);
+        const questionHistory = UserHistoryService.jsonObjectToUserQuestionHistory(jsonQuestionHistory);
         result.questionHistories.set(questionId, questionHistory);
       }
     }
@@ -142,8 +142,8 @@ export class UserHistoryService {
     // but it has been calculated for us by the server:
     if (obj.topProblemQuestionHistories) {
       result.topProblemQuestionHistories = new Array<UserQuestionHistory>();
-      for (let jsonQuestionHistory of obj.topProblemQuestionHistories) {
-        let questionHistory = UserHistoryService.jsonObjectToUserQuestionHistory(jsonQuestionHistory);
+      for (const jsonQuestionHistory of obj.topProblemQuestionHistories) {
+        const questionHistory = UserHistoryService.jsonObjectToUserQuestionHistory(jsonQuestionHistory);
         result.topProblemQuestionHistories.push(questionHistory);
       }
     }
@@ -152,7 +152,7 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserQuestionHistory(obj: any):  UserQuestionHistory {
-    let result: UserQuestionHistory = new UserQuestionHistory();
+    const result: UserQuestionHistory = new UserQuestionHistory();
     result.questionId = obj.questionId;
 
     if (obj.questionTitle) {
@@ -166,7 +166,7 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToSubmissionResult(obj: any): SubmissionResult {
-    let result: SubmissionResult = new SubmissionResult();
+    const result: SubmissionResult = new SubmissionResult();
     result.result = obj.result;
 
     if (obj.correctAnswer) {

@@ -83,8 +83,8 @@ export class QuestionComponent implements OnInit {
    * to change the progress bars and, if necessary,
    * change the list of problem questions.
    */
-  updateSectionsSidebar(result: boolean):void {
-    let data: QuestionResultEvent = {sectionId: this.sectionId, questionId: this.questionId, result: result};
+  updateSectionsSidebar(result: boolean): void {
+    const data: QuestionResultEvent = {sectionId: this.sectionId, questionId: this.questionId, result: result};
     this.questionResultsService.notify(data);
   }
 

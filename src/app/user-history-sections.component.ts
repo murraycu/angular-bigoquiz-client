@@ -68,7 +68,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    let stats: UserStats = this.userHistorySections.getUserStatsForSection(data.sectionId);
+    const stats: UserStats = this.userHistorySections.getUserStatsForSection(data.sectionId);
     if (!stats) {
       return;
     }

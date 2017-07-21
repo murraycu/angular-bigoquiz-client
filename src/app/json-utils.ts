@@ -13,14 +13,14 @@ export class JsonUtils {
     }
 
     // TODO: We won't need to use this when the JSON of the sections is an array.
-    let sectionsSequence: string[] = obj.sectionsSequence;
+    const sectionsSequence: string[] = obj.sectionsSequence;
 
-    let jsonSectionsInner = obj.sections;
+    const jsonSectionsInner = obj.sections;
     if (!jsonSectionsInner) {
       return undefined;
     }
 
-    let result = new Array<QuizSection>();
+    const result = new Array<QuizSection>();
 
     // The JSON here should really be an array,
     // with a order in the JSON,
@@ -30,9 +30,9 @@ export class JsonUtils {
     // Iterate over all properties in the object.
     // The name of the property is the name of a key in the map
     // (the ID of a section).
-    for (let id of sectionsSequence) {
-      let jsonSection: Object = jsonSectionsInner[id];
-      let section = JsonUtils.jsonObjectToQuizSection(jsonSection);
+    for (const id of sectionsSequence) {
+      const jsonSection: Object = jsonSectionsInner[id];
+      const section = JsonUtils.jsonObjectToQuizSection(jsonSection);
       result.push(section);
     }
 
@@ -40,7 +40,7 @@ export class JsonUtils {
   }
 
   private static jsonObjectToQuizSection(obj: any): QuizSection {
-    let section: QuizSection = new QuizSection();
+    const section: QuizSection = new QuizSection();
 
     JsonUtils.jsonLoadHasIdAndTitle(obj, section);
 
@@ -48,10 +48,10 @@ export class JsonUtils {
       section.subSections = new Array<QuizSubSection>();
       section.subSectionsMap = new Map<string, QuizSubSection>();
 
-      for (let jsonSubSectionId in obj.subSections) {
+      for (const jsonSubSectionId in obj.subSections) {
         // TODO: Keep the sequence from the JSON:
-        let jsonSubSection = obj.subSections[jsonSubSectionId];
-        let subSection = JsonUtils.jsonObjectToQuizSubSection(jsonSubSection);
+        const jsonSubSection = obj.subSections[jsonSubSectionId];
+        const subSection = JsonUtils.jsonObjectToQuizSubSection(jsonSubSection);
         section.subSections.push(subSection);
         section.subSectionsMap.set(subSection.id, subSection);
       }
@@ -59,11 +59,11 @@ export class JsonUtils {
 
     if (obj.questions) {
       section.questions = new Array<QuizQuestionAndAnswer>();
-      for (let jsonQA of obj.questions) {
-        let qa: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonQA);
+      for (const jsonQA of obj.questions) {
+        const qa: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonQA);
 
         if (qa.question.subSectionId) {
-          let subSection: QuizSubSection = section.getSubSectionById(qa.question.subSectionId);
+          const subSection: QuizSubSection = section.getSubSectionById(qa.question.subSectionId);
           if (subSection) {
             subSection.addQuestion(qa);
           }
@@ -79,7 +79,7 @@ export class JsonUtils {
   }
 
   private static jsonObjectToQuizSubSection(obj: any): QuizSubSection {
-    let subSection: QuizSubSection = new QuizSubSection();
+    const subSection: QuizSubSection = new QuizSubSection();
 
     JsonUtils.jsonLoadHasIdAndTitle(obj, subSection);
 
@@ -87,7 +87,7 @@ export class JsonUtils {
   }
 
   public static jsonObjectToQuizQuestionAndAnswer(obj: any): QuizQuestionAndAnswer {
-    let result: QuizQuestionAndAnswer = new QuizQuestionAndAnswer();
+    const result: QuizQuestionAndAnswer = new QuizQuestionAndAnswer();
 
     if (obj.question) {
       result.question = JsonUtils.jsonObjectToQuizQuestion(obj.question);
@@ -101,7 +101,7 @@ export class JsonUtils {
   }
 
   public static jsonObjectToQuizQuestion(obj: any): QuizQuestion {
-    let result: QuizQuestion = new QuizQuestion();
+    const result: QuizQuestion = new QuizQuestion();
     result.id = obj.id;
     result.sectionId = obj.sectionId;
     result.subSectionId = obj.subSectionId;
@@ -122,8 +122,8 @@ export class JsonUtils {
 
     if (obj.choices) {
       result.choices = new Array<QuizText>();
-      for (let jsonChoice of obj.choices) {
-        let choice = JsonUtils.jsonObjectToQuizText(jsonChoice);
+      for (const jsonChoice of obj.choices) {
+        const choice = JsonUtils.jsonObjectToQuizText(jsonChoice);
         result.choices.push(choice);
       }
     }
@@ -142,7 +142,7 @@ export class JsonUtils {
   }
 
   public static jsonObjectToQuizText(obj: any): QuizText {
-    let result: QuizText = new QuizText();
+    const result: QuizText = new QuizText();
     result.text = obj.text;
     result.isHtml = obj.isHtml;
 
@@ -162,7 +162,7 @@ export class JsonUtils {
   }
 
   public static jsonObjectToQuiz(obj: any): Quiz {
-    let quiz: Quiz = new Quiz();
+    const quiz: Quiz = new Quiz();
 
     JsonUtils.jsonLoadHasIdAndTitle(obj, quiz);
     if (obj) {
@@ -173,14 +173,14 @@ export class JsonUtils {
       quiz.usesMathML = false;
     }
 
-    let jsonSections = obj.sections;
+    const jsonSections = obj.sections;
     if (jsonSections) {
       quiz.sections = JsonUtils.jsonObjectToQuizSections(jsonSections);
     }
 
     if (obj.questions) {
-      for (let jsonQA of obj.questions) {
-        let qa: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonQA);
+      for (const jsonQA of obj.questions) {
+        const qa: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonQA);
         if (!qa.question.sectionId) {
           quiz.addQuestion(qa);
         }

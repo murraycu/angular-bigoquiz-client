@@ -31,7 +31,7 @@ export class UserService {
   }
 
   private static jsonObjectToLoginInfo(obj: any): LoginInfo {
-    let result: LoginInfo = new LoginInfo();
+    const result: LoginInfo = new LoginInfo();
     result.loggedIn = obj.loggedIn;
     result.loginUrl = obj.loginUrl;
     result.logoutUrl = obj.logoutUrl;
