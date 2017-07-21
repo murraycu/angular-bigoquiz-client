@@ -363,22 +363,6 @@ a.button-history:link {
     margin: 1em;
 }
 
-.reset-sections-confirm-dialog-buttons-panel {
-
-}
-
-.reset-sections-confirm-dialog-ok-button {
-    background: red;
-    font-weight: bold;
-    float: right;
-}
-
-.reset-sections-confirm-dialog-cancel-button {
-    font-weight: bold;
-    float: right;
-    margin-right: 1em;
-}
-
 h1 {
     font-family: 'Lato', sans-serif;
     font-weight: 700;
@@ -443,20 +427,5 @@ h4 * {
     font-weight: bold;
     font-size: larger;
     color: red;
-}
-
-.user-history-button-reset-sections {
-    margin: 0;
-    padding: 5px 7px;
-    text-decoration: none;
-
-    background: #B6B2DD;
-    color: #2F4550;
-    font-family: 'Lato', sans-serif;
-    margin-bottom: 1em;
-}
-
-a.user-history-button-reset:visited {
-    color: #2F4550;
 }
 
