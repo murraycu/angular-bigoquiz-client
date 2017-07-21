@@ -53,7 +53,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
    */
   questionTitle(question: UserQuestionHistory): string {
     if (!question || !question.questionTitle || !question.questionTitle.text) {
-      return "";
+      return '';
     }
 
     if (question.subSectionTitle) {

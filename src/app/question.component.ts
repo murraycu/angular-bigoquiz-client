@@ -57,7 +57,7 @@ export class QuestionComponent implements OnInit {
       } else {
         // The question comes from getNextQuestion(),
         // so just navigate to the appropriate URL.
-        this.router.navigate(['/question'], {queryParams: {"quiz-id": this.quizId, "question-id": question.id, "section-id": this.sectionId}});
+        this.router.navigate(['/question'], {queryParams: {'quiz-id': this.quizId, 'question-id': question.id, 'section-id': this.sectionId}});
       }
     });
   }

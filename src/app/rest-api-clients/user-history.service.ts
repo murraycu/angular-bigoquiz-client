@@ -45,7 +45,7 @@ export class UserHistoryService {
   submitAnswer(quizId: string, questionId: string, answerText: string) : Promise<SubmissionResult> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseUrl}/api/user-history/submit-answer?quiz-id=${quizId}&question-id=${questionId}&answer=${answerText}`;
-    return this.http.post(url, "")
+    return this.http.post(url, '')
       .toPromise()
       .then(response => {
         return UserHistoryService.jsonObjectToSubmissionResult(response.json());
@@ -56,7 +56,7 @@ export class UserHistoryService {
   submitDontKnowAnswer(quizId: string, questionId: string) : Promise<SubmissionResult> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseUrl}/api/user-history/submit-dont-know-answer?quiz-id=${quizId}&question-id=${questionId}`;
-    return this.http.post(url, "")
+    return this.http.post(url, '')
       .toPromise()
       .then(response => {
         return UserHistoryService.jsonObjectToSubmissionResult(response.json());
