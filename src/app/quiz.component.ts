@@ -9,6 +9,7 @@ import { Quiz } from './data-structure/quiz';
 @Component({
   selector: 'quiz',
   templateUrl: './quiz.component.html',
+  styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
   quiz: Quiz;
