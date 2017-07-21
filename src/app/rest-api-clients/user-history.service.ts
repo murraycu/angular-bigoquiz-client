@@ -42,7 +42,7 @@ export class UserHistoryService {
       .catch(this.handleError);
   }
 
-  submitAnswer(quizId: string, questionId: string, answerText: string) : Promise<SubmissionResult> {
+  submitAnswer(quizId: string, questionId: string, answerText: string): Promise<SubmissionResult> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseUrl}/api/user-history/submit-answer?quiz-id=${quizId}&question-id=${questionId}&answer=${answerText}`;
     return this.http.post(url, '')
@@ -53,7 +53,7 @@ export class UserHistoryService {
       .catch(this.handleError);
   }
 
-  submitDontKnowAnswer(quizId: string, questionId: string) : Promise<SubmissionResult> {
+  submitDontKnowAnswer(quizId: string, questionId: string): Promise<SubmissionResult> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseUrl}/api/user-history/submit-dont-know-answer?quiz-id=${quizId}&question-id=${questionId}`;
     return this.http.post(url, '')

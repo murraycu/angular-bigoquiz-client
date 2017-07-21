@@ -1,7 +1,7 @@
 import { QuestionResultEvent } from './question-result-event';
 
 import { Injectable, Inject } from '@angular/core';
-import { Subject }    from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 
 /**
  * This lets QuestionComponent notify UserSectionsHistoryComponent

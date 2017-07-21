@@ -1,13 +1,13 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent }   from './home.component';
-import { AboutComponent }   from './about.component';
-import { UserComponent }   from './user.component';
-import { HistoryComponent }   from './history.component';
-import { QuizzesComponent }   from './quizzes.component';
-import { QuizComponent }   from './quiz.component';
-import { QuestionComponent }   from './question.component';
+import { HomeComponent } from './home.component';
+import { AboutComponent } from './about.component';
+import { UserComponent } from './user.component';
+import { HistoryComponent } from './history.component';
+import { QuizzesComponent } from './quizzes.component';
+import { QuizComponent } from './quiz.component';
+import { QuestionComponent } from './question.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

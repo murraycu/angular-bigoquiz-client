@@ -26,9 +26,9 @@ export class QuestionComponent implements OnInit {
   showAnswer: boolean;
 
   constructor(private quizService: QuizService,
-    private questionService : QuestionService,
-    private userHistoryService : UserHistoryService,
-    private questionResultsService : QuestionResultsService,
+    private questionService: QuestionService,
+    private userHistoryService: UserHistoryService,
+    private questionResultsService: QuestionResultsService,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -62,7 +62,7 @@ export class QuestionComponent implements OnInit {
     });
   }
 
-  queryParamsForNextQuestion() : Object {
+  queryParamsForNextQuestion(): Object {
     if (this.sectionId) {
       return {'quiz-id': this.quizId, 'section-id': this.sectionId};
     } else {

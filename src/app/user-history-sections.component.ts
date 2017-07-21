@@ -24,7 +24,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
   private subscriptionQuestionResultsService: Subscription;
 
   constructor(private userHistoryService: UserHistoryService,
-    private questionResultsService : QuestionResultsService,
+    private questionResultsService: QuestionResultsService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -64,7 +64,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
   }
 
   onUserAnsweredQuestion(data: QuestionResultEvent): void {
-    if( !this.userHistorySections) {
+    if ( !this.userHistorySections) {
       return;
     }
 
