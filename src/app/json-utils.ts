@@ -88,8 +88,14 @@ export class JsonUtils {
 
   public static jsonObjectToQuizQuestionAndAnswer(obj: any): QuizQuestionAndAnswer {
     let result: QuizQuestionAndAnswer = new QuizQuestionAndAnswer();
-    result.question = JsonUtils.jsonObjectToQuizQuestion(obj.question);
-    result.answer = JsonUtils.jsonObjectToQuizText(obj.answer);
+
+    if (obj.question) {
+      result.question = JsonUtils.jsonObjectToQuizQuestion(obj.question);
+    }
+
+    if (obj.answer) {
+      result.answer = JsonUtils.jsonObjectToQuizText(obj.answer);
+    }
 
     return result;
   }
@@ -99,7 +105,11 @@ export class JsonUtils {
     result.id = obj.id;
     result.sectionId = obj.sectionId;
     result.subSectionId = obj.subSectionId;
-    result.text = JsonUtils.jsonObjectToQuizText(obj.text);
+
+    if (obj.text) {
+      result.text = JsonUtils.jsonObjectToQuizText(obj.text);
+    }
+
     result.link = obj.link;
 
     result.note = obj.note;

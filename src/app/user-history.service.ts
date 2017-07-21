@@ -72,7 +72,10 @@ export class UserHistoryService {
 
   private static jsonObjectToUserHistorySections(obj: any): UserHistorySections {
     let result: UserHistorySections = new UserHistorySections();
-    result.sections = JsonUtils.jsonObjectToQuizSections(obj.sections);
+
+    if (obj.sections) {
+      result.sections = JsonUtils.jsonObjectToQuizSections(obj.sections);
+    }
 
     // stats:
     if (obj.stats) {
@@ -165,7 +168,10 @@ export class UserHistoryService {
   private static jsonObjectToSubmissionResult(obj: any): SubmissionResult {
     let result: SubmissionResult = new SubmissionResult();
     result.result = obj.result;
-    result.correctAnswer = JsonUtils.jsonObjectToQuizText(obj.correctAnswer);
+
+    if (obj.correctAnswer) {
+      result.correctAnswer = JsonUtils.jsonObjectToQuizText(obj.correctAnswer);
+    }
 
     return result;
   }
