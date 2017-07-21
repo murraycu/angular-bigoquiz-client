@@ -21,6 +21,8 @@ import { QuizService } from './quiz.service';
 import { QuestionService } from './question.service';
 import { UserHistoryService } from './user-history.service';
 
+import { QuestionResultsService } from './question-results.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,8 @@ import { UserHistoryService } from './user-history.service';
     UserService,
     QuizService,
     QuestionService,
-    UserHistoryService
+    UserHistoryService,
+    QuestionResultsService
   ],
   bootstrap: [
     AppComponent,

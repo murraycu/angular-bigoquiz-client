@@ -9,6 +9,9 @@ import { UserHistoryService } from './user-history.service';
 import { QuizQuestion } from './data-structure/quiz-question';
 import { SubmissionResult } from './data-structure/submission-result';
 
+import { QuestionResultsService } from './question-results.service';
+import { QuestionResultEvent } from './question-result-event'
+
 @Component({
   selector: 'question',
   templateUrl: './question.component.html',
@@ -25,6 +28,7 @@ export class QuestionComponent implements OnInit {
   constructor(private quizService: QuizService,
     private questionService : QuestionService,
     private userHistoryService : UserHistoryService,
+    private questionResultsService : QuestionResultsService,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -75,15 +79,29 @@ export class QuestionComponent implements OnInit {
     return answerText === this.submissionResult.correctAnswer.text;
   }
 
+  /** Update the sections sidebar,
+   * to change the progress bars and, if necessary,
+   * change the list of problem questions.
+   */
+  updateSectionsSidebar(result: boolean):void {
+    let data: QuestionResultEvent = {sectionId: this.sectionId, questionId: this.questionId, result: result};
+    this.questionResultsService.notify(data);
+  }
+
   onChoiceClicked(answerText: string): void {
     this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText).
-      then(submissionResult => this.submissionResult = submissionResult);
+      then(submissionResult => {
+        this.submissionResult = submissionResult
+        this.updateSectionsSidebar(this.submissionResult.result);
+      });
   }
 
   onShowAnswer(): void {
     // Update this ngModel used in the HTML.
     // TODO: Is there some more direct way to do this?
     this.showAnswer = true;
+
+    this.updateSectionsSidebar(false);
 
     // This is much like submitting a wrong answer.
     // It records it as a wrong answer on the server, and gives us the correct answer.

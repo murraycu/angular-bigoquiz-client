@@ -121,6 +121,22 @@ export class UserHistoryService {
     result.countQuestionsCorrectOnce = JsonUtils.numberOrZero(obj.countQuestionsCorrectOnce);
 
     result.problemQuestionHistoriesCount = JsonUtils.numberOrZero(obj.problemQuestionHistoriesCount);
+
+    if (obj.questionHistories) {
+      result.questionHistories = new Map<string, UserQuestionHistory>();
+      for (let questionId in obj.questionHistories) {
+        let jsonQuestionHistory = obj.questionHistories[questionId];
+        if (!jsonQuestionHistory) {
+          continue;
+        }
+
+        let questionHistory = UserHistoryService.jsonObjectToUserQuestionHistory(jsonQuestionHistory);
+        result.questionHistories.set(questionId, questionHistory);
+      }
+    }
+
+    // This is actually based on questionHistories,
+    // but it has been calculated for us by the server:
     if (obj.topProblemQuestionHistories) {
       result.topProblemQuestionHistories = new Array<UserQuestionHistory>();
       for (let jsonQuestionHistory of obj.topProblemQuestionHistories) {

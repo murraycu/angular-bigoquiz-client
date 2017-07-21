@@ -13,7 +13,7 @@ export class UserStats {
 
   topProblemQuestionHistories: UserQuestionHistory[];
 
-  // TODO: questionHistories
+  questionHistories: Map<string, UserQuestionHistory>;
 
   percentAnsweredOnce(total: number): string {
     // Avoid divide by zero, and avoid negative results.
@@ -31,6 +31,47 @@ export class UserStats {
     }
 
     return (this.countQuestionsCorrectOnce / total) + "%";
+  }
+
+  updateProblemQuestion(questionId: string, answerIsCorrect: boolean): void {
+    if (!questionId) {
+      return;
+    }
+
+    let firstTimeAsked: boolean = false;
+    let firstTimeCorrect: boolean = false;
+
+    if (!this.questionHistories) {
+      this.questionHistories = new Map<string, UserQuestionHistory>();
+    }
+
+    let history: UserQuestionHistory = this.questionHistories.get(questionId);
+
+    // Add a new one, if necessary:
+    if (!history) {
+      firstTimeAsked = true;
+      if (answerIsCorrect) {
+        firstTimeCorrect = true;
+      }
+
+      history = new UserQuestionHistory();
+      history.questionId = questionId;
+      this.questionHistories.set(questionId, history)
+    } else if (answerIsCorrect && !history.answeredCorrectlyOnce) {
+      firstTimeCorrect = true;
+    }
+
+    history.adjustCount(answerIsCorrect);
+
+    if (firstTimeAsked) {
+      this.countQuestionsAnsweredOnce++;
+    }
+
+    if (firstTimeCorrect) {
+      this.countQuestionsCorrectOnce++;
+    }
+
+    // TODO: Update the cache of top questions.
   }
 
 }
