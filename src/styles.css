@@ -603,20 +603,6 @@ h4 * {
     color: red;
 }
 
-.quiz-list-row-buttons-panel {
-    float: right;
-}
-
-.quiz-list-row .button-answer-questions {
-    float: right;
-    margin-bottom: 1em;
-}
-
-.quiz-list-row .button-history {
-    float: right;
-    margin-bottom: 1em;
-}
-
 /* TODO: Make this not apply to a h2 inside sub-divs? */
 .quiz-panel h2:first-child {
     margin-top: 0;
@@ -699,26 +685,6 @@ a.home-button-answer-questions:link {
     color: #2F4550;
 }
 
-.quiz-list-button-answer-questions {
-    /* Generic button style: */
-    margin: 0;
-    padding: 5px 7px;
-    text-decoration: none;
-
-    background: #B6B2DD;
-    color: #2F4550;
-    font-family: 'Lato', sans-serif;
-    margin-bottom: 1em;
-}
-
-a.quiz-list-button-answer-questions:visited {
-    color: #2F4550;
-}
-
-a.quiz-list-button-answer-questions:link {
-    color: #2F4550;
-}
-
 .user-history-button-reset-sections {
     margin: 0;
     padding: 5px 7px;
@@ -734,6 +700,3 @@ a.user-history-button-reset:visited {
     color: #2F4550;
 }
 
-a.quiz-list-button-answer-questions:link {
-    color: #2F4550;
-}
