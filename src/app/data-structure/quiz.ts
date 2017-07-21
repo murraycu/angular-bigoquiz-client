@@ -5,6 +5,7 @@ import { QuizQuestionAndAnswer } from './quiz-question-and-answer';
 export class Quiz extends HasIdAndTitle {
   isPrivate: boolean;
   usesMathML: boolean;
+  questionsCount: number;
 
   sections: QuizSection[];
 

@@ -187,6 +187,13 @@ export class JsonUtils {
       }
     }
 
+    // This is only provided for UserHistoryQuizze, not UserHistorySections.
+    if (obj.questionsCount) {
+      quiz.questionsCount = obj.questionsCount;
+    } else {
+      obj.questionsCount = 0;
+    }
+
     return quiz;
   }
 }

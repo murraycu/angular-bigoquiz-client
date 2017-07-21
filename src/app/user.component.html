@@ -9,7 +9,7 @@
     <div *ngFor="let quiz of userHistoryQuizzes.quizzes"
       class="quiz-section">
       <h3><a [routerLink]="['/history']" [queryParams]="{'quiz-id': quiz.id}">{{quiz.title}}</a></h3>
-      <div *ngIf="userHistoryQuizzes.getUserStatsForSection(quiz.id); let stats" class="progress-bar">
+      <div *ngIf="userHistoryQuizzes.getUserStatsForQuiz(quiz.id); let stats" class="progress-bar">
         <p class="progress-part-correct-once" [ngStyle]="{'width': stats.percentCorrectOnce(quiz.questionsCount)}">{{stats.countQuestionsCorrectOnce}} correct once</p>
         <p class="progress-part-answered-once" [ngStyle]="{'width': stats.percentAnsweredOnce(quiz.questionsCount)}">{{stats.countQuestionsAnsweredOnce}} answered once</p>
         <p class="progress-part-count" style="width: 100%">{{quiz.questionsCount}} questions</p>
