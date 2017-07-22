@@ -62,6 +62,36 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
     }
   }
 
+  /** This checks that each problem question is really still a problem,
+   * because it might have been updated locally.
+   */
+  problemQuestionsCount(stats: UserStats): number {
+    if (!stats) {
+      return 0;
+    }
+
+    if (!stats.topProblemQuestionHistories) {
+      return 0;
+    }
+
+    let count: number = 0;
+    for (const problemQuestion of stats.topProblemQuestionHistories) {
+      if (!problemQuestion || problemQuestion.countAnsweredWrong <= 0) {
+        continue;
+      }
+
+      // This shouldn't be necessary, because the server should not return to many,
+      // but let's be sure:
+      if (count >= UserStats.MAX_PROBLEM_QUESTIONS) {
+        break;
+      }
+
+      count += 1;
+    }
+
+    return count;
+  }
+
   onUserAnsweredQuestion(data: QuestionResultEvent): void {
     if ( !this.userHistorySections) {
       return;

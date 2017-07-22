@@ -9,6 +9,8 @@ export class UserStats {
   countQuestionsAnsweredOnce: number;
   countQuestionsCorrectOnce: number;
 
+  static MAX_PROBLEM_QUESTIONS: number = 5;
+
   problemQuestionHistoriesCount: number;
 
   topProblemQuestionHistories: UserQuestionHistory[];
