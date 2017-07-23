@@ -4,10 +4,10 @@ export class UserStats {
   quizId: string;
   sectionId: string;
 
-  answered: number;
-  correct: number;
-  countQuestionsAnsweredOnce: number;
-  countQuestionsCorrectOnce: number;
+  answered: number = 0;
+  correct: number = 0;
+  countQuestionsAnsweredOnce: number = 0;
+  countQuestionsCorrectOnce: number = 0;
 
   static MAX_PROBLEM_QUESTIONS: number = 5;
 

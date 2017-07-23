@@ -6,8 +6,8 @@ export class UserQuestionHistory {
   questionTitle: QuizText;
   subSectionTitle: string;
 
-  answeredCorrectlyOnce: boolean;
-  countAnsweredWrong: number;
+  answeredCorrectlyOnce: boolean = false;
+  countAnsweredWrong: number = 0;
 
   /** Adjust the counts in response to a correct or wrong answer.
    * This is also updated on the server, but this lets us update
