@@ -20,4 +20,34 @@ describe('UserStats without the TestBed', () => {
   it ('countQuestionsCorrectOnce should default to 0.', () => {
     expect(userStats.countQuestionsCorrectOnce).toBe(0);
   });
+
+  it ('updateProblemQuestion(, true) creates questionHistories.', () => {
+    const QUESTION_ID: string = 'testquestionid';
+    userStats.updateProblemQuestion(QUESTION_ID, true);
+
+    // questionHistories should now be defined.
+    expect(userStats.questionHistories).toBeTruthy();
+  });
+
+  it ('updateProblemQuestion(, false) creates questionHistories.', () => {
+    const QUESTION_ID: string = 'testquestionid';
+    userStats.updateProblemQuestion(QUESTION_ID, false);
+
+    // questionHistories should now be defined.
+    expect(userStats.questionHistories).toBeTruthy();
+  });
+
+  it ('updateProblemQuestion(, false) fills questionHistories.', () => {
+    const QUESTION_ID: string = 'testquestionid';
+    userStats.updateProblemQuestion(QUESTION_ID, false);
+
+    expect(userStats.questionHistories.size).toBe(1);
+  });
+
+  it ('updateProblemQuestion(, true) fills questionHistories.', () => {
+    const QUESTION_ID: string = 'testquestionid';
+    userStats.updateProblemQuestion(QUESTION_ID, true);
+
+    expect(userStats.questionHistories.size).toBe(1);
+  });
 });
