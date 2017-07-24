@@ -84,7 +84,7 @@ export class QuestionComponent implements OnInit {
    * change the list of problem questions.
    */
   updateSectionsSidebar(result: boolean): void {
-    const data: QuestionResultEvent = {sectionId: this.sectionId, questionId: this.questionId, result: result};
+    const data: QuestionResultEvent = {question: this.question, result: result};
     this.questionResultsService.notify(data);
   }
 

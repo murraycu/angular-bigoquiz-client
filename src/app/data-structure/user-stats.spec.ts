@@ -1,9 +1,19 @@
-import { UserStats } from './user-stats'
+import { UserStats } from './user-stats';
+import { QuizQuestion } from './quiz-question';
 
 describe('UserStats without the TestBed', () => {
   let userStats: UserStats;
+  let QUESTION_ID1: string;
+  let question1: QuizQuestion;
 
-  beforeEach(() => {userStats = new UserStats(); });
+  beforeEach(() => {
+    userStats = new UserStats();
+
+    // TODO: Use a createQuestion() utility function instead.
+    QUESTION_ID1 = "questionid1";
+    question1 = new QuizQuestion();
+    question1.id = QUESTION_ID1;
+  });
 
   it ('answered should default to 0.', () => {
     expect(userStats.answered).toBe(0);
@@ -22,62 +32,57 @@ describe('UserStats without the TestBed', () => {
   });
 
   it ('updateProblemQuestion(, true) creates questionHistories.', () => {
-    const QUESTION_ID: string = 'testquestionid';
-    userStats.updateProblemQuestion(QUESTION_ID, true);
+    userStats.updateProblemQuestion(question1, true);
 
     // questionHistories should now be defined.
     expect(userStats.questionHistories).toBeTruthy();
   });
 
   it ('updateProblemQuestion(, false) creates questionHistories.', () => {
-    const QUESTION_ID: string = 'testquestionid';
-    userStats.updateProblemQuestion(QUESTION_ID, false);
+    userStats.updateProblemQuestion(question1, false);
 
     // questionHistories should now be defined.
     expect(userStats.questionHistories).toBeTruthy();
   });
 
   it ('updateProblemQuestion(, false) fills questionHistories.', () => {
-    const QUESTION_ID: string = 'testquestionid';
-    userStats.updateProblemQuestion(QUESTION_ID, false);
+    userStats.updateProblemQuestion(question1, false);
 
     expect(userStats.questionHistories.size).toBe(1);
   });
 
   it ('updateProblemQuestion(, true) fills questionHistories.', () => {
-    const QUESTION_ID: string = 'testquestionid';
-    userStats.updateProblemQuestion(QUESTION_ID, true);
+    userStats.updateProblemQuestion(question1, true);
 
     expect(userStats.questionHistories.size).toBe(1);
   });
 
   it ('updateProblemQuestion(, false) creates topProblemquestionHistories.', () => {
-    const QUESTION_ID: string = 'testquestionid';
-    userStats.updateProblemQuestion(QUESTION_ID, false);
+    userStats.updateProblemQuestion(question1, false);
 
     expect(userStats.topProblemQuestionHistories).toBeTruthy();
   });
 
   it ('updateProblemQuestion(, true) does not create topProblemquestionHistories.', () => {
-    const QUESTION_ID: string = 'testquestionid';
-    userStats.updateProblemQuestion(QUESTION_ID, true);
+    userStats.updateProblemQuestion(question1, true);
 
     expect(userStats.topProblemQuestionHistories).toBeUndefined();
   });
 
   it ('updateProblemQuestion(, false) fills topProblemquestionHistories.', () => {
-    const QUESTION_ID: string = 'testquestionid';
-    userStats.updateProblemQuestion(QUESTION_ID, false);
+    userStats.updateProblemQuestion(question1, false);
 
     expect(userStats.topProblemQuestionHistories.length).toBe(1);
-    expect(userStats.topProblemQuestionHistories[0].questionId).toBe(QUESTION_ID);
+    expect(userStats.topProblemQuestionHistories[0].questionId).toBe(QUESTION_ID1);
   });
 
   it ('updateProblemQuestion(, false) twice fills topProblemquestionHistories.', () => {
-    const QUESTION_ID1: string = 'testquestionid1';
-    const QUESTION_ID2: string = 'testquestionid2';
-    userStats.updateProblemQuestion(QUESTION_ID1, false);
-    userStats.updateProblemQuestion(QUESTION_ID2, false);
+    const QUESTION_ID2: string = "questionid2";
+    const question2: QuizQuestion = new QuizQuestion();
+    question2.id = QUESTION_ID2
+
+    userStats.updateProblemQuestion(question1, false);
+    userStats.updateProblemQuestion(question2, false);
 
     expect(userStats.topProblemQuestionHistories.length).toBe(2);
   });

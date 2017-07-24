@@ -1,6 +1,19 @@
+import { QuizQuestion } from './quiz-question';
 import { QuizText } from './quiz-text';
 
 export class UserQuestionHistory {
+  static fromQuestion(question: QuizQuestion): UserQuestionHistory {
+    const result: UserQuestionHistory = new UserQuestionHistory();
+    result.questionId = question.id;
+    result.questionTitle = question.text;
+
+    if (question.subSection) {
+      result.subSectionTitle = question.subSection.title;
+    }
+
+    return result;
+  }
+
   questionId: string;
 
   questionTitle: QuizText;

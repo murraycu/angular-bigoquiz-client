@@ -97,7 +97,11 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const stats: UserStats = this.userHistorySections.getUserStatsForSection(data.sectionId);
+    if (!data.question.sectionId) {
+      return;
+    }
+
+    const stats: UserStats = this.userHistorySections.getUserStatsForSection(data.question.sectionId);
     if (!stats) {
       return;
     }
@@ -108,6 +112,6 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
       stats.correct++;
     }
 
-    stats.updateProblemQuestion(data.questionId, data.result);
+    stats.updateProblemQuestion(data.question, data.result);
   }
 }

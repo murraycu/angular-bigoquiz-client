@@ -1,4 +1,5 @@
 import { UserQuestionHistory } from './user-question-history';
+import { QuizQuestion } from './quiz-question';
 
 export class UserStats {
   quizId: string;
@@ -35,10 +36,8 @@ export class UserStats {
     return (this.countQuestionsCorrectOnce / total) + '%';
   }
 
-  updateProblemQuestion(questionId: string, answerIsCorrect: boolean): void {
-    if (!questionId) {
-      return;
-    }
+  updateProblemQuestion(question: QuizQuestion, answerIsCorrect: boolean): void {
+    const questionId = question.id;
 
     let firstTimeAsked: boolean = false;
     let firstTimeCorrect: boolean = false;
@@ -56,8 +55,7 @@ export class UserStats {
         firstTimeCorrect = true;
       }
 
-      history = new UserQuestionHistory();
-      history.questionId = questionId;
+      history = UserQuestionHistory.fromQuestion(question);
       this.questionHistories.set(questionId, history);
     } else if (answerIsCorrect && !history.answeredCorrectlyOnce) {
       firstTimeCorrect = true;

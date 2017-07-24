@@ -1,9 +1,14 @@
-import { UserQuestionHistory } from './user-question-history'
+import { UserQuestionHistory } from './user-question-history';
+import { QuizQuestion } from './quiz-question';
 
 describe('UserQuestionHistory without the TestBed', () => {
   let history: UserQuestionHistory;
 
-  beforeEach(() => {history = new UserQuestionHistory(); });
+  beforeEach(() => {
+    const question: QuizQuestion = new QuizQuestion();
+    question.id = "questionid1";
+    history = UserQuestionHistory.fromQuestion(question);
+  });
 
   it('answeredCorrectlyOnce should default to false.', () => {
     expect(history.answeredCorrectlyOnce).toBe(false);
