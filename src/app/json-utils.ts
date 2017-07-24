@@ -7,7 +7,7 @@ import { Quiz } from './data-structure/quiz';
 import { HasIdAndTitle } from './data-structure/has-id-and-title';
 
 export class JsonUtils {
-  private static jsonObjectToQuizSections(obj: any): QuizSection[] {
+  public static jsonObjectToQuizSections(obj: any): QuizSection[] {
     if (!obj) {
       return undefined;
     }
