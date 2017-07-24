@@ -73,7 +73,104 @@ export class UserStats {
       this.countQuestionsCorrectOnce++;
     }
 
-    // TODO: Update the cache of top questions.
+    this.updateTopProblemQuestions();
   }
 
+  private updateTopProblemQuestions(): void {
+    this.problemQuestionHistoriesCount = 0;
+
+    this.topProblemQuestionHistories = undefined;
+
+    if (!this.questionHistories) {
+      return;
+    }
+
+    // Copy the values of the array.
+    this.questionHistories.forEach((value: UserQuestionHistory, key: string) => {
+      if (value.countAnsweredWrong > 0) {
+        if (!this.topProblemQuestionHistories) {
+          this.topProblemQuestionHistories = new Array<UserQuestionHistory>();
+        }
+
+        this.topProblemQuestionHistories.push(value);
+      }
+    });
+
+    if (!this.topProblemQuestionHistories) {
+      return;
+    }
+
+    // Sort the array.
+    this.topProblemQuestionHistories.sort((a, b) => {
+      if (!a) {
+        if (!b) {
+          return 0;
+        }
+      }
+
+      if (!b) {
+        return 1;
+      }
+
+      const c1: number = a.countAnsweredWrong;
+      const c2: number = b.countAnsweredWrong;
+      if (c1 == c2) {
+        return 0;
+      }
+
+      return (c1 > c2) ? -1 : 1;
+    });
+
+    //Cache the count of problem questions:
+    for (const history of this.topProblemQuestionHistories) {
+      if(history && history.countAnsweredWrong > 0) {
+        this.problemQuestionHistoriesCount++;
+      }
+    }
+
+    //The client only wants the first few.
+    const size: number = this.topProblemQuestionHistories.length;
+    const sublistSize: number = Math.min(size, UserStats.MAX_PROBLEM_QUESTIONS);
+    if (sublistSize != size && sublistSize > 0) {
+      this.topProblemQuestionHistories = this.topProblemQuestionHistories.slice(0, sublistSize);
+    }
+
+    //Don't include questions that are not really problem questions:
+    this.clearNonProblemQuestions();
+  }
+
+  private clearNonProblemQuestions() {
+    // TODO: Use a Set when/if TypeScript has one.
+    let idsToRemove: Map<string, boolean>;
+    for (const history of this.topProblemQuestionHistories) {
+      if (!history) {
+        continue;
+      }
+
+      if (history.countAnsweredWrong <= 0) {
+        if (!idsToRemove) {
+          idsToRemove = new Map<string, boolean>();
+        }
+
+        idsToRemove.set(history.questionId, true);
+      }
+    }
+
+    if (!idsToRemove) {
+      return;
+    }
+
+    let list: UserQuestionHistory[] = new Array<UserQuestionHistory>();
+    for (const history of this.topProblemQuestionHistories) {
+      if (!history) {
+        continue;
+      }
+
+      if (idsToRemove.get(history.questionId)) {
+        continue;
+      }
+    }
+
+    this.topProblemQuestionHistories = list;
+  }
 }

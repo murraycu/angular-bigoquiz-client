@@ -50,4 +50,35 @@ describe('UserStats without the TestBed', () => {
 
     expect(userStats.questionHistories.size).toBe(1);
   });
+
+  it ('updateProblemQuestion(, false) creates topProblemquestionHistories.', () => {
+    const QUESTION_ID: string = 'testquestionid';
+    userStats.updateProblemQuestion(QUESTION_ID, false);
+
+    expect(userStats.topProblemQuestionHistories).toBeTruthy();
+  });
+
+  it ('updateProblemQuestion(, true) does not create topProblemquestionHistories.', () => {
+    const QUESTION_ID: string = 'testquestionid';
+    userStats.updateProblemQuestion(QUESTION_ID, true);
+
+    expect(userStats.topProblemQuestionHistories).toBeUndefined();
+  });
+
+  it ('updateProblemQuestion(, false) fills topProblemquestionHistories.', () => {
+    const QUESTION_ID: string = 'testquestionid';
+    userStats.updateProblemQuestion(QUESTION_ID, false);
+
+    expect(userStats.topProblemQuestionHistories.length).toBe(1);
+    expect(userStats.topProblemQuestionHistories[0].questionId).toBe(QUESTION_ID);
+  });
+
+  it ('updateProblemQuestion(, false) twice fills topProblemquestionHistories.', () => {
+    const QUESTION_ID1: string = 'testquestionid1';
+    const QUESTION_ID2: string = 'testquestionid2';
+    userStats.updateProblemQuestion(QUESTION_ID1, false);
+    userStats.updateProblemQuestion(QUESTION_ID2, false);
+
+    expect(userStats.topProblemQuestionHistories.length).toBe(2);
+  });
 });
