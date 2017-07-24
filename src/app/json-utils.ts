@@ -78,7 +78,7 @@ export class JsonUtils {
     return section;
   }
 
-  private static jsonObjectToQuizSubSection(obj: any): QuizSubSection {
+  public static jsonObjectToQuizSubSection(obj: any): QuizSubSection {
     const subSection: QuizSubSection = new QuizSubSection();
 
     JsonUtils.jsonLoadHasIdAndTitle(obj, subSection);
