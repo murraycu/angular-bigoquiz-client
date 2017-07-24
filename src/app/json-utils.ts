@@ -7,7 +7,7 @@ import { Quiz } from './data-structure/quiz';
 import { HasIdAndTitle } from './data-structure/has-id-and-title';
 
 export class JsonUtils {
-  public static jsonObjectToQuizSections(obj: any): QuizSection[] {
+  private static jsonObjectToQuizSections(obj: any): QuizSection[] {
     if (!obj) {
       return undefined;
     }
@@ -39,7 +39,11 @@ export class JsonUtils {
     return result;
   }
 
-  private static jsonObjectToQuizSection(obj: any): QuizSection {
+  public static jsonObjectToQuizSection(obj: any): QuizSection {
+    if (!obj) {
+      return undefined;
+    }
+
     const section: QuizSection = new QuizSection();
 
     JsonUtils.jsonLoadHasIdAndTitle(obj, section);
@@ -57,7 +61,7 @@ export class JsonUtils {
       }
     }
 
-    if (obj.questions) {
+    if (obj.questions && obj.questions.length) {
       section.questions = new Array<QuizQuestionAndAnswer>();
       for (const jsonQA of obj.questions) {
         const qa: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonQA);
@@ -79,6 +83,10 @@ export class JsonUtils {
   }
 
   public static jsonObjectToQuizSubSection(obj: any): QuizSubSection {
+    if (!obj) {
+      return undefined;
+    }
+
     const subSection: QuizSubSection = new QuizSubSection();
 
     JsonUtils.jsonLoadHasIdAndTitle(obj, subSection);
@@ -87,6 +95,10 @@ export class JsonUtils {
   }
 
   public static jsonObjectToQuizQuestionAndAnswer(obj: any): QuizQuestionAndAnswer {
+    if (!obj) {
+      return undefined;
+    }
+
     const result: QuizQuestionAndAnswer = new QuizQuestionAndAnswer();
 
     if (obj.question) {
@@ -101,6 +113,10 @@ export class JsonUtils {
   }
 
   public static jsonObjectToQuizQuestion(obj: any): QuizQuestion {
+    if (!obj) {
+      return undefined;
+    }
+
     const result: QuizQuestion = new QuizQuestion();
     result.id = obj.id;
     result.sectionId = obj.sectionId;
@@ -142,6 +158,10 @@ export class JsonUtils {
   }
 
   public static jsonObjectToQuizText(obj: any): QuizText {
+    if (!obj) {
+      return undefined;
+    }
+
     const result: QuizText = new QuizText();
     result.text = obj.text;
     result.isHtml = obj.isHtml;
@@ -150,11 +170,13 @@ export class JsonUtils {
   }
 
   public static jsonLoadHasIdAndTitle(obj: any, base: HasIdAndTitle) {
-    if (obj) {
-      base.id = obj.id;
-      base.title = obj.title;
-      base.link = obj.link;
+    if (!obj) {
+      return;
     }
+
+    base.id = obj.id;
+    base.title = obj.title;
+    base.link = obj.link;
   }
 
   public static numberOrZero(obj: any): number {
@@ -162,6 +184,10 @@ export class JsonUtils {
   }
 
   public static jsonObjectToQuiz(obj: any): Quiz {
+    if (!obj) {
+      return undefined;
+    }
+
     const quiz: Quiz = new Quiz();
 
     JsonUtils.jsonLoadHasIdAndTitle(obj, quiz);

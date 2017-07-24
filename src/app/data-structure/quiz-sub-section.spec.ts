@@ -18,4 +18,9 @@ describe('QuizSubSection without the TestBed', () => {
     expect(obj.link).toBeTruthy(obj);
     expect(obj.link).toEqual('https://en.wikipedia.org/wiki/Dijkstra\'s_algorithm');
   });
+
+  it ('deserializes properly from undefined object.', () => {
+    const obj = JsonUtils.jsonObjectToQuizSubSection(undefined);
+    expect(obj).toBeUndefined(obj);
+  });
 });
