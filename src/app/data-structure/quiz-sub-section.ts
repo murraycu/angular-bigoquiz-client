@@ -6,7 +6,7 @@ export class QuizSubSection extends HasIdAndTitle {
 
   addQuestion(qa: QuizQuestionAndAnswer): void {
     if (!this.questions) {
-      this.questions = new Array<QuizQuestionAndAnswer>();
+      this.questions = [];
     }
 
     this.questions.push(qa);

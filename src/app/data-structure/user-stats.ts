@@ -87,7 +87,7 @@ export class UserStats {
     this.questionHistories.forEach((value: UserQuestionHistory, key: string) => {
       if (value.countAnsweredWrong > 0) {
         if (!this.topProblemQuestionHistories) {
-          this.topProblemQuestionHistories = new Array<UserQuestionHistory>();
+          this.topProblemQuestionHistories = [];
         }
 
         this.topProblemQuestionHistories.push(value);
@@ -158,7 +158,7 @@ export class UserStats {
       return;
     }
 
-    const list: UserQuestionHistory[] = new Array<UserQuestionHistory>();
+    const list: UserQuestionHistory[] = [];
     for (const history of this.topProblemQuestionHistories) {
       if (!history) {
         continue;

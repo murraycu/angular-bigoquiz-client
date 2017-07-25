@@ -93,7 +93,7 @@ export class UserHistoryService {
 
   private static jsonObjectToUserHistoryQuizzes(obj: any): UserHistoryQuizzes {
     const result: UserHistoryQuizzes = new UserHistoryQuizzes();
-    result.quizzes = new Array<Quiz>();
+    result.quizzes = [];
     for (const jsonQuiz in obj.quizzes) {
       const quiz = JsonUtils.jsonObjectToQuiz(jsonQuiz);
       result.quizzes.push(quiz);
@@ -141,7 +141,7 @@ export class UserHistoryService {
     // This is actually based on questionHistories,
     // but it has been calculated for us by the server:
     if (obj.topProblemQuestionHistories) {
-      result.topProblemQuestionHistories = new Array<UserQuestionHistory>();
+      result.topProblemQuestionHistories = [];
       for (const jsonQuestionHistory of obj.topProblemQuestionHistories) {
         const questionHistory = UserHistoryService.jsonObjectToUserQuestionHistory(jsonQuestionHistory);
         result.topProblemQuestionHistories.push(questionHistory);
