@@ -62,7 +62,6 @@ export class JsonUtils {
     }
 
     if (obj.questions && obj.questions.length) {
-      section.questions = new Array<QuizQuestionAndAnswer>();
       for (const jsonQA of obj.questions) {
         const qa: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonQA);
 
