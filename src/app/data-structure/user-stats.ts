@@ -112,7 +112,7 @@ export class UserStats {
 
       const c1: number = a.countAnsweredWrong;
       const c2: number = b.countAnsweredWrong;
-      if (c1 == c2) {
+      if (c1 === c2) {
         return 0;
       }
 
@@ -129,7 +129,7 @@ export class UserStats {
     // The client only wants the first few.
     const size: number = this.topProblemQuestionHistories.length;
     const sublistSize: number = Math.min(size, UserStats.MAX_PROBLEM_QUESTIONS);
-    if (sublistSize != size && sublistSize > 0) {
+    if (sublistSize !== size && sublistSize > 0) {
       this.topProblemQuestionHistories = this.topProblemQuestionHistories.slice(0, sublistSize);
     }
 
