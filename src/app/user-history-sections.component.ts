@@ -10,7 +10,7 @@ import { UserQuestionHistory} from './data-structure/user-question-history';
 import { UserStats} from './data-structure/user-stats';
 
 import { QuestionResultsService } from './question-results.service';
-import { QuestionResultEvent } from './question-result-event'
+import { QuestionResultEvent } from './question-result-event';
 
 @Component({
   selector: 'user-history-sections',
