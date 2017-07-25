@@ -185,14 +185,16 @@ describe('QuizSection without the TestBed', () => {
     expect(obj.subSections[0]).toBeTruthy(obj);
     expect(obj.subSections[0].id).toEqual('dijkstra-with-fibonacci-heap');
     expect(obj.subSections[0].title).toEqual('Dijkstra\'s Algorithm for Shortest Path (Fibonacci heap as priority queue)');
+    expect(obj.subSections[0].questions).toBeTruthy();
+    expect(obj.subSections[0].questions.length).toEqual(2);
 
     expect(obj.subSections[1]).toBeTruthy(obj);
     expect(obj.subSections[1].id).toEqual('prims-mst');
 
     expect(obj.questionsCount).toEqual(21); // Not based on a real JSON reponse.
 
-    expect(obj.questions).toBeTruthy();
-    // TOOD: Check the questions array.
+    // None of the questions are not in a sub-section.
+    expect(obj.questions).toBeUndefined();
   });
 
   it ('deserializes properly from undefined object.', () => {
