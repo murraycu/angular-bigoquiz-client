@@ -48,7 +48,7 @@ export class UserHistoryService {
     return this.http.post(url, '')
       .toPromise()
       .then(response => {
-        return UserHistoryService.jsonObjectToSubmissionResult(response.json());
+        return JsonUtils.jsonObjectToSubmissionResult(response.json());
       })
       .catch(UserHistoryService.handleError);
   }
@@ -59,7 +59,7 @@ export class UserHistoryService {
     return this.http.post(url, '')
       .toPromise()
       .then(response => {
-        return UserHistoryService.jsonObjectToSubmissionResult(response.json());
+        return JsonUtils.jsonObjectToSubmissionResult(response.json());
       })
       .catch(UserHistoryService.handleError);
   }
