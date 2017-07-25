@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Quiz } from '../data-structure/quiz';
 import { QuizQuestion } from '../data-structure/quiz-question';
-import { JsonUtils } from '../json-utils'
+import { JsonUtils } from '../json-utils';
 import { Config } from '../config';
 
 @Injectable()
