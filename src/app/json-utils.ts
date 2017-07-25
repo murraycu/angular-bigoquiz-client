@@ -5,6 +5,7 @@ import { QuizQuestion } from './data-structure/quiz-question';
 import { QuizText } from './data-structure/quiz-text';
 import { Quiz } from './data-structure/quiz';
 import { HasIdAndTitle } from './data-structure/has-id-and-title';
+import { SubmissionResult } from './data-structure/submission-result';
 
 export class JsonUtils {
   public static jsonObjectToQuizSections(obj: any): QuizSection[] {
@@ -220,5 +221,20 @@ export class JsonUtils {
     }
 
     return quiz;
+  }
+
+  public static jsonObjectToSubmissionResult(obj: any): SubmissionResult {
+    const result: SubmissionResult = new SubmissionResult();
+    result.result = obj.result;
+
+    if (obj.correctAnswer) {
+      result.correctAnswer = JsonUtils.jsonObjectToQuizText(obj.correctAnswer);
+    }
+
+    if (obj.nextQuestion) {
+      result.nextQuestion = JsonUtils.jsonObjectToQuizQuestion(obj.nextQuestion);
+    }
+
+    return result;
   }
 }

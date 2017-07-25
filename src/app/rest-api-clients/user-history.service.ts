@@ -164,15 +164,4 @@ export class UserHistoryService {
     result.countAnsweredWrong = obj.countAnsweredWrong;
     return result;
   }
-
-  private static jsonObjectToSubmissionResult(obj: any): SubmissionResult {
-    const result: SubmissionResult = new SubmissionResult();
-    result.result = obj.result;
-
-    if (obj.correctAnswer) {
-      result.correctAnswer = JsonUtils.jsonObjectToQuizText(obj.correctAnswer);
-    }
-
-    return result;
-  }
 }
