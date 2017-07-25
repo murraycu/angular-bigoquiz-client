@@ -158,7 +158,7 @@ export class UserStats {
       return;
     }
 
-    let list: UserQuestionHistory[] = new Array<UserQuestionHistory>();
+    const list: UserQuestionHistory[] = new Array<UserQuestionHistory>();
     for (const history of this.topProblemQuestionHistories) {
       if (!history) {
         continue;
