@@ -65,7 +65,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
   /** This checks that each problem question is really still a problem,
    * because it might have been updated locally.
    */
-  problemQuestionsCount(stats: UserStats): number {
+  static problemQuestionsCount(stats: UserStats): number {
     if (!stats) {
       return 0;
     }
@@ -80,7 +80,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
         continue;
       }
 
-      // This shouldn't be necessary, because the server should not return to many,
+      // This shouldn't be necessary, because the server should not return too many,
       // but let's be sure:
       if (count >= UserStats.MAX_PROBLEM_QUESTIONS) {
         break;
