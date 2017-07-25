@@ -8,7 +8,7 @@ export class QuizQuestion extends HasIdAndTitle {
   link: string;
   note: string;
   videoUrl: string;
-  codeUrl: string;  
+  codeUrl: string;
   choices: QuizText[];
 
   sectionId: string;

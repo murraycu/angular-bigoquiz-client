@@ -119,21 +119,21 @@ export class UserStats {
       return (c1 > c2) ? -1 : 1;
     });
 
-    //Cache the count of problem questions:
+    // Cache the count of problem questions:
     for (const history of this.topProblemQuestionHistories) {
-      if(history && history.countAnsweredWrong > 0) {
+      if (history && history.countAnsweredWrong > 0) {
         this.problemQuestionHistoriesCount++;
       }
     }
 
-    //The client only wants the first few.
+    // The client only wants the first few.
     const size: number = this.topProblemQuestionHistories.length;
     const sublistSize: number = Math.min(size, UserStats.MAX_PROBLEM_QUESTIONS);
     if (sublistSize != size && sublistSize > 0) {
       this.topProblemQuestionHistories = this.topProblemQuestionHistories.slice(0, sublistSize);
     }
 
-    //Don't include questions that are not really problem questions:
+    // Don't include questions that are not really problem questions:
     this.clearNonProblemQuestions();
   }
 
