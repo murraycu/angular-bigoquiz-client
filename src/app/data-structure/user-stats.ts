@@ -167,6 +167,8 @@ export class UserStats {
       if (idsToRemove.get(history.questionId)) {
         continue;
       }
+
+      list.push(history);
     }
 
     this.topProblemQuestionHistories = list;
