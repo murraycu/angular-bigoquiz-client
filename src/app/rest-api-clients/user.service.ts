@@ -4,6 +4,8 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { LoginInfo} from '../data-structure/login-info';
+import { JsonUtils} from '../json-utils';
+
 import { Config } from '../config';
 
 @Injectable()
@@ -19,7 +21,7 @@ export class UserService {
     return this.http.get(url)
       .toPromise()
       .then(response => {
-        return UserService.jsonObjectToLoginInfo(response.json());
+        return JsonUtils.jsonObjectToLoginInfo(response.json());
       })
       .catch(UserService.handleError);
   }
@@ -29,16 +31,4 @@ export class UserService {
     console.error('An error occurred: JSON:', error.json());
     return Promise.reject(error.message || error);
   }
-
-  private static jsonObjectToLoginInfo(obj: any): LoginInfo {
-    const result: LoginInfo = new LoginInfo();
-    result.loggedIn = obj.loggedIn;
-    result.loginUrl = obj.loginUrl;
-    result.logoutUrl = obj.logoutUrl;
-    result.userId = obj.userId;
-    result.nickname = obj.nickname;
-
-    return result;
-  }
-
 }
