@@ -95,6 +95,28 @@ describe('UserStats without the TestBed', () => {
     userStats.updateProblemQuestion(question1, false);
     userStats.updateProblemQuestion(question2, false);
 
+    expect(userStats.topProblemQuestionHistories).toBeTruthy();
     expect(userStats.topProblemQuestionHistories.length).toBe(2);
+  });
+
+  it ('updateProblemQuestion() false, true re-empties topProblemquestionHistories.', () => {
+    userStats.updateProblemQuestion(question1, false);
+    userStats.updateProblemQuestion(question1, true);
+
+    expect(userStats.topProblemQuestionHistories).toBeUndefined();
+  });
+
+  it ('updateProblemQuestion() false (id1), false (id2), true (id2) reults in just id1 in topProblemquestionHistories.', () => {
+    const QUESTION_ID2: string = 'questionid2';
+    const question2: QuizQuestion = new QuizQuestion();
+    question2.id = QUESTION_ID2;
+
+    userStats.updateProblemQuestion(question1, false);
+    userStats.updateProblemQuestion(question2, false);
+    userStats.updateProblemQuestion(question2, true);
+
+    expect(userStats.topProblemQuestionHistories).toBeTruthy();
+    expect(userStats.topProblemQuestionHistories.length).toBe(1);
+
   });
 });
