@@ -12,8 +12,8 @@ describe('UserStats without the TestBed', () => {
     userStats = new UserStats();
 
     // TODO: Use a createQuestion() utility function instead.
-    QUESTION_ID1 = "questionid1";
-    QUESTION_TEXT1 = "questiontitle1";
+    QUESTION_ID1 = 'questionid1';
+    QUESTION_TEXT1 = 'questiontitle1';
     question1 = new QuizQuestion();
     question1.id = QUESTION_ID1;
     question1.text = new QuizText();
@@ -88,9 +88,9 @@ describe('UserStats without the TestBed', () => {
   });
 
   it ('updateProblemQuestion(, false) twice fills topProblemquestionHistories.', () => {
-    const QUESTION_ID2: string = "questionid2";
+    const QUESTION_ID2: string = 'questionid2';
     const question2: QuizQuestion = new QuizQuestion();
-    question2.id = QUESTION_ID2
+    question2.id = QUESTION_ID2;
 
     userStats.updateProblemQuestion(question1, false);
     userStats.updateProblemQuestion(question2, false);

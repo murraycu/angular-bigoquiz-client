@@ -6,7 +6,7 @@ describe('UserQuestionHistory without the TestBed', () => {
 
   beforeEach(() => {
     const question: QuizQuestion = new QuizQuestion();
-    question.id = "questionid1";
+    question.id = 'questionid1';
     history = UserQuestionHistory.fromQuestion(question);
   });
 
