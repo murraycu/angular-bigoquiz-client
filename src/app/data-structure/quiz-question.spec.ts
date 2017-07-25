@@ -45,7 +45,7 @@ describe('QuizQuestion without the TestBed', () => {
   "quizUsesMathML": false
 }`);
 
-    const obj = JsonUtils.jsonObjectToQuizQuestion(jsonObj);
+    const obj: QuizQuestion = JsonUtils.jsonObjectToQuizQuestion(jsonObj);
     expect(obj).toBeTruthy(obj);
 
     expect(obj.id).toBeTruthy(obj);

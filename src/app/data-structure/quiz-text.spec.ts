@@ -9,7 +9,7 @@ describe('QuizText without the TestBed', () => {
     // TODO: Does Response.json() uses JSON.parse() too?
     const jsonObj: string = JSON.parse('{"text":"Foo Bar","isHtml":false}');
 
-    const obj = JsonUtils.jsonObjectToQuizText(jsonObj);
+    const obj: QuizText = JsonUtils.jsonObjectToQuizText(jsonObj);
     expect(obj).toBeTruthy(obj);
     expect(obj.text).toBeTruthy(obj);
     expect(obj.text).toEqual('Foo Bar');

@@ -51,7 +51,7 @@ describe('QuizQuestionAndAnswer without the TestBed', () => {
   }
 }`);
 
-    const obj = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonObj);
+    const obj: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonObj);
     expect(obj).toBeTruthy(obj);
 
     expect(obj.question).toBeTruthy(obj);

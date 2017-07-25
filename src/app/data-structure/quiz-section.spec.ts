@@ -170,7 +170,7 @@ describe('QuizSection without the TestBed', () => {
 }
 `);
 
-    const obj = JsonUtils.jsonObjectToQuizSection(jsonObj);
+    const obj: QuizSection = JsonUtils.jsonObjectToQuizSection(jsonObj);
     expect(obj).toBeTruthy(obj);
 
     expect(obj.id).toBeTruthy(obj);

@@ -59,7 +59,7 @@ describe('SubmissionResult without the TestBed', () => {
   }
 }`);
 
-    const obj = JsonUtils.jsonObjectToSubmissionResult(jsonObj);
+    const obj: SubmissionResult = JsonUtils.jsonObjectToSubmissionResult(jsonObj);
     expect(obj).toBeTruthy();
     expect(obj.result).toEqual(false);
 

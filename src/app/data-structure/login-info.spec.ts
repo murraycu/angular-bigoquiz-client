@@ -16,7 +16,7 @@ describe('LoginInfo without the TestBed', () => {
   "nickname": "example@example.com"
 }`);
 
-    const obj = JsonUtils.jsonObjectToLoginInfo(jsonObj);
+    const obj: LoginInfo = JsonUtils.jsonObjectToLoginInfo(jsonObj);
     expect(obj).toBeTruthy(obj);
 
     expect(obj.loggedIn).toEqual(true);

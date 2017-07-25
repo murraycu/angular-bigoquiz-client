@@ -9,7 +9,7 @@ describe('QuizSubSection without the TestBed', () => {
     // TODO: Does Response.json() uses JSON.parse() too?
     const jsonObj: string = JSON.parse('{"id":"dijkstra-with-fibonacci-heap","title":"Dijkstra\'s Algorithm for Shortest Path (Fibonacci heap as priority queue)","link":"https://en.wikipedia.org/wiki/Dijkstra\'s_algorithm"}');
 
-    const obj = JsonUtils.jsonObjectToQuizSubSection(jsonObj);
+    const obj: QuizSubSection = JsonUtils.jsonObjectToQuizSubSection(jsonObj);
     expect(obj).toBeTruthy(obj);
     expect(obj.id).toBeTruthy(obj);
     expect(obj.id).toEqual('dijkstra-with-fibonacci-heap');
