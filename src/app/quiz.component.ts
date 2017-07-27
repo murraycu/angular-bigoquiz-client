@@ -7,7 +7,7 @@ import { QuizService } from './rest-api-clients/quiz.service';
 import { Quiz } from './data-structure/quiz';
 
 @Component({
-  selector: 'quiz',
+  selector: 'app-quiz',
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css']
 })

@@ -5,7 +5,7 @@ import { UserHistoryService } from './rest-api-clients/user-history.service';
 import { UserHistoryQuizzes} from './data-structure/user-history-quizzes';
 
 @Component({
-  selector: 'user',
+  selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })

@@ -13,7 +13,7 @@ import { QuestionResultsService } from './question-results.service';
 import { QuestionResultEvent } from './question-result-event';
 
 @Component({
-  selector: 'user-history-sections',
+  selector: 'app-user-history-sections',
   templateUrl: './user-history-sections.component.html',
   styleUrls: ['./user-history-sections.component.css']
 })

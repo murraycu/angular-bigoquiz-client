@@ -5,7 +5,7 @@ import { UserService } from './rest-api-clients/user.service';
 import { LoginInfo } from './data-structure/login-info';
 
 @Component({
-  selector: 'user-status',
+  selector: 'app-user-status',
   templateUrl: './user-status.component.html',
   styleUrls: ['./user-status.component.css']
 })

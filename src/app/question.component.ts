@@ -13,7 +13,7 @@ import { QuestionResultsService } from './question-results.service';
 import { QuestionResultEvent } from './question-result-event';
 
 @Component({
-  selector: 'question',
+  selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
