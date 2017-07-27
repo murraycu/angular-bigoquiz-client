@@ -4,6 +4,10 @@
     <div class="user-history-answers-panel">
 
       <ng-container *ngIf="userHistorySections">
+        <ng-container *ngIf="!userHistorySections.hasUser()">
+          <p>Please <a href="{userHistorySections.loginInfo.loginUrl}">sign in</a> to track your progress and identify problem questions.</p>
+        </ng-container>
+
         <div *ngFor="let section of userHistorySections.sections"
           class="user-history-quiz-section">
           <h3><a [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': section.id}">{{section.title}}</a></h3>

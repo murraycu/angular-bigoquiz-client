@@ -16,4 +16,16 @@ export class UserHistorySections {
 
     return this.stats.get(sectionId);
   }
+
+  public hasUser(): boolean {
+    if (!this.loginInfo) {
+      return false;
+    }
+
+    if (this.loginInfo.userId && this.loginInfo.userId.length) {
+      return true;
+    }
+
+    return false;
+  }
 }
