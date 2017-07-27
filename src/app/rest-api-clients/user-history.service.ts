@@ -72,6 +72,10 @@ export class UserHistoryService {
   private static jsonObjectToUserHistorySections(obj: any): UserHistorySections {
     const result: UserHistorySections = new UserHistorySections();
 
+    if (obj.loginInfo) {
+      result.loginInfo = JsonUtils.jsonObjectToLoginInfo(obj.loginInfo);
+    }
+
     if (obj.sections) {
       result.sections = JsonUtils.jsonObjectToQuizSections(obj.sections);
     }
