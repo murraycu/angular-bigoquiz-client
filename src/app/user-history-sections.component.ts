@@ -45,12 +45,13 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
     this.subscriptionQuestionResultsService.unsubscribe();
   }
 
+  // This is not static because it is difficult to call static method from the .html template.
   // Note: The code in the .html will happily call this function with the wrong type,
   // presumably because it's really running Javascript, not Typescript,
   // and there is no Typescript compiler checking of the code in the .html.
   /** Get a suitable title to show in the list of problem questions.
    */
-  static questionTitle(question: UserQuestionHistory): string {
+  questionTitle(question: UserQuestionHistory): string {
     if (!question || !question.questionTitle || !question.questionTitle.text) {
       return '';
     }
@@ -62,10 +63,11 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
     }
   }
 
+  // This is not static because it is difficult to call static method from the .html template.
   /** This checks that each problem question is really still a problem,
    * because it might have been updated locally.
    */
-  static problemQuestionsCount(stats: UserStats): number {
+  problemQuestionsCount(stats: UserStats): number {
     if (!stats) {
       return 0;
     }
