@@ -51,7 +51,7 @@ export class JsonUtils {
     JsonUtils.jsonLoadHasIdAndTitle(obj, section);
 
     if (obj.subSections) {
-      section.subSections = new Array<QuizSubSection>();
+      section.subSections = [];
       section.subSectionsMap = new Map<string, QuizSubSection>();
 
       for (const jsonSubSectionId in obj.subSections) {
@@ -138,7 +138,7 @@ export class JsonUtils {
     result.quizTitle = obj.quizTitle;
 
     if (obj.choices) {
-      result.choices = new Array<QuizText>();
+      result.choices = [];
       for (const jsonChoice of obj.choices) {
         const choice = JsonUtils.jsonObjectToQuizText(jsonChoice);
         result.choices.push(choice);
