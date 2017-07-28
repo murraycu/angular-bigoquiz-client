@@ -19,6 +19,7 @@ export class UserStatusComponent implements OnInit, AfterViewChecked {
   loginInfo: LoginInfo;
 
   googleLoginButtonId = 'google-login-button';
+  private loginButtonRendered = false;
 
   constructor(private userService: UserService, private zone: NgZone) { }
 
@@ -34,6 +35,23 @@ export class UserStatusComponent implements OnInit, AfterViewChecked {
   // Other people seem to use ngAfterViewInit(), but the <div> does not exist yet at that point.
   // https://stackoverflow.com/questions/35530483/google-sign-in-for-websites-and-angular-2-using-typescript/42802835
   ngAfterViewChecked() {
+    // console.log('debug ngAfterViewChecked');
+
+    if (!document.getElementById(this.googleLoginButtonId)) {
+      // console.log('debug ngAfterViewChecked: div does not exist.');
+      return;
+    }
+
+    // Avoid an infinite loop.
+    // gapi.signin2.render() seems to trigger another ngAfterViewChecked().
+    if (this.loginButtonRendered) {
+      return;
+    }
+
+    // console.log('debug ngAfterViewChecked: rendering button.');
+
+    this.loginButtonRendered = true;
+
     // Converts the Google login button stub to an actual button.
     gapi.signin2.render(
       this.googleLoginButtonId,
