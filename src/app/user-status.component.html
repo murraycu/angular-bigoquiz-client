@@ -11,8 +11,8 @@
       </div>
     </div>
 
-    <p>
-      <a *ngIf="loginInfo.nickname" href="{{loginInfo.logoutUrl}}">Log Out</a>
+    <p *ngIf="showLogOutWhenAppropriate && loginInfo.nickname">
+      <a href="{{loginInfo.logoutUrl}}">Log Out</a>
     </p>
   </ng-container>
 </div>

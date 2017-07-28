@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnInit, NgZone } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, NgZone, Input } from '@angular/core';
 
 import { UserService } from './rest-api-clients/user.service';
 import { LoginInfo } from './data-structure/login-info';
@@ -12,7 +12,12 @@ declare var gapi: any;
   styleUrls: ['./user-status.component.css']
 })
 export class UserStatusComponent implements OnInit, AfterViewChecked {
+  // We don't want to show the logout button in the header,
+  // but we do want to show it on the user/profile page.
+  @Input() showLogOutWhenAppropriate: boolean;
+
   loginInfo: LoginInfo;
+
   googleLoginButtonId = 'google-login-button';
 
   constructor(private userService: UserService, private zone: NgZone) { }
