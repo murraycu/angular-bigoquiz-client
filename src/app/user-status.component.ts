@@ -78,7 +78,4 @@ export class UserStatusComponent implements OnInit, AfterViewChecked {
       console.log(this);
     });
   }
-
-  // TODO: Let the parent component specify whether the logout link should be visible,
-  // so we can show it only on the /user page.
 }
