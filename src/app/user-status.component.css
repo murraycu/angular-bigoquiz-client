@@ -11,3 +11,11 @@
 .login-failed {
     font-weight: bold;
 }
+
+a.user-name {
+  color: #2F4550;
+}
+
+a.user-name:visited {
+  color: #2F4550;
+}

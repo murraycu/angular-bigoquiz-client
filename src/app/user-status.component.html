@@ -1,14 +1,18 @@
 <div class="user-status-panel">
   <ng-container *ngIf="loginInfo">
-    <a *ngIf="loginInfo.nickname" class="user-name" [routerLink]="['/user']">{{loginInfo.nickname}}</a>
+    <div class="status-panel">
+      <a *ngIf="loginInfo.nickname" class="user-name" [routerLink]="['/user']">{{loginInfo.nickname}}</a>
 
-    <div *ngIf="!loginInfo || !(loginInfo.nickname)" class="login-panel">
-      <!-- Show Google's Sign-in button here.
-      This would change to a "Signed In" button if we were signed in,
-      but that doesn't seem useful, and we can't use it to navigate to our own user page. -->
-      <div id="{{googleLoginButtonId}}"></div>
+      <div *ngIf="!loginInfo || !(loginInfo.nickname)" class="login-panel">
+        <!-- Show Google's Sign-in button here.
+        This would change to a "Signed In" button if we were signed in,
+        but that doesn't seem useful, and we can't use it to navigate to our own user page. -->
+        <div id="{{googleLoginButtonId}}"></div>
+      </div>
     </div>
 
-    <a *ngIf="loginInfo.nickname" href="{{loginInfo.logoutUrl}}">Log Out</a>
+    <p>
+      <a *ngIf="loginInfo.nickname" href="{{loginInfo.logoutUrl}}">Log Out</a>
+    </p>
   </ng-container>
 </div>
