@@ -315,6 +315,12 @@ background-color: #B6B2DD;
     float: right;
 }
 
+.menu-others-panel .user-status-panel {
+  float: right;
+  clear: both;
+}
+
+
 .button-answer-questions {
     /* Generic button style */
     margin: 0;
