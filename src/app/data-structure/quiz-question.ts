@@ -3,9 +3,7 @@ import { QuizSubSection } from './quiz-sub-section';
 import { QuizText } from './quiz-text';
 
 export class QuizQuestion extends HasIdAndTitle {
-  id: string;
   text: QuizText;
-  link: string;
   note: string;
   videoUrl: string;
   codeUrl: string;
