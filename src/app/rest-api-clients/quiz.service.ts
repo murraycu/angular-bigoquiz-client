@@ -13,7 +13,7 @@ export class QuizService {
   constructor(private http: Http) { }
 
   getQuizzes(): Promise<Quiz[]> {
-   const url = Config.baseUrl + '/api/quiz/?list-only=true';
+   const url = Config.baseUrl + '/api/quiz?list-only=true';
    return this.http.get(url)
       .toPromise()
       .then(response => {
