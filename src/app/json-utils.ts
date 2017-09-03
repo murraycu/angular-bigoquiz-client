@@ -47,15 +47,7 @@ export class JsonUtils {
     if (obj.questions && obj.questions.length) {
       for (const jsonQA of obj.questions) {
         const qa: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonQA);
-
-        if (qa.question.subSectionId) {
-          const subSection: QuizSubSection = section.getSubSectionById(qa.question.subSectionId);
-          if (subSection) {
-            subSection.addQuestion(qa);
-          }
-        } else {
-          section.addQuestion(qa);
-        }
+        section.addQuestion(qa);
       }
     }
 
@@ -72,6 +64,13 @@ export class JsonUtils {
     const subSection: QuizSubSection = new QuizSubSection();
 
     JsonUtils.jsonLoadHasIdAndTitle(obj, subSection);
+
+    if (obj.questions && obj.questions.length) {
+      for (const jsonQA of obj.questions) {
+        const qa: QuizQuestionAndAnswer = JsonUtils.jsonObjectToQuizQuestionAndAnswer(jsonQA);
+        subSection.addQuestion(qa);
+      }
+    }
 
     return subSection;
   }
