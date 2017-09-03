@@ -42,4 +42,10 @@ skip_files:
 - ^package\.json
 - ^protractor\.conf\.js
 - ^tslint\.json
+- ^(.*/)?.patch$
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
 
