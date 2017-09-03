@@ -21,11 +21,6 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private zone: NgZone) { }
 
   ngOnInit(): void {
-    // This only gives us part of the URL, such as "/quiz/algorithms".
-    // let currentUrl: string = this.location.prepareExternalUrl(this.location.path());
-
-    const currentUrl: string = window.location.href;
-
-    this.userService.getUser(currentUrl).then(loginInfo => this.loginInfo = loginInfo);
+    this.userService.getUser().then(loginInfo => this.loginInfo = loginInfo);
   }
 }

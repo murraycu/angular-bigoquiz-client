@@ -23,6 +23,6 @@ export class UserStatusComponent implements OnInit {
 
     const currentUrl: string = window.location.href;
 
-    this.userService.getUser(currentUrl).then(loginInfo => this.loginInfo = loginInfo);
+    this.userService.getUser().then(loginInfo => this.loginInfo = loginInfo);
   }
 }
