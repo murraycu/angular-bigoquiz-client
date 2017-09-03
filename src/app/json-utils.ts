@@ -14,26 +14,9 @@ export class JsonUtils {
       return undefined;
     }
 
-    // TODO: We won't need to use this when the JSON of the sections is an array.
-    const sectionsSequence: string[] = obj.sectionsSequence;
-
-    const jsonSectionsInner = obj.sections;
-    if (!jsonSectionsInner) {
-      return undefined;
-    }
-
     const result = new Array<QuizSection>();
 
-    // The JSON here should really be an array,
-    // with a order in the JSON,
-    // but it is currently a map. See https://github.com/murraycu/gwt-bigoquiz/issues/1
-    // for (let jsonSection of jsonSectionsInner)
-
-    // Iterate over all properties in the object.
-    // The name of the property is the name of a key in the map
-    // (the ID of a section).
-    for (const id of sectionsSequence) {
-      const jsonSection: Object = jsonSectionsInner[id];
+    for (const jsonSection of obj) {
       const section = JsonUtils.jsonObjectToQuizSection(jsonSection);
       result.push(section);
     }
