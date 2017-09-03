@@ -37,9 +37,7 @@ export class JsonUtils {
       section.subSections = [];
       section.subSectionsMap = new Map<string, QuizSubSection>();
 
-      for (const jsonSubSectionId in obj.subSections) {
-        // TODO: Keep the sequence from the JSON:
-        const jsonSubSection = obj.subSections[jsonSubSectionId];
+      for (const jsonSubSection of obj.subSections) {
         const subSection = JsonUtils.jsonObjectToQuizSubSection(jsonSubSection);
         section.subSections.push(subSection);
         section.subSectionsMap.set(subSection.id, subSection);
