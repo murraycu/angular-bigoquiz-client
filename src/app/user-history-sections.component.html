@@ -5,7 +5,7 @@
 
       <ng-container *ngIf="userHistorySections">
         <ng-container *ngIf="!userHistorySections.hasUser()">
-          <p>Please <a href="{userHistorySections.loginInfo.loginUrl}">sign in</a> to track your progress and identify problem questions.</p>
+          <p>Please <a [routerLink]="['/login']">sign in</a> to track your progress and identify problem questions.</p>
         </ng-container>
 
         <div *ngFor="let section of userHistorySections.sections"

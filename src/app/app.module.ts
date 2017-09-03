@@ -15,6 +15,7 @@ import { QuizzesComponent } from './quizzes.component';
 import { QuizComponent } from './quiz.component';
 import { QuestionComponent } from './question.component';
 import { UserHistorySectionsComponent } from './user-history-sections.component';
+import { LoginComponent } from './login.component';
 
 import { UserService } from './rest-api-clients/user.service';
 import { QuizService } from './rest-api-clients/quiz.service';
@@ -34,7 +35,8 @@ import { QuestionResultsService } from './question-results.service';
     QuizzesComponent,
     QuizComponent,
     QuestionComponent,
-    UserHistorySectionsComponent
+    UserHistorySectionsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

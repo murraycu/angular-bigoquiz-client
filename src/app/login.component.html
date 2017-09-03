@@ -1,10 +1,12 @@
-<div class="user-status-panel">
+<div class="content-panel">
+  <h2 class="page-title-label">Login</h2>
+
   <ng-container *ngIf="loginInfo">
     <div class="status-panel">
       <a *ngIf="loginInfo.nickname" class="user-name" [routerLink]="['/user']">{{loginInfo.nickname}}</a>
 
       <div *ngIf="!(loginInfo.nickname)" class="login-panel">
-        <a *ngIf="loginInfo.loginUrl" [routerLink]="['/login']">Sign In</a>
+        <a *ngIf="loginInfo.loginUrl" href="{{loginInfo.loginUrl}}">Sign In</a>
       </div>
     </div>
 
