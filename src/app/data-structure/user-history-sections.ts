@@ -5,6 +5,7 @@ import { LoginInfo } from './login-info';
 export class UserHistorySections {
   loginInfo: LoginInfo;
   sections: QuizSection[];
+  quizTitle: string;
 
   // Map of section IDs to stats.
   stats: Map<string, UserStats>;
