@@ -4,12 +4,12 @@
       <a *ngIf="loginInfo.nickname" class="user-name" [routerLink]="['/user']">{{loginInfo.nickname}}</a>
 
       <div *ngIf="!(loginInfo.nickname)" class="login-panel">
-        <a *ngIf="loginInfo.loginUrl" [routerLink]="['/login']">Sign In</a>
+        <a [routerLink]="['/login']">Sign In</a>
       </div>
     </div>
 
     <p *ngIf="showLogOutWhenAppropriate && loginInfo.nickname">
-      <a href="{{loginInfo.logoutUrl}}">Log Out</a>
+      <a [routerLink]="['/logout']">Sign In</a>
     </p>
   </ng-container>
 </div>
