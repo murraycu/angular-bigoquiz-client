@@ -13,5 +13,9 @@
     <p *ngIf="showLogOutWhenAppropriate && loginInfo.nickname">
       <a href="http://betaapi.bigoquiz.com/login/logout">Log Out</a>
     </p>
+
+    <p *ngIf="loginFailed">
+      Login failed.
+    </p>
   </ng-container>
 </div>

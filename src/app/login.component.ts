@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone, Input } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { UserService } from './rest-api-clients/user.service';
 import { LoginInfo } from './data-structure/login-info';
@@ -17,10 +18,23 @@ export class LoginComponent implements OnInit {
   @Input() showLogOutWhenAppropriate: boolean;
 
   loginInfo: LoginInfo;
+  loginFailed: boolean;
 
-  constructor(private userService: UserService, private zone: NgZone) { }
+  constructor(private userService: UserService, private zone: NgZone,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // Get the "failed" query parameter:
+    // We could instead do this, but it's theoretically possible that we might
+    // change the parameters programatically.
+    // this.loginFailed = this.route.snapshot.params.failed;
+
+    this.route.queryParams.subscribe((params: ParamMap) => {
+      let str = params['failed'];
+      this.loginFailed = (str == 'true')
+    });
+
+    // Get the login info from the server:
     this.userService.getUser().then(loginInfo => this.loginInfo = loginInfo);
   }
 }
