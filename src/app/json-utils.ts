@@ -224,20 +224,6 @@ export class JsonUtils {
 
     result.loggedIn = obj.loggedIn;
 
-    // loginUrl and logoutUrl can be null.
-    // (For instance, we don't need a login URL if we are already logged in.
-    // However, Response.json() then sets these to null,
-    // but we prefer to use only undefined, not null, throughout this code,
-    // to simplify checks.
-
-    if (obj.loginUrl) {
-      result.loginUrl = obj.loginUrl;
-    }
-
-    if (obj.logoutUrl) {
-      result.logoutUrl = obj.logoutUrl;
-    }
-
     result.userId = obj.userId;
     result.nickname = obj.nickname;
 
