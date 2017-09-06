@@ -227,6 +227,8 @@ export class JsonUtils {
     result.userId = obj.userId;
     result.nickname = obj.nickname;
 
+    result.errorMessage = obj.errorMessage;
+
     return result;
   }
 }
