@@ -20,7 +20,7 @@ export class UserHistoryService {
   getUserHistorySectionsForQuiz(quizId: string): Promise<UserHistorySections> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseUrl}/api/user-history/${quizId}`;
-    return this.http.get(url)
+    return this.http.get(url, {withCredentials: true})
       .toPromise()
       .then(response => {
         return UserHistoryService.jsonObjectToUserHistorySections(response.json());
@@ -33,7 +33,7 @@ export class UserHistoryService {
   getUserHistoryForQuizzes(): Promise<UserHistoryQuizzes> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseUrl}/api/user-history`;
-    return this.http.get(url)
+    return this.http.get(url, {withCredentials: true})
       .toPromise()
       .then(response => {
         return UserHistoryService.jsonObjectToUserHistoryQuizzes(response.json());
