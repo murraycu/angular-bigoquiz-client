@@ -9,7 +9,8 @@
     </div>
 
     <p *ngIf="showLogOutWhenAppropriate && loginInfo.nickname">
-      <a [routerLink]="['/logout']">Log Out</a>
+    <!-- TODO: Don't hard-code the URLs." -->
+      <a href="http://betaapi.bigoquiz.com/login/logout?redirect=http://beta.bigoquiz.com/user">Log Out</a>
     </p>
   </ng-container>
 </div>
