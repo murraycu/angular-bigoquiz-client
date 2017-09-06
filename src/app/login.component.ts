@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     // Get the "failed" query parameter:
     // We could instead do this, but it's theoretically possible that we might
     // change the parameters programatically.
-    // this.loginFailed = this.route.snapshot.params.failed;
+    // this.loginFailed = this.route.snapshot.queryParams.failed;
 
     this.route.queryParams.subscribe((params: ParamMap) => {
       let str = params['failed'];
