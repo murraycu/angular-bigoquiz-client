@@ -13,7 +13,7 @@ export class QuestionService {
 
   getNextQuestion(quizId: string, sectionId: string): Promise<QuizQuestion> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${Config.baseUrl}/api/question/next?quiz-id=${quizId}`;
+    const url = `${Config.baseApiUrl}/api/question/next?quiz-id=${quizId}`;
     const urlWhole = sectionId ? url + `&section-id=${sectionId}` : url;
     return this.http.get(urlWhole)
       .toPromise()

@@ -17,7 +17,7 @@ export class UserService {
    */
   getUser(): Promise<LoginInfo> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${Config.baseUrl}/api/user`;
+    const url = `${Config.baseApiUrl}/api/user`;
     return this.http.get(url, {withCredentials: true})
       .toPromise()
       .then(response => {

@@ -13,7 +13,7 @@ export class QuizService {
   constructor(private http: Http) { }
 
   getQuizzes(): Promise<Quiz[]> {
-   const url = Config.baseUrl + '/api/quiz?list-only=true';
+   const url = Config.baseApiUrl + '/api/quiz?list-only=true';
    return this.http.get(url)
       .toPromise()
       .then(response => {
@@ -36,7 +36,7 @@ export class QuizService {
 
   getQuiz(id: string): Promise<Quiz> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${Config.baseUrl}/api/quiz/${id}`;
+    const url = `${Config.baseApiUrl}/api/quiz/${id}`;
     return this.http.get(url)
       .toPromise()
       .then(response => {
@@ -52,7 +52,7 @@ export class QuizService {
 
   getQuizQuestion(quizId: string, questionId: string): Promise<QuizQuestion> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${Config.baseUrl}/api/quiz/${quizId}/question/${questionId}`;
+    const url = `${Config.baseApiUrl}/api/quiz/${quizId}/question/${questionId}`;
     return this.http.get(url)
       .toPromise()
       .then(response => {

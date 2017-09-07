@@ -13,7 +13,7 @@ import { Config } from './config';
 export class UserComponent implements OnInit {
   userHistoryQuizzes: UserHistoryQuizzes;
 
-  logoutUrl: string = `${Config.baseUrl}/login/logout?redirect=http://beta.bigoquiz.com/user`
+  logoutUrl: string = `${Config.baseApiUrl}/login/logout?redirect=http://beta.bigoquiz.com/user`
 
   constructor(private userHistoryService: UserHistoryService) { }
 
