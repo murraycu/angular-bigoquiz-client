@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone, Input } from '@angular/core';
 
 import { UserService } from './rest-api-clients/user.service';
 import { LoginInfo } from './data-structure/login-info';
+import { Config } from './config';
 
 @Component({
   selector: 'app-user-status',
@@ -14,6 +15,7 @@ export class UserStatusComponent implements OnInit {
   @Input() showLogOutWhenAppropriate: boolean;
 
   loginInfo: LoginInfo;
+  logoutUrl: string = `${Config.baseApiUrl}/login/logout?redirect=${Config.baseUrl}/user`
 
   constructor(private userService: UserService, private zone: NgZone) { }
 

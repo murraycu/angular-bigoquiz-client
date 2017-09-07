@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   loginInfo: LoginInfo;
   loginFailed: boolean;
 
-  loginUrl: string = `${Config.baseApiUrl}/login/login?redirect=http://beta.bigoquiz.com/user`
+  loginUrl: string = `${Config.baseApiUrl}/login/login?redirect=${Config.baseUrl}/user`
 
   constructor(private userService: UserService, private zone: NgZone,
     private route: ActivatedRoute) { }
