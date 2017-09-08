@@ -205,6 +205,10 @@ export class JsonUtils {
   }
 
   public static jsonObjectToSubmissionResult(obj: any): SubmissionResult {
+    if (!obj) {
+      return undefined;
+    }
+
     const result: SubmissionResult = new SubmissionResult();
     result.result = obj.result;
 
@@ -220,6 +224,10 @@ export class JsonUtils {
   }
 
   public static jsonObjectToLoginInfo(obj: any): LoginInfo {
+    if (!obj) {
+      return undefined;
+    }
+
     const result: LoginInfo = new LoginInfo();
 
     result.loggedIn = obj.loggedIn;

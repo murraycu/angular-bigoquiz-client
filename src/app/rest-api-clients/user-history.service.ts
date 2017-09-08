@@ -70,6 +70,10 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserHistorySections(obj: any): UserHistorySections {
+    if (!obj) {
+      return undefined;
+    }
+
     const result: UserHistorySections = new UserHistorySections();
 
     if (obj.loginInfo) {
@@ -93,6 +97,10 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserHistoryQuizzes(obj: any): UserHistoryQuizzes {
+    if (!obj) {
+      return undefined;
+    }
+
     const result: UserHistoryQuizzes = new UserHistoryQuizzes();
 
     // stats:
@@ -109,6 +117,10 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserStats(obj: any): UserStats {
+    if (!obj) {
+      return undefined;
+    }
+
     const result: UserStats = new UserStats();
     result.quizId = obj.quizId;
     result.quizTitle = obj.quizTitle;
@@ -150,6 +162,10 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserQuestionHistory(obj: any):  UserQuestionHistory {
+    if (!obj) {
+      return undefined;
+    }
+
     const result: UserQuestionHistory = new UserQuestionHistory();
     result.questionId = obj.questionId;
 
