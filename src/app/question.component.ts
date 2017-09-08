@@ -108,4 +108,22 @@ export class QuestionComponent implements OnInit {
     this.userHistoryService.submitDontKnowAnswer(this.quizId, this.questionId).
       then(submissionResult => this.submissionResult = submissionResult);
   }
+
+  onNext(): void {
+    // The previous submission has already given us the next question,
+    // so we just change the member variable and the HTML will update itself
+    // to use the new value of the variable.
+
+    if (!this.submissionResult) {
+      return
+    }
+
+    this.question = this.submissionResult.nextQuestion
+    if (this.question) {
+      this.questionId = this.question.id
+      this.sectionId = this.question.sectionId
+    }
+
+    this.submissionResult = undefined
+  }
 }
