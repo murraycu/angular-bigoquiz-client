@@ -4,18 +4,18 @@ import { LoginInfo } from './login-info';
 
 export class UserHistorySections {
   loginInfo: LoginInfo;
-  sections: QuizSection[];
   quizTitle: string;
 
   // Map of section IDs to stats.
-  stats: Map<string, UserStats>;
+  statsMap: Map<string, UserStats>;
+  stats: UserStats[];
 
   public getUserStatsForSection(sectionId: string): UserStats {
-    if (!this.stats) {
+    if (!this.statsMap) {
       return undefined;
     }
 
-    return this.stats.get(sectionId);
+    return this.statsMap.get(sectionId);
   }
 
   public hasUser(): boolean {

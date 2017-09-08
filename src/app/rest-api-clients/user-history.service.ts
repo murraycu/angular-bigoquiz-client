@@ -76,18 +76,16 @@ export class UserHistoryService {
       result.loginInfo = JsonUtils.jsonObjectToLoginInfo(obj.loginInfo);
     }
 
-    if (obj.sections) {
-      result.sections = JsonUtils.jsonObjectToQuizSections(obj.sections);
-    }
-
     // stats:
     if (obj.stats) {
-      result.stats = new Map<string, UserStats>();
+      result.stats = new Array<UserStats>()
+      result.statsMap = new Map<string, UserStats>();
 
-      for (const sectionId in obj.stats) {
-        const jsonStats = obj.stats[sectionId];
+      for (const jsonStats of obj.stats) {
         const userStats = UserHistoryService.jsonObjectToUserStats(jsonStats);
-        result.stats.set(userStats.sectionId, userStats);
+
+        result.stats.push(userStats);
+        result.statsMap.set(userStats.sectionId, userStats);
       }
     }
 
@@ -96,20 +94,14 @@ export class UserHistoryService {
 
   private static jsonObjectToUserHistoryQuizzes(obj: any): UserHistoryQuizzes {
     const result: UserHistoryQuizzes = new UserHistoryQuizzes();
-    result.quizzes = [];
-    for (const jsonQuiz in obj.quizzes) {
-      const quiz = JsonUtils.jsonObjectToQuiz(jsonQuiz);
-      result.quizzes.push(quiz);
-      }
 
     // stats:
     if (obj.stats) {
-      result.stats = new Map<string, UserStats>();
+      result.stats = new Array<UserStats>();
 
-      for (const quizId in obj.stats) {
-        const jsonStats = obj.stats[quizId];
+      for (const jsonStats of obj.stats) {
         const userStats = UserHistoryService.jsonObjectToUserStats(jsonStats);
-        result.stats.set(userStats.quizId, userStats);
+        result.stats.push(userStats);
       }
     }
 
@@ -119,10 +111,13 @@ export class UserHistoryService {
   private static jsonObjectToUserStats(obj: any): UserStats {
     const result: UserStats = new UserStats();
     result.quizId = obj.quizId;
+    result.quizTitle = obj.quizTitle;
     result.sectionId = obj.sectionId;
+    result.sectionTitle = obj.sectionTitle;
 
     result.answered = JsonUtils.numberOrZero(obj.answered);
     result.correct = JsonUtils.numberOrZero(obj.correct);
+    result.countQuestions = JsonUtils.numberOrZero(obj.countQuestions);
     result.countQuestionsAnsweredOnce = JsonUtils.numberOrZero(obj.countQuestionsAnsweredOnce);
     result.countQuestionsCorrectOnce = JsonUtils.numberOrZero(obj.countQuestionsCorrectOnce);
 

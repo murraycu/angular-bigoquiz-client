@@ -3,10 +3,13 @@ import { QuizQuestion } from './quiz-question';
 
 export class UserStats {
   quizId: string;
+  quizTitle: string;
   sectionId: string;
+  sectionTitle: string;
 
   answered: number = 0;
   correct: number = 0;
+  countQuestions: number = 0;
   countQuestionsAnsweredOnce: number = 0;
   countQuestionsCorrectOnce: number = 0;
 
