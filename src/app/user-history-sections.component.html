@@ -12,9 +12,9 @@
           class="user-history-quiz-section">
           <h3><a [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': stats.sectionId}">{{stats.sectionTitle}}</a></h3>
             <div class="progress-bar">
-              <p class="progress-part-correct-once" [ngStyle]="{'width': stats.percentCorrectOnce(stats.questionsCount)}">{{stats.countQuestionsCorrectOnce}} correct once</p>
-              <p class="progress-part-answered-once" [ngStyle]="{'width': stats.percentAnsweredOnce(stats.questionsCount)}">{{stats.countQuestionsAnsweredOnce}} answered once</p>
-              <p class="progress-part-count" style="width: 100%">{{stats.questionsCount}} questions</p>
+              <p class="progress-part-correct-once" [ngStyle]="{'width': stats.percentCorrectOnce(stats.countQuestions)}">{{stats.countQuestionsCorrectOnce}} correct once</p>
+              <p class="progress-part-answered-once" [ngStyle]="{'width': stats.percentAnsweredOnce(stats.countQuestions)}">{{stats.countQuestionsAnsweredOnce}} answered once</p>
+              <p class="progress-part-count" style="width: 100%">{{stats.countQuestions}} questions</p>
             </div>
 
             <h4>Problem Questions</h4>
