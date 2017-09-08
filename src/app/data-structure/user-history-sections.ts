@@ -23,7 +23,11 @@ export class UserHistorySections {
       return false;
     }
 
-    if (this.loginInfo.userId && this.loginInfo.userId.length) {
+    if (!this.loginInfo.loggedIn) {
+      return false;
+    }
+
+    if (this.loginInfo.nickname && this.loginInfo.nickname.length) {
       return true;
     }
 
