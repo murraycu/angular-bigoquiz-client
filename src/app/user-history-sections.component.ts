@@ -57,7 +57,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
     }
 
     if (question.subSectionTitle) {
-      return `{{question.subSectionTitle}}: {{question.questionTitle.text}}`;
+      return question.subSectionTitle + ": " + question.questionTitle.text;
     } else {
       return question.questionTitle.text;
     }
