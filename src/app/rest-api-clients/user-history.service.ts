@@ -80,6 +80,9 @@ export class UserHistoryService {
       result.loginInfo = JsonUtils.jsonObjectToLoginInfo(obj.loginInfo);
     }
 
+    result.quizId = obj.quizId;
+    result.quizTitle = obj.quizTitle;
+
     // stats:
     if (obj.stats) {
       result.stats = new Array<UserStats>()

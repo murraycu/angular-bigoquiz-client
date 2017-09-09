@@ -4,6 +4,7 @@ import { LoginInfo } from './login-info';
 
 export class UserHistorySections {
   loginInfo: LoginInfo;
+  quizId: string;
   quizTitle: string;
 
   // Map of section IDs to stats.
