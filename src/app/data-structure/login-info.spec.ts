@@ -11,7 +11,7 @@ describe('LoginInfo without the TestBed', () => {
 {
   "loggedIn": true,
   "loginUrl": null,
-  "logoutUrl": "http://bigoquiz.com/exampleloginurl",
+  "logoutUrl": "https://bigoquiz.com/exampleloginurl",
   "userId": "1234",
   "nickname": "example@example.com"
 }`);
@@ -24,7 +24,7 @@ describe('LoginInfo without the TestBed', () => {
     expect(obj.loginUrl).toBeUndefined();
 
     expect(obj.logoutUrl).toBeTruthy(obj);
-    expect(obj.logoutUrl).toEqual('http://bigoquiz.com/exampleloginurl');
+    expect(obj.logoutUrl).toEqual('https://bigoquiz.com/exampleloginurl');
 
     expect(obj.userId).toBeTruthy(obj);
     expect(obj.userId).toEqual('1234');
