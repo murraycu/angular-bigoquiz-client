@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 
 import { UserHistoryService } from './rest-api-clients/user-history.service';
-import { UserHistorySections} from './data-structure/user-history-sections';
-import { UserQuestionHistory} from './data-structure/user-question-history';
-import { UserStats} from './data-structure/user-stats';
+import { UserHistorySections } from './data-structure/user-history-sections';
+import { UserQuestionHistory } from './data-structure/user-question-history';
+import { UserStats } from './data-structure/user-stats';
 
 import { QuestionResultsService } from './question-results.service';
 import { QuestionResultEvent } from './question-result-event';
