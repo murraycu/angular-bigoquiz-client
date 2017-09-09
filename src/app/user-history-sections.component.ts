@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
@@ -17,6 +17,8 @@ import { QuestionResultEvent } from './question-result-event';
   styleUrls: ['./user-history-sections.component.css']
 })
 export class UserHistorySectionsComponent implements OnInit, OnDestroy {
+  @Output() onJsonParsed = new EventEmitter<void>()
+
   private quizId: string;
   userHistorySections: UserHistorySections;
   private subscriptionQuestionResultsService: Subscription;
@@ -31,7 +33,10 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
       this.quizId = params.get('quiz-id');
       return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId);
     })
-    .subscribe(userHistorySections => this.userHistorySections = userHistorySections);
+    .subscribe(userHistorySections => {
+      this.userHistorySections = userHistorySections
+      this.onJsonParsed.emit();
+    });
 
 
     this.subscriptionQuestionResultsService =

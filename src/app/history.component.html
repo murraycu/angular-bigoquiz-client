@@ -1,6 +1,8 @@
 <div class="content-panel">
   <h2 class="page-title-label">Quiz</h2>
-  <!-- TODO: <h2 class="page-secondary-title-label">{{quiz.title}}</h2> -->
+  <h2 class="page-secondary-title-label">Quiz: {{quizTitle}}</h2>
 
-  <app-user-history-sections></app-user-history-sections>
+  <app-user-history-sections
+    (onJsonParsed)="onViewChildJsonParsed($event)">>
+  </app-user-history-sections>
 </div>
