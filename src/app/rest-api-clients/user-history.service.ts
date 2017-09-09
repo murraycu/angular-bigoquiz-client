@@ -63,6 +63,17 @@ export class UserHistoryService {
       .catch(UserHistoryService.handleError);
   }
 
+  resetSections(quizId: string): Promise<boolean> {
+    // Note: We must use backticks: This is a template literal.
+    const url = `${Config.baseApiUrl}/api/user-history/reset-sections?quiz-id=${quizId}`;
+    return this.http.post(url, '', {withCredentials: true})
+      .toPromise()
+      .then(response => {
+        return response.ok;
+      })
+      .catch(UserHistoryService.handleError);
+  }
+
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     // console.error('An error occurred: JSON:', error.json());

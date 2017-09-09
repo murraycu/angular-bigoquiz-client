@@ -2,6 +2,8 @@
   <h2 class="page-title-label">Quiz</h2>
   <h2 class="page-secondary-title-label">Quiz: {{quizTitle}}</h2>
 
+  <button type="button" class="user-history-button-reset-sections" (click)="onResetClicked()">Reset</button>
+
   <app-user-history-sections
     (onJsonParsed)="onViewChildJsonParsed($event)">>
   </app-user-history-sections>
