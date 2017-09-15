@@ -3,7 +3,9 @@
   <div *ngIf="quiz" class="quiz-panel">
     <h2 class="page-secondary-title-label">{{quiz.title}}</h2>
 
+    <p>
     <a class="quiz-button-answer-questions" [routerLink]="['/question']" [queryParams]="{'quiz-id': quiz.id}">Answer Questions</a>
+    </p>
 
     <div *ngFor="let section of quiz.sections"
       class="quiz-section">
