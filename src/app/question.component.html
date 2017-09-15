@@ -20,7 +20,8 @@
 
     <ng-container [ngModel]="submissionResult" name="result" ngDefaultControl>
       <div *ngIf="question.choices" class="choices-panel clearfix">
-        <span *ngFor="let choice of question.choices" class="question-radio-button" [ngClass]="{'question-radio-button-correct': showAnswer && choiceIsCorrect(choice.text) }">
+        <span *ngFor="let choice of question.choices" class="question-radio-button"
+          [ngClass]="{'question-radio-button-correct': showAnswer && choiceIsCorrect(choice.text), 'question-radio-button-wrong': submissionResult && choiceIsWrongAnswer(choice.text) }">
           <input id="foo" name="choices" value="on" type="radio" (click)="onChoiceClicked(choice.text)"/>
           <label for="foo" (click)="onChoiceClicked(choice.text)">{{choice.text}}</label>
         </span>

@@ -24,6 +24,7 @@ export class QuestionComponent implements OnInit {
   question: QuizQuestion;
   submissionResult: SubmissionResult;
   showAnswer: boolean;
+  chosenAnswer: string;
 
   constructor(private quizService: QuizService,
     private questionService: QuestionService,
@@ -79,6 +80,14 @@ export class QuestionComponent implements OnInit {
     return answerText === this.submissionResult.correctAnswer.text;
   }
 
+  choiceIsWrongAnswer(answerText: string): boolean {
+    if (!this.submissionResult || this.submissionResult.result) {
+      return false;
+    }
+
+    return answerText === this.chosenAnswer;
+  }
+
   /** Update the sections sidebar,
    * to change the progress bars and, if necessary,
    * change the list of problem questions.
@@ -89,6 +98,8 @@ export class QuestionComponent implements OnInit {
   }
 
   onChoiceClicked(answerText: string): void {
+    this.chosenAnswer = answerText
+
     this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText).
       then(submissionResult => {
         this.submissionResult = submissionResult;
