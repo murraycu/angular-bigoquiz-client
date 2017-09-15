@@ -71,8 +71,8 @@ export class QuestionComponent implements OnInit {
   }
 
   choiceIsCorrect(answerText: string): boolean {
-  if (!this.submissionResult || !this.submissionResult.correctAnswer
-    || !this.submissionResult.correctAnswer.text) {
+    if (!this.submissionResult || !this.submissionResult.correctAnswer
+      || !this.submissionResult.correctAnswer.text) {
       return false;
     }
 
