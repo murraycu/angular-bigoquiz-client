@@ -13,7 +13,10 @@
       <ng-container *ngIf="!question.subSection.link">{{question.subSection.title}}</ng-container>
     </h3>
 
-    <h3 *ngIf="question.text && question.text.text">{{question.text.text}}</h3>
+    <h3 *ngIf="question.text && question.text.text">
+      <a *ngIf="question.link" href="{{question.link}}">{{question.text.text}}</a>
+      <ng-container *ngIf="!question.link">{{question.text.text}}</ng-container>
+    </h3>
 
     <ng-container [ngModel]="submissionResult" name="result" ngDefaultControl>
       <div *ngIf="question.choices" class="choices-panel clearfix">
