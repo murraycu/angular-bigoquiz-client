@@ -98,6 +98,7 @@ export class QuestionComponent implements OnInit {
   }
 
   onChoiceClicked(answerText: string): void {
+    this.submissionResult = undefined
     this.chosenAnswer = answerText
 
     this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText).
