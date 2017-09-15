@@ -4,7 +4,9 @@
 
   <button type="button" class="user-history-button-reset-sections" (click)="onResetClicked()">Reset</button>
 
+  <div>
   <app-user-history-sections
     (onJsonParsed)="onViewChildJsonParsed($event)">>
   </app-user-history-sections>
+  </div>
 </div>

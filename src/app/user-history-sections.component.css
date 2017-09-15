@@ -1,18 +1,3 @@
-.sidebar-panel-sections {
-
-    /* See media query:
-    margin-left: 1rem;
-    margin-right: 1rem;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    */
-
-    float: right;
-
-    /* TODO: Avoid this somehow? */
-    width: 330px; /* To avoid any text from making it too wide. Same as for sidebar-panel-links. */
-}
-
 .sidebar-panel-sections h2 {
     margin-top: 1em;
 }
