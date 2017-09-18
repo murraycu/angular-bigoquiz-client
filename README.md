@@ -33,3 +33,10 @@ Run 'ng build --prod' then:
 Run `gcloud app deploy`, assuming that the gcloud SDK has been configure correctly for the correct project, and that project is active.
 
 This uses the app.yaml file.
+
+## Deploying the project-wide Dispatch rules:
+
+Run `gcloud app deploy dispatch.yaml`
+
+This specifes the subdomain-to-service mappings for both the client (this project) and the server (go-bigoquiz-server).
+TODO: Find a way to split the dispatch rules into two files, one in each project.
