@@ -7,6 +7,7 @@ import { QuizService } from './rest-api-clients/quiz.service';
 import { QuestionService } from './rest-api-clients/question.service';
 import { UserHistoryService } from './rest-api-clients/user-history.service';
 import { QuizQuestion } from './data-structure/quiz-question';
+import { QuizSection } from './data-structure/quiz-section';
 import { SubmissionResult } from './data-structure/submission-result';
 
 import { QuestionResultsService } from './question-results.service';
@@ -21,10 +22,13 @@ export class QuestionComponent implements OnInit {
   quizId: string;
   private questionId: string;
   private sectionId: string;
+
   question: QuizQuestion;
   submissionResult: SubmissionResult;
   showAnswer: boolean;
   chosenAnswer: string;
+
+  sections: QuizSection[];
 
   constructor(private quizService: QuizService,
     private questionService: QuestionService,
@@ -39,6 +43,11 @@ export class QuestionComponent implements OnInit {
       this.quizId = params.get('quiz-id');
       this.questionId = params.get('question-id');
       this.sectionId = params.get('section-id');
+
+      // If the sectionId was specifed, we need to show the list of other sections.
+      if (this.quizId && this.sectionId) {
+        this.getSections()
+      }
 
       if (this.questionId) {
         // Show the question specified by the URL:
@@ -61,6 +70,10 @@ export class QuestionComponent implements OnInit {
         this.router.navigate(['/question'], {queryParams: {'quiz-id': this.quizId, 'question-id': question.id, 'section-id': this.sectionId}});
       }
     });
+  }
+
+  getSections(): void {
+    this.quizService.getQuizSections(this.quizId).then(sections => this.sections = sections);
   }
 
   queryParamsForNextQuestion(): Object {

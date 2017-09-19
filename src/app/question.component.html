@@ -3,6 +3,17 @@
   <ng-container *ngIf="question">
     <h2 *ngIf="question.quizTitle" class="page-secondary-title-label">{{question.quizTitle}}</h2>
 
+    <p *ngIf="sectionId && sections" class="show-from-panel">
+      <span class="next-question-section-title-label">Show Questions From: </span>
+      <select class="next-question-section-title">
+        <option value="All Sections">All Sections</option>
+
+        <ng-container *ngFor="let section of sections">
+          <option value="{{section.id}}">{{section.title}}</option>
+        </ng-container>
+      </select>
+    </p>
+
     <h3 *ngIf="question.section && question.section.title">
       <a *ngIf="question.section.link" href="{{question.section.link}}">{{question.section.title}}</a>
       <ng-container *ngIf="!question.section.link">{{question.section.title}}</ng-container>

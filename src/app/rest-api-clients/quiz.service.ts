@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Quiz } from '../data-structure/quiz';
 import { QuizQuestion } from '../data-structure/quiz-question';
+import { QuizSection } from '../data-structure/quiz-section';
 import { JsonUtils } from '../json-utils';
 import { Config } from '../config';
 
@@ -48,6 +49,21 @@ export class QuizService {
     const quiz: Quiz = {id: "123", title: "foo"};
     return Promise.resolve(quiz);
     */
+  }
+
+  getQuizSections(quizId: string): Promise<QuizSection[]> {
+    // Note: We must use backticks: This is a template literal.
+    const url = `${Config.baseApiUrl}/api/quiz/${quizId}/section`;
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+        const json = response.json();
+        const result: QuizSection[] = json.map(o => {
+          return JsonUtils.jsonObjectToQuizSection(o);
+        });
+        return result;
+      })
+      .catch(QuizService.handleError);
   }
 
   getQuizQuestion(quizId: string, questionId: string): Promise<QuizQuestion> {
