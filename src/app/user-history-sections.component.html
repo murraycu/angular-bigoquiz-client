@@ -18,12 +18,14 @@
 
           <h4>Problem Questions</h4>
           <div class="panel-problem-questions">
-            <p *ngIf="problemQuestionsCount(stats) <= 0; else elseTemplate" class="problem-answer clearfix">None Yet</p>
+            <p *ngIf="problemQuestionsCount(stats) <= 0; else elseTemplate" class="problem-answer clearfix">
+              <span class="problem-answer-score">None Yet</span>
+            <p>
 
             <ng-template #elseTemplate>
               <ng-container *ngFor="let question of stats.topProblemQuestionHistories">
                 <p class="problem-answer clearfix">
-                <span class="problem-answer-score">-{{question.countAnsweredWrong}}</span>
+                  <span class="problem-answer-score">-{{question.countAnsweredWrong}}</span>
                   <a class="problem-answer-hyperlink" [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': stats.sectionId, 'question-id': question.questionId}">{{questionTitle(question)}}</a>
                 </p>
               </ng-container>
