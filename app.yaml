@@ -8,24 +8,29 @@ handlers:
 - url: /((?:inline|main|polyfills|styles|vendor)\.[a-z0-9]+\.bundle\.js)
   static_files: dist/\1
   upload: dist/.*
+  secure: always
 
 # Routing for a prod styles.bundle.css to serve directly
 - url: /(styles\.[a-z0-9]+\.bundle\.css)
   static_files: dist/\1
   upload: dist/.*
+  secure: always
 
 # Routing for typedoc, assets and favicon.ico to serve directly
 - url: /((?:assets|docs)/.*|favicon\.ico)
   static_files: dist/\1
   upload: dist/.*
+  secure: always
 
 - url: /
   static_files: dist/index.html
   upload: dist/index.html
+  secure: always
 
 - url: /.*
   static_files: dist/index.html
   upload: dist/index.html
+  secure: always
 
 # Temporary setting to keep gcloud from uploading not required files for deployment
 skip_files:
