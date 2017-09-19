@@ -53,7 +53,7 @@ export class QuizService {
 
   getQuizSections(quizId: string): Promise<QuizSection[]> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${Config.baseApiUrl}/api/quiz/${quizId}/section`;
+    const url = `${Config.baseApiUrl}/api/quiz/${quizId}/section?list-only=true`;
     return this.http.get(url)
       .toPromise()
       .then(response => {
