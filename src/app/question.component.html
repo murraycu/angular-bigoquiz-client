@@ -5,8 +5,8 @@
 
     <p *ngIf="sectionId && sections" class="show-from-panel">
       <span class="next-question-section-title-label">Show Questions From: </span>
-      <select class="next-question-section-title">
-        <option value="All Sections">All Sections</option>
+      <select class="next-question-section-title" [ngModel]="sectionId" (ngModelChange)="onSectionIdSelected($event)">
+        <option value="all">All Sections</option>
 
         <ng-container *ngFor="let section of sections">
           <option value="{{section.id}}">{{section.title}}</option>

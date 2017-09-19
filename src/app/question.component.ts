@@ -121,6 +121,28 @@ export class QuestionComponent implements OnInit {
       });
   }
 
+  onSectionIdSelected(sectionId: string): void {
+    if (this.sectionId == sectionId) {
+      // There was no change, so do nothing.
+      return;
+    }
+
+    // TODO:
+    //Stop the next question from being shown automatically
+    //because then the question would change yet again:
+
+    // TODO:
+    // Don't get a new question if we are already waiting for an answer
+    // and the current question is already from a correct section.
+
+    // Show a question from the specified section:
+    if (sectionId == 'all') {
+      this.router.navigate(['/question'], {queryParams: {'quiz-id': this.quizId}});
+    } else {
+      this.router.navigate(['/question'], {queryParams: {'quiz-id': this.quizId, 'section-id': sectionId}});
+    }
+  }
+
   onShowAnswer(): void {
     // Update this ngModel used in the HTML.
     // TODO: Is there some more direct way to do this?
