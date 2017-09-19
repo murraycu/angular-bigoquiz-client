@@ -9,7 +9,8 @@
 
     <div *ngFor="let section of quiz.sections"
       class="quiz-section">
-      <h3>{{section.title}}</h3>
+      <h3 *ngIf="section.link"><a href={{section.link}}>{{section.title}}</a></h3>
+      <h3 *ngIf="!section.link">{{section.title}}</h3>
 
       <div *ngFor="let subSection of section.subSections"
         class="quiz-sub-section">
