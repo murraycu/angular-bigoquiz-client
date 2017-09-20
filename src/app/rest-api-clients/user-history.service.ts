@@ -41,9 +41,13 @@ export class UserHistoryService {
       .catch(UserHistoryService.handleError);
   }
 
-  submitAnswer(quizId: string, questionId: string, answerText: string): Promise<SubmissionResult> {
+  submitAnswer(quizId: string, questionId: string, answerText: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${Config.baseApiUrl}/api/user-history/submit-answer?quiz-id=${quizId}&question-id=${questionId}&answer=${answerText}`;
+    let url = `${Config.baseApiUrl}/api/user-history/submit-answer?quiz-id=${quizId}&question-id=${questionId}&answer=${answerText}`;
+    if (nextQuestionSectionId) {
+      url += `&next-question-section-id=${nextQuestionSectionId}`
+    }
+
     return this.http.post(url, '', {withCredentials: true})
       .toPromise()
       .then(response => {
@@ -52,9 +56,13 @@ export class UserHistoryService {
       .catch(UserHistoryService.handleError);
   }
 
-  submitDontKnowAnswer(quizId: string, questionId: string): Promise<SubmissionResult> {
+  submitDontKnowAnswer(quizId: string, questionId: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${Config.baseApiUrl}/api/user-history/submit-dont-know-answer?quiz-id=${quizId}&question-id=${questionId}`;
+    let url = `${Config.baseApiUrl}/api/user-history/submit-dont-know-answer?quiz-id=${quizId}&question-id=${questionId}`;
+    if (nextQuestionSectionId) {
+      url += `&next-question-section-id=${nextQuestionSectionId}`
+    }
+
     return this.http.post(url, '', {withCredentials: true})
       .toPromise()
       .then(response => {

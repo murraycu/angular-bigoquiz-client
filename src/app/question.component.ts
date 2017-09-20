@@ -21,6 +21,9 @@ import { QuestionResultEvent } from './question-result-event';
 export class QuestionComponent implements OnInit {
   quizId: string;
   private questionId: string;
+
+  // The section to show questions from.
+  // Not just the section ID of the question.
   private sectionId: string;
 
   question: QuizQuestion;
@@ -114,7 +117,7 @@ export class QuestionComponent implements OnInit {
     this.submissionResult = undefined
     this.chosenAnswer = answerText
 
-    this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText).
+    this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText, this.sectionId).
       then(submissionResult => {
         this.submissionResult = submissionResult;
         this.updateSectionsSidebar(this.submissionResult.result);
@@ -152,7 +155,7 @@ export class QuestionComponent implements OnInit {
 
     // This is much like submitting a wrong answer.
     // It records it as a wrong answer on the server, and gives us the correct answer.
-    this.userHistoryService.submitDontKnowAnswer(this.quizId, this.questionId).
+    this.userHistoryService.submitDontKnowAnswer(this.quizId, this.questionId, this.sectionId).
       then(submissionResult => this.submissionResult = submissionResult);
   }
 
