@@ -175,5 +175,7 @@ export class QuestionComponent implements OnInit {
     }
 
     this.submissionResult = undefined
+    this.chosenAnswer = undefined
+    this.showAnswer = false
   }
 }
