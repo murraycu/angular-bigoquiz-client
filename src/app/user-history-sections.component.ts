@@ -98,7 +98,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
 
   generateQuestionLinkQueryParams(qh: UserQuestionHistory): Object {
     let result = {'quiz-id': this.quizId, 'question-id': qh.questionId};
-    if (this.sectionId) {
+    if (this.sectionId && this.sectionId === qh.sectionId) {
       result['section-id'] = this.sectionId;
     }
 

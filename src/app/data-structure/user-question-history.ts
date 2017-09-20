@@ -17,6 +17,7 @@ export class UserQuestionHistory {
   questionId: string;
 
   questionTitle: QuizText;
+  sectionId: string;
   subSectionTitle: string;
 
   answeredCorrectlyOnce: boolean = false;

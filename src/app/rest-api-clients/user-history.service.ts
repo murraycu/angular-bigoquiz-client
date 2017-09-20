@@ -201,6 +201,8 @@ export class UserHistoryService {
       result.questionTitle = JsonUtils.jsonObjectToQuizText(obj.questionTitle);
     }
 
+    result.sectionId = obj.sectionId;
+
     result.subSectionTitle = obj.subSectionTitle;
 
     return result;
