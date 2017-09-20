@@ -77,7 +77,7 @@ export class UserStats {
     this.updateTopProblemQuestions();
   }
 
-  private updateTopProblemQuestions(): void {
+  updateTopProblemQuestions(): void {
     this.problemQuestionHistoriesCount = 0;
 
     this.topProblemQuestionHistories = undefined;

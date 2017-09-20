@@ -180,6 +180,9 @@ export class UserHistoryService {
       }
     }
 
+    // TODO: Do this on the server:
+    result.updateTopProblemQuestions()
+
     return result;
   }
 
