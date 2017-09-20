@@ -23,12 +23,10 @@
             <p>
 
             <ng-template #elseTemplate>
-              <ng-container *ngFor="let question of stats.topProblemQuestionHistories">
-                <p class="problem-answer clearfix">
-                  <span class="problem-answer-score">-{{question.countAnsweredWrong}}</span>
-                  <a class="problem-answer-hyperlink" [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': stats.sectionId, 'question-id': question.questionId}">{{questionTitle(question)}}</a>
-                </p>
-              </ng-container>
+              <p *ngFor="let question of stats.topProblemQuestionHistories" class="problem-answer clearfix">
+                <span class="problem-answer-score">-{{question.countAnsweredWrong}}</span>
+                <a class="problem-answer-hyperlink" [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': stats.sectionId, 'question-id': question.questionId}">{{questionTitle(question)}}</a>
+              </p>
             </ng-template>
 
           </div>

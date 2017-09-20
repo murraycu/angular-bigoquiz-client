@@ -8,9 +8,7 @@
       <select class="next-question-section-title" [ngModel]="sectionId" (ngModelChange)="onSectionIdSelected($event)">
         <option value="all">All Sections</option>
 
-        <ng-container *ngFor="let section of sections">
-          <option value="{{section.id}}">{{section.title}}</option>
-        </ng-container>
+        <option *ngFor="let section of sections" value="{{section.id}}">{{section.title}}</option>
       </select>
     </p>
 
