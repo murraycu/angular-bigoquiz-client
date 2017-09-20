@@ -189,15 +189,17 @@ export class UserHistoryService {
     }
 
     const result: UserQuestionHistory = new UserQuestionHistory();
+
     result.questionId = obj.questionId;
+    result.answeredCorrectlyOnce = obj.answeredCorrectlyOnce;
+    result.countAnsweredWrong = obj.countAnsweredWrong;
 
     if (obj.questionTitle) {
       result.questionTitle = JsonUtils.jsonObjectToQuizText(obj.questionTitle);
     }
 
-    result.subSectionTitle = obj.sectionTitle;
-    result.answeredCorrectlyOnce = obj.answeredCorrectlyOnce;
-    result.countAnsweredWrong = obj.countAnsweredWrong;
+    result.subSectionTitle = obj.subSectionTitle;
+
     return result;
   }
 }
