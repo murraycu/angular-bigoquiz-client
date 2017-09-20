@@ -23,6 +23,8 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
   userHistorySections: UserHistorySections;
   private subscriptionQuestionResultsService: Subscription;
 
+  readonly MAX_PROBLEM_QUESTIONS: number = 5
+
   constructor(private userHistoryService: UserHistoryService,
     private questionResultsService: QuestionResultsService,
     private route: ActivatedRoute) { }
@@ -84,12 +86,6 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
     for (const problemQuestion of stats.topProblemQuestionHistories) {
       if (!problemQuestion || problemQuestion.countAnsweredWrong <= 0) {
         continue;
-      }
-
-      // This shouldn't be necessary, because the server should not return too many,
-      // but let's be sure:
-      if (count >= UserStats.MAX_PROBLEM_QUESTIONS) {
-        break;
       }
 
       count += 1;

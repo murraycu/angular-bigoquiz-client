@@ -13,8 +13,6 @@ export class UserStats {
   countQuestionsAnsweredOnce: number = 0;
   countQuestionsCorrectOnce: number = 0;
 
-  static MAX_PROBLEM_QUESTIONS: number = 5;
-
   problemQuestionHistoriesCount: number;
 
   topProblemQuestionHistories: UserQuestionHistory[];
@@ -127,13 +125,6 @@ export class UserStats {
       if (history && history.countAnsweredWrong > 0) {
         this.problemQuestionHistoriesCount++;
       }
-    }
-
-    // The client only wants the first few.
-    const size: number = this.topProblemQuestionHistories.length;
-    const sublistSize: number = Math.min(size, UserStats.MAX_PROBLEM_QUESTIONS);
-    if (sublistSize !== size && sublistSize > 0) {
-      this.topProblemQuestionHistories = this.topProblemQuestionHistories.slice(0, sublistSize);
     }
 
     // Don't include questions that are not really problem questions:
