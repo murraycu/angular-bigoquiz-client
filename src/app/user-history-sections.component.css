@@ -1,12 +1,3 @@
-.sidebar-panel-sections h2 {
-    margin-top: 1em;
-}
-
-/* TODO: Make this not apply to a h2 inside sub-divs? */
-.sidebar-panel-sections h2:first-child {
-    margin-top: 0;
-}
-
 .user-history-recent-panel {
     margin-bottom: 1em;
     margin-left: 1rem;

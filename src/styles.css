@@ -177,6 +177,15 @@ body {
     zoom: 1;
 }
 
+.sidebar-panel-sections h2 {
+    margin-top: 1em;
+}
+
+/* TODO: Make this not apply to a h2 inside sub-divs? */
+.sidebar-panel-sections h2:first-child {
+    margin-top: 0;
+}
+
 .sidebar-panel-links {
     /* See media query:
     margin-left: 1rem;
