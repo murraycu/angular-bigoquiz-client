@@ -20,6 +20,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
   @Output() onJsonParsed = new EventEmitter<void>()
 
   private quizId: string;
+  private sectionId: string;
   userHistorySections: UserHistorySections;
   private subscriptionQuestionResultsService: Subscription;
 
@@ -33,6 +34,7 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
     this.route.queryParamMap
     .switchMap((params: ParamMap) => {
       this.quizId = params.get('quiz-id');
+      this.sectionId = params.get('section-id');
       return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId);
     })
     .subscribe(userHistorySections => {
@@ -92,6 +94,15 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
     }
 
     return count;
+  }
+
+  generateQuestionLinkQueryParams(qh: UserQuestionHistory): Object {
+    let result = {'quiz-id': this.quizId, 'question-id': qh.questionId};
+    if (this.sectionId) {
+      result['section-id'] = this.sectionId;
+    }
+
+    return result;
   }
 
   onUserAnsweredQuestion(data: QuestionResultEvent): void {
