@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
-import { PageBaseComponent } from './page-base.component';
+import { BaseComponent } from './base.component';
 import { QuizService } from './rest-api-clients/quiz.service';
 import { QuestionService } from './rest-api-clients/question.service';
 import { UserHistoryService } from './rest-api-clients/user-history.service';
@@ -19,7 +19,7 @@ import { QuestionResultEvent } from './question-result-event';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
-export class QuestionComponent extends PageBaseComponent implements OnInit {
+export class QuestionComponent extends BaseComponent implements OnInit {
   quizId: string;
   private questionId: string;
 

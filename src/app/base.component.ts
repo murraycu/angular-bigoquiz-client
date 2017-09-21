@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { ServerState } from './server-status.component';
 
-export class PageBaseComponent {
+export class BaseComponent {
   private serverState: ServerState = ServerState.Loading;
 
   // Show a Loading... message.

@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
-import { PageBaseComponent } from './page-base.component';
+import { BaseComponent } from './base.component';
 import { QuizService } from './rest-api-clients/quiz.service';
 import { Quiz } from './data-structure/quiz';
 
@@ -12,7 +12,7 @@ import { Quiz } from './data-structure/quiz';
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css']
 })
-export class QuizComponent extends PageBaseComponent implements OnInit {
+export class QuizComponent extends BaseComponent implements OnInit {
   quiz: Quiz;
 
   constructor(private quizService: QuizService,
