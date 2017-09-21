@@ -1,5 +1,11 @@
 <div class="content-panel">
   <h2>Quizzes</h2>
+
+  <app-server-status
+    [showLoading]="serverState == ServerStateEnum.Loading"
+    [showError]="serverState == ServerStateEnum.Failed">
+  </app-server-status>
+
   <div class="quiz-list-panel">
     <div *ngFor="let quiz of quizzes"
       class="quiz-list-row clearfix">
