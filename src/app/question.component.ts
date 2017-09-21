@@ -13,12 +13,22 @@ import { SubmissionResult } from './data-structure/submission-result';
 import { QuestionResultsService } from './question-results.service';
 import { QuestionResultEvent } from './question-result-event';
 
+enum ServerState {
+  Loading,
+  Failed, // Note: Using Error here instead causes some compiler confusion with ErrorConstructor.
+  Success
+};
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
+  // Make the enum available to the html template.
+  ServerStateEnum = ServerState;
+  serverState: ServerState = ServerState.Loading;
+
   quizId: string;
   private questionId: string;
 
@@ -47,6 +57,8 @@ export class QuestionComponent implements OnInit {
       this.questionId = params.get('question-id');
       this.sectionId = params.get('section-id');
 
+      this.serverState = ServerState.Loading;
+
       // If the sectionId was specifed, we need to show the list of other sections.
       if (this.quizId && this.sectionId) {
         this.getSections()
@@ -64,15 +76,22 @@ export class QuestionComponent implements OnInit {
         return undefined;
       }
     })
-    .subscribe(question => {
-      if (this.questionId) {
-        this.question = question;
-      } else {
-        // The question comes from getNextQuestion(),
-        // so just navigate to the appropriate URL.
-        this.router.navigate(['/question'], {queryParams: {'quiz-id': this.quizId, 'question-id': question.id, 'section-id': this.sectionId}});
-      }
-    });
+    .subscribe(
+      (question) => {
+        this.serverState = ServerState.Success;
+
+        if (this.questionId) {
+          this.question = question;
+        } else {
+          // The question comes from getNextQuestion(),
+          // so just navigate to the appropriate URL.
+          this.router.navigate(['/question'], {queryParams: {'quiz-id': this.quizId, 'question-id': question.id, 'section-id': this.sectionId}});
+        }
+      },
+      (err) => {
+        this.serverState = ServerState.Failed;
+        this.question = undefined;
+      });
   }
 
   getSections(): void {

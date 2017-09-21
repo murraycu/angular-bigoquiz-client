@@ -1,5 +1,11 @@
 <div class="content-panel">
   <h2 class="page-title-label">Question</h2>
+
+  <app-server-status
+    [showLoading]="serverState == ServerStateEnum.Loading"
+    [showError]="serverState == ServerStateEnum.Failed">
+  </app-server-status>
+
   <ng-container *ngIf="question">
     <h2 *ngIf="question.quizTitle" class="page-secondary-title-label">{{question.quizTitle}}</h2>
 

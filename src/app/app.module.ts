@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { UserStatusComponent } from './user-status.component';
+import { ServerStatusComponent } from './server-status.component';
 import { HomeComponent } from './home.component';
 import { AboutComponent } from './about.component';
 import { UserComponent } from './user.component';
@@ -28,6 +29,7 @@ import { QuestionResultsService } from './question-results.service';
   declarations: [
     AppComponent,
     UserStatusComponent,
+    ServerStatusComponent,
     HomeComponent,
     AboutComponent,
     UserComponent,

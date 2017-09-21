@@ -434,12 +434,6 @@ h4 * {
 
 }
 
-.server-error-label {
-    font-weight: bold;
-    font-size: larger;
-    color: red;
-}
-
 .sidebar-panel-sections {
 
     /* See media query:
