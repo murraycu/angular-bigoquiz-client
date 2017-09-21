@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 
+import { BaseComponent } from './base.component';
 import { UserHistoryService } from './rest-api-clients/user-history.service';
 import { UserHistorySections } from './data-structure/user-history-sections';
 import { UserQuestionHistory } from './data-structure/user-question-history';
@@ -16,7 +17,7 @@ import { QuestionResultEvent } from './question-result-event';
   templateUrl: './user-history-sections.component.html',
   styleUrls: ['./user-history-sections.component.css']
 })
-export class UserHistorySectionsComponent implements OnInit, OnDestroy {
+export class UserHistorySectionsComponent extends BaseComponent implements OnInit, OnDestroy {
   @Output() onJsonParsed = new EventEmitter<void>()
 
   private quizId: string;
@@ -28,20 +29,29 @@ export class UserHistorySectionsComponent implements OnInit, OnDestroy {
 
   constructor(private userHistoryService: UserHistoryService,
     private questionResultsService: QuestionResultsService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+    super()
+  }
 
   ngOnInit(): void {
     this.route.queryParamMap
     .switchMap((params: ParamMap) => {
       this.quizId = params.get('quiz-id');
       this.sectionId = params.get('section-id');
+
+      this.setServerLoading();
       return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId);
     })
-    .subscribe(userHistorySections => {
-      this.userHistorySections = userHistorySections
-      this.onJsonParsed.emit();
-    });
-
+    .subscribe(
+      (userHistorySections) => {
+        this.setServerSuccess();
+        this.userHistorySections = userHistorySections
+        this.onJsonParsed.emit();
+      },
+      (err) => {
+        this.setServerFailed();
+      }
+    );
 
     this.subscriptionQuestionResultsService =
       this.questionResultsService.notifyObservable$.subscribe(result => {

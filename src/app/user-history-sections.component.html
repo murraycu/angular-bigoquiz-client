@@ -1,5 +1,9 @@
 <div class="user-history-recent-panel">
   <h2>Sections</h2>
+
+  <app-server-status state="{{serverState}}">
+  </app-server-status>
+
   <div class="user-history-answers-panel">
 
     <ng-container *ngIf="userHistorySections">
