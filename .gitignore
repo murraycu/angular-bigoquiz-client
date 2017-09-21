@@ -40,3 +40,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# vim:
+*.swn
+*.swp
+*.swo
+
+*~
