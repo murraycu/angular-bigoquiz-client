@@ -1,0 +1,5 @@
+dispatch:
+  - url: "beta.bigoquiz.com/*"
+    service: beta
+  - url: "betaapi.bigoquiz.com/*"
+    service: betaapi
