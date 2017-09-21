@@ -1,2 +1,2 @@
-<p *ngIf="showLoading" class="server-loading-label">Loading…</p>
-<p *ngIf="showError" class="server-error-label">Error: Could not connect to the server.</p>
+<p *ngIf="state == ServerStateEnum.Loading" class="server-loading-label">Loading…</p>
+<p *ngIf="state == ServerStateEnum.Failed" class="server-error-label">Error: Could not connect to the server.</p>

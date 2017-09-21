@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
 
-export enum ServerState {
-  Loading,
-  Failed, // Note: Using Error here instead causes some compiler confusion with ErrorConstructor.
-  Success
-};
+import { ServerState } from './server-status.component';
 
 export class PageBaseComponent {
-  // Make the enum available to the html template.
-  ServerStateEnum = ServerState;
-
   private serverState: ServerState = ServerState.Loading;
 
   // Show a Loading... message.
