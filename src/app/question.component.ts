@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
+import { PageBaseComponent } from './page-base.component';
 import { QuizService } from './rest-api-clients/quiz.service';
 import { QuestionService } from './rest-api-clients/question.service';
 import { UserHistoryService } from './rest-api-clients/user-history.service';
@@ -13,22 +14,12 @@ import { SubmissionResult } from './data-structure/submission-result';
 import { QuestionResultsService } from './question-results.service';
 import { QuestionResultEvent } from './question-result-event';
 
-enum ServerState {
-  Loading,
-  Failed, // Note: Using Error here instead causes some compiler confusion with ErrorConstructor.
-  Success
-};
-
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
-export class QuestionComponent implements OnInit {
-  // Make the enum available to the html template.
-  ServerStateEnum = ServerState;
-  serverState: ServerState = ServerState.Loading;
-
+export class QuestionComponent extends PageBaseComponent implements OnInit {
   quizId: string;
   private questionId: string;
 
@@ -48,7 +39,9 @@ export class QuestionComponent implements OnInit {
     private userHistoryService: UserHistoryService,
     private questionResultsService: QuestionResultsService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+    super()
+  }
 
   ngOnInit(): void {
     this.route.queryParamMap
@@ -57,7 +50,7 @@ export class QuestionComponent implements OnInit {
       this.questionId = params.get('question-id');
       this.sectionId = params.get('section-id');
 
-      this.serverState = ServerState.Loading;
+      this.setServerLoading();
 
       // If the sectionId was specifed, we need to show the list of other sections.
       if (this.quizId && this.sectionId) {
@@ -78,7 +71,7 @@ export class QuestionComponent implements OnInit {
     })
     .subscribe(
       (question) => {
-        this.serverState = ServerState.Success;
+        this.setServerSuccess();
 
         if (this.questionId) {
           this.question = question;
@@ -89,7 +82,7 @@ export class QuestionComponent implements OnInit {
         }
       },
       (err) => {
-        this.serverState = ServerState.Failed;
+        this.setServerFailed();
         this.question = undefined;
       });
   }

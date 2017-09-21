@@ -1,7 +1,17 @@
 <div class="content-panel">
   <h2 class="page-title-label">Quiz</h2>
+
+  <app-server-status
+    [showLoading]="serverState == ServerStateEnum.Loading"
+    [showError]="serverState == ServerStateEnum.Failed">
+  </app-server-status>
+
   <div *ngIf="quiz" class="quiz-panel">
     <h2 class="page-secondary-title-label">{{quiz.title}}</h2>
+  <app-server-status
+    [showLoading]="serverState == ServerStateEnum.Loading"
+    [showError]="serverState == ServerStateEnum.Failed">
+  </app-server-status>
 
     <p>
     <a class="quiz-button-answer-questions" [routerLink]="['/question']" [queryParams]="{'quiz-id': quiz.id}">Answer Questions</a>
