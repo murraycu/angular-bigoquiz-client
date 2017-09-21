@@ -6,13 +6,16 @@
     clear: both;
 }
 
-.user-history-quiz-section h3 {
-    font-family: 'Lato', sans-serif;
+.user-history-answers-panel div.user-history-quiz-section {
     margin-top: 1.5em;
 }
 
-.user-history-quiz-section h3:first-child {
+.user-history-answers-panel div.user-history-quiz-section:first-child {
     margin-top: 0;
+}
+
+.user-history-quiz-section h3 {
+    font-family: 'lato', sans-serif;
 }
 
 /* TODO: Unused? */
