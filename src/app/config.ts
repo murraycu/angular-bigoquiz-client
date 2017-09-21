@@ -4,4 +4,5 @@ export class Config {
 
   // TODO: Disover this dynamically?
   static baseUrl: string = 'https://beta.bigoquiz.com';
+  // static baseUrl: string = 'http://localhost:4200';
 }
