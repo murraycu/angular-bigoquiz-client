@@ -4,9 +4,12 @@
 
 .user-status-answers-panel h3 {
     font-family: 'Lato', sans-serif;
+}
+
+.user-status-answers-panel div.user-quiz-section {
     margin-top: 1.5em;
 }
 
-.user-status-answers-panel h3:first-child {
+.user-status-answers-panel div.user-quiz-section:first-child {
     margin-top: 0;
 }
