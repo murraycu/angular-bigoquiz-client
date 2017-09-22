@@ -159,9 +159,9 @@ export class UserHistoryService {
 
     if (obj.questionHistories) {
       result.questionHistories = new Map<string, UserQuestionHistory>();
-      for (const questionId in obj.questionHistories) {
-        const jsonQuestionHistory = obj.questionHistories[questionId];
-        if (!jsonQuestionHistory) {
+      for (const jsonQuestionHistory of obj.questionHistories) {
+        const questionId = jsonQuestionHistory.questionId
+        if (!questionId) {
           continue;
         }
 
