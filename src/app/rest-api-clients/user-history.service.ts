@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, URLSearchParams } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -41,14 +41,28 @@ export class UserHistoryService {
       .catch(UserHistoryService.handleError);
   }
 
-  submitAnswer(quizId: string, questionId: string, answerText: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
-    // Note: We must use backticks: This is a template literal.
-    let url = `${Config.baseApiUrl}/api/user-history/submit-answer?quiz-id=${quizId}&question-id=${questionId}&answer=${answerText}`;
+  private createSubmitQueryParams(quizId: string, questionId: string, nextQuestionSectionId: string): URLSearchParams {
+    let p = new URLSearchParams();
+    p.append('quiz-id', quizId);
+    p.append('question-id', questionId);
+
     if (nextQuestionSectionId) {
-      url += `&next-question-section-id=${nextQuestionSectionId}`
+      p.append('next-question-section-id', nextQuestionSectionId)
     }
 
-    return this.http.post(url, '', {withCredentials: true})
+    return p
+  }
+
+  submitAnswer(quizId: string, questionId: string, answerText: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
+    // Note: We must use backticks: This is a template literal.
+    const url = `${Config.baseApiUrl}/api/user-history/submit-answer`
+    const p: URLSearchParams = this.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId)
+    p.append('answer', answerText);
+
+    return this.http.post(url, '', {
+      params: p,
+      withCredentials: true,
+    })
       .toPromise()
       .then(response => {
         return JsonUtils.jsonObjectToSubmissionResult(response.json());
@@ -58,12 +72,13 @@ export class UserHistoryService {
 
   submitDontKnowAnswer(quizId: string, questionId: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
     // Note: We must use backticks: This is a template literal.
-    let url = `${Config.baseApiUrl}/api/user-history/submit-dont-know-answer?quiz-id=${quizId}&question-id=${questionId}`;
-    if (nextQuestionSectionId) {
-      url += `&next-question-section-id=${nextQuestionSectionId}`
-    }
+    let url = `${Config.baseApiUrl}/api/user-history/submit-dont-know-answer`;
+    const p: URLSearchParams = this.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId)
 
-    return this.http.post(url, '', {withCredentials: true})
+    return this.http.post(url, '', {
+      params: p,
+      withCredentials: true,
+    })
       .toPromise()
       .then(response => {
         return JsonUtils.jsonObjectToSubmissionResult(response.json());
@@ -73,8 +88,14 @@ export class UserHistoryService {
 
   resetSections(quizId: string): Promise<boolean> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${Config.baseApiUrl}/api/user-history/reset-sections?quiz-id=${quizId}`;
-    return this.http.post(url, '', {withCredentials: true})
+    const url = `${Config.baseApiUrl}/api/user-history/reset-sections`;
+    let p = new URLSearchParams();
+    p.append('quiz-id', quizId);
+
+    return this.http.post(url, '', {
+      params: p,
+      withCredentials: true,
+    })
       .toPromise()
       .then(response => {
         return response.ok;
