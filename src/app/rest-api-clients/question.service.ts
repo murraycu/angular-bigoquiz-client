@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, URLSearchParams } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -13,9 +13,18 @@ export class QuestionService {
 
   getNextQuestion(quizId: string, sectionId: string): Promise<QuizQuestion> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${Config.baseApiUrl}/api/question/next?quiz-id=${quizId}`;
-    const urlWhole = sectionId ? url + `&section-id=${sectionId}` : url;
-    return this.http.get(urlWhole)
+    const url = `${Config.baseApiUrl}/api/question/next`;
+
+    const p = new URLSearchParams();
+    p.append('quiz-id', quizId);
+    if (sectionId) {
+      p.append('section-id', sectionId);
+    }
+
+    return this.http.get(url, {
+      params: p,
+      withCredentials: true,
+    })
       .toPromise()
       .then(response => {
         return JsonUtils.jsonObjectToQuizQuestion(response.json());
