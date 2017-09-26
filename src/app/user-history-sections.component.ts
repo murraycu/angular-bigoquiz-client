@@ -36,7 +36,15 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   ngOnInit(): void {
     this.route.queryParamMap
     .switchMap((params: ParamMap) => {
-      this.quizId = params.get('quiz-id');
+      const paramQuizId = params.get('quiz-id');
+
+      if (this.quizId == paramQuizId && this.userHistorySections) {
+        // Use the existing data:
+        this.setServerSuccess();
+        return new Promise<UserHistorySections>(resolve => resolve(this.userHistorySections));
+      }
+
+      this.quizId = paramQuizId;
       this.sectionId = params.get('section-id');
 
       this.setServerLoading();
