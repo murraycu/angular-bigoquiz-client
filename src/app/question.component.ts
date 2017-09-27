@@ -10,6 +10,8 @@ import { QuestionService } from './rest-api-clients/question.service';
 import { UserHistoryService } from './rest-api-clients/user-history.service';
 import { QuizQuestion } from './data-structure/quiz-question';
 import { QuizSection } from './data-structure/quiz-section';
+import { QuizText } from './data-structure/quiz-text';
+import { HasIdAndTitle } from './data-structure/has-id-and-title';
 import { SubmissionResult } from './data-structure/submission-result';
 
 import { QuestionResultsService } from './question-results.service';
@@ -87,6 +89,8 @@ export class QuestionComponent extends BaseComponent implements OnInit {
 
         if (this.questionId) {
           this.question = question;
+
+          this.setTitle("Question: " + this.questionTitle(this.question));
         } else {
           // The question comes from getNextQuestion(),
           // so just navigate to the appropriate URL.
@@ -204,5 +208,57 @@ export class QuestionComponent extends BaseComponent implements OnInit {
 
     const params = this.queryParamsForNextQuestion(nextQuestion);
     this.router.navigate(['/question'], {queryParams: params});
+  }
+
+  /** Get a suitable title,
+   * avoiding use of unparsed HTML * and avoiding duplication where the quiz,
+   * section, and subsection titles are duplicates of each other.
+   */
+  private questionTitle(question: QuizQuestion): string {
+    if (!question) {
+      return '';
+    }
+
+    // Avoiding using HTML directly.
+    let text: string = QuestionComponent.titleWithoutHtmlForText(question.text)
+    const sectionText: string = QuestionComponent.titleForHasIdAndTitle(question.section)
+    const subSectionText: string = QuestionComponent.titleForHasIdAndTitle(question.subSection)
+
+    if (subSectionText && sectionText !== subSectionText) {
+      text = subSectionText + ": " + text;
+    }
+
+    if (sectionText && sectionText !== question.quizTitle) {
+      text = sectionText + ": " + text;
+    }
+
+    if (question.quizTitle) {
+      text = question.quizTitle + ": " + text;
+    }
+
+    return text
+  }
+
+  private static titleForHasIdAndTitle(obj: HasIdAndTitle): string {
+    if (!obj) {
+      return '';
+    }
+
+    return obj.title;
+  }
+
+  /** Gets the title, if it is not HTML.
+   * Otherwise, this returns an empty string.
+   */
+  private static titleWithoutHtmlForText(text: QuizText): string {
+    if (!text) {
+      return '';
+    }
+
+    if (text.isHtml) {
+      return '';
+    }
+
+    return text.text;
   }
 }
