@@ -77,7 +77,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   // and there is no Typescript compiler checking of the code in the .html.
   /** Get a suitable title to show in the list of problem questions.
    */
-  questionTitle(question: UserQuestionHistory): string {
+  questionTitleForHistory(question: UserQuestionHistory): string {
     if (!question || !question.questionTitle || !question.questionTitle.text) {
       return '';
     }
