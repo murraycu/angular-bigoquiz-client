@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
+import { BaseComponent } from './base.component';
 import { UserHistorySectionsComponent } from './user-history-sections.component';
 import { UserHistorySections } from './data-structure/user-history-sections';
 import { UserHistoryService } from './rest-api-clients/user-history.service';
@@ -9,20 +11,24 @@ import { UserHistoryService } from './rest-api-clients/user-history.service';
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css'],
 })
-export class HistoryComponent {
+export class HistoryComponent extends BaseComponent {
   @ViewChild(UserHistorySectionsComponent)
   private sectionsComponent: UserHistorySectionsComponent
 
   quizId: string
   quizTitle: string
 
-  constructor(private userHistoryService: UserHistoryService) {
+  constructor(private userHistoryService: UserHistoryService,
+   titleService: Title) {
+   super(titleService);
   }
 
   onViewChildJsonParsed() {
     let sections: UserHistorySections = this.sectionsComponent.userHistorySections
     this.quizId = sections.quizId;
     this.quizTitle = sections.quizTitle;
+
+    this.setTitle("History: " + this.quizTitle);
   }
 
   onResetClicked() {

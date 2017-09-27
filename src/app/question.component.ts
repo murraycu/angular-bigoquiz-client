@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import 'rxjs/add/operator/switchMap';
 
 import { BaseComponent } from './base.component';
@@ -39,8 +40,9 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     private userHistoryService: UserHistoryService,
     private questionResultsService: QuestionResultsService,
     private router: Router,
-    private route: ActivatedRoute) {
-    super()
+    private route: ActivatedRoute,
+    titleService: Title) {
+    super(titleService);
   }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms'; // For ngModel, used in .html.
@@ -51,7 +51,8 @@ import { QuestionResultsService } from './question-results.service';
     QuizService,
     QuestionService,
     UserHistoryService,
-    QuestionResultsService
+    QuestionResultsService,
+    Title
   ],
   bootstrap: [
     AppComponent,

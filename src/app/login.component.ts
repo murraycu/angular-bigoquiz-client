@@ -1,6 +1,8 @@
 import { Component, OnInit, NgZone, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
+import { BaseComponent } from './base.component';
 import { UserService } from './rest-api-clients/user.service';
 import { LoginInfo } from './data-structure/login-info';
 import { Config } from './config';
@@ -13,7 +15,7 @@ declare var gapi: any;
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends BaseComponent implements OnInit {
   // We don't want to show the logout button in the header,
   // but we do want to show it on the user/profile page.
   @Input() showLogOutWhenAppropriate: boolean;
@@ -23,10 +25,16 @@ export class LoginComponent implements OnInit {
 
   loginUrl: string = `${Config.baseApiUrl}/login/login?redirect=${Config.baseUrl}/user`
 
-  constructor(private userService: UserService, private zone: NgZone,
-    private route: ActivatedRoute) { }
+  constructor(private userService: UserService,
+    private zone: NgZone,
+    private route: ActivatedRoute,
+    titleService: Title) {
+    super(titleService);
+  }
 
   ngOnInit(): void {
+    this.setTitle("Login");
+
     // Get the "failed" query parameter:
     // We could instead do this, but it's theoretically possible that we might
     // change the parameters programatically.

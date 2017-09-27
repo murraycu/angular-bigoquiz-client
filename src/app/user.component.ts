@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { BaseComponent } from './base.component';
 import { UserHistoryService } from './rest-api-clients/user-history.service';
@@ -13,11 +13,13 @@ import { UserHistoryQuizzes} from './data-structure/user-history-quizzes';
 export class UserComponent extends BaseComponent implements OnInit {
   userHistoryQuizzes: UserHistoryQuizzes;
 
-  constructor(private userHistoryService: UserHistoryService) {
-   super();
+  constructor(private userHistoryService: UserHistoryService,
+   titleService: Title) {
+   super(titleService);
   }
 
   ngOnInit(): void {
+    this.setTitle("Profile")
     this.setServerLoading();
     this.userHistoryService.getUserHistoryForQuizzes().then(
       (userHistoryQuizzes) => {

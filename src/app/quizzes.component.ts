@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { QuizService } from './rest-api-clients/quiz.service';
 
 import { BaseComponent } from './base.component';
@@ -13,8 +14,9 @@ import { Quiz } from './data-structure/quiz';
 export class QuizzesComponent extends BaseComponent implements OnInit {
   quizzes: Quiz[];
 
-  constructor(private quizService: QuizService) {
-    super()
+  constructor(private quizService: QuizService, titleService: Title) {
+    super(titleService);
+    this.setTitle("Quizzes");
   }
 
   getQuizzes(): void {

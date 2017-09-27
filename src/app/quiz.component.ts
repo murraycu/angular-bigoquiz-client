@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import 'rxjs/add/operator/switchMap';
 
 import { BaseComponent } from './base.component';
@@ -16,8 +17,9 @@ export class QuizComponent extends BaseComponent implements OnInit {
   quiz: Quiz;
 
   constructor(private quizService: QuizService,
-    private route: ActivatedRoute) {
-    super()
+    private route: ActivatedRoute,
+    titleService: Title) {
+    super(titleService);
   }
 
   ngOnInit(): void {
@@ -28,9 +30,11 @@ export class QuizComponent extends BaseComponent implements OnInit {
         (quiz) => {
           this.setServerSuccess();
           this.quiz = quiz;
+          this.setTitle("Quiz: " + this.quiz.title);
         },
         (err) => {
           this.setServerFailed();
+          this.setTitle("Quiz");
         })
    }
 }

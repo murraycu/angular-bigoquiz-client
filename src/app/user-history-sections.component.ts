@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
@@ -29,8 +30,9 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
 
   constructor(private userHistoryService: UserHistoryService,
     private questionResultsService: QuestionResultsService,
-    private route: ActivatedRoute) {
-    super()
+    private route: ActivatedRoute,
+    titleService: Title) {
+    super(titleService);
   }
 
   ngOnInit(): void {
