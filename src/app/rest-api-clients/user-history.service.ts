@@ -6,8 +6,9 @@ import 'rxjs/add/operator/toPromise';
 import { UserHistorySections} from '../data-structure/user-history-sections';
 import { UserHistoryQuizzes} from '../data-structure/user-history-quizzes';
 import { UserStats} from '../data-structure/user-stats';
-import { SubmissionResult} from '../data-structure/submission-result';
-import { UserQuestionHistory} from '../data-structure/user-question-history';
+import { Submission } from '../data-structure/submission';
+import { SubmissionResult } from '../data-structure/submission-result';
+import { UserQuestionHistory } from '../data-structure/user-question-history';
 import { JsonUtils } from '../json-utils';
 import { Config } from '../config';
 
@@ -55,12 +56,14 @@ export class UserHistoryService {
 
   submitAnswer(quizId: string, questionId: string, answerText: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
     // Note: We must use backticks: This is a template literal.
-    const url = `${Config.baseApiUrl}/api/user-history/submit-answer`
-    const p: URLSearchParams = this.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId)
-    p.append('answer', answerText);
+    const url = `${Config.baseApiUrl}/api/user-history/submit-answer`;
+    const p: URLSearchParams = this.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId);
+    const submission = new Submission();
+    submission.answer = answerText;
 
     return this.http.post(url, '', {
       params: p,
+      body: submission,
       withCredentials: true,
     })
       .toPromise()
