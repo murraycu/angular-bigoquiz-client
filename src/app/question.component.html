@@ -37,7 +37,8 @@
           [ngClass]="{'question-radio-button-correct': showAnswer && choiceIsCorrect(choice.text), 'question-radio-button-wrong': submissionResult && choiceIsWrongAnswer(choice.text) }">
           <input [id]="'id'+i" name="choices" value="on" type="radio" (click)="onChoiceClicked(choice.text)"
             [disabled]="!enableChoices"/>
-          <label [for]="'id'+i">{{choice.text}}</label>
+          <label [for]="'id'+i"
+            [ngClass]="{'question-label-disabled': !enableChoices }">{{choice.text}}</label>
         </span>
       </div>
 
