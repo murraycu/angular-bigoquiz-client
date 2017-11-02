@@ -34,6 +34,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
   submissionResult: SubmissionResult;
   showAnswer: boolean;
   chosenAnswer: string;
+  enableChoices: boolean = true;
 
   sections: QuizSection[];
 
@@ -142,12 +143,23 @@ export class QuestionComponent extends BaseComponent implements OnInit {
   }
 
   onChoiceClicked(answerText: string): void {
+    // Ignore clicks on the choices if we are already showing the correct answer,
+    // We already prevent this with the <input>'s disabled attribute,
+    // but that still lets the user click on the input's associated label.
+    if (!this.enableChoices) {
+      return;
+    }
+
     this.submissionResult = undefined
     this.chosenAnswer = answerText
 
     this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText, this.sectionId).
       then(submissionResult => {
         this.submissionResult = submissionResult;
+
+        // Disable further choices if the user already chose the correct one:
+        this.enableChoices = !submissionResult.result
+
         this.updateSectionsSidebar(this.submissionResult.result);
       });
   }
@@ -178,6 +190,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     // Update this ngModel used in the HTML.
     // TODO: Is there some more direct way to do this?
     this.showAnswer = true;
+    this.enableChoices = false;
 
     this.updateSectionsSidebar(false);
 
@@ -205,6 +218,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     // Wipe these:
     this.chosenAnswer = undefined;
     this.showAnswer = false;
+    this.enableChoices = true;
 
     const params = this.queryParamsForNextQuestion(nextQuestion);
     this.router.navigate(['/question'], {queryParams: params});
