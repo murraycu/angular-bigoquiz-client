@@ -9,8 +9,8 @@
     </div>
 
     <div *ngIf="showExtras && loginInfo.nickname">
-      <p *ngIf="loginInfo.googleLinked">Google Account: Connected</p>
-      <p *ngIf="loginInfo.githubLinked">GitHub Account: Connected</p>
+      <p *ngIf="loginInfo.googleLinked">Google Account: <a href="{{loginInfo.googleProfileUrl}}">Connected</a></p>
+      <p *ngIf="loginInfo.gitHubLinked">GitHub Account: <a href="{{loginInfo.gitHubProfileUrl}}">Connected</a></p>
 
       <p><a href="{{logoutUrl}}">Log Out</a></p>
     </div>

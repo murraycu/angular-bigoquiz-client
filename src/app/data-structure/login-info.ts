@@ -4,7 +4,9 @@ export class LoginInfo {
   nickname: string;
 
   googleLinked: boolean;
-  githubLinked: boolean;
+  googleProfileUrl: string;
+  gitHubLinked: boolean;
+  gitHubProfileUrl: string;
 
   errorMessage: string;
 }
