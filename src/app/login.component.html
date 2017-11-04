@@ -6,7 +6,8 @@
       <a *ngIf="loginInfo.nickname" class="user-name" [routerLink]="['/user']">{{loginInfo.nickname}}</a>
 
       <div *ngIf="!(loginInfo.nickname)" class="login-panel">
-        <a href="{{googleLoginUrl}}">Sign In With Google</a>
+        <p><a href="{{googleLoginUrl}}">Sign In With Google</a></p>
+        <p><a href="{{githubLoginUrl}}">Sign In With GitHub</a></p>
       </div>
     </div>
 
