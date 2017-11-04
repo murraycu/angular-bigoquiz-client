@@ -8,8 +8,11 @@
       </div>
     </div>
 
-    <p *ngIf="showLogOutWhenAppropriate && loginInfo.nickname">
-      <a href="{{logoutUrl}}">Log Out</a>
-    </p>
+    <div *ngIf="showExtras && loginInfo.nickname">
+      <p *ngIf="loginInfo.googleLinked">Google Account: Connected</p>
+      <p *ngIf="loginInfo.githubLinked">GitHub Account: Connected</p>
+
+      <p><a href="{{logoutUrl}}">Log Out</a></p>
+    </div>
   </ng-container>
 </div>

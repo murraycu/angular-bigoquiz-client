@@ -234,6 +234,8 @@ export class JsonUtils {
 
     result.userId = obj.userId;
     result.nickname = obj.nickname;
+    result.googleLinked = obj.googleLinked;
+    result.githubLinked = obj.githubLinked;
 
     result.errorMessage = obj.errorMessage;
 

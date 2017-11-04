@@ -12,7 +12,7 @@ import { Config } from './config';
 export class UserStatusComponent implements OnInit {
   // We don't want to show the logout button in the header,
   // but we do want to show it on the user/profile page.
-  @Input() showLogOutWhenAppropriate: boolean;
+  @Input() showExtras: boolean;
 
   loginInfo: LoginInfo;
   logoutUrl: string = `${Config.baseApiUrl}/login/logout?redirect=${Config.baseUrl}/user`

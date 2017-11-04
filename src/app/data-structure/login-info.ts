@@ -3,5 +3,8 @@ export class LoginInfo {
   userId: string;
   nickname: string;
 
+  googleLinked: boolean;
+  githubLinked: boolean;
+
   errorMessage: string;
 }
