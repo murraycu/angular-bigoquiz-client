@@ -238,6 +238,8 @@ export class JsonUtils {
     result.googleProfileUrl = obj.googleProfileUrl;
     result.gitHubLinked = obj.gitHubLinked;
     result.gitHubProfileUrl = obj.gitHubProfileUrl;
+    result.facebookLinked = obj.facebookLinked;
+    result.facebookProfileUrl = obj.facebookProfileUrl;
 
     result.errorMessage = obj.errorMessage;
 

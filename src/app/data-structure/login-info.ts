@@ -7,6 +7,8 @@ export class LoginInfo {
   googleProfileUrl: string;
   gitHubLinked: boolean;
   gitHubProfileUrl: string;
+  facebookLinked: boolean;
+  facebookProfileUrl: string;
 
   errorMessage: string;
 }

@@ -25,6 +25,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   googleLoginUrl: string = `${Config.baseApiUrl}/login/login-google?redirect=${Config.baseUrl}/user`
   githubLoginUrl: string = `${Config.baseApiUrl}/login/login-github?redirect=${Config.baseUrl}/user`
+  facebookLoginUrl: string = `${Config.baseApiUrl}/login/login-facebook?redirect=${Config.baseUrl}/user`
 
   constructor(private userService: UserService,
     private zone: NgZone,
