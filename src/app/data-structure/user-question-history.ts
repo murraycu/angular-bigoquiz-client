@@ -20,8 +20,8 @@ export class UserQuestionHistory {
   sectionId: string;
   subSectionTitle: string;
 
-  answeredCorrectlyOnce: boolean = false;
-  countAnsweredWrong: number = 0;
+  answeredCorrectlyOnce = false;
+  countAnsweredWrong = 0;
 
   /** Adjust the counts in response to a correct or wrong answer.
    * This is also updated on the server, but this lets us update

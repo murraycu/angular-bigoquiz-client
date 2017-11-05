@@ -88,7 +88,7 @@ describe('UserStats without the TestBed', () => {
   });
 
   it ('updateProblemQuestion(, false) twice fills topProblemquestionHistories.', () => {
-    const QUESTION_ID2: string = 'questionid2';
+    const QUESTION_ID2 = 'questionid2';
     const question2: QuizQuestion = new QuizQuestion();
     question2.id = QUESTION_ID2;
 
@@ -107,7 +107,7 @@ describe('UserStats without the TestBed', () => {
   });
 
   it ('updateProblemQuestion() false (id1), false (id2), true (id2) reults in just id1 in topProblemquestionHistories.', () => {
-    const QUESTION_ID2: string = 'questionid2';
+    const QUESTION_ID2 = 'questionid2';
     const question2: QuizQuestion = new QuizQuestion();
     question2.id = QUESTION_ID2;
 

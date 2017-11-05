@@ -7,11 +7,11 @@ export class UserStats {
   sectionId: string;
   sectionTitle: string;
 
-  answered: number = 0;
-  correct: number = 0;
-  countQuestions: number = 0;
-  countQuestionsAnsweredOnce: number = 0;
-  countQuestionsCorrectOnce: number = 0;
+  answered = 0;
+  correct = 0;
+  countQuestions = 0;
+  countQuestionsAnsweredOnce = 0;
+  countQuestionsCorrectOnce = 0;
 
   problemQuestionHistoriesCount: number;
 
@@ -40,8 +40,8 @@ export class UserStats {
   updateProblemQuestion(question: QuizQuestion, answerIsCorrect: boolean): void {
     const questionId = question.id;
 
-    let firstTimeAsked: boolean = false;
-    let firstTimeCorrect: boolean = false;
+    let firstTimeAsked = false;
+    let firstTimeCorrect = false;
 
     if (!this.questionHistories) {
       this.questionHistories = new Map<string, UserQuestionHistory>();

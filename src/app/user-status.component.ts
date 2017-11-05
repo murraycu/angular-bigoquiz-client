@@ -15,7 +15,7 @@ export class UserStatusComponent implements OnInit {
   @Input() showExtras: boolean;
 
   loginInfo: LoginInfo;
-  logoutUrl: string = `${Config.baseApiUrl}/login/logout?redirect=${Config.baseUrl}/user`
+  logoutUrl = `${Config.baseApiUrl}/login/logout?redirect=${Config.baseUrl}/user`;
 
   constructor(private userService: UserService, private zone: NgZone) { }
 

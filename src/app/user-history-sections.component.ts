@@ -104,7 +104,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
       return 0;
     }
 
-    let count: number = 0;
+    let count = 0;
     for (const problemQuestion of stats.topProblemQuestionHistories) {
       if (!problemQuestion || problemQuestion.countAnsweredWrong <= 0) {
         continue;

@@ -34,7 +34,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
   submissionResult: SubmissionResult;
   showAnswer: boolean;
   chosenAnswer: string;
-  enableChoices: boolean = true;
+  enableChoices = true;
 
   sections: QuizSection[];
 
