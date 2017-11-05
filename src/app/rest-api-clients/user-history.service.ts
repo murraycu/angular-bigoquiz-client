@@ -10,7 +10,6 @@ import { Submission } from '../data-structure/submission';
 import { SubmissionResult } from '../data-structure/submission-result';
 import { LoginInfo } from "../data-structure/login-info";
 import { Config } from '../config';
-import { plainToClass } from "class-transformer";
 
 @Injectable()
 export class UserHistoryService {
@@ -24,7 +23,7 @@ export class UserHistoryService {
     return this.http.get(url, {withCredentials: true})
       .toPromise()
       .then(response => {
-        return UserHistoryService.jsonObjectToUserHistorySections(response.json());
+        return UserHistorySections.fromJson(response.json());
       })
       .catch(UserHistoryService.handleError);
   }
@@ -37,7 +36,7 @@ export class UserHistoryService {
     return this.http.get(url, {withCredentials: true})
       .toPromise()
       .then(response => {
-        return UserHistoryService.jsonObjectToUserHistoryQuizzes(response.json());
+        return UserHistoryQuizzes.fromJson(response.json());
       })
       .catch(UserHistoryService.handleError);
   }
@@ -68,7 +67,7 @@ export class UserHistoryService {
     })
       .toPromise()
       .then(response => {
-        return SubmissionResult.fromJson(response.json());
+        return UserHistorySections.fromJson(response.json());
       })
       .catch(UserHistoryService.handleError);
   }
@@ -110,26 +109,5 @@ export class UserHistoryService {
     console.error('An error occurred', error);
     // console.error('An error occurred: JSON:', error.json());
     return Promise.reject(error.message || error);
-  }
-
-  private static jsonObjectToUserHistorySections(obj: any): UserHistorySections {
-    const result: UserHistorySections = plainToClass(UserHistorySections, obj as object);
-
-    // stats:
-    if (result.stats) {
-      result.statsMap = new Map<string, UserStats>();
-
-      for (const jsonStats of result.stats) {
-        const userStats = UserStats.fromJson(jsonStats);
-
-        result.statsMap.set(userStats.sectionId, userStats);
-      }
-    }
-
-    return result;
-  }
-
-  private static jsonObjectToUserHistoryQuizzes(obj: any): UserHistoryQuizzes {
-    return plainToClass(UserHistoryQuizzes, obj as object)
   }
 }
