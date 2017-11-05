@@ -1,5 +1,4 @@
 import { LoginInfo } from './login-info';
-import { JsonUtils } from '../json-utils';
 
 describe('LoginInfo without the TestBed', () => {
   beforeEach(() => {
@@ -14,7 +13,7 @@ describe('LoginInfo without the TestBed', () => {
   "nickname": "example@example.com"
 }`);
 
-    const obj: LoginInfo = JsonUtils.jsonObjectToLoginInfo(jsonObj);
+    const obj: LoginInfo = LoginInfo.fromJson(jsonObj);
     expect(obj).toBeTruthy(obj);
 
     expect(obj.loggedIn).toEqual(true);

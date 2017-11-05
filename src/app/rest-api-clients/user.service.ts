@@ -4,7 +4,6 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { LoginInfo} from '../data-structure/login-info';
-import { JsonUtils} from '../json-utils';
 
 import { Config } from '../config';
 
@@ -21,7 +20,7 @@ export class UserService {
     return this.http.get(url, {withCredentials: true})
       .toPromise()
       .then(response => {
-        return JsonUtils.jsonObjectToLoginInfo(response.json());
+        return LoginInfo.fromJson(response.json());
       })
       .catch(UserService.handleError);
   }

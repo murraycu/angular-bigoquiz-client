@@ -6,7 +6,6 @@ import 'rxjs/add/operator/toPromise';
 import { Quiz } from '../data-structure/quiz';
 import { QuizQuestion } from '../data-structure/quiz-question';
 import { QuizSection } from '../data-structure/quiz-section';
-import { JsonUtils } from '../json-utils';
 import { Config } from '../config';
 
 @Injectable()
@@ -20,7 +19,7 @@ export class QuizService {
       .then(response => {
         const json = response.json();
         const result: Quiz[] = json.map(o => {
-          return JsonUtils.jsonObjectToQuiz(o);
+          return Quiz.fromJson(o);
         });
         return result;
       })
@@ -41,7 +40,7 @@ export class QuizService {
     return this.http.get(url)
       .toPromise()
       .then(response => {
-        return JsonUtils.jsonObjectToQuiz(response.json());
+        return Quiz.fromJson(response.json());
       })
       .catch(QuizService.handleError);
 
@@ -59,7 +58,7 @@ export class QuizService {
       .then(response => {
         const json = response.json();
         const result: QuizSection[] = json.map(o => {
-          return JsonUtils.jsonObjectToQuizSection(o);
+          return QuizSection.fromJson(o);
         });
         return result;
       })
@@ -72,7 +71,7 @@ export class QuizService {
     return this.http.get(url)
       .toPromise()
       .then(response => {
-        return JsonUtils.jsonObjectToQuizQuestion(response.json());
+        return QuizQuestion.fromJson(response.json());
       })
       .catch(QuizService.handleError);
   }

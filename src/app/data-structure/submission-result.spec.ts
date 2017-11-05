@@ -1,5 +1,4 @@
 import { SubmissionResult } from './submission-result';
-import { JsonUtils } from '../json-utils';
 
 describe('SubmissionResult without the TestBed', () => {
   beforeEach(() => {
@@ -59,7 +58,7 @@ describe('SubmissionResult without the TestBed', () => {
   }
 }`);
 
-    const obj: SubmissionResult = JsonUtils.jsonObjectToSubmissionResult(jsonObj);
+    const obj: SubmissionResult = SubmissionResult.fromJson(jsonObj);
     expect(obj).toBeTruthy();
     expect(obj.result).toEqual(false);
 

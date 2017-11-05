@@ -1,5 +1,4 @@
 import { QuizQuestion } from './quiz-question';
-import { JsonUtils } from '../json-utils';
 
 describe('QuizQuestion without the TestBed', () => {
   beforeEach(() => {
@@ -45,7 +44,7 @@ describe('QuizQuestion without the TestBed', () => {
   "quizUsesMathML": false
 }`);
 
-    const obj: QuizQuestion = JsonUtils.jsonObjectToQuizQuestion(jsonObj);
+    const obj: QuizQuestion = QuizQuestion.fromJson(jsonObj);
     expect(obj).toBeTruthy(obj);
 
     expect(obj.id).toBeTruthy(obj);
@@ -72,7 +71,7 @@ describe('QuizQuestion without the TestBed', () => {
   });
 
   it ('deserializes properly from undefined object.', () => {
-    const obj = JsonUtils.jsonObjectToQuizQuestion(undefined);
+    const obj = QuizQuestion.fromJson(undefined);
     expect(obj).toBeUndefined(obj);
   });
 });

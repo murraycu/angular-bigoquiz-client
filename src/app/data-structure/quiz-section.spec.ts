@@ -170,7 +170,7 @@ describe('QuizSection without the TestBed', () => {
 }
 `);
 
-    const obj: QuizSection = JsonUtils.jsonObjectToQuizSection(jsonObj);
+    const obj: QuizSection = QuizSection.fromJson(jsonObj);
     expect(obj).toBeTruthy(obj);
 
     expect(obj.id).toBeTruthy(obj);
@@ -198,7 +198,7 @@ describe('QuizSection without the TestBed', () => {
   });
 
   it ('deserializes properly from undefined object.', () => {
-    const obj = JsonUtils.jsonObjectToQuizSection(undefined);
+    const obj = QuizSection.fromJson(undefined);
     expect(obj).toBeUndefined(obj);
   });
 });

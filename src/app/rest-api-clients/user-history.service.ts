@@ -9,7 +9,7 @@ import { UserStats} from '../data-structure/user-stats';
 import { Submission } from '../data-structure/submission';
 import { SubmissionResult } from '../data-structure/submission-result';
 import { UserQuestionHistory } from '../data-structure/user-question-history';
-import { JsonUtils } from '../json-utils';
+import { LoginInfo } from "../data-structure/login-info";
 import { Config } from '../config';
 import { plainToClass } from "class-transformer";
 
@@ -69,7 +69,7 @@ export class UserHistoryService {
     })
       .toPromise()
       .then(response => {
-        return JsonUtils.jsonObjectToSubmissionResult(response.json());
+        return SubmissionResult.fromJson(response.json());
       })
       .catch(UserHistoryService.handleError);
   }
@@ -85,7 +85,7 @@ export class UserHistoryService {
     })
       .toPromise()
       .then(response => {
-        return JsonUtils.jsonObjectToSubmissionResult(response.json());
+        return SubmissionResult.fromJson(response.json());
       })
       .catch(UserHistoryService.handleError);
   }
@@ -121,7 +121,7 @@ export class UserHistoryService {
     const result: UserHistorySections = new UserHistorySections();
 
     if (obj.loginInfo) {
-      result.loginInfo = JsonUtils.jsonObjectToLoginInfo(obj.loginInfo);
+      result.loginInfo = LoginInfo.fromJson(obj.loginInfo);
     }
 
     result.quizId = obj.quizId;

@@ -4,7 +4,6 @@ import { Http, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { QuizQuestion } from '../data-structure/quiz-question';
-import { JsonUtils } from '../json-utils';
 import { Config } from '../config';
 
 @Injectable()
@@ -27,7 +26,7 @@ export class QuestionService {
     })
       .toPromise()
       .then(response => {
-        return JsonUtils.jsonObjectToQuizQuestion(response.json());
+        return QuizQuestion.fromJson(response.json());
       })
       .catch(QuestionService.handleError);
   }
