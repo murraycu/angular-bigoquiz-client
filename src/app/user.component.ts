@@ -19,7 +19,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setTitle("Profile")
+    this.setTitle('Profile');
     this.setServerLoading();
     this.userHistoryService.getUserHistoryForQuizzes().then(
       (userHistoryQuizzes) => {

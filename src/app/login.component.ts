@@ -35,7 +35,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setTitle("Login");
+    this.setTitle('Login');
 
     // Get the "failed" query parameter:
     // We could instead do this, but it's theoretically possible that we might

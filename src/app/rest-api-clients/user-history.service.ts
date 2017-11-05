@@ -48,7 +48,7 @@ export class UserHistoryService {
     p.append('question-id', questionId);
 
     if (nextQuestionSectionId) {
-      p.append('next-question-section-id', nextQuestionSectionId)
+      p.append('next-question-section-id', nextQuestionSectionId);
     }
 
     return p

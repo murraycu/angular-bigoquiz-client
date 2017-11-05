@@ -91,7 +91,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
         if (this.questionId) {
           this.question = question;
 
-          this.setTitle("Question: " + this.questionTitle(this.question));
+          this.setTitle('Question: ' + this.questionTitle(this.question));
         } else {
           // The question comes from getNextQuestion(),
           // so just navigate to the appropriate URL.
@@ -239,15 +239,15 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     const subSectionText: string = QuestionComponent.titleForHasIdAndTitle(question.subSection)
 
     if (subSectionText && sectionText !== subSectionText) {
-      text = subSectionText + ": " + text;
+      text = subSectionText + ': ' + text;
     }
 
     if (sectionText && sectionText !== question.quizTitle) {
-      text = sectionText + ": " + text;
+      text = sectionText + ': ' + text;
     }
 
     if (question.quizTitle) {
-      text = question.quizTitle + ": " + text;
+      text = question.quizTitle + ': ' + text;
     }
 
     return text

@@ -13,6 +13,6 @@ export class AboutComponent extends BaseComponent {
   }
 
   ngOnInit(): void {
-    this.setTitle("About");
+    this.setTitle('About');
   }
 }

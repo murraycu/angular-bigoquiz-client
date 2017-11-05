@@ -28,7 +28,7 @@ export class HistoryComponent extends BaseComponent {
     this.quizId = sections.quizId;
     this.quizTitle = sections.quizTitle;
 
-    this.setTitle("History: " + this.quizTitle);
+    this.setTitle('History: ' + this.quizTitle);
   }
 
   onResetClicked() {

@@ -30,11 +30,11 @@ export class QuizComponent extends BaseComponent implements OnInit {
         (quiz) => {
           this.setServerSuccess();
           this.quiz = quiz;
-          this.setTitle("Quiz: " + this.quiz.title);
+          this.setTitle('Quiz: ' + this.quiz.title);
         },
         (err) => {
           this.setServerFailed();
-          this.setTitle("Quiz");
-        })
+          this.setTitle('Quiz');
+        });
    }
 }
