@@ -8,7 +8,6 @@ import { UserHistoryQuizzes} from '../data-structure/user-history-quizzes';
 import { UserStats} from '../data-structure/user-stats';
 import { Submission } from '../data-structure/submission';
 import { SubmissionResult } from '../data-structure/submission-result';
-import { UserQuestionHistory } from '../data-structure/user-question-history';
 import { LoginInfo } from "../data-structure/login-info";
 import { Config } from '../config';
 import { plainToClass } from "class-transformer";
@@ -133,7 +132,7 @@ export class UserHistoryService {
       result.statsMap = new Map<string, UserStats>();
 
       for (const jsonStats of obj.stats) {
-        const userStats = UserHistoryService.jsonObjectToUserStats(jsonStats);
+        const userStats = UserStats.fromJson(jsonStats);
 
         result.stats.push(userStats);
         result.statsMap.set(userStats.sectionId, userStats);
@@ -155,36 +154,11 @@ export class UserHistoryService {
       result.stats = new Array<UserStats>();
 
       for (const jsonStats of obj.stats) {
-        const userStats = UserHistoryService.jsonObjectToUserStats(jsonStats);
+        const userStats = UserStats.fromJson(jsonStats);
         result.stats.push(userStats);
       }
     }
 
     return result;
-  }
-
-  private static jsonObjectToUserStats(obj: any): UserStats {
-    const result: UserStats = plainToClass(UserStats, obj as object)
-
-    if (result.questionHistories) {
-      result.questionHistoriesMap = new Map<string, UserQuestionHistory>();
-      for (const questionHistory of obj.questionHistories) {
-        const questionId = questionHistory.questionId;
-        if (!questionId) {
-          continue;
-        }
-
-        result.questionHistoriesMap.set(questionId, questionHistory);
-      }
-    }
-
-    // TODO: Do this on the server:
-    result.updateTopProblemQuestions();
-
-    return result;
-  }
-
-  private static jsonObjectToUserQuestionHistory(obj: any):  UserQuestionHistory {
-    return plainToClass(UserQuestionHistory, obj as object)
   }
 }

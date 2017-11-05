@@ -1,8 +1,29 @@
 import { UserQuestionHistory } from './user-question-history';
 import { QuizQuestion } from './quiz-question';
-import { Exclude, Type } from "class-transformer";
+import { Exclude, Type, plainToClass } from "class-transformer";
 
 export class UserStats {
+  public static fromJson(obj: any): UserStats {
+    const result: UserStats = plainToClass(UserStats, obj as object)
+
+    if (result.questionHistories) {
+      result.questionHistoriesMap = new Map<string, UserQuestionHistory>();
+      for (const questionHistory of obj.questionHistories) {
+        const questionId = questionHistory.questionId;
+        if (!questionId) {
+          continue;
+        }
+
+        result.questionHistoriesMap.set(questionId, questionHistory);
+      }
+    }
+
+    // TODO: Do this on the server:
+    result.updateTopProblemQuestions();
+
+    return result;
+  }
+
   quizId: string;
   quizTitle: string;
   sectionId: string;
@@ -82,7 +103,7 @@ export class UserStats {
     this.updateTopProblemQuestions();
   }
 
-  updateTopProblemQuestions(): void {
+  private updateTopProblemQuestions(): void {
     this.problemQuestionHistoriesCount = 0;
 
     this.topProblemQuestionHistories = undefined;
