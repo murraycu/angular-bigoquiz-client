@@ -1,5 +1,6 @@
 import { UserQuestionHistory } from './user-question-history';
 import { QuizQuestion } from './quiz-question';
+import { Exclude, Type } from "class-transformer";
 
 export class UserStats {
   quizId: string;
@@ -15,9 +16,15 @@ export class UserStats {
 
   problemQuestionHistoriesCount: number;
 
+  @Type(() => UserQuestionHistory)
   topProblemQuestionHistories: UserQuestionHistory[];
 
-  questionHistories: Map<string, UserQuestionHistory>;
+  @Type(() => UserQuestionHistory)
+  questionHistories: UserQuestionHistory[];
+
+  // Built from questionHistories.
+  @Exclude()
+  questionHistoriesMap: Map<string, UserQuestionHistory>;
 
   percentAnsweredOnce(total: number): string {
     // Avoid divide by zero, and avoid negative results.
@@ -43,11 +50,11 @@ export class UserStats {
     let firstTimeAsked = false;
     let firstTimeCorrect = false;
 
-    if (!this.questionHistories) {
-      this.questionHistories = new Map<string, UserQuestionHistory>();
+    if (!this.questionHistoriesMap) {
+      this.questionHistoriesMap = new Map<string, UserQuestionHistory>();
     }
 
-    let history: UserQuestionHistory = this.questionHistories.get(questionId);
+    let history: UserQuestionHistory = this.questionHistoriesMap.get(questionId);
 
     // Add a new one, if necessary:
     if (!history) {
@@ -57,7 +64,7 @@ export class UserStats {
       }
 
       history = UserQuestionHistory.fromQuestion(question);
-      this.questionHistories.set(questionId, history);
+      this.questionHistoriesMap.set(questionId, history);
     } else if (answerIsCorrect && !history.answeredCorrectlyOnce) {
       firstTimeCorrect = true;
     }
@@ -80,12 +87,12 @@ export class UserStats {
 
     this.topProblemQuestionHistories = undefined;
 
-    if (!this.questionHistories) {
+    if (!this.questionHistoriesMap) {
       return;
     }
 
     // Copy the values of the array.
-    this.questionHistories.forEach((value: UserQuestionHistory, key: string) => {
+    this.questionHistoriesMap.forEach((value: UserQuestionHistory, key: string) => {
       if (value.countAnsweredWrong > 0) {
         if (!this.topProblemQuestionHistories) {
           this.topProblemQuestionHistories = [];

@@ -11,6 +11,7 @@ import { SubmissionResult } from '../data-structure/submission-result';
 import { UserQuestionHistory } from '../data-structure/user-question-history';
 import { JsonUtils } from '../json-utils';
 import { Config } from '../config';
+import { plainToClass } from "class-transformer";
 
 @Injectable()
 export class UserHistoryService {
@@ -163,44 +164,17 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserStats(obj: any): UserStats {
-    if (!obj) {
-      return undefined;
-    }
+    const result: UserStats = plainToClass(UserStats, obj as object)
 
-    const result: UserStats = new UserStats();
-    result.quizId = obj.quizId;
-    result.quizTitle = obj.quizTitle;
-    result.sectionId = obj.sectionId;
-    result.sectionTitle = obj.sectionTitle;
-
-    result.answered = JsonUtils.numberOrZero(obj.answered);
-    result.correct = JsonUtils.numberOrZero(obj.correct);
-    result.countQuestions = JsonUtils.numberOrZero(obj.countQuestions);
-    result.countQuestionsAnsweredOnce = JsonUtils.numberOrZero(obj.countQuestionsAnsweredOnce);
-    result.countQuestionsCorrectOnce = JsonUtils.numberOrZero(obj.countQuestionsCorrectOnce);
-
-    result.problemQuestionHistoriesCount = JsonUtils.numberOrZero(obj.problemQuestionHistoriesCount);
-
-    if (obj.questionHistories) {
-      result.questionHistories = new Map<string, UserQuestionHistory>();
-      for (const jsonQuestionHistory of obj.questionHistories) {
-        const questionId = jsonQuestionHistory.questionId;
+    if (result.questionHistories) {
+      result.questionHistoriesMap = new Map<string, UserQuestionHistory>();
+      for (const questionHistory of obj.questionHistories) {
+        const questionId = questionHistory.questionId;
         if (!questionId) {
           continue;
         }
 
-        const questionHistory = UserHistoryService.jsonObjectToUserQuestionHistory(jsonQuestionHistory);
-        result.questionHistories.set(questionId, questionHistory);
-      }
-    }
-
-    // This is actually based on questionHistories,
-    // but it has been calculated for us by the server:
-    if (obj.topProblemQuestionHistories) {
-      result.topProblemQuestionHistories = [];
-      for (const jsonQuestionHistory of obj.topProblemQuestionHistories) {
-        const questionHistory = UserHistoryService.jsonObjectToUserQuestionHistory(jsonQuestionHistory);
-        result.topProblemQuestionHistories.push(questionHistory);
+        result.questionHistoriesMap.set(questionId, questionHistory);
       }
     }
 
@@ -211,24 +185,6 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserQuestionHistory(obj: any):  UserQuestionHistory {
-    if (!obj) {
-      return undefined;
-    }
-
-    const result: UserQuestionHistory = new UserQuestionHistory();
-
-    result.questionId = obj.questionId;
-    result.answeredCorrectlyOnce = obj.answeredCorrectlyOnce;
-    result.countAnsweredWrong = obj.countAnsweredWrong;
-
-    if (obj.questionTitle) {
-      result.questionTitle = JsonUtils.jsonObjectToQuizText(obj.questionTitle);
-    }
-
-    result.sectionId = obj.sectionId;
-
-    result.subSectionTitle = obj.subSectionTitle;
-
-    return result;
+    return plainToClass(UserQuestionHistory, obj as object)
   }
 }

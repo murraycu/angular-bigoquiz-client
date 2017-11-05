@@ -1,5 +1,6 @@
 import { QuizQuestion } from './quiz-question';
 import { QuizText } from './quiz-text';
+import { Type } from "class-transformer";
 
 export class UserQuestionHistory {
   static fromQuestion(question: QuizQuestion): UserQuestionHistory {
@@ -16,7 +17,9 @@ export class UserQuestionHistory {
 
   questionId: string;
 
+  @Type(() => QuizText)
   questionTitle: QuizText;
+
   sectionId: string;
   subSectionTitle: string;
 
