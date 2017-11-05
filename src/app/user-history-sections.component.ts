@@ -19,14 +19,14 @@ import { QuestionResultEvent } from './question-result-event';
   styleUrls: ['./user-history-sections.component.css']
 })
 export class UserHistorySectionsComponent extends BaseComponent implements OnInit, OnDestroy {
-  @Output() onJsonParsed = new EventEmitter<void>()
+  @Output() onJsonParsed = new EventEmitter<void>();
 
   private quizId: string;
   private sectionId: string;
   userHistorySections: UserHistorySections;
   private subscriptionQuestionResultsService: Subscription;
 
-  readonly MAX_PROBLEM_QUESTIONS: number = 5
+  readonly MAX_PROBLEM_QUESTIONS: number = 5;
 
   constructor(private userHistoryService: UserHistoryService,
     private questionResultsService: QuestionResultsService,
@@ -55,7 +55,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
     .subscribe(
       (userHistorySections) => {
         this.setServerSuccess();
-        this.userHistorySections = userHistorySections
+        this.userHistorySections = userHistorySections;
         this.onJsonParsed.emit();
       },
       (err) => {
@@ -85,7 +85,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
     }
 
     if (question.subSectionTitle) {
-      return question.subSectionTitle + ": " + question.questionTitle.text;
+      return question.subSectionTitle + ': ' + question.questionTitle.text;
     } else {
       return question.questionTitle.text;
     }

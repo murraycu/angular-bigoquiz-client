@@ -13,10 +13,10 @@ import { UserHistoryService } from './rest-api-clients/user-history.service';
 })
 export class HistoryComponent extends BaseComponent {
   @ViewChild(UserHistorySectionsComponent)
-  private sectionsComponent: UserHistorySectionsComponent
+  private sectionsComponent: UserHistorySectionsComponent;
 
-  quizId: string
-  quizTitle: string
+  quizId: string;
+  quizTitle: string;
 
   constructor(private userHistoryService: UserHistoryService,
    titleService: Title) {
@@ -24,7 +24,7 @@ export class HistoryComponent extends BaseComponent {
   }
 
   onViewChildJsonParsed() {
-    let sections: UserHistorySections = this.sectionsComponent.userHistorySections
+    const sections: UserHistorySections = this.sectionsComponent.userHistorySections;
     this.quizId = sections.quizId;
     this.quizTitle = sections.quizTitle;
 

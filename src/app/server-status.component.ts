@@ -4,7 +4,7 @@ export enum ServerState {
   Loading,
   Failed, // Note: Using Error here instead causes some compiler confusion with ErrorConstructor.
   Success
-};
+}
 
 @Component({
   selector: 'app-server-status',

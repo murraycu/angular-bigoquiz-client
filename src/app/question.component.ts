@@ -68,7 +68,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
 
         // If the sectionId was specifed, we need to show the list of other sections.
         if (this.quizId && this.sectionId) {
-          this.getSections()
+          this.getSections();
         }
 
         if (this.questionId) {
@@ -150,15 +150,15 @@ export class QuestionComponent extends BaseComponent implements OnInit {
       return;
     }
 
-    this.submissionResult = undefined
-    this.chosenAnswer = answerText
+    this.submissionResult = undefined;
+    this.chosenAnswer = answerText;
 
     this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText, this.sectionId).
       then(submissionResult => {
         this.submissionResult = submissionResult;
 
         // Disable further choices if the user already chose the correct one:
-        this.enableChoices = !submissionResult.result
+        this.enableChoices = !submissionResult.result;
 
         this.updateSectionsSidebar(this.submissionResult.result);
       });
@@ -234,9 +234,9 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     }
 
     // Avoiding using HTML directly.
-    let text: string = QuestionComponent.titleWithoutHtmlForText(question.text)
-    const sectionText: string = QuestionComponent.titleForHasIdAndTitle(question.section)
-    const subSectionText: string = QuestionComponent.titleForHasIdAndTitle(question.subSection)
+    let text: string = QuestionComponent.titleWithoutHtmlForText(question.text);
+    const sectionText: string = QuestionComponent.titleForHasIdAndTitle(question.section);
+    const subSectionText: string = QuestionComponent.titleForHasIdAndTitle(question.subSection);
 
     if (subSectionText && sectionText !== subSectionText) {
       text = subSectionText + ': ' + text;
@@ -250,7 +250,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
       text = question.quizTitle + ': ' + text;
     }
 
-    return text
+    return text;
   }
 
   private static titleForHasIdAndTitle(obj: HasIdAndTitle): string {

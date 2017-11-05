@@ -24,7 +24,7 @@ export class QuizzesComponent extends BaseComponent implements OnInit {
     this.quizService.getQuizzes().then(
       (quizzes) => {
         this.setServerSuccess();
-        this.quizzes = quizzes
+        this.quizzes = quizzes;
       },
       (err) => {
         this.setServerFailed();

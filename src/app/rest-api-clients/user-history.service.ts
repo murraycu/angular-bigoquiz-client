@@ -51,7 +51,7 @@ export class UserHistoryService {
       p.append('next-question-section-id', nextQuestionSectionId);
     }
 
-    return p
+    return p;
   }
 
   submitAnswer(quizId: string, questionId: string, answerText: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
@@ -128,7 +128,7 @@ export class UserHistoryService {
 
     // stats:
     if (obj.stats) {
-      result.stats = new Array<UserStats>()
+      result.stats = new Array<UserStats>();
       result.statsMap = new Map<string, UserStats>();
 
       for (const jsonStats of obj.stats) {
@@ -184,7 +184,7 @@ export class UserHistoryService {
     if (obj.questionHistories) {
       result.questionHistories = new Map<string, UserQuestionHistory>();
       for (const jsonQuestionHistory of obj.questionHistories) {
-        const questionId = jsonQuestionHistory.questionId
+        const questionId = jsonQuestionHistory.questionId;
         if (!questionId) {
           continue;
         }
@@ -205,7 +205,7 @@ export class UserHistoryService {
     }
 
     // TODO: Do this on the server:
-    result.updateTopProblemQuestions()
+    result.updateTopProblemQuestions();
 
     return result;
   }
