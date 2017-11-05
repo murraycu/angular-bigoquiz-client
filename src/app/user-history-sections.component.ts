@@ -117,7 +117,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   }
 
   generateQuestionLinkQueryParams(qh: UserQuestionHistory): Object {
-    let result = {'quiz-id': this.quizId, 'question-id': qh.questionId};
+    const result = {'quiz-id': this.quizId, 'question-id': qh.questionId};
     if (this.sectionId && this.sectionId === qh.sectionId) {
       result['section-id'] = this.sectionId;
     }

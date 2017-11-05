@@ -43,7 +43,7 @@ export class UserHistoryService {
   }
 
   private createSubmitQueryParams(quizId: string, questionId: string, nextQuestionSectionId: string): URLSearchParams {
-    let p = new URLSearchParams();
+    const p = new URLSearchParams();
     p.append('quiz-id', quizId);
     p.append('question-id', questionId);
 
@@ -75,8 +75,8 @@ export class UserHistoryService {
 
   submitDontKnowAnswer(quizId: string, questionId: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
     // Note: We must use backticks: This is a template literal.
-    let url = `${Config.baseApiUrl}/api/user-history/submit-dont-know-answer`;
-    const p: URLSearchParams = this.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId)
+    const url = `${Config.baseApiUrl}/api/user-history/submit-dont-know-answer`;
+    const p: URLSearchParams = this.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId);
 
     return this.http.post(url, '', {
       params: p,
@@ -92,7 +92,7 @@ export class UserHistoryService {
   resetSections(quizId: string): Promise<boolean> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseApiUrl}/api/user-history/reset-sections`;
-    let p = new URLSearchParams();
+    const p = new URLSearchParams();
     p.append('quiz-id', quizId);
 
     return this.http.post(url, '', {
