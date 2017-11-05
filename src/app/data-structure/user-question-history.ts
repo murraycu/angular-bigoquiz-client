@@ -1,6 +1,6 @@
 import { QuizQuestion } from './quiz-question';
 import { QuizText } from './quiz-text';
-import { Type } from "class-transformer";
+import { Type } from 'class-transformer';
 
 export class UserQuestionHistory {
   static fromQuestion(question: QuizQuestion): UserQuestionHistory {

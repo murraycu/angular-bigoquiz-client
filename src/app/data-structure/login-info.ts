@@ -1,8 +1,8 @@
-import { plainToClass } from "class-transformer";
+import { plainToClass } from 'class-transformer';
 
 export class LoginInfo {
   public static fromJson(obj: any): LoginInfo {
-    return plainToClass(LoginInfo, obj as object)
+    return plainToClass(LoginInfo, obj as object);
   }
 
   loggedIn: boolean;

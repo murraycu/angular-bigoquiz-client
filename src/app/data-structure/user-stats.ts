@@ -1,10 +1,10 @@
 import { UserQuestionHistory } from './user-question-history';
 import { QuizQuestion } from './quiz-question';
-import { Exclude, Type, plainToClass } from "class-transformer";
+import { Exclude, Type, plainToClass } from 'class-transformer';
 
 export class UserStats {
   public static fromJson(obj: any): UserStats {
-    const result: UserStats = plainToClass(UserStats, obj as object)
+    const result: UserStats = plainToClass(UserStats, obj as object);
 
     if (result.questionHistories) {
       result.questionHistoriesMap = new Map<string, UserQuestionHistory>();

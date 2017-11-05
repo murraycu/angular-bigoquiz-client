@@ -1,11 +1,11 @@
 import { HasIdAndTitle } from './has-id-and-title';
 import { QuizSubSection } from './quiz-sub-section';
 import { QuizText } from './quiz-text';
-import { Type, plainToClass } from "class-transformer";
+import { Type, plainToClass } from 'class-transformer';
 
 export class QuizQuestion extends HasIdAndTitle {
   public static fromJson(obj: any): QuizQuestion {
-    return plainToClass(QuizQuestion, obj as object)
+    return plainToClass(QuizQuestion, obj as object);
   }
 
   @Type(() => QuizText)

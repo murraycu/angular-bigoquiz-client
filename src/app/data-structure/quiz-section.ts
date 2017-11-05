@@ -1,11 +1,11 @@
 import { HasIdAndTitle } from './has-id-and-title';
 import { QuizSubSection } from './quiz-sub-section';
 import { QuizQuestionAndAnswer } from './quiz-question-and-answer';
-import { Exclude, Type, plainToClass } from "class-transformer";
+import { Exclude, Type, plainToClass } from 'class-transformer';
 
 export class QuizSection extends HasIdAndTitle {
   public static fromJson(obj: any): QuizSection {
-    const section: QuizSection = plainToClass(QuizSection, obj as object)
+    const section: QuizSection = plainToClass(QuizSection, obj as object);
 
     // Build the map:
     if (section.subSections) {
