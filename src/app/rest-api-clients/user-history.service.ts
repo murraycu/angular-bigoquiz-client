@@ -113,28 +113,15 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserHistorySections(obj: any): UserHistorySections {
-    if (!obj) {
-      return undefined;
-    }
-
-    const result: UserHistorySections = new UserHistorySections();
-
-    if (obj.loginInfo) {
-      result.loginInfo = LoginInfo.fromJson(obj.loginInfo);
-    }
-
-    result.quizId = obj.quizId;
-    result.quizTitle = obj.quizTitle;
+    const result: UserHistorySections = plainToClass(UserHistorySections, obj as object);
 
     // stats:
-    if (obj.stats) {
-      result.stats = new Array<UserStats>();
+    if (result.stats) {
       result.statsMap = new Map<string, UserStats>();
 
-      for (const jsonStats of obj.stats) {
+      for (const jsonStats of result.stats) {
         const userStats = UserStats.fromJson(jsonStats);
 
-        result.stats.push(userStats);
         result.statsMap.set(userStats.sectionId, userStats);
       }
     }
@@ -143,22 +130,6 @@ export class UserHistoryService {
   }
 
   private static jsonObjectToUserHistoryQuizzes(obj: any): UserHistoryQuizzes {
-    if (!obj) {
-      return undefined;
-    }
-
-    const result: UserHistoryQuizzes = new UserHistoryQuizzes();
-
-    // stats:
-    if (obj.stats) {
-      result.stats = new Array<UserStats>();
-
-      for (const jsonStats of obj.stats) {
-        const userStats = UserStats.fromJson(jsonStats);
-        result.stats.push(userStats);
-      }
-    }
-
-    return result;
+    return plainToClass(UserHistoryQuizzes, obj as object)
   }
 }

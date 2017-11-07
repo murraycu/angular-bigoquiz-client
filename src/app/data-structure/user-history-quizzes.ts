@@ -1,6 +1,8 @@
 import { UserStats } from './user-stats';
-import { Quiz } from './quiz';
+import { Type } from "class-transformer";
+
 
 export class UserHistoryQuizzes {
+  @Type(() => UserStats)
   stats: UserStats[];
 }

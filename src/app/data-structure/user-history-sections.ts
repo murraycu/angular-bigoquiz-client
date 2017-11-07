@@ -1,12 +1,15 @@
 import { UserStats } from './user-stats';
-import { QuizSection } from './quiz-section';
 import { LoginInfo } from './login-info';
+import { Type } from 'class-transformer';
 
 export class UserHistorySections {
+  @Type(() => LoginInfo)
   loginInfo: LoginInfo;
+
   quizId: string;
   quizTitle: string;
 
+  @Type(() => UserStats)
   stats: UserStats[];
 
   // Map of section IDs to stats.
