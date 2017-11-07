@@ -7,9 +7,11 @@ export class UserHistorySections {
   quizId: string;
   quizTitle: string;
 
-  // Map of section IDs to stats.
-  statsMap: Map<string, UserStats>;
   stats: UserStats[];
+
+  // Map of section IDs to stats.
+  // This is built from stats
+  statsMap: Map<string, UserStats>;
 
   public getUserStatsForSection(sectionId: string): UserStats {
     if (!this.statsMap) {
