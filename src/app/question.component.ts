@@ -161,6 +161,14 @@ export class QuestionComponent extends BaseComponent implements OnInit {
         this.enableChoices = !submissionResult.result;
 
         this.updateSectionsSidebar(this.submissionResult.result);
+
+        // Go to the next question automatically after 5 seconds.
+        if (submissionResult.result) {
+          setTimeout(() => {
+            this.onNext()
+          },
+          5000)
+        }
       });
   }
 
