@@ -165,9 +165,9 @@ export class QuestionComponent extends BaseComponent implements OnInit {
         // Go to the next question automatically after 5 seconds.
         if (submissionResult.result) {
           setTimeout(() => {
-            this.onNext()
+            this.onNext();
           },
-          5000)
+          5000);
         }
       });
   }
