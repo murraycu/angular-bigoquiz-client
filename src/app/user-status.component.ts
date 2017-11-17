@@ -17,6 +17,11 @@ export class UserStatusComponent implements OnInit {
   loginInfo: LoginInfo;
   logoutUrl = `${Config.baseApiUrl}/login/logout?redirect=${Config.baseUrl}/user`;
 
+  private static redirectSuffix = `?redirect=${Config.baseUrl}/user`;
+  googleLoginUrl = `${Config.googleLoginPrefix}${UserStatusComponent.redirectSuffix}`;
+  gitHubLoginUrl = `${Config.gitHubLoginPrefix}${UserStatusComponent.redirectSuffix}`;
+  facebookLoginUrl = `${Config.facebookLoginPrefix}${UserStatusComponent.redirectSuffix}`;
+
   constructor(private userService: UserService, private zone: NgZone) { }
 
   ngOnInit(): void {

@@ -5,4 +5,8 @@ export class Config {
   // TODO: Disover this dynamically?
   static baseUrl = 'https://beta.bigoquiz.com';
   // static baseUrl: string = 'http://localhost:4200';
+
+  static googleLoginPrefix = `${Config.baseApiUrl}/login/login-google`;
+  static gitHubLoginPrefix = `${Config.baseApiUrl}/login/login-github`;
+  static facebookLoginPrefix = `${Config.baseApiUrl}/login/login-facebook`;
 }

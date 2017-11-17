@@ -10,8 +10,13 @@
 
     <div *ngIf="showExtras && loginInfo.nickname">
       <p *ngIf="loginInfo.googleLinked">Google Account: <a href="{{loginInfo.googleProfileUrl}}">Connected</a></p>
+      <p *ngIf="!loginInfo.googleLinked">Google Account: <a href="{{googleLoginUrl}}">Connect</a></p>
+
       <p *ngIf="loginInfo.gitHubLinked">GitHub Account: <a href="{{loginInfo.gitHubProfileUrl}}">Connected</a></p>
+      <p *ngIf="!loginInfo.gitHubLinked">GitHub Account: <a href="{{gitHubLoginUrl}}">Connect</a></p>
+
       <p *ngIf="loginInfo.facebookLinked">Facebook Account: <a href="{{loginInfo.facebookProfileUrl}}">Connected</a></p>
+      <p *ngIf="!loginInfo.facebookLinked">Facebook Account: <a href="{{facebookLoginUrl}}">Connect</a></p>
 
       <p><a href="{{logoutUrl}}">Log Out</a></p>
     </div>
