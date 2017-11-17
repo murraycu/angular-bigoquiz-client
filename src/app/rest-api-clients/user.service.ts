@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -10,7 +10,7 @@ import { Config } from '../config';
 @Injectable()
 export class UserService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   /** Get the overall history for the current user, for all quizzes.
    */
@@ -20,7 +20,7 @@ export class UserService {
     return this.http.get(url, {withCredentials: true})
       .toPromise()
       .then(response => {
-        return LoginInfo.fromJson(response.json());
+        return LoginInfo.fromJson(response);
       })
       .catch(UserService.handleError);
   }

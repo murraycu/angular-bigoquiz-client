@@ -1,6 +1,6 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; // For ngModel, used in .html.
 
 import { AppRoutingModule } from './app-routing.module';
@@ -42,7 +42,7 @@ import { QuestionResultsService } from './question-results.service';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule
   ],

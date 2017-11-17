@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -10,18 +10,14 @@ import { Config } from '../config';
 
 @Injectable()
 export class QuizService {
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getQuizzes(): Promise<Quiz[]> {
    const url = Config.baseApiUrl + '/api/quiz?list-only=true';
    return this.http.get(url)
       .toPromise()
       .then(response => {
-        const json = response.json();
-        const result: Quiz[] = json.map(o => {
-          return Quiz.fromJson(o);
-        });
-        return result;
+        return Quiz.fromJson(response);
       })
       .catch(QuizService.handleError);
 
@@ -40,7 +36,7 @@ export class QuizService {
     return this.http.get(url)
       .toPromise()
       .then(response => {
-        return Quiz.fromJson(response.json());
+        return Quiz.fromJson(response);
       })
       .catch(QuizService.handleError);
 
@@ -56,11 +52,7 @@ export class QuizService {
     return this.http.get(url)
       .toPromise()
       .then(response => {
-        const json = response.json();
-        const result: QuizSection[] = json.map(o => {
-          return QuizSection.fromJson(o);
-        });
-        return result;
+        return QuizSection.fromJson(response);
       })
       .catch(QuizService.handleError);
   }
@@ -71,7 +63,7 @@ export class QuizService {
     return this.http.get(url)
       .toPromise()
       .then(response => {
-        return QuizQuestion.fromJson(response.json());
+        return QuizQuestion.fromJson(response);
       })
       .catch(QuizService.handleError);
   }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -8,13 +8,13 @@ import { Config } from '../config';
 
 @Injectable()
 export class QuestionService {
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getNextQuestion(quizId: string, sectionId: string): Promise<QuizQuestion> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseApiUrl}/api/question/next`;
 
-    const p = new URLSearchParams();
+    const p = new HttpParams();
     p.append('quiz-id', quizId);
     if (sectionId) {
       p.append('section-id', sectionId);
@@ -26,14 +26,14 @@ export class QuestionService {
     })
       .toPromise()
       .then(response => {
-        return QuizQuestion.fromJson(response.json());
+        return QuizQuestion.fromJson(response);
       })
       .catch(QuestionService.handleError);
   }
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
-    // console.error('An error occurred: JSON:', error.json());
+    // console.error('An error occurred: JSON:', error);
     return Promise.reject(error.message || error);
   }
 }
