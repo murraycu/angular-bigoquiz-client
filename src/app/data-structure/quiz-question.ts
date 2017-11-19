@@ -1,5 +1,4 @@
 import { HasIdAndTitle } from './has-id-and-title';
-import { QuizSubSection } from './quiz-sub-section';
 import { QuizText } from './quiz-text';
 import { Type, plainToClass } from 'class-transformer';
 
@@ -26,8 +25,8 @@ export class QuizQuestion extends HasIdAndTitle {
   @Type(() => HasIdAndTitle)
   section: HasIdAndTitle;
 
-  @Type(() => QuizSubSection)
-  subSection: QuizSubSection;
+  @Type(() => HasIdAndTitle)
+  subSection: HasIdAndTitle;
 
   quizUsesMathML: boolean;
 }
