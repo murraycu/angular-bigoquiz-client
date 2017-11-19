@@ -7,7 +7,7 @@ import { BaseComponent } from './base.component';
   selector: 'app-about',
   templateUrl: './about.component.html',
 })
-export class AboutComponent extends BaseComponent {
+export class AboutComponent extends BaseComponent implements OnInit {
   constructor(titleService: Title) {
    super(titleService);
   }
