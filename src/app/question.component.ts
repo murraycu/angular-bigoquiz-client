@@ -95,7 +95,11 @@ export class QuestionComponent extends BaseComponent implements OnInit {
         } else {
           // The question comes from getNextQuestion(),
           // so just navigate to the appropriate URL.
-          this.router.navigate(['/question'], {queryParams: {'quiz-id': this.quizId, 'question-id': question.id, 'section-id': this.sectionId}});
+          this.router.navigate(['/question'], {
+          queryParams: {
+            'quiz-id': this.quizId,
+            'question-id': question.id,
+            'section-id': this.sectionId}});
         }
       },
       (err) => {
@@ -179,8 +183,8 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     }
 
     // TODO:
-    //Stop the next question from being shown automatically
-    //because then the question would change yet again:
+    // Stop the next question from being shown automatically
+    // because then the question would change yet again:
 
     // TODO:
     // Don't get a new question if we are already waiting for an answer
