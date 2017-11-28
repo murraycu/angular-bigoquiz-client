@@ -5,10 +5,12 @@
     <div class="status-panel">
       <a *ngIf="loginInfo.nickname" class="user-name" [routerLink]="['/user']">{{loginInfo.nickname}}</a>
 
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
       <div *ngIf="!(loginInfo.nickname)" class="login-panel">
-        <p><a href="{{googleLoginUrl}}">Sign In With Google</a></p>
-        <p><a href="{{gitHubLoginUrl}}">Sign In With GitHub</a></p>
-        <p><a href="{{facebookLoginUrl}}">Sign In With Facebook</a></p>
+        <a href="{{googleLoginUrl}}" class="button button-google"><i class="fa fa-google"></i>&nbsp; Sign In With Google</a>
+        <a href="{{gitHubLoginUrl}}" class="button button-github"><i class="fa fa-github"></i>&nbsp; Sign In With GitHub</a>
+        <a href="{{facebookLoginUrl}}" class="button button-facebook"><i class="fa fa-facebook"></i>&nbsp; Sign In With Facebook</a>
       </div>
     </div>
 

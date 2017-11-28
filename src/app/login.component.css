@@ -10,3 +10,38 @@
 .user-status-answers-panel h3:first-child {
     margin-top: 0;
 }
+
+/* Sign In Buttons: */
+
+/* Modify the fa from the fontawesome CSS. */
+.fa {
+    font-size: 120%
+}
+
+.button {
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 120%;
+    display: block;
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+
+.button-google {
+    background: #dd4b39;
+    color: white;
+}
+
+.button-github {
+    background: #2b2b2b;
+    color: white;
+}
+
+.button-facebook {
+    background: #3B5998;
+    color: white;
+}
