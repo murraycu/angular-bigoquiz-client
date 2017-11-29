@@ -8,23 +8,29 @@
       </div>
     </div>
 
+
     <div *ngIf="showExtras && loginInfo.nickname">
-      <p>Google Account:
+      <p><a href="{{logoutUrl}}">Log Out</a></p>
+
+      <h3>Connected Accounts</h3>
+      <p>You may sign into Big-O Quiz using any connected account.</p>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <p><i class="fa fa-google"></i>&nbsp; Google Account:
       <a *ngIf="loginInfo.googleLinked" href="{{loginInfo.googleProfileUrl}}">Connected</a>
       <a *ngIf="!loginInfo.googleLinked" href="{{googleLoginUrl}}">Connect</a>
       </p>
 
-      <p>GitHub Account:
+      <p><i class="fa fa-github"></i>&nbsp; GitHub Account:
       <a *ngIf="loginInfo.gitHubLinked" href="{{loginInfo.gitHubProfileUrl}}">Connected</a>
       <a *ngIf="!loginInfo.gitHubLinked" href="{{gitHubLoginUrl}}">Connect</a>
       </p>
 
-      <p>Facebook Account:
+      <p><i class="fa fa-facebook"></i>&nbsp; Facebook Account:
       <a *ngIf="loginInfo.facebookLinked" href="{{loginInfo.facebookProfileUrl}}">Connected</a>
       <a *ngIf="!loginInfo.facebookLinked" href="{{facebookLoginUrl}}">Connect</a>
       </p>
 
-      <p><a href="{{logoutUrl}}">Log Out</a></p>
     </div>
   </ng-container>
 </div>
