@@ -16,15 +16,14 @@
       </select>
     </p>
 
-    <h3 *ngIf="question.section && question.section.title">
-      <a *ngIf="question.section.link" href="{{question.section.link}}">{{question.section.title}}</a>
-      <ng-container *ngIf="!question.section.link">{{question.section.title}}</ng-container>
+    <h3>
+      <!-- Don't reformat this - it can add a space before the : -->
+      <a *ngIf="question.section.link; else noLinkSection" href="{{question.section.link}}">{{question.section.title}}</a><ng-template #noLinkSection>{{question.section.title}}</ng-template><ng-container *ngIf="question.subSection && question.subSection.title">:
+        <a *ngIf="question.subSection.link; else noLinkSubSection" href="{{question.subSection.link}}">{{question.subSection.title}}</a>
+        <ng-template #noLinkSubSection>{{question.subSection.title}}</ng-template>
+      </ng-container>
     </h3>
 
-    <h3 *ngIf="question.subSection && question.subSection.title">
-      <a *ngIf="question.subSection.link" href="{{question.subSection.link}}">{{question.subSection.title}}</a>
-      <ng-container *ngIf="!question.subSection.link">{{question.subSection.title}}</ng-container>
-    </h3>
 
     <p *ngIf="question.text && question.text.text">
       <a *ngIf="question.link" href="{{question.link}}">{{question.text.text}}</a>
