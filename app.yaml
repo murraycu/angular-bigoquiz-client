@@ -1,4 +1,4 @@
-service: beta
+service: website
 runtime: python27
 threadsafe: yes
 

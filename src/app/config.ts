@@ -3,7 +3,7 @@ export class Config {
   static baseApiUrl = 'https://api.bigoquiz.com';
 
   // TODO: Disover this dynamically?
-  static baseUrl = 'https://beta.bigoquiz.com';
+  static baseUrl = 'https://bigoquiz.com';
   // static baseUrl: string = 'http://localhost:4200';
 
   static googleLoginPrefix = `${Config.baseApiUrl}/login/login-google`;
