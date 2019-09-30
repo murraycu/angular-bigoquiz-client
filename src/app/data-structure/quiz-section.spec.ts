@@ -1,5 +1,4 @@
 import { QuizSection } from './quiz-section';
-import { JsonUtils } from '../json-utils';
 
 describe('QuizSection without the TestBed', () => {
   beforeEach(() => {
