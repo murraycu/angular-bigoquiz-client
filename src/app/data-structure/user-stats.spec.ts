@@ -40,32 +40,32 @@ describe('UserStats without the TestBed', () => {
     userStats.updateProblemQuestion(question1, true);
 
     // questionHistories should now be defined.
-    expect(userStats.questionHistories).toBeTruthy();
+    expect(userStats.questionHistoriesMap).toBeTruthy();
   });
 
   it ('updateProblemQuestion(, false) creates questionHistories.', () => {
     userStats.updateProblemQuestion(question1, false);
 
     // questionHistories should now be defined.
-    expect(userStats.questionHistories).toBeTruthy();
+    expect(userStats.questionHistoriesMap).toBeTruthy();
   });
 
-  it ('updateProblemQuestion(, false) fills questionHistories.', () => {
+  it ('updateProblemQuestion(, false) fills questionHistoriesMap.', () => {
     userStats.updateProblemQuestion(question1, false);
 
-    expect(userStats.questionHistories.size).toBe(1);
-    expect(userStats.questionHistories.get(QUESTION_ID1)).toBeTruthy();
-    expect(userStats.questionHistories.get(QUESTION_ID1).questionId).toBeTruthy();
-    expect(userStats.questionHistories.get(QUESTION_ID1).questionTitle).toBeTruthy();
+    expect(userStats.questionHistoriesMap.size).toBe(1);
+    expect(userStats.questionHistoriesMap.get(QUESTION_ID1)).toBeTruthy();
+    expect(userStats.questionHistoriesMap.get(QUESTION_ID1).questionId).toBeTruthy();
+    expect(userStats.questionHistoriesMap.get(QUESTION_ID1).questionTitle).toBeTruthy();
   });
 
-  it ('updateProblemQuestion(, true) fills questionHistories.', () => {
+  it ('updateProblemQuestion(, true) fills questionHistoriesMap.', () => {
     userStats.updateProblemQuestion(question1, true);
 
-    expect(userStats.questionHistories.size).toBe(1);
-    expect(userStats.questionHistories.get(QUESTION_ID1)).toBeTruthy();
-    expect(userStats.questionHistories.get(QUESTION_ID1).questionId).toBeTruthy();
-    expect(userStats.questionHistories.get(QUESTION_ID1).questionTitle).toBeTruthy();
+    expect(userStats.questionHistoriesMap.size).toBe(1);
+    expect(userStats.questionHistoriesMap.get(QUESTION_ID1)).toBeTruthy();
+    expect(userStats.questionHistoriesMap.get(QUESTION_ID1).questionId).toBeTruthy();
+    expect(userStats.questionHistoriesMap.get(QUESTION_ID1).questionTitle).toBeTruthy();
   });
 
   it ('updateProblemQuestion(, false) creates topProblemquestionHistories.', () => {
