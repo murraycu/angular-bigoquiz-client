@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import 'rxjs/add/operator/toPromise';
+
 
 import { UserHistorySections} from '../data-structure/user-history-sections';
 import { UserHistoryQuizzes} from '../data-structure/user-history-quizzes';

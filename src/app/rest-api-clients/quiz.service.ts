@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import 'rxjs/add/operator/toPromise';
+
 
 import { Quiz } from '../data-structure/quiz';
 import { QuizQuestion } from '../data-structure/quiz-question';

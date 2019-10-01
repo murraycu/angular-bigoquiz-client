@@ -1,8 +1,10 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/switchMap';
+import { Subscription } from 'rxjs';
+
 
 import { BaseComponent } from './base.component';
 import { UserHistoryService } from './rest-api-clients/user-history.service';
@@ -36,8 +38,8 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   }
 
   ngOnInit(): void {
-    this.route.queryParamMap
-    .switchMap((params: ParamMap) => {
+    this.route.queryParamMap.pipe(
+    switchMap((params: ParamMap) => {
       const paramQuizId = params.get('quiz-id');
 
       if (this.quizId === paramQuizId && this.userHistorySections) {
@@ -51,7 +53,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
 
       this.setServerLoading();
       return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId);
-    })
+    }))
     .subscribe(
       (userHistorySections) => {
         this.setServerSuccess();

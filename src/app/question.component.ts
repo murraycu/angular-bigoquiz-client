@@ -1,8 +1,10 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import 'rxjs/add/operator/switchMap';
+
 
 import { BaseComponent } from './base.component';
 import { QuizService } from './rest-api-clients/quiz.service';
@@ -49,8 +51,8 @@ export class QuestionComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParamMap
-    .switchMap((params: ParamMap) => {
+    this.route.queryParamMap.pipe(
+    switchMap((params: ParamMap) => {
       this.quizId = params.get('quiz-id');
       this.questionId = params.get('question-id');
       this.sectionId = params.get('section-id');
@@ -83,7 +85,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
           return undefined;
         }
       }
-    })
+    }))
     .subscribe(
       (question) => {
         this.setServerSuccess();
