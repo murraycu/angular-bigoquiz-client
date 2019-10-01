@@ -36,12 +36,4 @@ export class QuizSection extends HasIdAndTitle {
   questions: QuizQuestionAndAnswer[];
 
   questionsCount: number;
-
-  public getSubSectionById(subSectionId: string): QuizSubSection {
-    if (!this.subSectionsMap) {
-      return undefined;
-    }
-
-    return this.subSectionsMap.get(subSectionId);
-  }
 }
