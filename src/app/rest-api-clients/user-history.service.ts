@@ -5,10 +5,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { UserHistorySections} from '../data-structure/user-history-sections';
 import { UserHistoryQuizzes} from '../data-structure/user-history-quizzes';
-import { UserStats} from '../data-structure/user-stats';
 import { Submission } from '../data-structure/submission';
 import { SubmissionResult } from '../data-structure/submission-result';
-import { LoginInfo } from '../data-structure/login-info';
 import { Config } from '../config';
 
 @Injectable()
