@@ -12,7 +12,7 @@ import { UserHistoryService } from './rest-api-clients/user-history.service';
   styleUrls: ['./history.component.css'],
 })
 export class HistoryComponent extends BaseComponent {
-  @ViewChild(UserHistorySectionsComponent)
+  @ViewChild(UserHistorySectionsComponent, { static: true })
   private sectionsComponent: UserHistorySectionsComponent;
 
   quizId: string;
