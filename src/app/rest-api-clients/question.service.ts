@@ -14,10 +14,10 @@ export class QuestionService {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseApiUrl}/api/question/next`;
 
-    const p = new HttpParams();
-    p.append('quiz-id', quizId);
+    let p = new HttpParams();
+    p = p.set('quiz-id', quizId);
     if (sectionId) {
-      p.append('section-id', sectionId);
+      p = p.set('section-id', sectionId);
     }
 
     return this.http.get(url, {

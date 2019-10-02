@@ -42,15 +42,15 @@ export class UserHistoryService {
         }
 
         private createSubmitQueryParams(quizId: string, questionId: string, nextQuestionSectionId: string): HttpParams {
-        const p = new HttpParams();
-        p.append('quiz-id', quizId);
-        p.append('question-id', questionId);
+          let p = new HttpParams();
+          p = p.set('quiz-id', quizId);
+          p = p.set('question-id', questionId);
 
-        if (nextQuestionSectionId) {
-        p.append('next-question-section-id', nextQuestionSectionId);
-        }
+          if (nextQuestionSectionId) {
+            p = p.set ('next-question-section-id', nextQuestionSectionId);
+          }
 
-        return p;
+          return p;
         }
 
         submitAnswer(quizId: string, questionId: string, answerText: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
@@ -90,8 +90,8 @@ export class UserHistoryService {
             resetSections(quizId: string): Promise<boolean> {
               // Note: We must use backticks: This is a template literal.
               const url = `${Config.baseApiUrl}/api/user-history/reset-sections`;
-              const p = new HttpParams();
-              p.append('quiz-id', quizId);
+              let p = new HttpParams();
+              p = p.set('quiz-id', quizId);
 
               return this.http.post(url, '', {
               params: p,
