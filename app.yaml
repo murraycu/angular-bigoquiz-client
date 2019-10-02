@@ -22,6 +22,13 @@ handlers:
   upload: dist/.*
   secure: always
 
+# Routing for ads.txt file
+- url: /ads.txt
+  static_files: dist/ads.txt
+  upload: dist/ads.txt
+  secure: always
+
+# Use index.html for everything else.
 - url: /
   static_files: dist/index.html
   upload: dist/index.html
@@ -31,6 +38,7 @@ handlers:
   static_files: dist/index.html
   upload: dist/index.html
   secure: always
+
 
 # Temporary setting to keep gcloud from uploading not required files for deployment
 skip_files:
