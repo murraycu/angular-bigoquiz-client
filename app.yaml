@@ -4,14 +4,14 @@ threadsafe: yes
 
 handlers:
 
-# Routing for bundles to serve directly
-- url: /((?:inline|main|polyfills|styles|vendor)\.[a-z0-9]+\.bundle\.js)
+# Routing for Javacript to serve directly
+- url: /(.+\.js)
   static_files: dist/\1
   upload: dist/.*
   secure: always
 
-# Routing for a prod styles.bundle.css to serve directly
-- url: /(styles\.[a-z0-9]+\.bundle\.css)
+# Routing for a prod styles.css to serve directly
+- url: /(.+\.css)
   static_files: dist/\1
   upload: dist/.*
   secure: always
