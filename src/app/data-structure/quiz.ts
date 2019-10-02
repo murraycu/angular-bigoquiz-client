@@ -10,7 +10,6 @@ export class Quiz extends HasIdAndTitle {
 
   isPrivate: boolean;
   usesMathML: boolean;
-  questionsCount: number;
 
   @Type(() => QuizSection)
   sections: QuizSection[];
