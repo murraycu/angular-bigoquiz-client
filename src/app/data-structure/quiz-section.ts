@@ -19,6 +19,4 @@ export class QuizSection extends HasIdAndTitle {
   // defaultChoices
   @Type(() => QuizQuestionAndAnswer)
   questions: QuizQuestionAndAnswer[];
-
-  questionsCount: number;
 }
