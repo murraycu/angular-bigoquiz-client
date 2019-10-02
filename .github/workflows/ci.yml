@@ -24,6 +24,8 @@ jobs:
       env:
         CI: true
     - name: Test
-      run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      run: |
+        npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+        npm e2e --protractor-config=e2e/protractor-ci.conf.js
       env:
         CI: true
