@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { ServerState } from './server-status.component';
