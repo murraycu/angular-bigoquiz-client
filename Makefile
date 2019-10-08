@@ -15,3 +15,6 @@ clean:
 deploy: build
 	gcloud app deploy .
 
+format:
+	ng lint --fix
+
