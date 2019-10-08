@@ -136,7 +136,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     this.quizService.getQuizSections(this.quizId).then((sections) => this.sections = sections);
   }
 
-  public queryParamsForNextQuestion(question: QuizQuestion): Object {
+  public queryParamsForNextQuestion(question: QuizQuestion): object {
     if (this.sectionId) {
       return {"quiz-id": this.quizId, "question-id": question.id, "section-id": this.sectionId};
     } else {
