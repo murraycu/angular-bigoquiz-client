@@ -1,9 +1,6 @@
 import { QuizSection } from "./quiz-section";
 
 describe("QuizSection without the TestBed", () => {
-  beforeEach(() => {
-  });
-
   it ("deserializes properly from JSON", () => {
     // TODO: Does Response.json() uses JSON.parse() too?
     const jsonObj: string = JSON.parse(`
