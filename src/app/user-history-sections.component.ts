@@ -16,8 +16,8 @@ import { QuestionResultsService } from "./question-results.service";
 
 @Component({
   selector: "app-user-history-sections",
-  templateUrl: "./user-history-sections.component.html",
   styleUrls: ["./user-history-sections.component.css"],
+  templateUrl: "./user-history-sections.component.html",
 })
 export class UserHistorySectionsComponent extends BaseComponent implements OnInit, OnDestroy {
   @Output() public onJsonParsed = new EventEmitter<void>();

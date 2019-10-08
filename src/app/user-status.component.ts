@@ -6,8 +6,8 @@ import { UserService } from "./rest-api-clients/user.service";
 
 @Component({
   selector: "app-user-status",
-  templateUrl: "./user-status.component.html",
   styleUrls: ["./user-status.component.css"],
+  templateUrl: "./user-status.component.html",
 })
 export class UserStatusComponent implements OnInit {
 

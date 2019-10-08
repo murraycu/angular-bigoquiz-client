@@ -8,8 +8,8 @@ import { Quiz } from "./data-structure/quiz";
 
 @Component({
   selector: "app-quizzes",
-  templateUrl: "./quizzes.component.html",
   styleUrls: ["./quizzes.component.css"],
+  templateUrl: "./quizzes.component.html",
 })
 export class QuizzesComponent extends BaseComponent implements OnInit {
   public quizzes: Quiz[];
