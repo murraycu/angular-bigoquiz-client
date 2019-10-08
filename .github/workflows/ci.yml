@@ -18,12 +18,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Build
-      run: |
-        npm install
-        npm run build -- --prod
+      run: make
       env:
         CI: true
     - name: Test
-      run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      run: make test
       env:
         CI: true
