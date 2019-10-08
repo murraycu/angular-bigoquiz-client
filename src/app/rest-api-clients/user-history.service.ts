@@ -31,7 +31,7 @@ export class UserHistoryService {
       }
 
       /** Get the overall history for the current user, for all quizzes.
-      */
+       */
       public getUserHistoryForQuizzes(): Promise<UserHistoryQuizzes> {
         // Note: We must use backticks: This is a template literal.
         const url = `${Config.baseApiUrl}/api/user-history`;
@@ -43,7 +43,8 @@ export class UserHistoryService {
         .catch(UserHistoryService.handleError);
         }
 
-        public submitAnswer(quizId: string, questionId: string, answerText: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
+        public submitAnswer(quizId: string, questionId: string, answerText: string,
+                            nextQuestionSectionId: string): Promise<SubmissionResult> {
           // Note: We must use backticks: This is a template literal.
           const url = `${Config.baseApiUrl}/api/user-history/submit-answer`;
           const p: HttpParams = this.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId);
@@ -61,7 +62,8 @@ export class UserHistoryService {
           .catch(UserHistoryService.handleError);
           }
 
-          public submitDontKnowAnswer(quizId: string, questionId: string, nextQuestionSectionId: string): Promise<SubmissionResult> {
+          public submitDontKnowAnswer(quizId: string, questionId: string,
+                                      nextQuestionSectionId: string): Promise<SubmissionResult> {
             // Note: We must use backticks: This is a template literal.
             const url = `${Config.baseApiUrl}/api/user-history/submit-dont-know-answer`;
             const p: HttpParams = this.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId);

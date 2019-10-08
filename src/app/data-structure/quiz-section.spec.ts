@@ -180,7 +180,8 @@ describe("QuizSection without the TestBed", () => {
 
     expect(obj.subSections[0]).toBeTruthy(obj);
     expect(obj.subSections[0].id).toEqual("dijkstra-with-fibonacci-heap");
-    expect(obj.subSections[0].title).toEqual("Dijkstra's Algorithm for Shortest Path (Fibonacci heap as priority queue)");
+    expect(obj.subSections[0].title).toEqual(
+      "Dijkstra's Algorithm for Shortest Path (Fibonacci heap as priority queue)");
     expect(obj.subSections[0].questions).toBeTruthy();
     expect(obj.subSections[0].questions.length).toEqual(2);
 

@@ -99,14 +99,17 @@ describe("UserStats without the TestBed", () => {
     expect(userStats.topProblemQuestionHistories.length).toBe(2);
   });
 
-  it ("updateProblemQuestion() false, true re-empties topProblemquestionHistories.", () => {
+  it ("updateProblemQuestion() false, true re-empties topProblemquestionHistories.",
+    () => {
     userStats.updateProblemQuestion(question1, false);
     userStats.updateProblemQuestion(question1, true);
 
     expect(userStats.topProblemQuestionHistories).toBeUndefined();
   });
 
-  it ("updateProblemQuestion() false (id1), false (id2), true (id2) reults in just id1 in topProblemquestionHistories.", () => {
+  it (
+    "updateProblemQuestion() false (id1), false (id2), true (id2) reults in just id1 in topProblemquestionHistories.",
+    () => {
     const QUESTION_ID2 = "questionid2";
     const question2: QuizQuestion = new QuizQuestion();
     question2.id = QUESTION_ID2;
