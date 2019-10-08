@@ -20,8 +20,6 @@ export class QuestionResultsService {
    */
   public notifyObservable$ = this.subject.asObservable();
 
-  constructor() {}
-
   public notify(data: QuestionResultEvent) {
     if (data) {
       this.subject.next(data);
