@@ -9,7 +9,6 @@ describe('LoginInfo without the TestBed', () => {
     const jsonObj: string = JSON.parse(`
 {
   "loggedIn": true,
-  "userId": "1234",
   "nickname": "example@example.com"
 }`);
 
@@ -17,9 +16,6 @@ describe('LoginInfo without the TestBed', () => {
     expect(obj).toBeTruthy(obj);
 
     expect(obj.loggedIn).toEqual(true);
-
-    expect(obj.userId).toBeTruthy(obj);
-    expect(obj.userId).toEqual('1234');
 
     expect(obj.nickname).toBeTruthy(obj);
     expect(obj.nickname).toEqual('example@example.com');
