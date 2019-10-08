@@ -26,6 +26,10 @@ import { UserService } from "./rest-api-clients/user.service";
 import { QuestionResultsService } from "./question-results.service";
 
 @NgModule({
+  bootstrap: [
+    AppComponent,
+    UserStatusComponent,
+  ],
   declarations: [
     AppComponent,
     UserStatusComponent,
@@ -53,10 +57,6 @@ import { QuestionResultsService } from "./question-results.service";
     UserHistoryService,
     QuestionResultsService,
     Title,
-  ],
-  bootstrap: [
-    AppComponent,
-    UserStatusComponent,
   ],
 })
 export class AppModule { }

@@ -11,8 +11,8 @@ import { QuizService } from "./rest-api-clients/quiz.service";
 
 @Component({
   selector: "app-quiz",
-  templateUrl: "./quiz.component.html",
   styleUrls: ["./quiz.component.css"],
+  templateUrl: "./quiz.component.html",
 })
 export class QuizComponent extends BaseComponent implements OnInit {
   public quiz: Quiz;

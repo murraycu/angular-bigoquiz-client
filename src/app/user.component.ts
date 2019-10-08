@@ -7,8 +7,8 @@ import { UserHistoryService } from "./rest-api-clients/user-history.service";
 
 @Component({
   selector: "app-user",
-  templateUrl: "./user.component.html",
   styleUrls: ["./user.component.css", "./user-history-sections.component.css"],
+  templateUrl: "./user.component.html",
 })
 export class UserComponent extends BaseComponent implements OnInit {
   public userHistoryQuizzes: UserHistoryQuizzes;

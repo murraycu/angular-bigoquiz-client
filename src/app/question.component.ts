@@ -20,8 +20,8 @@ import { QuestionResultsService } from "./question-results.service";
 
 @Component({
   selector: "app-question",
-  templateUrl: "./question.component.html",
   styleUrls: ["./question.component.css"],
+  templateUrl: "./question.component.html",
 })
 export class QuestionComponent extends BaseComponent implements OnInit {
 
@@ -121,8 +121,8 @@ export class QuestionComponent extends BaseComponent implements OnInit {
           // so just navigate to the appropriate URL.
           this.router.navigate(["/question"], {
           queryParams: {
-            "quiz-id": this.quizId,
             "question-id": question.id,
+            "quiz-id": this.quizId,
             "section-id": this.sectionId}});
         }
       },
