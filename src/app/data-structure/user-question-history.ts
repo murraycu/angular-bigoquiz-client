@@ -1,9 +1,9 @@
-import { QuizQuestion } from './quiz-question';
-import { QuizText } from './quiz-text';
-import { Type } from 'class-transformer';
+import { Type } from "class-transformer";
+import { QuizQuestion } from "./quiz-question";
+import { QuizText } from "./quiz-text";
 
 export class UserQuestionHistory {
-  static fromQuestion(question: QuizQuestion): UserQuestionHistory {
+  public static fromQuestion(question: QuizQuestion): UserQuestionHistory {
     const result: UserQuestionHistory = new UserQuestionHistory();
     result.questionId = question.id;
     result.questionTitle = question.text;
@@ -15,23 +15,23 @@ export class UserQuestionHistory {
     return result;
   }
 
-  questionId: string;
+  public questionId: string;
 
   @Type(() => QuizText)
-  questionTitle: QuizText;
+  public questionTitle: QuizText;
 
-  sectionId: string;
-  subSectionTitle: string;
+  public sectionId: string;
+  public subSectionTitle: string;
 
-  answeredCorrectlyOnce = false;
-  countAnsweredWrong = 0;
+  public answeredCorrectlyOnce = false;
+  public countAnsweredWrong = 0;
 
   /** Adjust the counts in response to a correct or wrong answer.
    * This is also updated on the server, but this lets us update
    * the local data too, until we refresh it all again from the
    * server sometime.
    */
-  adjustCount(result: boolean): void {
+  public adjustCount(result: boolean): void {
     if (result) {
       this.answeredCorrectlyOnce = true;
     }

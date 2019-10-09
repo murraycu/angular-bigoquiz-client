@@ -1,3 +1,3 @@
 export class Submission {
-  answer: string;
+  public answer: string;
 }

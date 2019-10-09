@@ -1,10 +1,10 @@
-import { QuizSection } from './quiz-section';
+import { QuizSection } from "./quiz-section";
 
-describe('QuizSection without the TestBed', () => {
+describe("QuizSection without the TestBed", () => {
   beforeEach(() => {
   });
 
-  it ('deserializes properly from JSON', () => {
+  it ("deserializes properly from JSON", () => {
     // TODO: Does Response.json() uses JSON.parse() too?
     const jsonObj: string = JSON.parse(`
 {
@@ -170,28 +170,28 @@ describe('QuizSection without the TestBed', () => {
     expect(obj).toBeTruthy(obj);
 
     expect(obj.id).toBeTruthy(obj);
-    expect(obj.id).toEqual('graph-search');
+    expect(obj.id).toEqual("graph-search");
 
     expect(obj.title).toBeTruthy(obj);
-    expect(obj.title).toEqual('Graph Search');
+    expect(obj.title).toEqual("Graph Search");
 
     expect(obj.subSections).toBeTruthy(obj);
     expect(obj.subSections.length).toEqual(2);
 
     expect(obj.subSections[0]).toBeTruthy(obj);
-    expect(obj.subSections[0].id).toEqual('dijkstra-with-fibonacci-heap');
-    expect(obj.subSections[0].title).toEqual('Dijkstra\'s Algorithm for Shortest Path (Fibonacci heap as priority queue)');
+    expect(obj.subSections[0].id).toEqual("dijkstra-with-fibonacci-heap");
+    expect(obj.subSections[0].title).toEqual("Dijkstra's Algorithm for Shortest Path (Fibonacci heap as priority queue)");
     expect(obj.subSections[0].questions).toBeTruthy();
     expect(obj.subSections[0].questions.length).toEqual(2);
 
     expect(obj.subSections[1]).toBeTruthy(obj);
-    expect(obj.subSections[1].id).toEqual('prims-mst');
+    expect(obj.subSections[1].id).toEqual("prims-mst");
 
     // None of the questions are not in a sub-section.
     expect(obj.questions).toBeUndefined();
   });
 
-  it ('deserializes properly from undefined object.', () => {
+  it ("deserializes properly from undefined object.", () => {
     const obj = QuizSection.fromJson(undefined);
     expect(obj).toBeUndefined(obj);
   });

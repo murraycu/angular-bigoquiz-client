@@ -1,9 +1,9 @@
-import { Title } from '@angular/platform-browser';
+import { Title } from "@angular/platform-browser";
 
-import { ServerState } from './server-status.component';
+import { ServerState } from "./server-status.component";
 
 export class BaseComponent {
-  serverState: ServerState = ServerState.Loading;
+  public serverState: ServerState = ServerState.Loading;
 
   public constructor(private titleService: Title) {
   }
@@ -13,17 +13,17 @@ export class BaseComponent {
   }
 
   // Show a Loading... message.
-  setServerLoading() {
+  public setServerLoading() {
     this.serverState = ServerState.Loading;
   }
 
   // Show an error message.
-  setServerFailed() {
+  public setServerFailed() {
     this.serverState = ServerState.Failed;
   }
 
   // Hide the Loading.. and error messages.
-  setServerSuccess() {
+  public setServerSuccess() {
     this.serverState = ServerState.Success;
   }
 }

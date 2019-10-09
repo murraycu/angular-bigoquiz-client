@@ -1,55 +1,54 @@
 
-import {switchMap} from 'rxjs/operators';
-import { Component, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
+import { Title } from "@angular/platform-browser";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Subscription } from "rxjs";
+import {switchMap} from "rxjs/operators";
 
+import { BaseComponent } from "./base.component";
+import { UserHistorySections } from "./data-structure/user-history-sections";
+import { UserQuestionHistory } from "./data-structure/user-question-history";
+import { UserStats } from "./data-structure/user-stats";
+import { UserHistoryService } from "./rest-api-clients/user-history.service";
 
-import { BaseComponent } from './base.component';
-import { UserHistoryService } from './rest-api-clients/user-history.service';
-import { UserHistorySections } from './data-structure/user-history-sections';
-import { UserQuestionHistory } from './data-structure/user-question-history';
-import { UserStats } from './data-structure/user-stats';
-
-import { QuestionResultsService } from './question-results.service';
-import { QuestionResultEvent } from './question-result-event';
+import { QuestionResultEvent } from "./question-result-event";
+import { QuestionResultsService } from "./question-results.service";
 
 @Component({
-  selector: 'app-user-history-sections',
-  templateUrl: './user-history-sections.component.html',
-  styleUrls: ['./user-history-sections.component.css']
+  selector: "app-user-history-sections",
+  templateUrl: "./user-history-sections.component.html",
+  styleUrls: ["./user-history-sections.component.css"],
 })
 export class UserHistorySectionsComponent extends BaseComponent implements OnInit, OnDestroy {
-  @Output() onJsonParsed = new EventEmitter<void>();
+  @Output() public onJsonParsed = new EventEmitter<void>();
+  public userHistorySections: UserHistorySections;
+
+  public readonly MAX_PROBLEM_QUESTIONS: number = 5;
 
   private quizId: string;
   private sectionId: string;
-  userHistorySections: UserHistorySections;
   private subscriptionQuestionResultsService: Subscription;
 
-  readonly MAX_PROBLEM_QUESTIONS: number = 5;
-
   constructor(private userHistoryService: UserHistoryService,
-    private questionResultsService: QuestionResultsService,
-    private route: ActivatedRoute,
-    titleService: Title) {
+              private questionResultsService: QuestionResultsService,
+              private route: ActivatedRoute,
+              titleService: Title) {
     super(titleService);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.route.queryParamMap.pipe(
     switchMap((params: ParamMap) => {
-      const paramQuizId = params.get('quiz-id');
+      const paramQuizId = params.get("quiz-id");
 
       if (this.quizId === paramQuizId && this.userHistorySections) {
         // Use the existing data:
         this.setServerSuccess();
-        return new Promise<UserHistorySections>(resolve => resolve(this.userHistorySections));
+        return new Promise<UserHistorySections>((resolve) => resolve(this.userHistorySections));
       }
 
       this.quizId = paramQuizId;
-      this.sectionId = params.get('section-id');
+      this.sectionId = params.get("section-id");
 
       this.setServerLoading();
       return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId);
@@ -62,16 +61,16 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
       },
       (err) => {
         this.setServerFailed();
-      }
+      },
     );
 
     this.subscriptionQuestionResultsService =
-      this.questionResultsService.notifyObservable$.subscribe(result => {
+      this.questionResultsService.notifyObservable$.subscribe((result) => {
         this.onUserAnsweredQuestion(result);
       });
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.subscriptionQuestionResultsService.unsubscribe();
   }
 
@@ -81,13 +80,13 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   // and there is no Typescript compiler checking of the code in the .html.
   /** Get a suitable title to show in the list of problem questions.
    */
-  questionTitleForHistory(question: UserQuestionHistory): string {
+  public questionTitleForHistory(question: UserQuestionHistory): string {
     if (!question || !question.questionTitle || !question.questionTitle.text) {
-      return '';
+      return "";
     }
 
     if (question.subSectionTitle) {
-      return question.subSectionTitle + ': ' + question.questionTitle.text;
+      return question.subSectionTitle + ": " + question.questionTitle.text;
     } else {
       return question.questionTitle.text;
     }
@@ -97,7 +96,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   /** This checks that each problem question is really still a problem,
    * because it might have been updated locally.
    */
-  problemQuestionsCount(stats: UserStats): number {
+  public problemQuestionsCount(stats: UserStats): number {
     if (!stats) {
       return 0;
     }
@@ -118,16 +117,16 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
     return count;
   }
 
-  generateQuestionLinkQueryParams(qh: UserQuestionHistory): Object {
-    const result = {'quiz-id': this.quizId, 'question-id': qh.questionId};
+  public generateQuestionLinkQueryParams(qh: UserQuestionHistory): Object {
+    const result = {"quiz-id": this.quizId, "question-id": qh.questionId};
     if (this.sectionId && this.sectionId === qh.sectionId) {
-      result['section-id'] = this.sectionId;
+      result["section-id"] = this.sectionId;
     }
 
     return result;
   }
 
-  onUserAnsweredQuestion(data: QuestionResultEvent): void {
+  public onUserAnsweredQuestion(data: QuestionResultEvent): void {
     if ( !this.userHistorySections) {
       return;
     }

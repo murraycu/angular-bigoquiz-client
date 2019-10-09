@@ -1,6 +1,6 @@
-import { HasIdAndTitle } from './has-id-and-title';
-import { QuizText } from './quiz-text';
-import { Type, plainToClass } from 'class-transformer';
+import { plainToClass, Type } from "class-transformer";
+import { HasIdAndTitle } from "./has-id-and-title";
+import { QuizText } from "./quiz-text";
 
 export class QuizQuestion extends HasIdAndTitle {
   public static fromJson(obj: any): QuizQuestion {
@@ -8,25 +8,25 @@ export class QuizQuestion extends HasIdAndTitle {
   }
 
   @Type(() => QuizText)
-  text: QuizText;
+  public text: QuizText;
 
-  note: string;
-  videoUrl: string;
-  codeUrl: string;
+  public note: string;
+  public videoUrl: string;
+  public codeUrl: string;
 
   @Type(() => QuizText)
-  choices: QuizText[];
+  public choices: QuizText[];
 
-  sectionId: string;
-  subSectionId: string;
+  public sectionId: string;
+  public subSectionId: string;
 
-  quizTitle: string;
-
-  @Type(() => HasIdAndTitle)
-  section: HasIdAndTitle;
+  public quizTitle: string;
 
   @Type(() => HasIdAndTitle)
-  subSection: HasIdAndTitle;
+  public section: HasIdAndTitle;
 
-  quizUsesMathML: boolean;
+  @Type(() => HasIdAndTitle)
+  public subSection: HasIdAndTitle;
+
+  public quizUsesMathML: boolean;
 }

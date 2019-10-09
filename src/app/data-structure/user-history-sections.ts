@@ -1,6 +1,6 @@
-import { UserStats } from './user-stats';
-import { LoginInfo } from './login-info';
-import { Type, plainToClass } from 'class-transformer';
+import { plainToClass, Type } from "class-transformer";
+import { LoginInfo } from "./login-info";
+import { UserStats } from "./user-stats";
 
 export class UserHistorySections {
   public static fromJson(obj: any): UserHistorySections {
@@ -21,17 +21,17 @@ export class UserHistorySections {
   }
 
   @Type(() => LoginInfo)
-  loginInfo: LoginInfo;
+  public loginInfo: LoginInfo;
 
-  quizId: string;
-  quizTitle: string;
+  public quizId: string;
+  public quizTitle: string;
 
   @Type(() => UserStats)
-  stats: UserStats[];
+  public stats: UserStats[];
 
   // Map of section IDs to stats.
   // This is built from stats
-  statsMap: Map<string, UserStats>;
+  public statsMap: Map<string, UserStats>;
 
   public getUserStatsForSection(sectionId: string): UserStats {
     if (!this.statsMap) {

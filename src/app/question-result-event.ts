@@ -1,6 +1,6 @@
-import { QuizQuestion } from './data-structure/quiz-question';
+import { QuizQuestion } from "./data-structure/quiz-question";
 
 export class QuestionResultEvent {
-  question: QuizQuestion;
-  result: boolean;
+  public question: QuizQuestion;
+  public result: boolean;
 }

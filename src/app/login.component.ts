@@ -1,42 +1,42 @@
-import { Component, OnInit, NgZone, Input } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Component, Input, NgZone, OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
+import { ActivatedRoute, ParamMap } from "@angular/router";
 
-import { BaseComponent } from './base.component';
-import { UserService } from './rest-api-clients/user.service';
-import { LoginInfo } from './data-structure/login-info';
-import { Config } from './config';
+import { BaseComponent } from "./base.component";
+import { Config } from "./config";
+import { LoginInfo } from "./data-structure/login-info";
+import { UserService } from "./rest-api-clients/user.service";
 
 // Google's login API namespace
 declare var gapi: any;
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent extends BaseComponent implements OnInit {
-  // We don't want to show the logout button in the header,
-  // but we do want to show it on the user/profile page.
-  @Input() showLogOutWhenAppropriate: boolean;
-
-  loginInfo: LoginInfo;
-  loginFailed: boolean;
 
   private static redirectSuffix = `?redirect=${Config.baseUrl}/user`;
-  googleLoginUrl = `${Config.googleLoginPrefix}${LoginComponent.redirectSuffix}`;
-  gitHubLoginUrl = `${Config.gitHubLoginPrefix}${LoginComponent.redirectSuffix}`;
-  facebookLoginUrl = `${Config.facebookLoginPrefix}${LoginComponent.redirectSuffix}`;
+  // We don't want to show the logout button in the header,
+  // but we do want to show it on the user/profile page.
+  @Input() public showLogOutWhenAppropriate: boolean;
+
+  public loginInfo: LoginInfo;
+  public loginFailed: boolean;
+  public googleLoginUrl = `${Config.googleLoginPrefix}${LoginComponent.redirectSuffix}`;
+  public gitHubLoginUrl = `${Config.gitHubLoginPrefix}${LoginComponent.redirectSuffix}`;
+  public facebookLoginUrl = `${Config.facebookLoginPrefix}${LoginComponent.redirectSuffix}`;
 
   constructor(private userService: UserService,
-    private zone: NgZone,
-    private route: ActivatedRoute,
-    titleService: Title) {
+              private zone: NgZone,
+              private route: ActivatedRoute,
+              titleService: Title) {
     super(titleService);
   }
 
-  ngOnInit(): void {
-    this.setTitle('Login');
+  public ngOnInit(): void {
+    this.setTitle("Login");
 
     // Get the "failed" query parameter:
     // We could instead do this, but it's theoretically possible that we might
@@ -44,11 +44,11 @@ export class LoginComponent extends BaseComponent implements OnInit {
     // this.loginFailed = this.route.snapshot.queryParams.failed;
 
     this.route.queryParams.subscribe((params: ParamMap) => {
-      const str = params['failed'];
-      this.loginFailed = (str === 'true');
+      const str = params["failed"];
+      this.loginFailed = (str === "true");
     });
 
     // Get the login info from the server:
-    this.userService.getUser().then(loginInfo => this.loginInfo = loginInfo);
+    this.userService.getUser().then((loginInfo) => this.loginInfo = loginInfo);
   }
 }

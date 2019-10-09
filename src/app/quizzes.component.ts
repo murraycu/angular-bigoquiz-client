@@ -1,25 +1,25 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { QuizService } from './rest-api-clients/quiz.service';
+import { Component } from "@angular/core";
+import { OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
+import { QuizService } from "./rest-api-clients/quiz.service";
 
-import { BaseComponent } from './base.component';
-import { Quiz } from './data-structure/quiz';
+import { BaseComponent } from "./base.component";
+import { Quiz } from "./data-structure/quiz";
 
 @Component({
-  selector: 'app-quizzes',
-  templateUrl: './quizzes.component.html',
-  styleUrls: ['./quizzes.component.css']
+  selector: "app-quizzes",
+  templateUrl: "./quizzes.component.html",
+  styleUrls: ["./quizzes.component.css"],
 })
 export class QuizzesComponent extends BaseComponent implements OnInit {
-  quizzes: Quiz[];
+  public quizzes: Quiz[];
 
   constructor(private quizService: QuizService, titleService: Title) {
     super(titleService);
-    this.setTitle('Quizzes');
+    this.setTitle("Quizzes");
   }
 
-  getQuizzes(): void {
+  public getQuizzes(): void {
     this.setServerLoading();
     this.quizService.getQuizzes().then(
       (quizzes) => {
@@ -31,7 +31,7 @@ export class QuizzesComponent extends BaseComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getQuizzes();
   }
 }

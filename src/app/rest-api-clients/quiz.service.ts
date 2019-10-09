@@ -1,22 +1,26 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
-
-
-import { Quiz } from '../data-structure/quiz';
-import { QuizQuestion } from '../data-structure/quiz-question';
-import { QuizSection } from '../data-structure/quiz-section';
-import { Config } from '../config';
+import { Config } from "../config";
+import { Quiz } from "../data-structure/quiz";
+import { QuizQuestion } from "../data-structure/quiz-question";
+import { QuizSection } from "../data-structure/quiz-section";
 
 @Injectable()
 export class QuizService {
+
+  private static handleError(error: any): Promise<any> {
+    console.error("An error occurred", error);
+    // console.error('An error occurred: JSON:', error.json());
+    return Promise.reject(error.message || error);
+  }
   constructor(private http: HttpClient) { }
 
-  getQuizzes(): Promise<Quiz[]> {
-   const url = Config.baseApiUrl + '/api/quiz?list-only=true';
+  public getQuizzes(): Promise<Quiz[]> {
+   const url = Config.baseApiUrl + "/api/quiz?list-only=true";
    return this.http.get(url)
       .toPromise()
-      .then(response => {
+      .then((response) => {
         return Quiz.fromJson(response);
       })
       .catch(QuizService.handleError);
@@ -30,12 +34,12 @@ export class QuizService {
     */
   }
 
-  getQuiz(id: string): Promise<Quiz> {
+  public getQuiz(id: string): Promise<Quiz> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseApiUrl}/api/quiz/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => {
+      .then((response) => {
         return Quiz.fromJson(response);
       })
       .catch(QuizService.handleError);
@@ -46,31 +50,25 @@ export class QuizService {
     */
   }
 
-  getQuizSections(quizId: string): Promise<QuizSection[]> {
+  public getQuizSections(quizId: string): Promise<QuizSection[]> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseApiUrl}/api/quiz/${quizId}/section?list-only=true`;
     return this.http.get(url)
       .toPromise()
-      .then(response => {
+      .then((response) => {
         return QuizSection.fromJson(response);
       })
       .catch(QuizService.handleError);
   }
 
-  getQuizQuestion(quizId: string, questionId: string): Promise<QuizQuestion> {
+  public getQuizQuestion(quizId: string, questionId: string): Promise<QuizQuestion> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseApiUrl}/api/quiz/${quizId}/question/${questionId}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => {
+      .then((response) => {
         return QuizQuestion.fromJson(response);
       })
       .catch(QuizService.handleError);
-  }
-
-  private static handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    // console.error('An error occurred: JSON:', error.json());
-    return Promise.reject(error.message || error);
   }
 }
