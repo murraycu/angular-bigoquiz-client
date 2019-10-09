@@ -147,5 +147,9 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
     }
 
     stats.updateProblemQuestion(data.question, data.result);
+
+    // Properly update the UserHistorySections,
+    // so it will be re-rendered.
+    this.userHistorySections.setUserStatsForSection(data.question.sectionId, stats)
   }
 }

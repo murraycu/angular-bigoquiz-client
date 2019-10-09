@@ -41,6 +41,22 @@ export class UserHistorySections {
     return this.statsMap.get(sectionId);
   }
 
+  public setUserStatsForSection(sectionId: string, userStats: UserStats) {
+    if (!this.statsMap) {
+      return undefined;
+    }
+
+    // Update in stats.
+    for (var i = 0; i < this.stats.length; i++) {
+      if( this.stats[i].sectionId == sectionId){
+        this.stats[i] = userStats;
+      }
+    }
+
+    // Update in the map.
+    this.statsMap.set(sectionId, userStats);
+  }
+
   public hasUser(): boolean {
     if (!this.loginInfo) {
       return false;
