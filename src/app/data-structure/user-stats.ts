@@ -48,21 +48,11 @@ export class UserStats {
   public questionHistoriesMap: Map<string, UserQuestionHistory>;
 
   public percentAnsweredOnce(total: number): string {
-    // Avoid divide by zero, and avoid negative results.
-    if (total <= 0) {
-      return "0%";
-    }
-
-    return ((this.countQuestionsAnsweredOnce / total) * 100) + "%";
+    return UserStats.percentageString(total, this.countQuestionsAnsweredOnce);
   }
 
   public percentCorrectOnce(total: number): string {
-    // Avoid divide by zero, and avoid negative results.
-    if (total <= 0) {
-      return "0%";
-    }
-
-    return ((this.countQuestionsCorrectOnce / total) * 100) + "%";
+    return UserStats.percentageString(total, this.countQuestionsCorrectOnce);
   }
 
   public updateProblemQuestion(question: QuizQuestion, answerIsCorrect: boolean): void {
@@ -101,6 +91,15 @@ export class UserStats {
     }
 
     this.updateTopProblemQuestions();
+  }
+
+  private static percentageString(total: number, part: number): string {
+    // Avoid divide by zero, and avoid negative results.
+    if (part <= 0) {
+      return "0%";
+    }
+
+    return Number((part / total) * 100).toFixed(2) + "%";
   }
 
   private updateTopProblemQuestions(): void {
