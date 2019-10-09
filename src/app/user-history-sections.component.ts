@@ -150,6 +150,6 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
 
     // Properly update the UserHistorySections,
     // so it will be re-rendered.
-    this.userHistorySections.setUserStatsForSection(data.question.sectionId, stats)
+    this.userHistorySections.setUserStatsForSection(data.question.sectionId, stats);
   }
 }

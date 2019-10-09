@@ -1,33 +1,25 @@
 import { QuizQuestion } from "./quiz-question";
-import { UserQuestionHistory } from "./user-question-history";
+import { UserHistorySections } from "./user-history-sections";
+import { UserStats } from "./user-stats";
 
-describe("UserQuestionHistory without the TestBed", () => {
-  let history: UserQuestionHistory;
+describe("UserHistorySections without the TestBed", () => {
 
-  beforeEach(() => {
-    const question: QuizQuestion = new QuizQuestion();
-    question.id = "questionid1";
-    history = UserQuestionHistory.fromQuestion(question);
+  it("getUserStatsForSection() should return value previously set with setUserStatsForSection().", () => {
+    const sections: UserHistorySections = new UserHistorySections();
+
+    const sectionId = "some-section-id";
+    const sectionTitle = "some-section-title";
+
+    const userStats: UserStats = new UserStats();
+    userStats.sectionId = sectionId;
+    userStats.sectionTitle = sectionTitle;
+
+    sections.setUserStatsForSection(sectionId, userStats);
+
+    const result = sections.getUserStatsForSection(sectionId);
+
+    expect(result).toBeTruthy();
+    expect(result.sectionId).toBe(sectionId);
+    expect(result.sectionTitle).toBe(sectionTitle);
   });
-
-  it("answeredCorrectlyOnce should default to false.", () => {
-    expect(history.answeredCorrectlyOnce).toBe(false);
-  });
-
-  it("countAnsweredWrong should default to 0.", () => {
-    expect(history.countAnsweredWrong).toBe(0);
-  });
-
-  it("#adjustCount(true) updates counts correctly.", () => {
-    history.adjustCount(true);
-    expect(history.answeredCorrectlyOnce).toBe(true);
-    expect(history.countAnsweredWrong).toBe(-1);
-  });
-
-  it("#adjustCount(false) updates counts correctly.", () => {
-    history.adjustCount(false);
-    expect(history.answeredCorrectlyOnce).toBe(false);
-    expect(history.countAnsweredWrong).toBe(1);
-  });
-
 });
