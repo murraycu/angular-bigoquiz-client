@@ -47,7 +47,7 @@ export class UserHistorySections {
 
   public setUserStatsForSection(sectionId: string, userStats: UserStats) {
     if (!this.statsMap) {
-      return undefined;
+      this.statsMap = new Map<string, UserStats>();
     }
 
     // Update in the map.
