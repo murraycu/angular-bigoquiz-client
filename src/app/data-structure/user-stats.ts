@@ -53,7 +53,7 @@ export class UserStats {
       return "0%";
     }
 
-    return (this.countQuestionsAnsweredOnce / total) + "%";
+    return ((this.countQuestionsAnsweredOnce / total) * 100) + "%";
   }
 
   public percentCorrectOnce(total: number): string {
@@ -62,7 +62,7 @@ export class UserStats {
       return "0%";
     }
 
-    return (this.countQuestionsCorrectOnce / total) + "%";
+    return ((this.countQuestionsCorrectOnce / total) * 100) + "%";
   }
 
   public updateProblemQuestion(question: QuizQuestion, answerIsCorrect: boolean): void {
