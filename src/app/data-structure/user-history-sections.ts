@@ -48,7 +48,7 @@ export class UserHistorySections {
 
     // Update in stats.
     for (var i = 0; i < this.stats.length; i++) {
-      if( this.stats[i].sectionId == sectionId){
+      if( this.stats[i].sectionId === sectionId){
         this.stats[i] = userStats;
       }
     }
