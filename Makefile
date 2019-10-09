@@ -6,6 +6,10 @@ build:
 	npm install ;\
         npm run build -- --prod
 
+build-debug:
+	npm install ;\
+        npm run build
+
 test:
 	npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
@@ -14,6 +18,10 @@ clean:
 
 deploy: build
 	gcloud app deploy .
+
+
+run-debug: build-debug
+	ng serve
 
 format:
 	ng lint --fix
