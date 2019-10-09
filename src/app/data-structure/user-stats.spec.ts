@@ -108,7 +108,7 @@ describe("UserStats without the TestBed", () => {
   });
 
   it (
-    "updateProblemQuestion() false (id1), false (id2), true (id2) reults in just id1 in topProblemquestionHistories.",
+    "updateProblemQuestion() false (id1), false (id2), true (id2) results in just id1 in topProblemquestionHistories.",
     () => {
     const QUESTION_ID2 = "questionid2";
     const question2: QuizQuestion = new QuizQuestion();
@@ -120,6 +120,17 @@ describe("UserStats without the TestBed", () => {
 
     expect(userStats.topProblemQuestionHistories).toBeTruthy();
     expect(userStats.topProblemQuestionHistories.length).toBe(1);
+  });
 
+  it ("percentageString should produce an expected string", () => {
+    expect(UserStats.percentageString(100, 10)).toBe("10.00%");
+  });
+
+  it ("percentageString should not fail with a 0 part value", () => {
+    expect(UserStats.percentageString(100, 0)).toBe("0.00%");
+  });
+
+  it ("percentageString should not fail with a 0 total value", () => {
+    expect(UserStats.percentageString(0, 10)).toBe("0.00%");
   });
 });

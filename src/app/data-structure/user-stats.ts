@@ -27,6 +27,20 @@ export class UserStats {
     return result;
   }
 
+  public static percentageString(total: number, part: number): string {
+    // Avoid returning percentages over 100.
+    if (total < part) {
+      part = total;
+    }
+
+    // Avoid divide by zero, and avoid negative results.
+    if (part <= 0) {
+      return "0.00%";
+    }
+
+    return Number((part / total) * 100).toFixed(2) + "%";
+  }
+
   public quizId: string;
   public quizTitle: string;
   public sectionId: string;
@@ -95,15 +109,6 @@ export class UserStats {
     }
 
     this.updateTopProblemQuestions();
-  }
-
-  private static percentageString(total: number, part: number): string {
-    // Avoid divide by zero, and avoid negative results.
-    if (part <= 0) {
-      return "0%";
-    }
-
-    return Number((part / total) * 100).toFixed(2) + "%";
   }
 
   private updateTopProblemQuestions(): void {
