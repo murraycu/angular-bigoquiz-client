@@ -15,6 +15,9 @@ export class UserHistorySections {
 
         result.statsMap.set(userStats.sectionId, userStats);
       }
+
+      // After parsing, we will use only statsMap.
+      result.stats = undefined;
     }
 
     return result;
@@ -26,6 +29,7 @@ export class UserHistorySections {
   public quizId: string;
   public quizTitle: string;
 
+  // Only used when parsing from JSON.
   @Type(() => UserStats)
   public stats: UserStats[];
 
@@ -44,13 +48,6 @@ export class UserHistorySections {
   public setUserStatsForSection(sectionId: string, userStats: UserStats) {
     if (!this.statsMap) {
       return undefined;
-    }
-
-    // Update in stats.
-    for (var i = 0; i < this.stats.length; i++) {
-      if( this.stats[i].sectionId === sectionId){
-        this.stats[i] = userStats;
-      }
     }
 
     // Update in the map.
