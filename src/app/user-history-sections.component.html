@@ -11,27 +11,27 @@
         <p>Please <a [routerLink]="['/login']">sign in</a> to track your progress and identify problem questions.</p>
       </ng-container>
 
-      <div *ngFor="let stats of userHistorySections.stats"
+      <div *ngFor="let stats of userHistorySections.statsMap | keyvalue"
         class="user-history-quiz-section">
-        <h3><a [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': stats.sectionId}">{{stats.sectionTitle}}</a></h3>
+        <h3><a [routerLink]="['/question']" [queryParams]="{'quiz-id': quizId, 'section-id': stats.value.sectionId}">{{stats.value.sectionTitle}}</a></h3>
           <div class="progress-bar">
-            <p class="progress-part-correct-once" [ngStyle]="{'width': stats.percentCorrectOnce(stats.countQuestions)}">{{stats.countQuestionsCorrectOnce}} correct once</p>
-            <p class="progress-part-answered-once" [ngStyle]="{'width': stats.percentAnsweredOnce(stats.countQuestions)}">{{stats.countQuestionsAnsweredOnce}} answered once</p>
-            <p class="progress-part-count" style="width: 100%">{{stats.countQuestions}} questions</p>
+            <p class="progress-part-correct-once" [ngStyle]="{'width': stats.value.percentCorrectOnce(stats.value.countQuestions)}">{{stats.value.countQuestionsCorrectOnce}} correct once</p>
+            <p class="progress-part-answered-once" [ngStyle]="{'width': stats.value.percentAnsweredOnce(stats.value.countQuestions)}">{{stats.value.countQuestionsAnsweredOnce}} answered once</p>
+            <p class="progress-part-count" style="width: 100%">{{stats.value.countQuestions}} questions</p>
           </div>
 
           <h4>Problem Questions</h4>
           <div class="panel-problem-questions">
-            <p *ngIf="problemQuestionsCount(stats) <= 0; else elseTemplate" class="problem-answer clearfix">
+            <p *ngIf="problemQuestionsCount(stats.value) <= 0; else elseTemplate" class="problem-answer clearfix">
               <span class="problem-answer-score">None Yet</span>
             <p>
 
             <ng-template #elseTemplate>
-              <p *ngFor="let question of stats.topProblemQuestionHistories | slice:0:MAX_PROBLEM_QUESTIONS" class="problem-answer clearfix">
+              <p *ngFor="let question of stats.value.topProblemQuestionHistories | slice:0:MAX_PROBLEM_QUESTIONS" class="problem-answer clearfix">
                 <span class="problem-answer-score">-{{question.countAnsweredWrong}}</span>
                 <a class="problem-answer-hyperlink" [routerLink]="['/question']" [queryParams]="generateQuestionLinkQueryParams(question)">{{questionTitleForHistory(question)}}</a>
               </p>
-              <p *ngIf="stats.topProblemQuestionHistories.length > MAX_PROBLEM_QUESTIONS" class="problem-questions-more-questions">and {{stats.topProblemQuestionHistories.length - MAX_PROBLEM_QUESTIONS}} more</p>
+              <p *ngIf="stats.value.topProblemQuestionHistories.length > MAX_PROBLEM_QUESTIONS" class="problem-questions-more-questions">and {{stats.value.topProblemQuestionHistories.length - MAX_PROBLEM_QUESTIONS}} more</p>
             </ng-template>
 
           </div>
