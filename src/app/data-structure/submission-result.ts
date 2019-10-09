@@ -1,17 +1,17 @@
-import { QuizText } from './quiz-text';
-import { QuizQuestion } from './quiz-question';
-import { Type, plainToClass } from 'class-transformer';
+import { plainToClass, Type } from "class-transformer";
+import { QuizQuestion } from "./quiz-question";
+import { QuizText } from "./quiz-text";
 
 export class SubmissionResult {
   public static fromJson(obj: any): SubmissionResult {
     return plainToClass(SubmissionResult, obj as object);
   }
 
-  result: boolean;
+  public result: boolean;
 
   @Type(() => QuizText)
-  correctAnswer: QuizText;
+  public correctAnswer: QuizText;
 
   @Type(() => QuizQuestion)
-  nextQuestion: QuizQuestion;
+  public nextQuestion: QuizQuestion;
 }

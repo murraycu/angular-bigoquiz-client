@@ -1,68 +1,90 @@
 
-import {switchMap} from 'rxjs/operators';
-import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component } from "@angular/core";
+import { OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import {switchMap} from "rxjs/operators";
 
+import { BaseComponent } from "./base.component";
+import { HasIdAndTitle } from "./data-structure/has-id-and-title";
+import { QuizQuestion } from "./data-structure/quiz-question";
+import { QuizSection } from "./data-structure/quiz-section";
+import { QuizText } from "./data-structure/quiz-text";
+import { SubmissionResult } from "./data-structure/submission-result";
+import { QuestionService } from "./rest-api-clients/question.service";
+import { QuizService } from "./rest-api-clients/quiz.service";
+import { UserHistoryService } from "./rest-api-clients/user-history.service";
 
-import { BaseComponent } from './base.component';
-import { QuizService } from './rest-api-clients/quiz.service';
-import { QuestionService } from './rest-api-clients/question.service';
-import { UserHistoryService } from './rest-api-clients/user-history.service';
-import { QuizQuestion } from './data-structure/quiz-question';
-import { QuizSection } from './data-structure/quiz-section';
-import { QuizText } from './data-structure/quiz-text';
-import { HasIdAndTitle } from './data-structure/has-id-and-title';
-import { SubmissionResult } from './data-structure/submission-result';
-
-import { QuestionResultsService } from './question-results.service';
-import { QuestionResultEvent } from './question-result-event';
+import { QuestionResultEvent } from "./question-result-event";
+import { QuestionResultsService } from "./question-results.service";
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+  selector: "app-question",
+  templateUrl: "./question.component.html",
+  styleUrls: ["./question.component.css"],
 })
 export class QuestionComponent extends BaseComponent implements OnInit {
-  quizId: string;
+
+  private static titleForHasIdAndTitle(obj: HasIdAndTitle): string {
+    if (!obj) {
+      return "";
+    }
+
+    return obj.title;
+  }
+
+  /** Gets the title, if it is not HTML.
+   * Otherwise, this returns an empty string.
+   */
+  private static titleWithoutHtmlForText(text: QuizText): string {
+    if (!text) {
+      return "";
+    }
+
+    if (text.isHtml) {
+      return "";
+    }
+
+    return text.text;
+  }
+  public quizId: string;
+
+  public question: QuizQuestion;
+  public submissionResult: SubmissionResult;
+  public showAnswer: boolean;
+  public chosenAnswer: string;
+  public enableChoices = true;
+
+  public sections: QuizSection[];
   private questionId: string;
 
   // The section to show questions from.
   // Not just the section ID of the question.
   private sectionId: string;
 
-  question: QuizQuestion;
-  submissionResult: SubmissionResult;
-  showAnswer: boolean;
-  chosenAnswer: string;
-  enableChoices = true;
-
-  sections: QuizSection[];
-
   constructor(private quizService: QuizService,
-    private questionService: QuestionService,
-    private userHistoryService: UserHistoryService,
-    private questionResultsService: QuestionResultsService,
-    private router: Router,
-    private route: ActivatedRoute,
-    titleService: Title) {
+              private questionService: QuestionService,
+              private userHistoryService: UserHistoryService,
+              private questionResultsService: QuestionResultsService,
+              private router: Router,
+              private route: ActivatedRoute,
+              titleService: Title) {
     super(titleService);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.route.queryParamMap.pipe(
     switchMap((params: ParamMap) => {
-      this.quizId = params.get('quiz-id');
-      this.questionId = params.get('question-id');
-      this.sectionId = params.get('section-id');
+      this.quizId = params.get("quiz-id");
+      this.questionId = params.get("question-id");
+      this.sectionId = params.get("section-id");
 
       if (this.submissionResult && this.submissionResult.nextQuestion &&
         this.submissionResult.nextQuestion.id === this.questionId) {
         // We already have the next question:
         const question = this.submissionResult.nextQuestion;
         this.submissionResult = undefined;
-        return new Promise<QuizQuestion>(resolve => resolve(question));
+        return new Promise<QuizQuestion>((resolve) => resolve(question));
       } else {
         // Get question from the server.
 
@@ -93,15 +115,15 @@ export class QuestionComponent extends BaseComponent implements OnInit {
         if (this.questionId) {
           this.question = question;
 
-          this.setTitle('Question: ' + this.questionTitle(this.question));
+          this.setTitle("Question: " + this.questionTitle(this.question));
         } else {
           // The question comes from getNextQuestion(),
           // so just navigate to the appropriate URL.
-          this.router.navigate(['/question'], {
+          this.router.navigate(["/question"], {
           queryParams: {
-            'quiz-id': this.quizId,
-            'question-id': question.id,
-            'section-id': this.sectionId}});
+            "quiz-id": this.quizId,
+            "question-id": question.id,
+            "section-id": this.sectionId}});
         }
       },
       (err) => {
@@ -110,19 +132,19 @@ export class QuestionComponent extends BaseComponent implements OnInit {
       });
   }
 
-  getSections(): void {
-    this.quizService.getQuizSections(this.quizId).then(sections => this.sections = sections);
+  public getSections(): void {
+    this.quizService.getQuizSections(this.quizId).then((sections) => this.sections = sections);
   }
 
-  queryParamsForNextQuestion(question: QuizQuestion): Object {
+  public queryParamsForNextQuestion(question: QuizQuestion): Object {
     if (this.sectionId) {
-      return {'quiz-id': this.quizId, 'question-id': question.id, 'section-id': this.sectionId};
+      return {"quiz-id": this.quizId, "question-id": question.id, "section-id": this.sectionId};
     } else {
-      return {'quiz-id': this.quizId, 'question-id': question.id};
+      return {"quiz-id": this.quizId, "question-id": question.id};
     }
   }
 
-  choiceIsCorrect(answerText: string): boolean {
+  public choiceIsCorrect(answerText: string): boolean {
     if (!this.submissionResult || !this.submissionResult.correctAnswer
       || !this.submissionResult.correctAnswer.text) {
       return false;
@@ -131,7 +153,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     return answerText === this.submissionResult.correctAnswer.text;
   }
 
-  choiceIsWrongAnswer(answerText: string): boolean {
+  public choiceIsWrongAnswer(answerText: string): boolean {
     if (!this.submissionResult || this.submissionResult.result) {
       return false;
     }
@@ -143,12 +165,12 @@ export class QuestionComponent extends BaseComponent implements OnInit {
    * to change the progress bars and, if necessary,
    * change the list of problem questions.
    */
-  updateSectionsSidebar(result: boolean): void {
-    const data: QuestionResultEvent = {question: this.question, result: result};
+  public updateSectionsSidebar(result: boolean): void {
+    const data: QuestionResultEvent = {question: this.question, result};
     this.questionResultsService.notify(data);
   }
 
-  onChoiceClicked(answerText: string): void {
+  public onChoiceClicked(answerText: string): void {
     // Ignore clicks on the choices if we are already showing the correct answer,
     // We already prevent this with the <input>'s disabled attribute,
     // but that still lets the user click on the input's associated label.
@@ -160,7 +182,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     this.chosenAnswer = answerText;
 
     this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText, this.sectionId).
-      then(submissionResult => {
+      then((submissionResult) => {
         this.submissionResult = submissionResult;
 
         // Disable further choices if the user already chose the correct one:
@@ -178,7 +200,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
       });
   }
 
-  onSectionIdSelected(sectionId: string): void {
+  public onSectionIdSelected(sectionId: string): void {
     if (this.sectionId === sectionId) {
       // There was no change, so do nothing.
       return;
@@ -193,14 +215,14 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     // and the current question is already from a correct section.
 
     // Show a question from the specified section:
-    if (sectionId === 'all') {
-      this.router.navigate(['/question'], {queryParams: {'quiz-id': this.quizId}});
+    if (sectionId === "all") {
+      this.router.navigate(["/question"], {queryParams: {"quiz-id": this.quizId}});
     } else {
-      this.router.navigate(['/question'], {queryParams: {'quiz-id': this.quizId, 'section-id': sectionId}});
+      this.router.navigate(["/question"], {queryParams: {"quiz-id": this.quizId, "section-id": sectionId}});
     }
   }
 
-  onShowAnswer(): void {
+  public onShowAnswer(): void {
     // Update this ngModel used in the HTML.
     // TODO: Is there some more direct way to do this?
     this.showAnswer = true;
@@ -211,10 +233,10 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     // This is much like submitting a wrong answer.
     // It records it as a wrong answer on the server, and gives us the correct answer.
     this.userHistoryService.submitDontKnowAnswer(this.quizId, this.questionId, this.sectionId).
-      then(submissionResult => this.submissionResult = submissionResult);
+      then((submissionResult) => this.submissionResult = submissionResult);
   }
 
-  onNext(): void {
+  public onNext(): void {
     // The previous submission has already given us the next question,
     // so we navigate to that question.
     // ngOnInit() will then use submissionResult.nextQuestion instead of
@@ -235,7 +257,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     this.enableChoices = true;
 
     const params = this.queryParamsForNextQuestion(nextQuestion);
-    this.router.navigate(['/question'], {queryParams: params});
+    this.router.navigate(["/question"], {queryParams: params});
   }
 
   /** Get a suitable title,
@@ -244,7 +266,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
    */
   private questionTitle(question: QuizQuestion): string {
     if (!question) {
-      return '';
+      return "";
     }
 
     // Avoiding using HTML directly.
@@ -253,40 +275,17 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     const subSectionText: string = QuestionComponent.titleForHasIdAndTitle(question.subSection);
 
     if (subSectionText && sectionText !== subSectionText) {
-      text = subSectionText + ': ' + text;
+      text = subSectionText + ": " + text;
     }
 
     if (sectionText && sectionText !== question.quizTitle) {
-      text = sectionText + ': ' + text;
+      text = sectionText + ": " + text;
     }
 
     if (question.quizTitle) {
-      text = question.quizTitle + ': ' + text;
+      text = question.quizTitle + ": " + text;
     }
 
     return text;
-  }
-
-  private static titleForHasIdAndTitle(obj: HasIdAndTitle): string {
-    if (!obj) {
-      return '';
-    }
-
-    return obj.title;
-  }
-
-  /** Gets the title, if it is not HTML.
-   * Otherwise, this returns an empty string.
-   */
-  private static titleWithoutHtmlForText(text: QuizText): string {
-    if (!text) {
-      return '';
-    }
-
-    if (text.isHtml) {
-      return '';
-    }
-
-    return text.text;
   }
 }

@@ -1,6 +1,6 @@
-import { UserQuestionHistory } from './user-question-history';
-import { QuizQuestion } from './quiz-question';
-import { Exclude, Type, plainToClass } from 'class-transformer';
+import { Exclude, plainToClass, Type } from "class-transformer";
+import { QuizQuestion } from "./quiz-question";
+import { UserQuestionHistory } from "./user-question-history";
 
 export class UserStats {
   public static fromJson(obj: any): UserStats {
@@ -24,48 +24,48 @@ export class UserStats {
     return result;
   }
 
-  quizId: string;
-  quizTitle: string;
-  sectionId: string;
-  sectionTitle: string;
+  public quizId: string;
+  public quizTitle: string;
+  public sectionId: string;
+  public sectionTitle: string;
 
-  answered = 0;
-  correct = 0;
-  countQuestions = 0;
-  countQuestionsAnsweredOnce = 0;
-  countQuestionsCorrectOnce = 0;
+  public answered = 0;
+  public correct = 0;
+  public countQuestions = 0;
+  public countQuestionsAnsweredOnce = 0;
+  public countQuestionsCorrectOnce = 0;
 
-  problemQuestionHistoriesCount: number;
-
-  @Type(() => UserQuestionHistory)
-  topProblemQuestionHistories: UserQuestionHistory[];
+  public problemQuestionHistoriesCount: number;
 
   @Type(() => UserQuestionHistory)
-  questionHistories: UserQuestionHistory[];
+  public topProblemQuestionHistories: UserQuestionHistory[];
+
+  @Type(() => UserQuestionHistory)
+  public questionHistories: UserQuestionHistory[];
 
   // Built from questionHistories.
   @Exclude()
-  questionHistoriesMap: Map<string, UserQuestionHistory>;
+  public questionHistoriesMap: Map<string, UserQuestionHistory>;
 
-  percentAnsweredOnce(total: number): string {
+  public percentAnsweredOnce(total: number): string {
     // Avoid divide by zero, and avoid negative results.
     if (total <= 0) {
-      return '0%';
+      return "0%";
     }
 
-    return (this.countQuestionsAnsweredOnce / total) + '%';
+    return (this.countQuestionsAnsweredOnce / total) + "%";
   }
 
-  percentCorrectOnce(total: number): string {
+  public percentCorrectOnce(total: number): string {
     // Avoid divide by zero, and avoid negative results.
     if (total <= 0) {
-      return '0%';
+      return "0%";
     }
 
-    return (this.countQuestionsCorrectOnce / total) + '%';
+    return (this.countQuestionsCorrectOnce / total) + "%";
   }
 
-  updateProblemQuestion(question: QuizQuestion, answerIsCorrect: boolean): void {
+  public updateProblemQuestion(question: QuizQuestion, answerIsCorrect: boolean): void {
     const questionId = question.id;
 
     let firstTimeAsked = false;

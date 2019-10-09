@@ -1,4 +1,4 @@
 export class QuizText {
-  text: string;
-  isHtml: boolean;
+  public text: string;
+  public isHtml: boolean;
 }

@@ -1,10 +1,10 @@
-import { SubmissionResult } from './submission-result';
+import { SubmissionResult } from "./submission-result";
 
-describe('SubmissionResult without the TestBed', () => {
+describe("SubmissionResult without the TestBed", () => {
   beforeEach(() => {
   });
 
-  it ('deserializes properly from JSON', () => {
+  it ("deserializes properly from JSON", () => {
     // TODO: Does Response.json() uses JSON.parse() too?
     const jsonObj: string = JSON.parse(`
 {
@@ -63,11 +63,11 @@ describe('SubmissionResult without the TestBed', () => {
     expect(obj.result).toEqual(false);
 
     expect(obj.correctAnswer).toBeTruthy();
-    expect(obj.correctAnswer.text).toEqual('O(n log(n)) worst case time. Stable. Data Locality. Parallelizable. Can be External.');
+    expect(obj.correctAnswer.text).toEqual("O(n log(n)) worst case time. Stable. Data Locality. Parallelizable. Can be External.");
     expect(obj.correctAnswer.isHtml).toEqual(false);
 
     expect(obj.nextQuestion).toBeTruthy();
     expect(obj.nextQuestion.id).toBeTruthy();
-    expect(obj.nextQuestion.id).toEqual('algorithms-sort-time-mergesort');
+    expect(obj.nextQuestion.id).toEqual("algorithms-sort-time-mergesort");
   });
 });

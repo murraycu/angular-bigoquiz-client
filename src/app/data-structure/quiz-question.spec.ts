@@ -1,10 +1,10 @@
-import { QuizQuestion } from './quiz-question';
+import { QuizQuestion } from "./quiz-question";
 
-describe('QuizQuestion without the TestBed', () => {
+describe("QuizQuestion without the TestBed", () => {
   beforeEach(() => {
   });
 
-  it ('deserializes properly from JSON', () => {
+  it ("deserializes properly from JSON", () => {
     // TODO: Does Response.json() uses JSON.parse() too?
     const jsonObj: string = JSON.parse(`
 {
@@ -48,17 +48,17 @@ describe('QuizQuestion without the TestBed', () => {
     expect(obj).toBeTruthy(obj);
 
     expect(obj.id).toBeTruthy(obj);
-    expect(obj.id).toEqual('dijkstra-with-fibonacci-time');
+    expect(obj.id).toEqual("dijkstra-with-fibonacci-time");
 
     expect(obj.sectionId).toBeTruthy(obj);
-    expect(obj.sectionId).toEqual('graph-search');
+    expect(obj.sectionId).toEqual("graph-search");
 
     expect(obj.subSectionId).toBeTruthy(obj);
-    expect(obj.subSectionId).toEqual('dijkstra-with-fibonacci-heap');
+    expect(obj.subSectionId).toEqual("dijkstra-with-fibonacci-heap");
 
     expect(obj.text).toBeTruthy(obj);
     expect(obj.text.text).toBeTruthy(obj);
-    expect(obj.text.text).toEqual('Time');
+    expect(obj.text.text).toEqual("Time");
     expect(obj.text.isHtml).toEqual(false);
 
     expect(obj.choices).toBeTruthy(obj);
@@ -66,11 +66,11 @@ describe('QuizQuestion without the TestBed', () => {
 
     expect(obj.choices[0]).toBeTruthy(obj);
     expect(obj.choices[0].text).toBeTruthy(obj);
-    expect(obj.choices[0].text).toEqual('O(V ⋅ |E|²)');
+    expect(obj.choices[0].text).toEqual("O(V ⋅ |E|²)");
     expect(obj.choices[0].isHtml).toEqual(false);
   });
 
-  it ('deserializes properly from undefined object.', () => {
+  it ("deserializes properly from undefined object.", () => {
     const obj = QuizQuestion.fromJson(undefined);
     expect(obj).toBeUndefined(obj);
   });

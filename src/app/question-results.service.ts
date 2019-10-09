@@ -1,7 +1,7 @@
-import { QuestionResultEvent } from './question-result-event';
+import { QuestionResultEvent } from "./question-result-event";
 
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 
 /**
  * This lets QuestionComponent notify UserSectionsHistoryComponent
@@ -18,7 +18,7 @@ export class QuestionResultsService {
   /**
    * Observable string streams
    */
-  notifyObservable$ = this.subject.asObservable();
+  public notifyObservable$ = this.subject.asObservable();
 
   constructor() {}
 

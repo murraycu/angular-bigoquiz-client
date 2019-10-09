@@ -1,6 +1,5 @@
-import { UserStats } from './user-stats';
-import { Type, plainToClass } from 'class-transformer';
-
+import { plainToClass, Type } from "class-transformer";
+import { UserStats } from "./user-stats";
 
 export class UserHistoryQuizzes {
   public static fromJson(obj: any): UserHistoryQuizzes {
@@ -8,5 +7,5 @@ export class UserHistoryQuizzes {
   }
 
   @Type(() => UserStats)
-  stats: UserStats[];
+  public stats: UserStats[];
 }

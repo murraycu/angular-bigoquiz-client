@@ -1,13 +1,13 @@
-import { HasIdAndTitle } from './has-id-and-title';
-import { QuizQuestionAndAnswer } from './quiz-question-and-answer';
-import { Type } from 'class-transformer';
+import { Type } from "class-transformer";
+import { HasIdAndTitle } from "./has-id-and-title";
+import { QuizQuestionAndAnswer } from "./quiz-question-and-answer";
 
 export class QuizSubSection extends HasIdAndTitle {
 
   @Type(() => QuizQuestionAndAnswer)
-  questions: QuizQuestionAndAnswer[];
+  public questions: QuizQuestionAndAnswer[];
 
-  addQuestion(qa: QuizQuestionAndAnswer): void {
+  public addQuestion(qa: QuizQuestionAndAnswer): void {
     if (!this.questions) {
       this.questions = [];
     }
