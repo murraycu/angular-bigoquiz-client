@@ -15,6 +15,9 @@ export class UserStats {
         }
 
         result.questionHistoriesMap.set(questionId, questionHistory);
+
+        // After this point, we will only use questionHistoriesMap.
+        result.questionHistories = undefined;
       }
     }
 
@@ -40,6 +43,7 @@ export class UserStats {
   @Type(() => UserQuestionHistory)
   public topProblemQuestionHistories: UserQuestionHistory[];
 
+  // Only used for parsing from JSON.
   @Type(() => UserQuestionHistory)
   public questionHistories: UserQuestionHistory[];
 
