@@ -13,12 +13,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: 'Using Node.js version: ${{ matrix.node-version }}, Build type: ${{ matrix.build-type }}'
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
     - name: Build
-      run: make
+      run: make build
+      env:
+        CI: true
+    - name: Build with AOT
+      run: make build-with-aot
       env:
         CI: true
     - name: Test
