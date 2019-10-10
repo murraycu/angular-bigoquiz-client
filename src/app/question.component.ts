@@ -56,11 +56,11 @@ export class QuestionComponent extends BaseComponent implements OnInit {
   public enableChoices = true;
 
   public sections: QuizSection[];
-  private questionId: string;
 
   // The section to show questions from.
   // Not just the section ID of the question.
-  private sectionId: string;
+  public sectionId: string;
+  private questionId: string;
 
   constructor(private quizService: QuizService,
               private questionService: QuestionService,
