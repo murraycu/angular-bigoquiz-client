@@ -10,6 +10,10 @@ build-debug:
 	npm install ;\
         npm run build
 
+build-with-aot:
+	npm install ;\
+        ng build --aot
+
 test:
 	npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
