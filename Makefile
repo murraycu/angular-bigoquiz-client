@@ -12,7 +12,7 @@ build-debug:
 
 build-with-aot:
 	npm install ;\
-        ng build --aot
+        npm run build -- --aot
 
 test:
 	npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
