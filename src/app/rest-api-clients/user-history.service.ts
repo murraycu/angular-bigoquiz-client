@@ -15,6 +15,20 @@ export class UserHistoryService {
     // console.error('An error occurred: JSON:', error.json());
     return Promise.reject(error.message || error);
   }
+
+  private static createSubmitQueryParams(quizId: string, questionId: string,
+                                         nextQuestionSectionId: string): HttpParams {
+    let p = new HttpParams();
+    p = p.set("quiz-id", quizId);
+    p = p.set("question-id", questionId);
+
+    if (nextQuestionSectionId) {
+      p = p.set ("next-question-section-id", nextQuestionSectionId);
+    }
+
+    return p;
+  }
+
   constructor(private http: HttpClient) { }
 
   /** Get the history for each section in an individual quiz.
@@ -47,7 +61,7 @@ export class UserHistoryService {
                             nextQuestionSectionId: string): Promise<SubmissionResult> {
           // Note: We must use backticks: This is a template literal.
           const url = `${Config.baseApiUrl}/api/user-history/submit-answer`;
-          const p: HttpParams = this.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId);
+          const p: HttpParams = UserHistoryService.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId);
           const submission = new Submission();
           submission.answer = answerText;
 
@@ -66,7 +80,7 @@ export class UserHistoryService {
                                       nextQuestionSectionId: string): Promise<SubmissionResult> {
             // Note: We must use backticks: This is a template literal.
             const url = `${Config.baseApiUrl}/api/user-history/submit-dont-know-answer`;
-            const p: HttpParams = this.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId);
+            const p: HttpParams = UserHistoryService.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId);
 
             return this.http.post(url, "", {
             params: p,
@@ -95,16 +109,4 @@ export class UserHistoryService {
               })
       .catch(UserHistoryService.handleError);
   }
-
-        private createSubmitQueryParams(quizId: string, questionId: string, nextQuestionSectionId: string): HttpParams {
-          let p = new HttpParams();
-          p = p.set("quiz-id", quizId);
-          p = p.set("question-id", questionId);
-
-          if (nextQuestionSectionId) {
-            p = p.set ("next-question-section-id", nextQuestionSectionId);
-          }
-
-          return p;
-        }
 }
