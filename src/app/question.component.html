@@ -8,8 +8,8 @@
     <h2 *ngIf="question.quizTitle" class="page-secondary-title-label">{{question.quizTitle}}</h2>
 
     <p *ngIf="sectionId && sections" class="show-from-panel">
-      <span class="next-question-section-title-label">Show Questions From: </span>
-      <select class="next-question-section-title" [ngModel]="sectionId" (ngModelChange)="onSectionIdSelected($event)">
+      <label class="next-question-section-title-label" for="select-show-questions-from">Show Questions From: </label>
+      <select class="next-question-section-title" name="select-show-questions-fromm" [ngModel]="sectionId" (ngModelChange)="onSectionIdSelected($event)">
         <option value="all">All Sections</option>
 
         <option *ngFor="let section of sections" value="{{section.id}}">{{section.title}}</option>
