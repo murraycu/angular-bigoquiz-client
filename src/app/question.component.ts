@@ -47,6 +47,35 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     return text.text;
   }
 
+  /** Get a suitable title,
+   * avoiding use of unparsed HTML * and avoiding duplication where the quiz,
+   * section, and subsection titles are duplicates of each other.
+   */
+  private static questionTitle(question: QuizQuestion): string {
+    if (!question) {
+      return "";
+    }
+
+    // Avoiding using HTML directly.
+    let text: string = QuestionComponent.titleWithoutHtmlForText(question.text);
+    const sectionText: string = QuestionComponent.titleForHasIdAndTitle(question.section);
+    const subSectionText: string = QuestionComponent.titleForHasIdAndTitle(question.subSection);
+
+    if (subSectionText && sectionText !== subSectionText) {
+      text = subSectionText + ": " + text;
+    }
+
+    if (sectionText && sectionText !== question.quizTitle) {
+      text = sectionText + ": " + text;
+    }
+
+    if (question.quizTitle) {
+      text = question.quizTitle + ": " + text;
+    }
+
+    return text;
+  }
+
   public quizId: string;
 
   public question: QuizQuestion;
@@ -115,7 +144,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
           if (this.questionId) {
             this.question = question;
 
-            this.setTitle("Question: " + this.questionTitle(this.question));
+            this.setTitle("Question: " + QuestionComponent.questionTitle(this.question));
           } else {
             // The question comes from getNextQuestion(),
             // so just navigate to the appropriate URL.
@@ -268,34 +297,5 @@ export class QuestionComponent extends BaseComponent implements OnInit {
 
     const params = this.queryParamsForNextQuestion(nextQuestion);
     this.router.navigate(["/question"], {queryParams: params});
-  }
-
-  /** Get a suitable title,
-   * avoiding use of unparsed HTML * and avoiding duplication where the quiz,
-   * section, and subsection titles are duplicates of each other.
-   */
-  private questionTitle(question: QuizQuestion): string {
-    if (!question) {
-      return "";
-    }
-
-    // Avoiding using HTML directly.
-    let text: string = QuestionComponent.titleWithoutHtmlForText(question.text);
-    const sectionText: string = QuestionComponent.titleForHasIdAndTitle(question.section);
-    const subSectionText: string = QuestionComponent.titleForHasIdAndTitle(question.subSection);
-
-    if (subSectionText && sectionText !== subSectionText) {
-      text = subSectionText + ": " + text;
-    }
-
-    if (sectionText && sectionText !== question.quizTitle) {
-      text = sectionText + ": " + text;
-    }
-
-    if (question.quizTitle) {
-      text = question.quizTitle + ": " + text;
-    }
-
-    return text;
   }
 }
