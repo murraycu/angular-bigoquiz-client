@@ -1,9 +1,8 @@
-
 import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import {switchMap} from "rxjs/operators";
+import { switchMap } from "rxjs/operators";
 
 import { BaseComponent } from "./base.component";
 import { HasIdAndTitle } from "./data-structure/has-id-and-title";
@@ -47,6 +46,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
 
     return text.text;
   }
+
   public quizId: string;
 
   public question: QuizQuestion;
@@ -74,62 +74,64 @@ export class QuestionComponent extends BaseComponent implements OnInit {
 
   public ngOnInit(): void {
     this.route.queryParamMap.pipe(
-    switchMap((params: ParamMap) => {
-      this.quizId = params.get("quiz-id");
-      this.questionId = params.get("question-id");
-      this.sectionId = params.get("section-id");
+      switchMap((params: ParamMap) => {
+        this.quizId = params.get("quiz-id");
+        this.questionId = params.get("question-id");
+        this.sectionId = params.get("section-id");
 
-      if (this.submissionResult && this.submissionResult.nextQuestion &&
-        this.submissionResult.nextQuestion.id === this.questionId) {
-        // We already have the next question:
-        const question = this.submissionResult.nextQuestion;
-        this.submissionResult = undefined;
-        return new Promise<QuizQuestion>((resolve) => resolve(question));
-      } else {
-        // Get question from the server.
-
-        this.setServerLoading();
-
-        // If the sectionId was specifed, we need to show the list of other sections.
-        if (this.quizId && this.sectionId) {
-          this.getSections();
-        }
-
-        if (this.questionId) {
-          // Show the question specified by the URL:
-          return this.quizService.getQuizQuestion(this.quizId, this.questionId);
-        } else if (this.quizId) {
-          // Show a random(ish) question chosen by the server:
-          return this.questionService.getNextQuestion(this.quizId, this.sectionId);
-          // TODO: Update the URL.
+        if (this.submissionResult && this.submissionResult.nextQuestion &&
+          this.submissionResult.nextQuestion.id === this.questionId) {
+          // We already have the next question:
+          const question = this.submissionResult.nextQuestion;
+          this.submissionResult = undefined;
+          return new Promise<QuizQuestion>((resolve) => resolve(question));
         } else {
-          // TODO: Show an error message?
-          return undefined;
-        }
-      }
-    }))
-    .subscribe(
-      (question) => {
-        this.setServerSuccess();
+          // Get question from the server.
 
-        if (this.questionId) {
-          this.question = question;
+          this.setServerLoading();
 
-          this.setTitle("Question: " + this.questionTitle(this.question));
-        } else {
-          // The question comes from getNextQuestion(),
-          // so just navigate to the appropriate URL.
-          this.router.navigate(["/question"], {
-          queryParams: {
-            "question-id": question.id,
-            "quiz-id": this.quizId,
-            "section-id": this.sectionId}});
+          // If the sectionId was specifed, we need to show the list of other sections.
+          if (this.quizId && this.sectionId) {
+            this.getSections();
+          }
+
+          if (this.questionId) {
+            // Show the question specified by the URL:
+            return this.quizService.getQuizQuestion(this.quizId, this.questionId);
+          } else if (this.quizId) {
+            // Show a random(ish) question chosen by the server:
+            return this.questionService.getNextQuestion(this.quizId, this.sectionId);
+            // TODO: Update the URL.
+          } else {
+            // TODO: Show an error message?
+            return undefined;
+          }
         }
-      },
-      (err) => {
-        this.setServerFailed();
-        this.question = undefined;
-      });
+      }))
+      .subscribe(
+        (question) => {
+          this.setServerSuccess();
+
+          if (this.questionId) {
+            this.question = question;
+
+            this.setTitle("Question: " + this.questionTitle(this.question));
+          } else {
+            // The question comes from getNextQuestion(),
+            // so just navigate to the appropriate URL.
+            this.router.navigate(["/question"], {
+              queryParams: {
+                "question-id": question.id,
+                "quiz-id": this.quizId,
+                "section-id": this.sectionId
+              }
+            });
+          }
+        },
+        (err) => {
+          this.setServerFailed();
+          this.question = undefined;
+        });
   }
 
   public getSections(): void {
@@ -138,7 +140,11 @@ export class QuestionComponent extends BaseComponent implements OnInit {
 
   public queryParamsForNextQuestion(question: QuizQuestion): object {
     if (this.sectionId) {
-      return {"quiz-id": this.quizId, "question-id": question.id, "section-id": this.sectionId};
+      return {
+        "quiz-id": this.quizId,
+        "question-id": question.id,
+        "section-id": this.sectionId
+      };
     } else {
       return {"quiz-id": this.quizId, "question-id": question.id};
     }
@@ -181,23 +187,22 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     this.submissionResult = undefined;
     this.chosenAnswer = answerText;
 
-    this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText, this.sectionId).
-      then((submissionResult) => {
-        this.submissionResult = submissionResult;
+    this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText, this.sectionId).then((submissionResult) => {
+      this.submissionResult = submissionResult;
 
-        // Disable further choices if the user already chose the correct one:
-        this.enableChoices = !submissionResult.result;
+      // Disable further choices if the user already chose the correct one:
+      this.enableChoices = !submissionResult.result;
 
-        this.updateSectionsSidebar(this.submissionResult.result);
+      this.updateSectionsSidebar(this.submissionResult.result);
 
-        // Go to the next question automatically after 5 seconds.
-        if (submissionResult.result) {
-          setTimeout(() => {
+      // Go to the next question automatically after 5 seconds.
+      if (submissionResult.result) {
+        setTimeout(() => {
             this.onNext();
           },
           5000);
-        }
-      });
+      }
+    });
   }
 
   public onSectionIdSelected(sectionId: string): void {
@@ -218,7 +223,12 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     if (sectionId === "all") {
       this.router.navigate(["/question"], {queryParams: {"quiz-id": this.quizId}});
     } else {
-      this.router.navigate(["/question"], {queryParams: {"quiz-id": this.quizId, "section-id": sectionId}});
+      this.router.navigate(["/question"], {
+        queryParams: {
+          "quiz-id": this.quizId,
+          "section-id": sectionId
+        }
+      });
     }
   }
 
