@@ -123,8 +123,8 @@ export class QuestionComponent extends BaseComponent implements OnInit {
               queryParams: {
                 "question-id": question.id,
                 "quiz-id": this.quizId,
-                "section-id": this.sectionId
-              }
+                "section-id": this.sectionId,
+              },
             });
           }
         },
@@ -143,7 +143,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
       return {
         "quiz-id": this.quizId,
         "question-id": question.id,
-        "section-id": this.sectionId
+        "section-id": this.sectionId,
       };
     } else {
       return {"quiz-id": this.quizId, "question-id": question.id};
@@ -226,8 +226,8 @@ export class QuestionComponent extends BaseComponent implements OnInit {
       this.router.navigate(["/question"], {
         queryParams: {
           "quiz-id": this.quizId,
-          "section-id": sectionId
-        }
+          "section-id": sectionId,
+        },
       });
     }
   }
