@@ -170,8 +170,8 @@ export class QuestionComponent extends BaseComponent implements OnInit {
   public queryParamsForNextQuestion(question: QuizQuestion): object {
     if (this.sectionId) {
       return {
-        "quiz-id": this.quizId,
         "question-id": question.id,
+        "quiz-id": this.quizId,
         "section-id": this.sectionId,
       };
     } else {
@@ -216,22 +216,23 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     this.submissionResult = undefined;
     this.chosenAnswer = answerText;
 
-    this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText, this.sectionId).then((submissionResult) => {
-      this.submissionResult = submissionResult;
+    this.userHistoryService.submitAnswer(this.quizId, this.questionId, answerText, this.sectionId).
+      then((submissionResult) => {
+        this.submissionResult = submissionResult;
 
-      // Disable further choices if the user already chose the correct one:
-      this.enableChoices = !submissionResult.result;
+        // Disable further choices if the user already chose the correct one:
+        this.enableChoices = !submissionResult.result;
 
-      this.updateSectionsSidebar(this.submissionResult.result);
+        this.updateSectionsSidebar(this.submissionResult.result);
 
-      // Go to the next question automatically after 5 seconds.
-      if (submissionResult.result) {
-        setTimeout(() => {
-            this.onNext();
-          },
-          5000);
-      }
-    });
+        // Go to the next question automatically after 5 seconds.
+        if (submissionResult.result) {
+          setTimeout(() => {
+              this.onNext();
+            },
+            5000);
+        }
+      });
   }
 
   public onSectionIdSelected(sectionId: string): void {
