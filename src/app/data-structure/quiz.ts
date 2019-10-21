@@ -13,8 +13,4 @@ export class Quiz extends HasIdAndTitle {
 
   @Type(() => QuizSection)
   public sections: QuizSection[];
-
-  // Top-level questions, not in a section.
-  @Type(() => QuizQuestionAndAnswer)
-  public questions: QuizQuestionAndAnswer[];
 }
