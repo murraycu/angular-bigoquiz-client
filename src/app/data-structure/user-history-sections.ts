@@ -26,8 +26,8 @@ export class UserHistorySections {
   @Type(() => LoginInfo)
   public loginInfo: LoginInfo;
 
-  public quizId: string;
-  public quizTitle: string;
+  public quizId: string = "";
+  public quizTitle: string = "";
 
   // Only used when parsing from JSON.
   @Type(() => UserStats)

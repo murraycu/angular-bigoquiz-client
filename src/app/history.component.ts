@@ -13,8 +13,8 @@ import { UserHistorySectionsComponent } from "./user-history-sections.component"
 })
 export class HistoryComponent extends BaseComponent {
 
-  public quizId: string;
-  public quizTitle: string;
+  public quizId: string = "";
+  public quizTitle: string = "";
   @ViewChild(UserHistorySectionsComponent, { static: true })
   private sectionsComponent: UserHistorySectionsComponent;
 

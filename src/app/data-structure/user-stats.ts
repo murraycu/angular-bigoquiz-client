@@ -41,10 +41,10 @@ export class UserStats {
     return Number((part / total) * 100).toFixed(2) + "%";
   }
 
-  public quizId: string;
-  public quizTitle: string;
-  public sectionId: string;
-  public sectionTitle: string;
+  public quizId: string = "";
+  public quizTitle: string = "";
+  public sectionId: string = "";
+  public sectionTitle: string = "";
 
   public answered = 0;
   public correct = 0;

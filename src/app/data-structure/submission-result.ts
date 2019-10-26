@@ -7,7 +7,7 @@ export class SubmissionResult {
     return plainToClass(SubmissionResult, obj as object);
   }
 
-  public result: boolean;
+  public result: boolean = false;
 
   @Type(() => QuizText)
   public correctAnswer: QuizText;
