@@ -13,10 +13,10 @@ import { UserHistorySectionsComponent } from "./user-history-sections.component"
 })
 export class HistoryComponent extends BaseComponent {
 
-  public quizId: string;
-  public quizTitle: string;
+  public quizId: string = "";
+  public quizTitle: string = "";
   @ViewChild(UserHistorySectionsComponent, { static: true })
-  private sectionsComponent: UserHistorySectionsComponent;
+  private sectionsComponent?: UserHistorySectionsComponent;
 
   constructor(private userHistoryService: UserHistoryService,
               titleService: Title) {
@@ -24,9 +24,13 @@ export class HistoryComponent extends BaseComponent {
   }
 
   public onViewChildJsonParsed() {
-    const sections: UserHistorySections = this.sectionsComponent.userHistorySections;
-    this.quizId = sections.quizId;
-    this.quizTitle = sections.quizTitle;
+    if (this.sectionsComponent) {
+      const sections: UserHistorySections | undefined = this.sectionsComponent.userHistorySections;
+      if (sections) {
+        this.quizId = sections.quizId;
+        this.quizTitle = sections.quizTitle;
+      }
+    }
 
     this.setTitle("History: " + this.quizTitle);
   }

@@ -15,7 +15,7 @@ import { QuizService } from "./rest-api-clients/quiz.service";
   templateUrl: "./quiz.component.html",
 })
 export class QuizComponent extends BaseComponent implements OnInit {
-  public quiz: Quiz;
+  public quiz?: Quiz = undefined;
 
   constructor(private quizService: QuizService,
               private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class QuizComponent extends BaseComponent implements OnInit {
   public ngOnInit(): void {
     this.setServerLoading();
     this.route.queryParamMap.pipe(
-      switchMap((params: ParamMap) => this.quizService.getQuiz(params.get("quiz-id"))))
+      switchMap((params: ParamMap) => this.quizService.getQuiz(params.get("quiz-id") || "")))
       .subscribe(
         (quiz) => {
           this.setServerSuccess();

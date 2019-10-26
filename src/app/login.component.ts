@@ -1,6 +1,6 @@
 import { Component, Input, NgZone, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import {ActivatedRoute, ParamMap, Params} from "@angular/router";
 
 import { BaseComponent } from "./base.component";
 import { Config } from "./config";
@@ -20,10 +20,10 @@ export class LoginComponent extends BaseComponent implements OnInit {
   private static redirectSuffix = `?redirect=${Config.baseUrl}/user`;
   // We don't want to show the logout button in the header,
   // but we do want to show it on the user/profile page.
-  @Input() public showLogOutWhenAppropriate: boolean;
+  @Input() public showLogOutWhenAppropriate: boolean = false;
 
-  public loginInfo: LoginInfo;
-  public loginFailed: boolean;
+  public loginInfo?: LoginInfo;
+  public loginFailed: boolean = false;
   public googleLoginUrl = `${Config.googleLoginPrefix}${LoginComponent.redirectSuffix}`;
   public gitHubLoginUrl = `${Config.gitHubLoginPrefix}${LoginComponent.redirectSuffix}`;
   public facebookLoginUrl = `${Config.facebookLoginPrefix}${LoginComponent.redirectSuffix}`;

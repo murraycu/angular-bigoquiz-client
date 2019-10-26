@@ -16,5 +16,5 @@ export class ServerStatusComponent {
   public ServerStateEnum = ServerState;
 
   // Note: For some reason we need to define an explicit set,
-  @Input() public state: ServerState;
+  @Input() public state?: ServerState;
 }
