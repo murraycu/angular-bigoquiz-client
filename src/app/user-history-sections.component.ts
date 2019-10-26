@@ -21,13 +21,13 @@ import { QuestionResultsService } from "./question-results.service";
 })
 export class UserHistorySectionsComponent extends BaseComponent implements OnInit, OnDestroy {
   @Output() public onJsonParsed = new EventEmitter<void>();
-  public userHistorySections: UserHistorySections;
+  public userHistorySections?: UserHistorySections;
 
   public readonly MAX_PROBLEM_QUESTIONS: number = 5;
 
-  public quizId: string;
-  private sectionId: string;
-  private subscriptionQuestionResultsService: Subscription;
+  public quizId: string = "";
+  private sectionId: string = "";
+  private subscriptionQuestionResultsService?: Subscription = undefined;
 
   constructor(private userHistoryService: UserHistoryService,
               private questionResultsService: QuestionResultsService,
@@ -39,7 +39,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   public ngOnInit(): void {
     this.route.queryParamMap.pipe(
     switchMap((params: ParamMap) => {
-      const paramQuizId = params.get("quiz-id");
+      const paramQuizId = params.get("quiz-id") || "";
 
       if (this.quizId === paramQuizId && this.userHistorySections) {
         // Use the existing data:
@@ -48,7 +48,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
       }
 
       this.quizId = paramQuizId;
-      this.sectionId = params.get("section-id");
+      this.sectionId = params.get("section-id") || "";
 
       this.setServerLoading();
       return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId);
@@ -71,7 +71,9 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   }
 
   public ngOnDestroy(): void {
-    this.subscriptionQuestionResultsService.unsubscribe();
+    if (this.subscriptionQuestionResultsService) {
+      this.subscriptionQuestionResultsService.unsubscribe();
+    }
   }
 
   // This is not static because it is difficult to call static method from the .html template.
@@ -118,7 +120,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   }
 
   public generateQuestionLinkQueryParams(qh: UserQuestionHistory): object {
-    const result = {"quiz-id": this.quizId, "question-id": qh.questionId};
+    const result = {"quiz-id": this.quizId, "question-id": qh.questionId, "section-id": ""};
     if (this.sectionId && this.sectionId === qh.sectionId) {
       result["section-id"] = this.sectionId;
     }
@@ -131,11 +133,15 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
       return;
     }
 
+    if (!data.question) {
+      return;
+    }
+
     if (!data.question.sectionId) {
       return;
     }
 
-    const stats: UserStats = this.userHistorySections.getUserStatsForSection(data.question.sectionId);
+    const stats: UserStats | undefined = this.userHistorySections.getUserStatsForSection(data.question.sectionId);
     if (!stats) {
       return;
     }

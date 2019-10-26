@@ -12,7 +12,7 @@ import { Quiz } from "./data-structure/quiz";
   templateUrl: "./quizzes.component.html",
 })
 export class QuizzesComponent extends BaseComponent implements OnInit {
-  public quizzes: Quiz[];
+  public quizzes: Quiz[] = [];
 
   constructor(private quizService: QuizService, titleService: Title) {
     super(titleService);

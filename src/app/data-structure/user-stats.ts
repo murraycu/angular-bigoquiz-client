@@ -17,7 +17,7 @@ export class UserStats {
         result.questionHistoriesMap.set(questionId, questionHistory);
 
         // After this point, we will only use questionHistoriesMap.
-        result.questionHistories = undefined;
+        result.questionHistories = [];
       }
     }
 
@@ -41,10 +41,10 @@ export class UserStats {
     return Number((part / total) * 100).toFixed(2) + "%";
   }
 
-  public quizId: string;
-  public quizTitle: string;
-  public sectionId: string;
-  public sectionTitle: string;
+  public quizId: string = "";
+  public quizTitle: string = "";
+  public sectionId: string = "";
+  public sectionTitle: string = "";
 
   public answered = 0;
   public correct = 0;
@@ -52,18 +52,18 @@ export class UserStats {
   public countQuestionsAnsweredOnce = 0;
   public countQuestionsCorrectOnce = 0;
 
-  public problemQuestionHistoriesCount: number;
+  public problemQuestionHistoriesCount: number = 0;
 
   @Type(() => UserQuestionHistory)
-  public topProblemQuestionHistories: UserQuestionHistory[];
+  public topProblemQuestionHistories: UserQuestionHistory[] = [];
 
   // Only used for parsing from JSON.
   @Type(() => UserQuestionHistory)
-  public questionHistories: UserQuestionHistory[];
+  public questionHistories: UserQuestionHistory[] = [];
 
   // Built from questionHistories.
   @Exclude()
-  public questionHistoriesMap: Map<string, UserQuestionHistory>;
+  public questionHistoriesMap: Map<string, UserQuestionHistory> = new Map<string, UserQuestionHistory>();
 
   public percentAnsweredOnce(total: number): string {
     return UserStats.percentageString(total, this.countQuestionsAnsweredOnce);
@@ -83,7 +83,7 @@ export class UserStats {
       this.questionHistoriesMap = new Map<string, UserQuestionHistory>();
     }
 
-    let history: UserQuestionHistory = this.questionHistoriesMap.get(questionId);
+    let history: UserQuestionHistory | undefined = this.questionHistoriesMap.get(questionId);
 
     // Add a new one, if necessary:
     if (!history) {
@@ -114,7 +114,7 @@ export class UserStats {
   private updateTopProblemQuestions(): void {
     this.problemQuestionHistoriesCount = 0;
 
-    this.topProblemQuestionHistories = undefined;
+    this.topProblemQuestionHistories = [];
 
     if (!this.questionHistoriesMap) {
       return;
@@ -123,17 +123,9 @@ export class UserStats {
     // Copy the values of the array.
     this.questionHistoriesMap.forEach((value: UserQuestionHistory, key: string) => {
       if (value.countAnsweredWrong > 0) {
-        if (!this.topProblemQuestionHistories) {
-          this.topProblemQuestionHistories = [];
-        }
-
         this.topProblemQuestionHistories.push(value);
       }
     });
-
-    if (!this.topProblemQuestionHistories) {
-      return;
-    }
 
     // Sort the array.
     this.topProblemQuestionHistories.sort((a, b) => {
@@ -169,23 +161,15 @@ export class UserStats {
 
   private clearNonProblemQuestions() {
     // TODO: Use a Set when/if TypeScript has one.
-    let idsToRemove: Map<string, boolean>;
+    const idsToRemove: Map<string, boolean> = new Map<string, boolean>();
     for (const history of this.topProblemQuestionHistories) {
       if (!history) {
         continue;
       }
 
       if (history.countAnsweredWrong <= 0) {
-        if (!idsToRemove) {
-          idsToRemove = new Map<string, boolean>();
-        }
-
         idsToRemove.set(history.questionId, true);
       }
-    }
-
-    if (!idsToRemove) {
-      return;
     }
 
     const list: UserQuestionHistory[] = [];

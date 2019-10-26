@@ -17,27 +17,27 @@ export class UserHistorySections {
       }
 
       // After parsing, we will use only statsMap.
-      result.stats = undefined;
+      result.stats = [];
     }
 
     return result;
   }
 
   @Type(() => LoginInfo)
-  public loginInfo: LoginInfo;
+  public loginInfo?: LoginInfo = undefined;
 
-  public quizId: string;
-  public quizTitle: string;
+  public quizId: string = "";
+  public quizTitle: string = "";
 
   // Only used when parsing from JSON.
   @Type(() => UserStats)
-  public stats: UserStats[];
+  public stats: UserStats[] = [];
 
   // Map of section IDs to stats.
   // This is built from stats
-  public statsMap: Map<string, UserStats>;
+  public statsMap: Map<string, UserStats> = new Map<string, UserStats>();
 
-  public getUserStatsForSection(sectionId: string): UserStats {
+  public getUserStatsForSection(sectionId: string): UserStats | undefined {
     if (!this.statsMap) {
       return undefined;
     }
@@ -46,10 +46,6 @@ export class UserHistorySections {
   }
 
   public setUserStatsForSection(sectionId: string, userStats: UserStats) {
-    if (!this.statsMap) {
-      this.statsMap = new Map<string, UserStats>();
-    }
-
     // Update in the map.
     this.statsMap.set(sectionId, userStats);
   }

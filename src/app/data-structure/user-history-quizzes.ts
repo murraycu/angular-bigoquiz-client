@@ -7,5 +7,5 @@ export class UserHistoryQuizzes {
   }
 
   @Type(() => UserStats)
-  public stats: UserStats[];
+  public stats: UserStats[] = [];
 }

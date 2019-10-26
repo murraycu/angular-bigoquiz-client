@@ -8,9 +8,9 @@ export class Quiz extends HasIdAndTitle {
     return plainToClass(Quiz, obj as object);
   }
 
-  public isPrivate: boolean;
-  public usesMathML: boolean;
+  public isPrivate: boolean = false;
+  public usesMathML: boolean = false;
 
   @Type(() => QuizSection)
-  public sections: QuizSection[];
+  public sections: QuizSection[] = [];
 }

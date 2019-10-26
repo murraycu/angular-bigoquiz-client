@@ -11,7 +11,7 @@ import { UserHistoryService } from "./rest-api-clients/user-history.service";
   templateUrl: "./user.component.html",
 })
 export class UserComponent extends BaseComponent implements OnInit {
-  public userHistoryQuizzes: UserHistoryQuizzes;
+  public userHistoryQuizzes?: UserHistoryQuizzes;
 
   constructor(private userHistoryService: UserHistoryService,
               titleService: Title) {

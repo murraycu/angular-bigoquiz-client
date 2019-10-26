@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { of } from "rxjs";
 import { switchMap } from "rxjs/operators";
 
 import { BaseComponent } from "./base.component";
@@ -24,7 +25,7 @@ import { QuestionResultsService } from "./question-results.service";
 })
 export class QuestionComponent extends BaseComponent implements OnInit {
 
-  private static titleForHasIdAndTitle(obj: HasIdAndTitle): string {
+  private static titleForHasIdAndTitle(obj?: HasIdAndTitle): string {
     if (!obj) {
       return "";
     }
@@ -35,7 +36,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
   /** Gets the title, if it is not HTML.
    * Otherwise, this returns an empty string.
    */
-  private static titleWithoutHtmlForText(text: QuizText): string {
+  private static titleWithoutHtmlForText(text?: QuizText): string {
     if (!text) {
       return "";
     }
@@ -51,7 +52,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
    * avoiding use of unparsed HTML * and avoiding duplication where the quiz,
    * section, and subsection titles are duplicates of each other.
    */
-  private static questionTitle(question: QuizQuestion): string {
+  private static questionTitle(question?: QuizQuestion): string {
     if (!question) {
       return "";
     }
@@ -76,20 +77,20 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     return text;
   }
 
-  public quizId: string;
+  public quizId: string = "";
 
-  public question: QuizQuestion;
-  public submissionResult: SubmissionResult;
-  public showAnswer: boolean;
-  public chosenAnswer: string;
+  public question?: QuizQuestion = undefined;
+  public submissionResult?: SubmissionResult = undefined;
+  public showAnswer: boolean = false;
+  public chosenAnswer: string = "";
   public enableChoices = true;
 
-  public sections: QuizSection[];
+  public sections: QuizSection[] = [];
 
   // The section to show questions from.
   // Not just the section ID of the question.
-  public sectionId: string;
-  private questionId: string;
+  public sectionId: string = "";
+  private questionId: string = "";
 
   constructor(private quizService: QuizService,
               private questionService: QuestionService,
@@ -103,10 +104,10 @@ export class QuestionComponent extends BaseComponent implements OnInit {
 
   public ngOnInit(): void {
     this.route.queryParamMap.pipe(
-      switchMap((params: ParamMap) => {
-        this.quizId = params.get("quiz-id");
-        this.questionId = params.get("question-id");
-        this.sectionId = params.get("section-id");
+      switchMap((params: ParamMap, index: number) => {
+        this.quizId = params.get("quiz-id") || "";
+        this.questionId = params.get("question-id") || "";
+        this.sectionId = params.get("section-id") || "";
 
         if (this.submissionResult && this.submissionResult.nextQuestion &&
           this.submissionResult.nextQuestion.id === this.questionId) {
@@ -132,17 +133,17 @@ export class QuestionComponent extends BaseComponent implements OnInit {
             return this.questionService.getNextQuestion(this.quizId, this.sectionId);
             // TODO: Update the URL.
           } else {
-            // TODO: Show an error message?
-            return undefined;
+            return of({
+              error: "No question ID or quiz ID"});
           }
         }
       }))
       .subscribe(
-        (question) => {
+        (question: any) => {
           this.setServerSuccess();
 
           if (this.questionId) {
-            this.question = question;
+            this.question = question as QuizQuestion;
 
             this.setTitle("Question: " + QuestionComponent.questionTitle(this.question));
           } else {
@@ -156,8 +157,9 @@ export class QuestionComponent extends BaseComponent implements OnInit {
               },
             });
           }
+
         },
-        (err) => {
+        (err: any) => {
           this.setServerFailed();
           this.question = undefined;
         });
@@ -292,7 +294,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     }
 
     // Wipe these:
-    this.chosenAnswer = undefined;
+    this.chosenAnswer = "";
     this.showAnswer = false;
     this.enableChoices = true;
 

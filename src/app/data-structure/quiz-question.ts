@@ -8,25 +8,25 @@ export class QuizQuestion extends HasIdAndTitle {
   }
 
   @Type(() => QuizText)
-  public text: QuizText;
+  public text?: QuizText;
 
-  public note: string;
-  public videoUrl: string;
-  public codeUrl: string;
+  public note: string = "";
+  public videoUrl: string = "";
+  public codeUrl: string = "";
 
   @Type(() => QuizText)
-  public choices: QuizText[];
+  public choices?: QuizText[];
 
-  public sectionId: string;
-  public subSectionId: string;
+  public sectionId: string = "";
+  public subSectionId: string = "";
 
-  public quizTitle: string;
-
-  @Type(() => HasIdAndTitle)
-  public section: HasIdAndTitle;
+  public quizTitle: string = "";
 
   @Type(() => HasIdAndTitle)
-  public subSection: HasIdAndTitle;
+  public section?: HasIdAndTitle;
 
-  public quizUsesMathML: boolean;
+  @Type(() => HasIdAndTitle)
+  public subSection?: HasIdAndTitle;
+
+  public quizUsesMathML: boolean = false;
 }
