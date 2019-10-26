@@ -29,3 +29,9 @@ jobs:
       run: make test
       env:
         CI: true
+
+    - name: Store test coverage report as artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: Test Coverage
+        path: coverage
