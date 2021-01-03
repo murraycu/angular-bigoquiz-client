@@ -26,9 +26,10 @@ const routes: Routes = [
   exports: [ RouterModule ],
   imports: [
     RouterModule.forRoot(routes, {
-      anchorScrolling: "enabled",
-      scrollPositionRestoration: "enabled",
-    }),
+    anchorScrolling: "enabled",
+    scrollPositionRestoration: "enabled",
+    relativeLinkResolution: 'legacy'
+}),
   ],
 })
 export class AppRoutingModule {}
