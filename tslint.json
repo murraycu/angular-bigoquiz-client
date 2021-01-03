@@ -5,6 +5,9 @@
     ],
     "jsRules": {},
     "rules": {
+      "deprecation": {
+        "severity": "warning"
+      },
         "no-console": false,
         "no-empty": [true, "allow-empty-functions"]
     },
