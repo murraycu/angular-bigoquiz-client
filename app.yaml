@@ -54,7 +54,6 @@ skip_files:
 - ^karma\.config\.js
 - ^package\.json
 - ^protractor\.conf\.js
-- ^tslint\.json
 - ^(.*/)?.patch$
 - ^(.*/)?#.*#$
 - ^(.*/)?.*~$
