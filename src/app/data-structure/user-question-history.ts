@@ -15,13 +15,13 @@ export class UserQuestionHistory {
     return result;
   }
 
-  public questionId: string;
+  public questionId: string = "";
 
   @Type(() => QuizText)
   public questionTitle: QuizText;
 
-  public sectionId: string;
-  public subSectionTitle: string;
+  public sectionId: string = "";
+  public subSectionTitle: string = "";
 
   public answeredCorrectlyOnce = false;
   public countAnsweredWrong = 0;
