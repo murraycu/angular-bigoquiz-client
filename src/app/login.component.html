@@ -1,23 +1,26 @@
 <div class="content-panel">
   <h2 class="page-title-label">Login</h2>
 
-  <ng-container *ngIf="loginInfo">
+  @if (loginInfo) {
     <div class="status-panel">
-      <a *ngIf="loginInfo.nickname" class="user-name" [routerLink]="['/user']">{{loginInfo.nickname}}</a>
-
+      @if (loginInfo.nickname) {
+        <a class="user-name" [routerLink]="['/user']">{{loginInfo.nickname}}</a>
+      }
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-      <div *ngIf="!(loginInfo.nickname)" class="login-panel">
-        <a href="{{googleLoginUrl}}" class="button button-google"><i class="fa fa-google"></i>&nbsp; Sign In With Google</a>
-        <a href="{{gitHubLoginUrl}}" class="button button-github"><i class="fa fa-github"></i>&nbsp; Sign In With GitHub</a>
-        <a href="{{facebookLoginUrl}}" class="button button-facebook"><i class="fa fa-facebook"></i>&nbsp; Sign In With Facebook</a>
-      </div>
+      @if (!(loginInfo.nickname)) {
+        <div class="login-panel">
+          <a href="{{googleLoginUrl}}" class="button button-google"><i class="fa fa-google"></i>&nbsp; Sign In With Google</a>
+          <a href="{{gitHubLoginUrl}}" class="button button-github"><i class="fa fa-github"></i>&nbsp; Sign In With GitHub</a>
+          <a href="{{facebookLoginUrl}}" class="button button-facebook"><i class="fa fa-facebook"></i>&nbsp; Sign In With Facebook</a>
+        </div>
+      }
     </div>
-
-    <p *ngIf="loginFailed">
-      <!-- This actually comes from the /api/user-status GET,
-           after the failed login, but it can still be a useful hint. -->
-      Login Failed: {{loginInfo.errorMessage}}
-    </p>
-  </ng-container>
+    @if (loginFailed) {
+      <p>
+        <!-- This actually comes from the /api/user-status GET,
+        after the failed login, but it can still be a useful hint. -->
+        Login Failed: {{loginInfo.errorMessage}}
+      </p>
+    }
+  }
 </div>

@@ -1,36 +1,46 @@
 <div class="user-status-panel">
-  <ng-container *ngIf="loginInfo">
+  @if (loginInfo) {
     <div class="status-panel">
-      <a *ngIf="loginInfo.nickname" class="user-name" [routerLink]="['/user']">{{loginInfo.nickname}}</a>
-
-      <div *ngIf="!(loginInfo.nickname)" class="login-panel">
-        <a [routerLink]="['/login']">Sign In</a>
-      </div>
+      @if (loginInfo.nickname) {
+        <a class="user-name" [routerLink]="['/user']">{{loginInfo.nickname}}</a>
+      }
+      @if (!(loginInfo.nickname)) {
+        <div class="login-panel">
+          <a [routerLink]="['/login']">Sign In</a>
+        </div>
+      }
     </div>
-
-
-    <div *ngIf="showExtras && loginInfo.nickname">
-      <p><a href="{{logoutUrl}}">Log Out</a></p>
-
-      <h3>Connected Accounts</h3>
-      <p>You may sign into Big-O Quiz using any connected account.</p>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-      <p><i class="fa fa-google"></i>&nbsp; Google Account:
-      <a *ngIf="loginInfo.googleLinked" href="{{loginInfo.googleProfileUrl}}">Connected</a>
-      <a *ngIf="!loginInfo.googleLinked" href="{{googleLoginUrl}}">Connect</a>
+    @if (showExtras && loginInfo.nickname) {
+      <div>
+        <p><a href="{{logoutUrl}}">Log Out</a></p>
+        <h3>Connected Accounts</h3>
+        <p>You may sign into Big-O Quiz using any connected account.</p>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <p><i class="fa fa-google"></i>&nbsp; Google Account:
+        @if (loginInfo.googleLinked) {
+          <a href="{{loginInfo.googleProfileUrl}}">Connected</a>
+        }
+        @if (!loginInfo.googleLinked) {
+          <a href="{{googleLoginUrl}}">Connect</a>
+        }
       </p>
-
       <p><i class="fa fa-github"></i>&nbsp; GitHub Account:
-      <a *ngIf="loginInfo.gitHubLinked" href="{{loginInfo.gitHubProfileUrl}}">Connected</a>
-      <a *ngIf="!loginInfo.gitHubLinked" href="{{gitHubLoginUrl}}">Connect</a>
-      </p>
-
-      <p><i class="fa fa-facebook"></i>&nbsp; Facebook Account:
-      <a *ngIf="loginInfo.facebookLinked" href="{{loginInfo.facebookProfileUrl}}">Connected</a>
-      <a *ngIf="!loginInfo.facebookLinked" href="{{facebookLoginUrl}}">Connect</a>
-      </p>
-
-    </div>
-  </ng-container>
+      @if (loginInfo.gitHubLinked) {
+        <a href="{{loginInfo.gitHubProfileUrl}}">Connected</a>
+      }
+      @if (!loginInfo.gitHubLinked) {
+        <a href="{{gitHubLoginUrl}}">Connect</a>
+      }
+    </p>
+    <p><i class="fa fa-facebook"></i>&nbsp; Facebook Account:
+    @if (loginInfo.facebookLinked) {
+      <a href="{{loginInfo.facebookProfileUrl}}">Connected</a>
+    }
+    @if (!loginInfo.facebookLinked) {
+      <a href="{{facebookLoginUrl}}">Connect</a>
+    }
+  </p>
+</div>
+}
+}
 </div>
