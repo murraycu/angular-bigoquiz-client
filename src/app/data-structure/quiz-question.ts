@@ -27,6 +27,6 @@ export class QuizQuestion extends HasIdAndTitle {
   public quizUsesMathML: boolean;
 
   public static fromJson(obj: any): QuizQuestion {
-    return plainToClass(QuizQuestion, obj as object);
+    return plainToClass(QuizQuestion, obj as Record<string, unknown>);
   }
 }
