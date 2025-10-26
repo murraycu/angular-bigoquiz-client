@@ -12,10 +12,10 @@ export class QuizSection extends HasIdAndTitle {
   public questions: QuizQuestionAndAnswer[];
 
   public static fromJson(obj: any): QuizSection {
-    if (obj == undefined) {
+    if (obj === undefined) {
       return undefined;
     }
 
-    return plainToClass(QuizSection, obj as object);
+    return plainToClass(QuizSection, obj as Record<string, unknown>);
   }
 }

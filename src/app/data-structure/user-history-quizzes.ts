@@ -6,6 +6,6 @@ export class UserHistoryQuizzes {
   public stats: UserStats[];
 
   public static fromJson(obj: any): UserHistoryQuizzes {
-    return plainToClass(UserHistoryQuizzes, obj as object);
+    return plainToClass(UserHistoryQuizzes, obj as Record<string, unknown>);
   }
 }

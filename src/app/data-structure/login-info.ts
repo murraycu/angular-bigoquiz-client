@@ -14,6 +14,6 @@ export class LoginInfo {
   public errorMessage: string;
 
   public static fromJson(obj: any): LoginInfo {
-    return plainToClass(LoginInfo, obj as object);
+    return plainToClass(LoginInfo, obj as Record<string, unknown>);
   }
 }
