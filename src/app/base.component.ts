@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ServerState } from './server-status.component';
 
 export class BaseComponent {
-  public serverState: ServerState = ServerState.Loading;
+  public serverState: ServerState = ServerState.loading;
 
   public constructor(private titleService: Title) {
   }
@@ -14,16 +14,16 @@ export class BaseComponent {
 
   // Show a Loading... message.
   public setServerLoading() {
-    this.serverState = ServerState.Loading;
+    this.serverState = ServerState.loading;
   }
 
   // Show an error message.
   public setServerFailed() {
-    this.serverState = ServerState.Failed;
+    this.serverState = ServerState.failed;
   }
 
   // Hide the Loading.. and error messages.
   public setServerSuccess() {
-    this.serverState = ServerState.Success;
+    this.serverState = ServerState.success;
   }
 }
