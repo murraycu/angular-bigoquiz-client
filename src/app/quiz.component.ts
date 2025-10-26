@@ -10,9 +10,10 @@ import { Quiz } from "./data-structure/quiz";
 import { QuizService } from "./rest-api-clients/quiz.service";
 
 @Component({
-  selector: "app-quiz",
-  styleUrls: ["./quiz.component.css"],
-  templateUrl: "./quiz.component.html",
+    selector: "app-quiz",
+    styleUrls: ["./quiz.component.css"],
+    templateUrl: "./quiz.component.html",
+    standalone: false
 })
 export class QuizComponent extends BaseComponent implements OnInit {
   public quiz: Quiz;

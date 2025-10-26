@@ -7,9 +7,10 @@ import { BaseComponent } from "./base.component";
 import { Quiz } from "./data-structure/quiz";
 
 @Component({
-  selector: "app-quizzes",
-  styleUrls: ["./quizzes.component.css"],
-  templateUrl: "./quizzes.component.html",
+    selector: "app-quizzes",
+    styleUrls: ["./quizzes.component.css"],
+    templateUrl: "./quizzes.component.html",
+    standalone: false
 })
 export class QuizzesComponent extends BaseComponent implements OnInit {
   public quizzes: Quiz[];
