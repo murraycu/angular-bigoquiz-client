@@ -18,7 +18,7 @@ export class UserHistorySections {
   public statsMap: Map<string, UserStats>;
 
   public static fromJson(obj: any): UserHistorySections {
-    const result: UserHistorySections = plainToClass(UserHistorySections, obj as object);
+    const result: UserHistorySections = plainToClass(UserHistorySections, obj as Record<string, unknown>);
 
     // stats:
     if (result.stats) {

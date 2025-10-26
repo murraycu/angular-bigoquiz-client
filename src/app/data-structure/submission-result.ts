@@ -12,6 +12,6 @@ export class SubmissionResult {
   public nextQuestion: QuizQuestion;
 
   public static fromJson(obj: any): SubmissionResult {
-    return plainToClass(SubmissionResult, obj as object);
+    return plainToClass(SubmissionResult, obj as Record<string, unknown>);
   }
 }

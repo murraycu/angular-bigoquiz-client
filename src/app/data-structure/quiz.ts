@@ -11,6 +11,6 @@ export class Quiz extends HasIdAndTitle {
   public sections: QuizSection[];
 
   public static fromJson(obj: any): Quiz {
-    return plainToClass(Quiz, obj as object);
+    return plainToClass(Quiz, obj as Record<string, unknown>);
   }
 }
