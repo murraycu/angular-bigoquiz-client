@@ -1,7 +1,7 @@
-import { LoginInfo } from "./login-info";
+import { LoginInfo } from './login-info';
 
-describe("LoginInfo without the TestBed", () => {
-  it ("deserializes properly from JSON", () => {
+describe('LoginInfo without the TestBed', () => {
+  it ('deserializes properly from JSON', () => {
     // TODO: Does Response.json() uses JSON.parse() too?
     const jsonObj: string = JSON.parse(`
 {
@@ -15,6 +15,6 @@ describe("LoginInfo without the TestBed", () => {
     expect(obj.loggedIn).toEqual(true);
 
     expect(obj.nickname).toBeTruthy(obj);
-    expect(obj.nickname).toEqual("example@example.com");
+    expect(obj.nickname).toEqual('example@example.com');
   });
 });

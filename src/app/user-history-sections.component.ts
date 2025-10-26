@@ -1,18 +1,18 @@
 
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
-import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, ParamMap } from "@angular/router";
-import { Subscription } from "rxjs";
-import {switchMap} from "rxjs/operators";
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Subscription } from 'rxjs';
+import {switchMap} from 'rxjs/operators';
 
-import { BaseComponent } from "./base.component";
-import { UserHistorySections } from "./data-structure/user-history-sections";
-import { UserQuestionHistory } from "./data-structure/user-question-history";
-import { UserStats } from "./data-structure/user-stats";
-import { UserHistoryService } from "./rest-api-clients/user-history.service";
+import { BaseComponent } from './base.component';
+import { UserHistorySections } from './data-structure/user-history-sections';
+import { UserQuestionHistory } from './data-structure/user-question-history';
+import { UserStats } from './data-structure/user-stats';
+import { UserHistoryService } from './rest-api-clients/user-history.service';
 
-import { QuestionResultEvent } from "./question-result-event";
-import { QuestionResultsService } from "./question-results.service";
+import { QuestionResultEvent } from './question-result-event';
+import { QuestionResultsService } from './question-results.service';
 
 @Component({
     selector: "app-user-history-sections",
@@ -40,7 +40,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   public ngOnInit(): void {
     this.route.queryParamMap.pipe(
     switchMap((params: ParamMap) => {
-      const paramQuizId = params.get("quiz-id");
+      const paramQuizId = params.get('quiz-id');
 
       if (this.quizId === paramQuizId && this.userHistorySections) {
         // Use the existing data:
@@ -49,7 +49,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
       }
 
       this.quizId = paramQuizId;
-      this.sectionId = params.get("section-id");
+      this.sectionId = params.get('section-id');
 
       this.setServerLoading();
       return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId);
@@ -83,11 +83,11 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
    */
   public questionTitleForHistory(question: UserQuestionHistory): string {
     if (!question || !question.questionTitle || !question.questionTitle.text) {
-      return "";
+      return '';
     }
 
     if (question.subSectionTitle) {
-      return question.subSectionTitle + ": " + question.questionTitle.text;
+      return question.subSectionTitle + ': ' + question.questionTitle.text;
     } else {
       return question.questionTitle.text;
     }
@@ -119,9 +119,9 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   }
 
   public generateQuestionLinkQueryParams(qh: UserQuestionHistory): object {
-    const result = {"quiz-id": this.quizId, "question-id": qh.questionId};
+    const result = {'quiz-id': this.quizId, 'question-id': qh.questionId};
     if (this.sectionId && this.sectionId === qh.sectionId) {
-      result["section-id"] = this.sectionId;
+      result['section-id'] = this.sectionId;
     }
 
     return result;

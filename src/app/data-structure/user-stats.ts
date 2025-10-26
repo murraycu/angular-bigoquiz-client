@@ -1,6 +1,6 @@
-import { Exclude, plainToClass, Type } from "class-transformer";
-import { QuizQuestion } from "./quiz-question";
-import { UserQuestionHistory } from "./user-question-history";
+import { Exclude, plainToClass, Type } from 'class-transformer';
+import { QuizQuestion } from './quiz-question';
+import { UserQuestionHistory } from './user-question-history';
 
 export class UserStats {
   public static fromJson(obj: any): UserStats {
@@ -35,10 +35,10 @@ export class UserStats {
 
     // Avoid divide by zero, and avoid negative results.
     if (part <= 0) {
-      return "0.00%";
+      return '0.00%';
     }
 
-    return Number((part / total) * 100).toFixed(2) + "%";
+    return Number((part / total) * 100).toFixed(2) + '%';
   }
 
   public quizId: string;

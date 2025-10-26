@@ -1,6 +1,6 @@
-import { plainToClass, Type } from "class-transformer";
-import { LoginInfo } from "./login-info";
-import { UserStats } from "./user-stats";
+import { plainToClass, Type } from 'class-transformer';
+import { LoginInfo } from './login-info';
+import { UserStats } from './user-stats';
 
 export class UserHistorySections {
   public static fromJson(obj: any): UserHistorySections {
