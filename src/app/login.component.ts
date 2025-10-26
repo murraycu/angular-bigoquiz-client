@@ -1,14 +1,14 @@
-import { Component, Input, NgZone, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Component, Input, NgZone, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { BaseComponent } from "./base.component";
-import { Config } from "./config";
-import { LoginInfo } from "./data-structure/login-info";
-import { UserService } from "./rest-api-clients/user.service";
+import { BaseComponent } from './base.component';
+import { Config } from './config';
+import { LoginInfo } from './data-structure/login-info';
+import { UserService } from './rest-api-clients/user.service';
 
 // Google's login API namespace
-declare var gapi: any;
+declare let gapi: any;
 
 @Component({
     selector: "app-login",
@@ -37,7 +37,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.setTitle("Login");
+    this.setTitle('Login');
 
     // Get the "failed" query parameter:
     // We could instead do this, but it's theoretically possible that we might
@@ -45,8 +45,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
     // this.loginFailed = this.route.snapshot.queryParams.failed;
 
     this.route.queryParamMap.subscribe((params: ParamMap) => {
-        const str = params.get("failed") || "";
-        this.loginFailed = (str === "true");
+        const str = params.get('failed') || '';
+        this.loginFailed = (str === 'true');
       });
 
     // Get the login info from the server:

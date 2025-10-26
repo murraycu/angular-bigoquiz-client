@@ -1,6 +1,6 @@
-import { Title } from "@angular/platform-browser";
+import { Title } from '@angular/platform-browser';
 
-import { ServerState } from "./server-status.component";
+import { ServerState } from './server-status.component';
 
 export class BaseComponent {
   public serverState: ServerState = ServerState.Loading;

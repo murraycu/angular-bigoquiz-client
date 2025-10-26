@@ -1,6 +1,6 @@
-import { plainToClass, Type } from "class-transformer";
-import { QuizQuestion } from "./quiz-question";
-import { QuizText } from "./quiz-text";
+import { plainToClass, Type } from 'class-transformer';
+import { QuizQuestion } from './quiz-question';
+import { QuizText } from './quiz-text';
 
 export class SubmissionResult {
   public static fromJson(obj: any): SubmissionResult {

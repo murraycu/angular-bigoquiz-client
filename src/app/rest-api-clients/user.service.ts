@@ -1,15 +1,15 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import { LoginInfo} from "../data-structure/login-info";
+import { LoginInfo} from '../data-structure/login-info';
 
-import { Config } from "../config";
+import { Config } from '../config';
 
 @Injectable()
 export class UserService {
 
   private static handleError(error: any): Promise<any> {
-    console.error("An error occurred", error);
+    console.error('An error occurred', error);
     // console.error('An error occurred: JSON:', error.json());
     return Promise.reject(error.message || error);
   }
@@ -23,9 +23,7 @@ export class UserService {
     const url = `${Config.baseApiUrl}/api/user`;
     return this.http.get(url, {withCredentials: true})
       .toPromise()
-      .then((response) => {
-        return LoginInfo.fromJson(response);
-      })
+      .then((response) => LoginInfo.fromJson(response))
       .catch(UserService.handleError);
   }
 }

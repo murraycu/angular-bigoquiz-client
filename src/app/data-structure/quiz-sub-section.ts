@@ -1,6 +1,6 @@
-import { Type } from "class-transformer";
-import { HasIdAndTitle } from "./has-id-and-title";
-import { QuizQuestionAndAnswer } from "./quiz-question-and-answer";
+import { Type } from 'class-transformer';
+import { HasIdAndTitle } from './has-id-and-title';
+import { QuizQuestionAndAnswer } from './quiz-question-and-answer';
 
 export class QuizSubSection extends HasIdAndTitle {
 
