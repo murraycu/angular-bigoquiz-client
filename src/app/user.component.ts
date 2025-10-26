@@ -6,9 +6,10 @@ import { UserHistoryQuizzes} from "./data-structure/user-history-quizzes";
 import { UserHistoryService } from "./rest-api-clients/user-history.service";
 
 @Component({
-  selector: "app-user",
-  styleUrls: ["./user.component.css", "./user-history-sections.component.css"],
-  templateUrl: "./user.component.html",
+    selector: "app-user",
+    styleUrls: ["./user.component.css", "./user-history-sections.component.css"],
+    templateUrl: "./user.component.html",
+    standalone: false
 })
 export class UserComponent extends BaseComponent implements OnInit {
   public userHistoryQuizzes: UserHistoryQuizzes;

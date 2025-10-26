@@ -7,9 +7,10 @@ export enum ServerState {
 }
 
 @Component({
-  selector: "app-server-status",
-  styleUrls: ["./server-status.component.css"],
-  templateUrl: "./server-status.component.html",
+    selector: "app-server-status",
+    styleUrls: ["./server-status.component.css"],
+    templateUrl: "./server-status.component.html",
+    standalone: false
 })
 export class ServerStatusComponent {
   // Make the enum available to the html template.
