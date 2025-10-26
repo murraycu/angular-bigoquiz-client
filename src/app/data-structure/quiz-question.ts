@@ -3,10 +3,6 @@ import { HasIdAndTitle } from './has-id-and-title';
 import { QuizText } from './quiz-text';
 
 export class QuizQuestion extends HasIdAndTitle {
-  public static fromJson(obj: any): QuizQuestion {
-    return plainToClass(QuizQuestion, obj as object);
-  }
-
   @Type(() => QuizText)
   public text: QuizText;
 
@@ -29,4 +25,8 @@ export class QuizQuestion extends HasIdAndTitle {
   public subSection: HasIdAndTitle;
 
   public quizUsesMathML: boolean;
+
+  public static fromJson(obj: any): QuizQuestion {
+    return plainToClass(QuizQuestion, obj as object);
+  }
 }

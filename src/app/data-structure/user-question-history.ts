@@ -3,6 +3,17 @@ import { QuizQuestion } from './quiz-question';
 import { QuizText } from './quiz-text';
 
 export class UserQuestionHistory {
+  public questionId: string;
+
+  @Type(() => QuizText)
+  public questionTitle: QuizText;
+
+  public sectionId: string;
+  public subSectionTitle: string;
+
+  public answeredCorrectlyOnce = false;
+  public countAnsweredWrong = 0;
+
   public static fromQuestion(question: QuizQuestion): UserQuestionHistory {
     const result: UserQuestionHistory = new UserQuestionHistory();
     result.questionId = question.id;
@@ -14,17 +25,6 @@ export class UserQuestionHistory {
 
     return result;
   }
-
-  public questionId: string;
-
-  @Type(() => QuizText)
-  public questionTitle: QuizText;
-
-  public sectionId: string;
-  public subSectionTitle: string;
-
-  public answeredCorrectlyOnce = false;
-  public countAnsweredWrong = 0;
 
   /** Adjust the counts in response to a correct or wrong answer.
    * This is also updated on the server, but this lets us update
