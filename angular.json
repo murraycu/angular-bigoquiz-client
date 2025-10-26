@@ -60,18 +60,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-bigoquiz-client:build"
+            "buildTarget": "angular-bigoquiz-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-bigoquiz-client:build:production"
+              "buildTarget": "angular-bigoquiz-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-bigoquiz-client:build"
+            "buildTarget": "angular-bigoquiz-client:build"
           }
         },
         "test": {
