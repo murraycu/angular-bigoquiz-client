@@ -10,15 +10,17 @@
     <h2>History</h2>
     <div class="user-status-answers-panel">
 
-    <ng-container *ngIf="userHistoryQuizzes">
-      <div *ngFor="let stats of userHistoryQuizzes.stats"
-        class="user-quiz-section">
-        <h3><a [routerLink]="['/history']" [queryParams]="{'quiz-id': stats.quizId}">Quiz: {{stats.quizTitle}}</a></h3>
-          <p class="progress-part-correct-once" [ngStyle]="{'width': stats.percentCorrectOnce(stats.countQuestions)}">{{stats.countQuestionsCorrectOnce}} correct once</p>
-          <p class="progress-part-answered-once" [ngStyle]="{'width': stats.percentAnsweredOnce(stats.countQuestions)}">{{stats.countQuestionsAnsweredOnce}} answered once</p>
-          <p class="progress-part-count" style="width: 100%">{{stats.countQuestions}} questions</p>
-      </div>
-    </ng-container>
+      @if (userHistoryQuizzes) {
+        @for (stats of userHistoryQuizzes.stats; track stats) {
+          <div
+            class="user-quiz-section">
+            <h3><a [routerLink]="['/history']" [queryParams]="{'quiz-id': stats.quizId}">Quiz: {{stats.quizTitle}}</a></h3>
+            <p class="progress-part-correct-once" [ngStyle]="{'width': stats.percentCorrectOnce(stats.countQuestions)}">{{stats.countQuestionsCorrectOnce}} correct once</p>
+            <p class="progress-part-answered-once" [ngStyle]="{'width': stats.percentAnsweredOnce(stats.countQuestions)}">{{stats.countQuestionsAnsweredOnce}} answered once</p>
+            <p class="progress-part-count" style="width: 100%">{{stats.countQuestions}} questions</p>
+          </div>
+        }
+      }
     </div>
   </div>
 </div>

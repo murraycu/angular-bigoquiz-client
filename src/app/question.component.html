@@ -4,59 +4,85 @@
   <app-server-status state="{{serverState}}">
   </app-server-status>
 
-  <ng-container *ngIf="question">
-    <h2 *ngIf="question.quizTitle" class="page-secondary-title-label">{{question.quizTitle}}</h2>
-
-    <p *ngIf="sectionId && sections" class="show-from-panel">
-      <span class="next-question-section-title-label">Show Questions From: </span>
-      <select class="next-question-section-title" [ngModel]="sectionId" (ngModelChange)="onSectionIdSelected($event)">
-        <option value="all">All Sections</option>
-
-        <option *ngFor="let section of sections" value="{{section.id}}">{{section.title}}</option>
-      </select>
-    </p>
-
+  @if (question) {
+    @if (question.quizTitle) {
+      <h2 class="page-secondary-title-label">{{question.quizTitle}}</h2>
+    }
+    @if (sectionId && sections) {
+      <p class="show-from-panel">
+        <span class="next-question-section-title-label">Show Questions From: </span>
+        <select class="next-question-section-title" [ngModel]="sectionId" (ngModelChange)="onSectionIdSelected($event)">
+          <option value="all">All Sections</option>
+          @for (section of sections; track section) {
+            <option value="{{section.id}}">{{section.title}}</option>
+          }
+        </select>
+      </p>
+    }
     <h3>
       <!-- Don't reformat this - it can add a space before the : -->
-      <a *ngIf="question.section.link; else noLinkSection" href="{{question.section.link}}">{{question.section.title}}</a><ng-template #noLinkSection>{{question.section.title}}</ng-template><ng-container *ngIf="question.subSection && question.subSection.title">:
-        <a *ngIf="question.subSection.link; else noLinkSubSection" href="{{question.subSection.link}}">{{question.subSection.title}}</a>
-        <ng-template #noLinkSubSection>{{question.subSection.title}}</ng-template>
-      </ng-container>
+      @if (question.section.link) {
+        <a href="{{question.section.link}}">{{question.section.title}}</a>
+      } @else {
+        {{question.section.title}}
+        }@if (question.subSection && question.subSection.title) {
+        :
+        @if (question.subSection.link) {
+          <a href="{{question.subSection.link}}">{{question.subSection.title}}</a>
+        } @else {
+          {{question.subSection.title}}
+        }
+      }
     </h3>
-
-
-    <p *ngIf="question.text && question.text.text">
-      <a *ngIf="question.link" href="{{question.link}}">{{question.text.text}}</a>
-      <ng-container *ngIf="!question.link">{{question.text.text}}</ng-container>
-    </p>
-
+    @if (question.text && question.text.text) {
+      <p>
+        @if (question.link) {
+          <a href="{{question.link}}">{{question.text.text}}</a>
+        }
+        @if (!question.link) {
+          {{question.text.text}}
+        }
+      </p>
+    }
     <ng-container [ngModel]="submissionResult" name="result" ngDefaultControl>
-      <div *ngIf="question.choices" class="choices-panel clearfix">
-        <span *ngFor="let choice of question.choices let i=index" class="question-radio-button"
-          [ngClass]="{'question-radio-button-correct': showAnswer && choiceIsCorrect(choice.text), 'question-radio-button-wrong': submissionResult && choiceIsWrongAnswer(choice.text) }">
-          <input [id]="'id'+i" name="choices" value="on" type="radio" (click)="onChoiceClicked(choice.text)"
-            [disabled]="!enableChoices"/>
-          <label [for]="'id'+i"
-            [ngClass]="{'question-label-disabled': !enableChoices }">{{choice.text}}</label>
-        </span>
-      </div>
-
+      @if (question.choices) {
+        <div class="choices-panel clearfix">
+          @for (choice of question.choices let i=index; track choice) {
+            <span class="question-radio-button"
+              [ngClass]="{'question-radio-button-correct': showAnswer && choiceIsCorrect(choice.text), 'question-radio-button-wrong': submissionResult && choiceIsWrongAnswer(choice.text) }">
+              <input [id]="'id'+i" name="choices" value="on" type="radio" (click)="onChoiceClicked(choice.text)"
+                [disabled]="!enableChoices"/>
+              <label [for]="'id'+i"
+              [ngClass]="{'question-label-disabled': !enableChoices }">{{choice.text}}</label>
+            </span>
+          }
+        </div>
+      }
       <div class="result-panel">
-        <ng-container *ngIf="submissionResult">
-          <p *ngIf="submissionResult.result" class="result-label">Correct</p>
-          <p *ngIf="!submissionResult.result && !showAnswer" class="result-label">Wrong</p>
-
-          <p *ngIf="question.note" class="note-label">{{question.note}}</p>
-          <a *ngIf="question.videoUrl" class="video-anchor" href="{{question.videoUrl}}">Video</a>
-          <a *ngIf="question.codeUrl" class="code-anchor" href="{{question.codeUrl}}">Code</a>
-
-          <button class="next-question-button" type="button" (click)="onNext()">Next</button> 
-        </ng-container>
-
-        <button *ngIf="!submissionResult || !submissionResult.result" class="show-answer-button" type="button" (click)="onShowAnswer()">Show Answer</button>
+        @if (submissionResult) {
+          @if (submissionResult.result) {
+            <p class="result-label">Correct</p>
+          }
+          @if (!submissionResult.result && !showAnswer) {
+            <p class="result-label">Wrong</p>
+          }
+          @if (question.note) {
+            <p class="note-label">{{question.note}}</p>
+          }
+          @if (question.videoUrl) {
+            <a class="video-anchor" href="{{question.videoUrl}}">Video</a>
+          }
+          @if (question.codeUrl) {
+            <a class="code-anchor" href="{{question.codeUrl}}">Code</a>
+          }
+          <button class="next-question-button" type="button" (click)="onNext()">Next</button>
+        }
+        @if (!submissionResult || !submissionResult.result) {
+          <button class="show-answer-button" type="button" (click)="onShowAnswer()">Show Answer</button>
+        }
       </div>
     </ng-container>
-  </ng-container>
+  }
 </div>
 
 <div class="sidebar-panel-sections">

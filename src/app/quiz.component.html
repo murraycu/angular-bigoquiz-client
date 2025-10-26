@@ -4,52 +4,69 @@
   <app-server-status state="{{serverState}}">
   </app-server-status>
 
-  <div *ngIf="quiz" class="quiz-panel">
-    <h2 class="page-secondary-title-label">{{quiz.title}}</h2>
-
-    <p>
-    <a class="quiz-button-answer-questions" [routerLink]="['/question']" [queryParams]="{'quiz-id': quiz.id}">Answer Questions</a>
-    </p>
-
-    <div *ngFor="let section of quiz.sections"
-      class="quiz-section">
-      <h3 *ngIf="section.link"><a href={{section.link}}>{{section.title}}</a></h3>
-      <h3 *ngIf="!section.link">{{section.title}}</h3>
-
-      <div *ngFor="let subSection of section.subSections"
-        class="quiz-sub-section">
-        <h4>{{subSection.title}}</h4>
-
-        <!-- Questions in the sub-section. -->
-        <div *ngFor="let qa of subSection.questions"
-          class="quiz-question-answer">
-          <p>
-            <span class="quiz-question-title">Question:</span>
-            <a *ngIf="qa.question.link" class="quiz-question" href={{qa.question.link}}>{{qa.question.text.text}}</a>
-            <span *ngIf="!(qa.question.link)" class="quiz-question">{{qa.question.text.text}}</span>
-          </p>
-          <p>
-            <span class="quiz-answer-title">Answer:</span>
-            <span class="quiz-answer">{{qa.answer.text}}</span>
-          </p>
+  @if (quiz) {
+    <div class="quiz-panel">
+      <h2 class="page-secondary-title-label">{{quiz.title}}</h2>
+      <p>
+        <a class="quiz-button-answer-questions" [routerLink]="['/question']" [queryParams]="{'quiz-id': quiz.id}">Answer Questions</a>
+      </p>
+      @for (section of quiz.sections; track section) {
+        <div
+          class="quiz-section">
+          @if (section.link) {
+            <h3><a href={{section.link}}>{{section.title}}</a></h3>
+          }
+          @if (!section.link) {
+            <h3>{{section.title}}</h3>
+          }
+          @for (subSection of section.subSections; track subSection) {
+            <div
+              class="quiz-sub-section">
+              <h4>{{subSection.title}}</h4>
+              <!-- Questions in the sub-section. -->
+              @for (qa of subSection.questions; track qa) {
+                <div
+                  class="quiz-question-answer">
+                  <p>
+                    <span class="quiz-question-title">Question:</span>
+                    @if (qa.question.link) {
+                      <a class="quiz-question" href={{qa.question.link}}>{{qa.question.text.text}}</a>
+                    }
+                    @if (!(qa.question.link)) {
+                      <span class="quiz-question">{{qa.question.text.text}}</span>
+                    }
+                  </p>
+                  <p>
+                    <span class="quiz-answer-title">Answer:</span>
+                    <span class="quiz-answer">{{qa.answer.text}}</span>
+                  </p>
+                </div>
+              }
+            </div>
+          }
+          <!-- Questions in the section, not in any sub-section. -->
+          @for (qa of section.questions; track qa) {
+            <div
+              class="quiz-question-answer">
+              <p>
+                <span class="quiz-question-title">Question:</span>
+                @if (qa.question.link) {
+                  <a class="quiz-question" href={{qa.question.link}}>{{qa.question.text.text}}</a>
+                }
+                @if (!(qa.question.link)) {
+                  <span class="quiz-question">{{qa.question.text.text}}</span>
+                }
+              </p>
+              <p>
+                <span class="quiz-answer-title">Answer:</span>
+                <span class="quiz-answer">{{qa.answer.text}}</span>
+              </p>
+            </div>
+          }
         </div>
-      </div>
-
-      <!-- Questions in the section, not in any sub-section. -->
-      <div *ngFor="let qa of section.questions"
-        class="quiz-question-answer">
-        <p>
-          <span class="quiz-question-title">Question:</span>
-          <a *ngIf="qa.question.link" class="quiz-question" href={{qa.question.link}}>{{qa.question.text.text}}</a>
-          <span *ngIf="!(qa.question.link)" class="quiz-question">{{qa.question.text.text}}</span>
-        </p>
-        <p>
-          <span class="quiz-answer-title">Answer:</span>
-          <span class="quiz-answer">{{qa.answer.text}}</span>
-        </p>
-      </div>
+      }
     </div>
-  </div>
+  }
 </div>
 
 <div class="sidebar-panel-sections">
