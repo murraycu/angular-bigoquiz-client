@@ -1,8 +1,8 @@
-import { Component, Input, NgZone, OnInit } from "@angular/core";
+import { Component, Input, NgZone, OnInit } from '@angular/core';
 
-import { Config } from "./config";
-import { LoginInfo } from "./data-structure/login-info";
-import { UserService } from "./rest-api-clients/user.service";
+import { Config } from './config';
+import { LoginInfo } from './data-structure/login-info';
+import { UserService } from './rest-api-clients/user.service';
 
 @Component({
     selector: "app-user-status",

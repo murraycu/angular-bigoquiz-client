@@ -1,6 +1,6 @@
-import { plainToClass, Type } from "class-transformer";
-import { HasIdAndTitle } from "./has-id-and-title";
-import { QuizText } from "./quiz-text";
+import { plainToClass, Type } from 'class-transformer';
+import { HasIdAndTitle } from './has-id-and-title';
+import { QuizText } from './quiz-text';
 
 export class QuizQuestion extends HasIdAndTitle {
   public static fromJson(obj: any): QuizQuestion {

@@ -1,14 +1,14 @@
-import { QuizQuestion } from "./quiz-question";
-import { UserHistorySections } from "./user-history-sections";
-import { UserStats } from "./user-stats";
+import { QuizQuestion } from './quiz-question';
+import { UserHistorySections } from './user-history-sections';
+import { UserStats } from './user-stats';
 
-describe("UserHistorySections without the TestBed", () => {
+describe('UserHistorySections without the TestBed', () => {
 
-  it("getUserStatsForSection() should return value previously added with setUserStatsForSection().", () => {
+  it('getUserStatsForSection() should return value previously added with setUserStatsForSection().', () => {
     const sections: UserHistorySections = new UserHistorySections();
 
-    const sectionId = "some-section-id";
-    const sectionTitle = "some-section-title";
+    const sectionId = 'some-section-id';
+    const sectionTitle = 'some-section-title';
 
     const userStats: UserStats = new UserStats();
     userStats.sectionId = sectionId;
@@ -23,12 +23,12 @@ describe("UserHistorySections without the TestBed", () => {
     expect(result.sectionTitle).toBe(sectionTitle);
   });
 
-  it("getUserStatsForSection() should return value previously changed with setUserStatsForSection().", () => {
+  it('getUserStatsForSection() should return value previously changed with setUserStatsForSection().', () => {
     const sections: UserHistorySections = new UserHistorySections();
 
-    const sectionId = "some-section-id";
-    const sectionTitle = "some-section-title";
-    const changedSectionTitle = "changed-section-title";
+    const sectionId = 'some-section-id';
+    const sectionTitle = 'some-section-title';
+    const changedSectionTitle = 'changed-section-title';
 
     const userStats: UserStats = new UserStats();
     userStats.sectionId = sectionId;

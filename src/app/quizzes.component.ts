@@ -1,10 +1,10 @@
-import { Component } from "@angular/core";
-import { OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
-import { QuizService } from "./rest-api-clients/quiz.service";
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { QuizService } from './rest-api-clients/quiz.service';
 
-import { BaseComponent } from "./base.component";
-import { Quiz } from "./data-structure/quiz";
+import { BaseComponent } from './base.component';
+import { Quiz } from './data-structure/quiz';
 
 @Component({
     selector: "app-quizzes",
@@ -17,7 +17,7 @@ export class QuizzesComponent extends BaseComponent implements OnInit {
 
   constructor(private quizService: QuizService, titleService: Title) {
     super(titleService);
-    this.setTitle("Quizzes");
+    this.setTitle('Quizzes');
   }
 
   public getQuizzes(): void {

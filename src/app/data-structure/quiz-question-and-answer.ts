@@ -1,6 +1,6 @@
-import { Type } from "class-transformer";
-import { QuizQuestion } from "./quiz-question";
-import { QuizText } from "./quiz-text";
+import { Type } from 'class-transformer';
+import { QuizQuestion } from './quiz-question';
+import { QuizText } from './quiz-text';
 
 export class QuizQuestionAndAnswer {
   @Type(() => QuizQuestion)
