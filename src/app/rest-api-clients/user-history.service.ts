@@ -9,6 +9,7 @@ import { UserHistorySections} from '../data-structure/user-history-sections';
 
 @Injectable()
 export class UserHistoryService {
+  constructor(private http: HttpClient) { }
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -28,8 +29,6 @@ export class UserHistoryService {
 
     return p;
   }
-
-  constructor(private http: HttpClient) { }
 
   /** Get the history for each section in an individual quiz.
    */

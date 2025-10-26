@@ -24,6 +24,30 @@ import { QuestionResultsService } from './question-results.service';
     standalone: false
 })
 export class QuestionComponent extends BaseComponent implements OnInit {
+  public quizId: string;
+
+  public question: QuizQuestion;
+  public submissionResult: SubmissionResult;
+  public showAnswer: boolean;
+  public chosenAnswer: string;
+  public enableChoices = true;
+
+  public sections: QuizSection[];
+
+  // The section to show questions from.
+  // Not just the section ID of the question.
+  public sectionId: string;
+  private questionId: string;
+
+  constructor(private quizService: QuizService,
+              private questionService: QuestionService,
+              private userHistoryService: UserHistoryService,
+              private questionResultsService: QuestionResultsService,
+              private router: Router,
+              private route: ActivatedRoute,
+              titleService: Title) {
+    super(titleService);
+  }
 
   private static titleForHasIdAndTitle(obj: HasIdAndTitle): string {
     if (!obj) {
@@ -75,31 +99,6 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     }
 
     return text;
-  }
-
-  public quizId: string;
-
-  public question: QuizQuestion;
-  public submissionResult: SubmissionResult;
-  public showAnswer: boolean;
-  public chosenAnswer: string;
-  public enableChoices = true;
-
-  public sections: QuizSection[];
-
-  // The section to show questions from.
-  // Not just the section ID of the question.
-  public sectionId: string;
-  private questionId: string;
-
-  constructor(private quizService: QuizService,
-              private questionService: QuestionService,
-              private userHistoryService: UserHistoryService,
-              private questionResultsService: QuestionResultsService,
-              private router: Router,
-              private route: ActivatedRoute,
-              titleService: Title) {
-    super(titleService);
   }
 
   public ngOnInit(): void {

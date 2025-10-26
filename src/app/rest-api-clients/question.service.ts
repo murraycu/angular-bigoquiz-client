@@ -6,13 +6,13 @@ import { QuizQuestion } from '../data-structure/quiz-question';
 
 @Injectable()
 export class QuestionService {
+  constructor(private http: HttpClient) { }
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     // console.error('An error occurred: JSON:', error);
     return Promise.reject(error.message || error);
   }
-  constructor(private http: HttpClient) { }
 
   public getNextQuestion(quizId: string, sectionId: string): Promise<QuizQuestion> {
     // Note: We must use backticks: This is a template literal.

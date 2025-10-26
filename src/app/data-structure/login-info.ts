@@ -1,10 +1,6 @@
 import { plainToClass } from 'class-transformer';
 
 export class LoginInfo {
-  public static fromJson(obj: any): LoginInfo {
-    return plainToClass(LoginInfo, obj as object);
-  }
-
   public loggedIn: boolean;
   public nickname: string;
 
@@ -16,4 +12,8 @@ export class LoginInfo {
   public facebookProfileUrl: string;
 
   public errorMessage: string;
+
+  public static fromJson(obj: any): LoginInfo {
+    return plainToClass(LoginInfo, obj as object);
+  }
 }

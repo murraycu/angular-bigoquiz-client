@@ -3,6 +3,30 @@ import { QuizQuestion } from './quiz-question';
 import { UserQuestionHistory } from './user-question-history';
 
 export class UserStats {
+  public quizId: string;
+  public quizTitle: string;
+  public sectionId: string;
+  public sectionTitle: string;
+
+  public answered = 0;
+  public correct = 0;
+  public countQuestions = 0;
+  public countQuestionsAnsweredOnce = 0;
+  public countQuestionsCorrectOnce = 0;
+
+  public problemQuestionHistoriesCount: number;
+
+  @Type(() => UserQuestionHistory)
+  public topProblemQuestionHistories: UserQuestionHistory[];
+
+  // Only used for parsing from JSON.
+  @Type(() => UserQuestionHistory)
+  public questionHistories: UserQuestionHistory[];
+
+  // Built from questionHistories.
+  @Exclude()
+  public questionHistoriesMap: Map<string, UserQuestionHistory>;
+
   public static fromJson(obj: any): UserStats {
     const result: UserStats = plainToClass(UserStats, obj as object);
 
@@ -41,29 +65,6 @@ export class UserStats {
     return Number((part / total) * 100).toFixed(2) + '%';
   }
 
-  public quizId: string;
-  public quizTitle: string;
-  public sectionId: string;
-  public sectionTitle: string;
-
-  public answered = 0;
-  public correct = 0;
-  public countQuestions = 0;
-  public countQuestionsAnsweredOnce = 0;
-  public countQuestionsCorrectOnce = 0;
-
-  public problemQuestionHistoriesCount: number;
-
-  @Type(() => UserQuestionHistory)
-  public topProblemQuestionHistories: UserQuestionHistory[];
-
-  // Only used for parsing from JSON.
-  @Type(() => UserQuestionHistory)
-  public questionHistories: UserQuestionHistory[];
-
-  // Built from questionHistories.
-  @Exclude()
-  public questionHistoriesMap: Map<string, UserQuestionHistory>;
 
   public percentAnsweredOnce(total: number): string {
     return UserStats.percentageString(total, this.countQuestionsAnsweredOnce);

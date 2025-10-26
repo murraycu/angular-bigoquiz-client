@@ -7,14 +7,13 @@ import { Config } from '../config';
 
 @Injectable()
 export class UserService {
+  constructor(private http: HttpClient) { }
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     // console.error('An error occurred: JSON:', error.json());
     return Promise.reject(error.message || error);
   }
-
-  constructor(private http: HttpClient) { }
 
   /** Get the overall history for the current user, for all quizzes.
    */
