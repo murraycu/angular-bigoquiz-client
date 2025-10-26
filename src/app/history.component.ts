@@ -7,9 +7,10 @@ import { UserHistoryService } from "./rest-api-clients/user-history.service";
 import { UserHistorySectionsComponent } from "./user-history-sections.component";
 
 @Component({
-  selector: "app-history",
-  styleUrls: ["./history.component.css"],
-  templateUrl: "./history.component.html",
+    selector: "app-history",
+    styleUrls: ["./history.component.css"],
+    templateUrl: "./history.component.html",
+    standalone: false
 })
 export class HistoryComponent extends BaseComponent {
 

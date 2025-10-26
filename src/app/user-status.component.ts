@@ -5,9 +5,10 @@ import { LoginInfo } from "./data-structure/login-info";
 import { UserService } from "./rest-api-clients/user.service";
 
 @Component({
-  selector: "app-user-status",
-  styleUrls: ["./user-status.component.css"],
-  templateUrl: "./user-status.component.html",
+    selector: "app-user-status",
+    styleUrls: ["./user-status.component.css"],
+    templateUrl: "./user-status.component.html",
+    standalone: false
 })
 export class UserStatusComponent implements OnInit {
 

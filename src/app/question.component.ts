@@ -18,9 +18,10 @@ import { QuestionResultEvent } from "./question-result-event";
 import { QuestionResultsService } from "./question-results.service";
 
 @Component({
-  selector: "app-question",
-  styleUrls: ["./question.component.css"],
-  templateUrl: "./question.component.html",
+    selector: "app-question",
+    styleUrls: ["./question.component.css"],
+    templateUrl: "./question.component.html",
+    standalone: false
 })
 export class QuestionComponent extends BaseComponent implements OnInit {
 

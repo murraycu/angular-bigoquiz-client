@@ -11,9 +11,10 @@ import { UserService } from "./rest-api-clients/user.service";
 declare var gapi: any;
 
 @Component({
-  selector: "app-login",
-  styleUrls: ["./login.component.css"],
-  templateUrl: "./login.component.html",
+    selector: "app-login",
+    styleUrls: ["./login.component.css"],
+    templateUrl: "./login.component.html",
+    standalone: false
 })
 export class LoginComponent extends BaseComponent implements OnInit {
 
