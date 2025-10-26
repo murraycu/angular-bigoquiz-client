@@ -5,13 +5,15 @@
   </app-server-status>
 
   <div class="quiz-list-panel">
-    <div *ngFor="let quiz of quizzes"
-      class="quiz-list-row clearfix">
-      <a [routerLink]="['/quiz']" [queryParams]="{'quiz-id': quiz.id}">{{quiz.title}}</a>
-      <div class="quiz-list-row-buttons-panel">
-        <a class="button-answer-questions" [routerLink]="['/question']" [queryParams]="{'quiz-id': quiz.id}">Answer Questions</a>
-        <a class="button-history" [routerLink]="['/history']" [queryParams]="{'quiz-id': quiz.id}">History</a>
+    @for (quiz of quizzes; track quiz) {
+      <div
+        class="quiz-list-row clearfix">
+        <a [routerLink]="['/quiz']" [queryParams]="{'quiz-id': quiz.id}">{{quiz.title}}</a>
+        <div class="quiz-list-row-buttons-panel">
+          <a class="button-answer-questions" [routerLink]="['/question']" [queryParams]="{'quiz-id': quiz.id}">Answer Questions</a>
+          <a class="button-history" [routerLink]="['/history']" [queryParams]="{'quiz-id': quiz.id}">History</a>
+        </div>
       </div>
-    </div>
+    }
   </div>
 </div>
