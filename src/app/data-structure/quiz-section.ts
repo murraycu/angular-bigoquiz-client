@@ -4,6 +4,13 @@ import { QuizQuestionAndAnswer } from './quiz-question-and-answer';
 import { QuizSubSection } from './quiz-sub-section';
 
 export class QuizSection extends HasIdAndTitle {
+  @Type(() => QuizSubSection)
+  public subSections: QuizSubSection[];
+
+  // defaultChoices
+  @Type(() => QuizQuestionAndAnswer)
+  public questions: QuizQuestionAndAnswer[];
+
   public static fromJson(obj: any): QuizSection {
     if (obj == undefined) {
       return undefined;
@@ -11,11 +18,4 @@ export class QuizSection extends HasIdAndTitle {
 
     return plainToClass(QuizSection, obj as object);
   }
-
-  @Type(() => QuizSubSection)
-  public subSections: QuizSubSection[];
-
-  // defaultChoices
-  @Type(() => QuizQuestionAndAnswer)
-  public questions: QuizQuestionAndAnswer[];
 }

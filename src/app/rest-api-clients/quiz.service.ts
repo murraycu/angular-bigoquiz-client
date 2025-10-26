@@ -8,13 +8,13 @@ import { QuizSection } from '../data-structure/quiz-section';
 
 @Injectable()
 export class QuizService {
+  constructor(private http: HttpClient) { }
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     // console.error('An error occurred: JSON:', error.json());
     return Promise.reject(error.message || error);
   }
-  constructor(private http: HttpClient) { }
 
   public getQuizzes(): Promise<Quiz[]> {
    const url = Config.baseApiUrl + '/api/quiz?list-only=true';
