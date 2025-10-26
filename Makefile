@@ -4,7 +4,7 @@ all: build
 
 build:
 	npm install ;\
-        npm run build -- --prod
+        npm run build -- --configuration "production"
 
 build-debug:
 	npm install ;\
