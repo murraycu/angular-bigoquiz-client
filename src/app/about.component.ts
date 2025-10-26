@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
-import { BaseComponent } from "./base.component";
+import { BaseComponent } from './base.component';
 
 @Component({
     selector: "app-about",
@@ -14,6 +14,6 @@ export class AboutComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.setTitle("About");
+    this.setTitle('About');
   }
 }
