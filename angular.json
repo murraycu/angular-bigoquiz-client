@@ -128,7 +128,6 @@
       }
     }
   },
-  "defaultProject": "angular-bigoquiz-client",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
