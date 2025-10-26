@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 
 export enum ServerState {
-  Loading,
-  Failed, // Note: Using Error here instead causes some compiler confusion with ErrorConstructor.
-  Success,
+  loading,
+  failed, // Note: Using Error here instead causes some compiler confusion with ErrorConstructor.
+  success,
 }
 
 @Component({
