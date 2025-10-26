@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms"; // For ngModel, used in .html.
 import { BrowserModule, Title } from "@angular/platform-browser";
@@ -25,38 +25,32 @@ import { UserService } from "./rest-api-clients/user.service";
 
 import { QuestionResultsService } from "./question-results.service";
 
-@NgModule({
-  bootstrap: [
-    AppComponent,
-    UserStatusComponent,
-  ],
-  declarations: [
-    AppComponent,
-    UserStatusComponent,
-    ServerStatusComponent,
-    HomeComponent,
-    AboutComponent,
-    UserComponent,
-    HistoryComponent,
-    QuizzesComponent,
-    QuizComponent,
-    QuestionComponent,
-    UserHistorySectionsComponent,
-    LoginComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    FormsModule,
-  ],
-  providers: [
-    UserService,
-    QuizService,
-    QuestionService,
-    UserHistoryService,
-    QuestionResultsService,
-    Title,
-  ],
-})
+@NgModule({ bootstrap: [
+        AppComponent,
+        UserStatusComponent,
+    ],
+    declarations: [
+        AppComponent,
+        UserStatusComponent,
+        ServerStatusComponent,
+        HomeComponent,
+        AboutComponent,
+        UserComponent,
+        HistoryComponent,
+        QuizzesComponent,
+        QuizComponent,
+        QuestionComponent,
+        UserHistorySectionsComponent,
+        LoginComponent,
+    ], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule], providers: [
+        UserService,
+        QuizService,
+        QuestionService,
+        UserHistoryService,
+        QuestionResultsService,
+        Title,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule { }
