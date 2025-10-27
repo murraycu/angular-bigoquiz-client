@@ -1,15 +1,16 @@
-import { Component, ViewChild } from "@angular/core";
-import { Title } from "@angular/platform-browser";
+import { Component, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
-import { BaseComponent } from "./base.component";
-import { UserHistorySections } from "./data-structure/user-history-sections";
-import { UserHistoryService } from "./rest-api-clients/user-history.service";
-import { UserHistorySectionsComponent } from "./user-history-sections.component";
+import { BaseComponent } from './base.component';
+import { UserHistorySections } from './data-structure/user-history-sections';
+import { UserHistoryService } from './rest-api-clients/user-history.service';
+import { UserHistorySectionsComponent } from './user-history-sections.component';
 
 @Component({
-  selector: "app-history",
-  styleUrls: ["./history.component.css"],
-  templateUrl: "./history.component.html",
+    selector: "app-history",
+    styleUrls: ["./history.component.css"],
+    templateUrl: "./history.component.html",
+    standalone: false
 })
 export class HistoryComponent extends BaseComponent {
 
@@ -28,7 +29,7 @@ export class HistoryComponent extends BaseComponent {
     this.quizId = sections.quizId;
     this.quizTitle = sections.quizTitle;
 
-    this.setTitle("History: " + this.quizTitle);
+    this.setTitle('History: ' + this.quizTitle);
   }
 
   public onResetClicked() {

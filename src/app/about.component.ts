@@ -1,11 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
-import { BaseComponent } from "./base.component";
+import { BaseComponent } from './base.component';
 
 @Component({
-  selector: "app-about",
-  templateUrl: "./about.component.html",
+    selector: "app-about",
+    templateUrl: "./about.component.html",
+    standalone: false
 })
 export class AboutComponent extends BaseComponent implements OnInit {
   constructor(titleService: Title) {
@@ -13,6 +14,6 @@ export class AboutComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.setTitle("About");
+    this.setTitle('About');
   }
 }
