@@ -24,7 +24,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   @Output() public onJsonParsed = new EventEmitter<void>();
   public userHistorySections: UserHistorySections;
 
-  public readonly MAX_PROBLEM_QUESTIONS: number = 5;
+  public readonly maxproblemquestions: number = 5;
 
   public quizId: string;
   private sectionId: string;
