@@ -14,7 +14,7 @@ export enum ServerState {
 })
 export class ServerStatusComponent {
   // Make the enum available to the html template.
-  public ServerStateEnum = ServerState;
+  public serverStateEnum = ServerState;
 
   // Note: For some reason we need to define an explicit set,
   @Input() public state: ServerState;
