@@ -27,11 +27,11 @@
             <p>
 
             <ng-template #elseTemplate>
-              <p *ngFor="let question of stats.value.topProblemQuestionHistories | slice:0:MAX_PROBLEM_QUESTIONS" class="problem-answer clearfix">
+              <p *ngFor="let question of stats.value.topProblemQuestionHistories | slice:0:maxproblemquestions" class="problem-answer clearfix">
                 <span class="problem-answer-score">-{{question.countAnsweredWrong}}</span>
                 <a class="problem-answer-hyperlink" [routerLink]="['/question']" [queryParams]="generateQuestionLinkQueryParams(question)">{{questionTitleForHistory(question)}}</a>
               </p>
-              <p *ngIf="stats.value.topProblemQuestionHistories.length > MAX_PROBLEM_QUESTIONS" class="problem-questions-more-questions">and {{stats.value.topProblemQuestionHistories.length - MAX_PROBLEM_QUESTIONS}} more</p>
+              <p *ngIf="stats.value.topProblemQuestionHistories.length > maxproblemquestions" class="problem-questions-more-questions">and {{stats.value.topProblemQuestionHistories.length - maxproblemquestions}} more</p>
             </ng-template>
 
           </div>
