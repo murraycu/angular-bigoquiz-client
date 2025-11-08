@@ -3,13 +3,13 @@ import { QuizQuestion } from './quiz-question';
 import { QuizText } from './quiz-text';
 
 export class UserQuestionHistory {
-  public questionId: string;
+  public questionId: string = "";
 
   @Type(() => QuizText)
-  public questionTitle: QuizText;
+  public questionTitle: QuizText = new QuizText();
 
-  public sectionId: string;
-  public subSectionTitle: string;
+  public sectionId: string = "";
+  public subSectionTitle: string = "";
 
   public answeredCorrectlyOnce = false;
   public countAnsweredWrong = 0;

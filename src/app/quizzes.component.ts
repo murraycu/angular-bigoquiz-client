@@ -17,6 +17,7 @@ export class QuizzesComponent extends BaseComponent implements OnInit {
 
   constructor(private quizService: QuizService, titleService: Title) {
     super(titleService);
+    this.quizzes = [];
     this.setTitle('Quizzes');
   }
 

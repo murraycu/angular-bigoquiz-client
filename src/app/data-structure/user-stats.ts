@@ -3,10 +3,10 @@ import { QuizQuestion } from './quiz-question';
 import { UserQuestionHistory } from './user-question-history';
 
 export class UserStats {
-  public quizId: string;
-  public quizTitle: string;
-  public sectionId: string;
-  public sectionTitle: string;
+  public quizId: string = "";
+  public quizTitle: string = "";
+  public sectionId: string = "";
+  public sectionTitle: string = "";
 
   public answered = 0;
   public correct = 0;
@@ -14,7 +14,7 @@ export class UserStats {
   public countQuestionsAnsweredOnce = 0;
   public countQuestionsCorrectOnce = 0;
 
-  public problemQuestionHistoriesCount: number;
+  public problemQuestionHistoriesCount: number = 0;
 
   @Type(() => UserQuestionHistory)
   public topProblemQuestionHistories: UserQuestionHistory[];
@@ -25,7 +25,7 @@ export class UserStats {
 
   // Built from questionHistories.
   @Exclude()
-  public questionHistoriesMap: Map<string, UserQuestionHistory>;
+  public questionHistoriesMap: Map<string, UserQuestionHistory> = new Map<string, UserQuestionHistory>();
 
   public static fromJson(obj: any): UserStats {
     const result: UserStats = plainToClass(UserStats, obj as Record<string, unknown>);

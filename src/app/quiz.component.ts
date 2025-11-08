@@ -16,7 +16,7 @@ import { QuizService } from './rest-api-clients/quiz.service';
     standalone: false
 })
 export class QuizComponent extends BaseComponent implements OnInit {
-  public quiz: Quiz;
+  public quiz: Quiz = new Quiz();
 
   constructor(private quizService: QuizService,
               private route: ActivatedRoute,
