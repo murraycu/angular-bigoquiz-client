@@ -4,8 +4,8 @@ import { QuizText } from './quiz-text';
 
 export class QuizQuestionAndAnswer {
   @Type(() => QuizQuestion)
-  public question: QuizQuestion;
+  public question: QuizQuestion = new QuizQuestion();
 
   @Type(() => QuizText)
-  public answer: QuizText;
+  public answer: QuizText = new QuizText();
 }

@@ -5,7 +5,7 @@ import { QuizSubSection } from './quiz-sub-section';
 
 export class QuizSection extends HasIdAndTitle {
   @Type(() => QuizSubSection)
-  public subSections: QuizSubSection[];
+  public subSections: QuizSubSection[] = [];
 
   // defaultChoices
   @Type(() => QuizQuestionAndAnswer)

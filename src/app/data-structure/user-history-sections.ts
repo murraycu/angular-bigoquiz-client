@@ -4,18 +4,18 @@ import { UserStats } from './user-stats';
 
 export class UserHistorySections {
   @Type(() => LoginInfo)
-  public loginInfo: LoginInfo;
+  public loginInfo: LoginInfo | null = null;
 
-  public quizId: string;
-  public quizTitle: string;
+  public quizId: string = "";
+  public quizTitle: string = "";
 
   // Only used when parsing from JSON.
   @Type(() => UserStats)
-  public stats: UserStats[];
+  public stats: UserStats[] = [];
 
   // Map of section IDs to stats.
   // This is built from stats
-  public statsMap: Map<string, UserStats>;
+  public statsMap: Map<string, UserStats> = new Map<string, UserStats>();
 
   public static fromJson(obj: any): UserHistorySections {
     const result: UserHistorySections = plainToClass(UserHistorySections, obj as Record<string, unknown>);

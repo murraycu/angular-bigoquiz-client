@@ -24,20 +24,20 @@ import { QuestionResultsService } from './question-results.service';
     standalone: false
 })
 export class QuestionComponent extends BaseComponent implements OnInit {
-  public quizId: string;
+  public quizId: string = "";
 
-  public question: QuizQuestion;
-  public submissionResult: SubmissionResult;
-  public showAnswer: boolean;
-  public chosenAnswer: string;
+  public question: QuizQuestion = new QuizQuestion();
+  public submissionResult: SubmissionResult = new SubmissionResult();
+  public showAnswer: boolean = false;
+  public chosenAnswer: string = "";
   public enableChoices = true;
 
-  public sections: QuizSection[];
+  public sections: QuizSection[] = [];
 
   // The section to show questions from.
   // Not just the section ID of the question.
-  public sectionId: string;
-  private questionId: string;
+  public sectionId: string = "";
+  private questionId: string = "";
 
   constructor(private quizService: QuizService,
               private questionService: QuestionService,
@@ -292,7 +292,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
     }
 
     // Wipe these:
-    this.chosenAnswer = undefined;
+    this.chosenAnswer = "";
     this.showAnswer = false;
     this.enableChoices = true;
 

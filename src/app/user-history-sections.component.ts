@@ -22,12 +22,12 @@ import { QuestionResultsService } from './question-results.service';
 })
 export class UserHistorySectionsComponent extends BaseComponent implements OnInit, OnDestroy {
   @Output() public onJsonParsed = new EventEmitter<void>();
-  public userHistorySections: UserHistorySections;
+  public userHistorySections: UserHistorySections = new UserHistorySections();
 
   public readonly maxproblemquestions: number = 5;
 
-  public quizId: string;
-  private sectionId: string;
+  public quizId: string = "";
+  private sectionId: string = "";
   private subscriptionQuestionResultsService: Subscription;
 
   constructor(private userHistoryService: UserHistoryService,
