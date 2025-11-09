@@ -1,7 +1,7 @@
 <div class="content-panel">
   <h2 class="page-title-label">Quiz</h2>
 
-  <app-server-status state="{{serverState}}">
+  <app-server-status [state]="serverState">
   </app-server-status>
 
   @if (quiz) {
