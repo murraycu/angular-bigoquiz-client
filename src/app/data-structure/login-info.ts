@@ -1,4 +1,4 @@
-import { plainToClass } from 'class-transformer';
+import { plainToInstance } from 'class-transformer';
 
 export class LoginInfo {
   public loggedIn = false;
@@ -14,6 +14,6 @@ export class LoginInfo {
   public errorMessage= "";
 
   public static fromJson(obj: any): LoginInfo {
-    return plainToClass(LoginInfo, obj as Record<string, unknown>);
+    return plainToInstance(LoginInfo, obj as Record<string, unknown>);
   }
 }

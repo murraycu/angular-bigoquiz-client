@@ -1,4 +1,4 @@
-import { plainToClass, Type } from 'class-transformer';
+import { plainToInstance, Type } from 'class-transformer';
 import { QuizQuestion } from './quiz-question';
 import { QuizText } from './quiz-text';
 
@@ -12,6 +12,6 @@ export class SubmissionResult {
   public nextQuestion: QuizQuestion = new QuizQuestion;
 
   public static fromJson(obj: any): SubmissionResult {
-    return plainToClass(SubmissionResult, obj as Record<string, unknown>);
+    return plainToInstance(SubmissionResult, obj as Record<string, unknown>);
   }
 }

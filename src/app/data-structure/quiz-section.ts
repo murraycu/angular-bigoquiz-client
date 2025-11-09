@@ -1,4 +1,4 @@
-import { plainToClass, Type } from 'class-transformer';
+import { plainToInstance, Type } from 'class-transformer';
 import { HasIdAndTitle } from './has-id-and-title';
 import { QuizQuestionAndAnswer } from './quiz-question-and-answer';
 import { QuizSubSection } from './quiz-sub-section';
@@ -16,6 +16,6 @@ export class QuizSection extends HasIdAndTitle {
       return undefined;
     }
 
-    return plainToClass(QuizSection, obj as Record<string, unknown>);
+    return plainToInstance(QuizSection, obj as Record<string, unknown>);
   }
 }

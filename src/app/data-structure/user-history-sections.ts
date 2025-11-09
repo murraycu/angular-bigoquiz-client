@@ -1,4 +1,4 @@
-import { plainToClass, Type } from 'class-transformer';
+import { plainToInstance, Type } from 'class-transformer';
 import { LoginInfo } from './login-info';
 import { UserStats } from './user-stats';
 
@@ -18,7 +18,7 @@ export class UserHistorySections {
   public statsMap: Map<string, UserStats> = new Map<string, UserStats>();
 
   public static fromJson(obj: any): UserHistorySections {
-    const result: UserHistorySections = plainToClass(UserHistorySections, obj as Record<string, unknown>);
+    const result: UserHistorySections = plainToInstance(UserHistorySections, obj as Record<string, unknown>);
 
     // stats:
     if (result.stats) {

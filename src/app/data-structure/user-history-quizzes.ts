@@ -1,4 +1,4 @@
-import { plainToClass, Type } from 'class-transformer';
+import { plainToInstance, Type } from 'class-transformer';
 import { UserStats } from './user-stats';
 
 export class UserHistoryQuizzes {
@@ -6,6 +6,6 @@ export class UserHistoryQuizzes {
   public stats: UserStats[] = [];
 
   public static fromJson(obj: any): UserHistoryQuizzes {
-    return plainToClass(UserHistoryQuizzes, obj as Record<string, unknown>);
+    return plainToInstance(UserHistoryQuizzes, obj as Record<string, unknown>);
   }
 }

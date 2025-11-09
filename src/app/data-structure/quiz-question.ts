@@ -1,4 +1,4 @@
-import { plainToClass, Type } from 'class-transformer';
+import { plainToInstance, Type } from 'class-transformer';
 import { HasIdAndTitle } from './has-id-and-title';
 import { QuizText } from './quiz-text';
 
@@ -27,6 +27,6 @@ export class QuizQuestion extends HasIdAndTitle {
   public quizUsesMathML = false;
 
   public static fromJson(obj: any): QuizQuestion {
-    return plainToClass(QuizQuestion, obj as Record<string, unknown>);
+    return plainToInstance(QuizQuestion, obj as Record<string, unknown>);
   }
 }
