@@ -5,13 +5,13 @@
   </app-server-status>
 
   <div class="user-history-answers-panel">
-      @if (!userHistorySections.hasUser()) {
-        <ng-container>
-          <p>Please <a [routerLink]="['/login']">sign in</a> to track your progress and identify problem questions.</p>
-        </ng-container>
-      }
-
+    @if (!userHistorySections.hasUser()) {
       <ng-container>
+        <p>Please <a [routerLink]="['/login']">sign in</a> to track your progress and identify problem questions.</p>
+      </ng-container>
+    }
+
+    <ng-container>
       @for (stats of userHistorySections.statsMap | keyvalue; track stats) {
         <div
           class="user-history-quiz-section">
@@ -34,18 +34,20 @@
                 <span class="problem-answer-score">None Yet</span>
               <p>
             } @else {
-              @for (question of stats.value.topProblemQuestionHistories | slice:0:maxproblemquestions; track question) {
-                <p
-                  class="problem-answer clearfix">
-                  <span class="problem-answer-score">-{{ question.countAnsweredWrong }}</span>
-                  <a class="problem-answer-hyperlink" [routerLink]="['/question']"
-                     [queryParams]="generateQuestionLinkQueryParams(question)">{{ questionTitleForHistory(question) }}</a>
-                </p>
-              }
-              <p @if(stats.value.topProblemQuestionHistories.length> maxproblemquestions)
-                class="problem-questions-more-questions">and {{ stats.value.topProblemQuestionHistories.length - maxproblemquestions }}
-                more</p>
+            @for (question of stats.value.topProblemQuestionHistories | slice:0:maxproblemquestions; track question) {
+              <p
+                class="problem-answer clearfix">
+                <span class="problem-answer-score">-{{ question.countAnsweredWrong }}</span>
+                <a class="problem-answer-hyperlink" [routerLink]="['/question']"
+                   [queryParams]="generateQuestionLinkQueryParams(question)">{{ questionTitleForHistory(question) }}</a>
+              </p>
             }
+
+            @if (stats.value.topProblemQuestionHistories.length > maxproblemquestions) {
+              <p class="problem-questions-more-questions">
+                and {{ stats.value.topProblemQuestionHistories.length - maxproblemquestions }}>more</p>
+            }
+          }
           </div>
         </div>
       }
