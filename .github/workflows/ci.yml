@@ -33,5 +33,5 @@ jobs:
     - name: Store test coverage report as artifact
       uses: actions/upload-artifact@master
       with:
-        name: Test Coverage node-version-{{ matrix.node-version }} ${{ matrix.machine }}-${{ matrix.cloud }}-${{ matrix.region }}-${{ matrix.arch }}-${{ matrix.distro }}-${{ matrix.stage }}-${{ matrix.theater }}
+        name: Test Coverage node-version-${{ matrix.node-version }} ${{ matrix.machine }}-${{ matrix.cloud }}-${{ matrix.region }}-${{ matrix.arch }}-${{ matrix.distro }}-${{ matrix.stage }}-${{ matrix.theater }}
         path: coverage
