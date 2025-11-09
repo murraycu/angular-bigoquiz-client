@@ -10,8 +10,8 @@ describe('QuizSection without the TestBed', () => {
   "subSections": [
     {
       "id": "dijkstra-with-fibonacci-heap",
-      "title": "Dijkstra\'s Algorithm for Shortest Path (Fibonacci heap as priority queue)",
-      "link": "https://en.wikipedia.org/wiki/Dijkstra\'s_algorithm",
+      "title": "Dijkstra's Algorithm for Shortest Path (Fibonacci heap as priority queue)",
+      "link": "https://en.wikipedia.org/wiki/Dijkstra's_algorithm",
       "questions": [
         {
           "question": {
@@ -97,8 +97,8 @@ describe('QuizSection without the TestBed', () => {
             },
             "subSection": {
               "id": "dijkstra-with-fibonacci-heap",
-              "title": "Dijkstra\'s Algorithm for Shortest Path (Fibonacci heap as priority queue)",
-              "link": "https://en.wikipedia.org/wiki/Dijkstra\'s_algorithm"
+              "title": "Dijkstra's Algorithm for Shortest Path (Fibonacci heap as priority queue)",
+              "link": "https://en.wikipedia.org/wiki/Dijkstra's_algorithm"
             },
             "quizUsesMathML": false
           },
@@ -111,8 +111,8 @@ describe('QuizSection without the TestBed', () => {
     },
     {
       "id": "prims-mst",
-      "title": "Prim\'s Minimum Spanning Tree",
-      "link": "https://en.wikipedia.org/wiki/Prim\'s_algorithm",
+      "title": "Prim's Minimum Spanning Tree",
+      "link": "https://en.wikipedia.org/wiki/Prim's_algorithm",
       "questions": [
         {
           "question": {
@@ -178,7 +178,7 @@ describe('QuizSection without the TestBed', () => {
     expect(obj.subSections[0]).toBeTruthy(obj);
     expect(obj.subSections[0].id).toEqual('dijkstra-with-fibonacci-heap');
     expect(obj.subSections[0].title).toEqual(
-      'Dijkstra\'s Algorithm for Shortest Path (Fibonacci heap as priority queue)');
+      "Dijkstra's Algorithm for Shortest Path (Fibonacci heap as priority queue)");
     expect(obj.subSections[0].questions).toBeTruthy();
     expect(obj.subSections[0].questions.length).toEqual(2);
 
