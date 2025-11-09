@@ -5,36 +5,36 @@ handlers:
 
 # Routing for Javacript to serve directly
 - url: /(.+\.js)
-  static_files: dist/\1
-  upload: dist/.*
+  static_files: dist/browser/\1
+  upload: dist/browser/.*
   secure: always
 
 # Routing for a prod styles.css to serve directly
 - url: /(.+\.css)
-  static_files: dist/\1
-  upload: dist/.*
+  static_files: dist/browser/\1
+  upload: dist/browser/.*
   secure: always
 
 # Routing for typedoc, assets and favicon.ico to serve directly
 - url: /((?:assets|docs)/.*|favicon\.ico)
-  static_files: dist/\1
-  upload: dist/.*
+  static_files: dist/browser/\1
+  upload: dist/browser/.*
   secure: always
 
 # Routing for ads.txt file
 - url: /ads.txt
-  static_files: dist/ads.txt
-  upload: dist/ads.txt
+  static_files: dist/browser/ads.txt
+  upload: dist/browser/ads.txt
   secure: always
 
 # Use index.html for everything else.
 - url: /
-  static_files: dist/index.html
-  upload: dist/index.html
+  static_files: dist/browser/index.html
+  upload: dist/browser/index.html
   secure: always
 
 - url: /.*
-  static_files: dist/index.html
-  upload: dist/index.html
+  static_files: dist/browser/index.html
+  upload: dist/browser/index.html
   secure: always
 
