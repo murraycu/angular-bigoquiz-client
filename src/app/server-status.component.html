@@ -1,6 +1,6 @@
-@if (state == serverStateEnum.loading) {
+@if (state === serverStateEnum.loading) {
   <p class="server-loading-label">Loading…</p>
 }
-@if (state == serverStateEnum.failed) {
+@if (state === serverStateEnum.failed) {
   <p class="server-error-label">Error: Could not connect to the server.</p>
 }
