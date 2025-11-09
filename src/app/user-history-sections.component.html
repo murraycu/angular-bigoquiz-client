@@ -5,12 +5,13 @@
   </app-server-status>
 
   <div class="user-history-answers-panel">
+      @if (!userHistorySections.hasUser()) {
+        <ng-container>
+          <p>Please <a [routerLink]="['/login']">sign in</a> to track your progress and identify problem questions.</p>
+        </ng-container>
+      }
 
-    <ng-container @if(userHistorySections)>
-      <ng-container @if(!userHistorySections.hasUser())>
-        <p>Please <a [routerLink]="['/login']">sign in</a> to track your progress and identify problem questions.</p>
-      </ng-container>
-
+      <ng-container>
       @for (stats of userHistorySections.statsMap | keyvalue; track stats) {
         <div
           class="user-history-quiz-section">
