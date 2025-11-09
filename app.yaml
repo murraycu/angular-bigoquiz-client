@@ -38,25 +38,3 @@ handlers:
   upload: dist/index.html
   secure: always
 
-
-# Temporary setting to keep gcloud from uploading not required files for deployment
-skip_files:
-- ^node_modules$
-- ^app\.yaml
-- ^README\..*
-- \.gitignore
-- ^\.git$
-- ^grunt\.js
-- ^src$
-- ^e2e$
-- \.editorconfig
-- ^karma\.config\.js
-- ^package\.json
-- ^protractor\.conf\.js
-- ^(.*/)?.patch$
-- ^(.*/)?#.*#$
-- ^(.*/)?.*~$
-- ^(.*/)?.*\.py[co]$
-- ^(.*/)?.*/RCS/.*$
-- ^(.*/)?\..*$
-
