@@ -4,8 +4,8 @@ import { QuizQuestionAndAnswer } from './quiz-question-and-answer';
 import { QuizSection } from './quiz-section';
 
 export class Quiz extends HasIdAndTitle {
-  public isPrivate: boolean = false;
-  public usesMathML: boolean = false;
+  public isPrivate = false;
+  public usesMathML = false;
 
   @Type(() => QuizSection)
   public sections: QuizSection[] = [];

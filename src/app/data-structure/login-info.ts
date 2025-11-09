@@ -1,17 +1,17 @@
 import { plainToClass } from 'class-transformer';
 
 export class LoginInfo {
-  public loggedIn: boolean = false;
-  public nickname: string = "";
+  public loggedIn = false;
+  public nickname = "";
 
-  public googleLinked: boolean = false;
-  public googleProfileUrl: string= "";
-  public gitHubLinked: boolean = false;
-  public gitHubProfileUrl: string= "";
-  public facebookLinked: boolean = false;
-  public facebookProfileUrl: string= "";
+  public googleLinked = false;
+  public googleProfileUrl= "";
+  public gitHubLinked = false;
+  public gitHubProfileUrl= "";
+  public facebookLinked = false;
+  public facebookProfileUrl= "";
 
-  public errorMessage: string= "";
+  public errorMessage= "";
 
   public static fromJson(obj: any): LoginInfo {
     return plainToClass(LoginInfo, obj as Record<string, unknown>);

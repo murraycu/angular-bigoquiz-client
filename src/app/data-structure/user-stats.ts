@@ -3,10 +3,10 @@ import { QuizQuestion } from './quiz-question';
 import { UserQuestionHistory } from './user-question-history';
 
 export class UserStats {
-  public quizId: string = "";
-  public quizTitle: string = "";
-  public sectionId: string = "";
-  public sectionTitle: string = "";
+  public quizId = "";
+  public quizTitle = "";
+  public sectionId = "";
+  public sectionTitle = "";
 
   public answered = 0;
   public correct = 0;
@@ -14,7 +14,7 @@ export class UserStats {
   public countQuestionsAnsweredOnce = 0;
   public countQuestionsCorrectOnce = 0;
 
-  public problemQuestionHistoriesCount: number = 0;
+  public problemQuestionHistoriesCount = 0;
 
   @Type(() => UserQuestionHistory)
   public topProblemQuestionHistories: UserQuestionHistory[];

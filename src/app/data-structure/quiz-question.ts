@@ -6,17 +6,17 @@ export class QuizQuestion extends HasIdAndTitle {
   @Type(() => QuizText)
   public text: QuizText = new QuizText();
 
-  public note: string= "";
-  public videoUrl: string= "";
-  public codeUrl: string= "";
+  public note= "";
+  public videoUrl= "";
+  public codeUrl= "";
 
   @Type(() => QuizText)
   public choices: QuizText[] = [];
 
-  public sectionId: string = "";
-  public subSectionId: string= "";
+  public sectionId = "";
+  public subSectionId= "";
 
-  public quizTitle: string= "";
+  public quizTitle= "";
 
   @Type(() => HasIdAndTitle)
   public section: HasIdAndTitle = new HasIdAndTitle();
@@ -24,7 +24,7 @@ export class QuizQuestion extends HasIdAndTitle {
   @Type(() => HasIdAndTitle)
   public subSection: HasIdAndTitle = new HasIdAndTitle() ;
 
-  public quizUsesMathML: boolean = false;
+  public quizUsesMathML = false;
 
   public static fromJson(obj: any): QuizQuestion {
     return plainToClass(QuizQuestion, obj as Record<string, unknown>);

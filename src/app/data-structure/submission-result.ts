@@ -3,7 +3,7 @@ import { QuizQuestion } from './quiz-question';
 import { QuizText } from './quiz-text';
 
 export class SubmissionResult {
-  public result: boolean = false;
+  public result = false;
 
   @Type(() => QuizText)
   public correctAnswer: QuizText = new QuizText()

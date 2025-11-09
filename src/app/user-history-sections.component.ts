@@ -26,8 +26,8 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
 
   public readonly maxproblemquestions: number = 5;
 
-  public quizId: string = "";
-  private sectionId: string = "";
+  public quizId = "";
+  private sectionId = "";
   private subscriptionQuestionResultsService: Subscription;
 
   constructor(private userHistoryService: UserHistoryService,

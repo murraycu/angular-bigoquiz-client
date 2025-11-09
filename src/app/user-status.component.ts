@@ -15,7 +15,7 @@ export class UserStatusComponent implements OnInit {
   private static redirectSuffix = `?redirect=${Config.baseUrl}/user`;
   // We don't want to show the logout button in the header,
   // but we do want to show it on the user/profile page.
-  @Input() public showExtras: boolean = false;
+  @Input() public showExtras = false;
 
   public loginInfo: LoginInfo;
   public logoutUrl = `${Config.baseApiUrl}/login/logout?redirect=${Config.baseUrl}/user`;
