@@ -27,7 +27,7 @@ export class QuizComponent extends BaseComponent implements OnInit {
   public ngOnInit(): void {
     this.setServerLoading();
     this.route.queryParamMap.pipe(
-      switchMap((params: ParamMap) => this.quizService.getQuiz(params.get('quiz-id'))))
+      switchMap((params: ParamMap) => this.quizService.getQuiz(params.get('quiz-id') ?? "")))
       .subscribe(
         (quiz) => {
           this.setServerSuccess();

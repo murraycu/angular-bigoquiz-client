@@ -104,9 +104,9 @@ export class QuestionComponent extends BaseComponent implements OnInit {
   public ngOnInit(): void {
     this.route.queryParamMap.pipe(
       switchMap((params: ParamMap) => {
-        this.quizId = params.get('quiz-id');
-        this.questionId = params.get('question-id');
-        this.sectionId = params.get('section-id');
+        this.quizId = params.get('quiz-id') ?? "";
+        this.questionId = params.get('question-id') ?? "";
+        this.sectionId = params.get('section-id') ?? "";
 
         if (this.submissionResult && this.submissionResult.nextQuestion &&
           this.submissionResult.nextQuestion.id === this.questionId) {
