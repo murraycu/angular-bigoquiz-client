@@ -11,40 +11,43 @@
         <p>Please <a [routerLink]="['/login']">sign in</a> to track your progress and identify problem questions.</p>
       </ng-container>
 
-      <div *ngFor="let stats of userHistorySections.statsMap | keyvalue"
-           class="user-history-quiz-section">
-        <h3><a [routerLink]="['/question']"
-               [queryParams]="{'quiz-id': quizId, 'section-id': stats.value.sectionId}">{{ stats.value.sectionTitle }}</a>
-        </h3>
-        <div class="progress-bar">
-          <p class="progress-part-correct-once"
-             [ngStyle]="{'width': stats.value.percentCorrectOnce(stats.value.countQuestions)}">{{ stats.value.countQuestionsCorrectOnce }}
-            correct once</p>
-          <p class="progress-part-answered-once"
-             [ngStyle]="{'width': stats.value.percentAnsweredOnce(stats.value.countQuestions)}">{{ stats.value.countQuestionsAnsweredOnce }}
-            answered once</p>
-          <p class="progress-part-count" style="width: 100%">{{ stats.value.countQuestions }} questions</p>
+      @for (stats of userHistorySections.statsMap | keyvalue; track stats) {
+        <div
+          class="user-history-quiz-section">
+          <h3><a [routerLink]="['/question']"
+                 [queryParams]="{'quiz-id': quizId, 'section-id': stats.value.sectionId}">{{ stats.value.sectionTitle }}</a>
+          </h3>
+          <div class="progress-bar">
+            <p class="progress-part-correct-once"
+               [ngStyle]="{'width': stats.value.percentCorrectOnce(stats.value.countQuestions)}">{{ stats.value.countQuestionsCorrectOnce }}
+              correct once</p>
+            <p class="progress-part-answered-once"
+               [ngStyle]="{'width': stats.value.percentAnsweredOnce(stats.value.countQuestions)}">{{ stats.value.countQuestionsAnsweredOnce }}
+              answered once</p>
+            <p class="progress-part-count" style="width: 100%">{{ stats.value.countQuestions }} questions</p>
+          </div>
+          <h4>Problem Questions</h4>
+          <div class="panel-problem-questions">
+            @if (problemQuestionsCount(stats.value) <= 0) {
+              <p class="problem-answer clearfix">
+                <span class="problem-answer-score">None Yet</span>
+              <p>
+            } @else {
+              @for (question of stats.value.topProblemQuestionHistories | slice:0:maxproblemquestions; track question) {
+                <p
+                  class="problem-answer clearfix">
+                  <span class="problem-answer-score">-{{ question.countAnsweredWrong }}</span>
+                  <a class="problem-answer-hyperlink" [routerLink]="['/question']"
+                     [queryParams]="generateQuestionLinkQueryParams(question)">{{ questionTitleForHistory(question) }}</a>
+                </p>
+              }
+              <p @if(stats.value.topProblemQuestionHistories.length> maxproblemquestions)
+                class="problem-questions-more-questions">and {{ stats.value.topProblemQuestionHistories.length - maxproblemquestions }}
+                more</p>
+            }
+          </div>
         </div>
-
-        <h4>Problem Questions</h4>
-        <div class="panel-problem-questions">
-          @if (problemQuestionsCount(stats.value) <= 0) {
-            <p class="problem-answer clearfix">
-              <span class="problem-answer-score">None Yet</span>
-            <p>
-          } @else {
-            <p *ngFor="let question of stats.value.topProblemQuestionHistories | slice:0:maxproblemquestions"
-               class="problem-answer clearfix">
-              <span class="problem-answer-score">-{{ question.countAnsweredWrong }}</span>
-              <a class="problem-answer-hyperlink" [routerLink]="['/question']"
-                 [queryParams]="generateQuestionLinkQueryParams(question)">{{ questionTitleForHistory(question) }}</a>
-            </p>
-            <p @if(stats.value.topProblemQuestionHistories.length> maxproblemquestions)
-              class="problem-questions-more-questions">and {{ stats.value.topProblemQuestionHistories.length - maxproblemquestions }}
-              more</p>
-          }
-        </div>
-      </div>
+      }
     </ng-container>
   </div>
 </div>
