@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -21,6 +21,10 @@ import { QuestionResultsService } from './question-results.service';
     standalone: false
 })
 export class UserHistorySectionsComponent extends BaseComponent implements OnInit, OnDestroy {
+  private userHistoryService = inject(UserHistoryService);
+  private questionResultsService = inject(QuestionResultsService);
+  private route = inject(ActivatedRoute);
+
   @Output() public onJsonParsed = new EventEmitter<void>();
   public userHistorySections: UserHistorySections = new UserHistorySections();
 
@@ -30,10 +34,9 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   private sectionId = "";
   private subscriptionQuestionResultsService: Subscription;
 
-  constructor(private userHistoryService: UserHistoryService,
-              private questionResultsService: QuestionResultsService,
-              private route: ActivatedRoute,
-              titleService: Title) {
+  constructor() {
+    const titleService = inject(Title);
+
     super(titleService);
   }
 

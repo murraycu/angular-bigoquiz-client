@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -24,6 +24,13 @@ import { QuestionResultsService } from './question-results.service';
     standalone: false
 })
 export class QuestionComponent extends BaseComponent implements OnInit {
+  private quizService = inject(QuizService);
+  private questionService = inject(QuestionService);
+  private userHistoryService = inject(UserHistoryService);
+  private questionResultsService = inject(QuestionResultsService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
   public quizId = "";
 
   public question: QuizQuestion = new QuizQuestion();
@@ -39,13 +46,9 @@ export class QuestionComponent extends BaseComponent implements OnInit {
   public sectionId = "";
   private questionId = "";
 
-  constructor(private quizService: QuizService,
-              private questionService: QuestionService,
-              private userHistoryService: UserHistoryService,
-              private questionResultsService: QuestionResultsService,
-              private router: Router,
-              private route: ActivatedRoute,
-              titleService: Title) {
+  constructor() {
+    const titleService = inject(Title);
+
     super(titleService);
   }
 

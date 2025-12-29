@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -16,11 +16,14 @@ import { QuizService } from './rest-api-clients/quiz.service';
     standalone: false
 })
 export class QuizComponent extends BaseComponent implements OnInit {
+  private quizService = inject(QuizService);
+  private route = inject(ActivatedRoute);
+
   public quiz: Quiz = new Quiz();
 
-  constructor(private quizService: QuizService,
-              private route: ActivatedRoute,
-              titleService: Title) {
+  constructor() {
+    const titleService = inject(Title);
+
     super(titleService);
   }
 

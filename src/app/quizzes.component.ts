@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { QuizService } from './rest-api-clients/quiz.service';
@@ -13,9 +13,13 @@ import { Quiz } from './data-structure/quiz';
     standalone: false
 })
 export class QuizzesComponent extends BaseComponent implements OnInit {
+  private quizService = inject(QuizService);
+
   public quizzes: Quiz[];
 
-  constructor(private quizService: QuizService, titleService: Title) {
+  constructor() {
+    const titleService = inject(Title);
+
     super(titleService);
     this.quizzes = [];
     this.setTitle('Quizzes');

@@ -1,12 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Config } from '../config';
 import { QuizQuestion } from '../data-structure/quiz-question';
 
 @Injectable()
 export class QuestionService {
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
+
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
