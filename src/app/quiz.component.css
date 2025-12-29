@@ -23,29 +23,6 @@
     color: #0066cc;
 }
 
-.quiz-question-answer {
-    margin-bottom: 1em;
-}
-
-.quiz-question-answer  p {
-    margin-top: 0;
-    margin-bottom: 0.3em;
-}
-
-.quiz-question-title {
-    font-weight: bold;
-    margin-right: 0.5em; /* TODO: RTL */
-}
-
-.quiz-question p {
-    margin-bottom: 0;
-}
-
-.quiz-answer-title {
-    font-weight: bold;
-    margin-right: 0.5em; /* TODO: RTL */
-}
-
 .quiz-note-title {
     font-weight: bold;
     font-size: 80%;

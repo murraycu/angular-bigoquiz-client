@@ -1,0 +1,18 @@
+@if (qa) {
+  <div
+    class="quiz-question-answer">
+    <p>
+      <span class="quiz-question-title">Question:</span>
+      @if (qa.question.link) {
+        <a class="quiz-question" href={{qa.question.link}}>{{ qa.question.text.text }}</a>
+      }
+      @if (!(qa.question.link)) {
+        <span class="quiz-question">{{ qa.question.text.text }}</span>
+      }
+    </p>
+    <p>
+      <span class="quiz-answer-title">Answer:</span>
+      <span class="quiz-answer">{{ qa.answer.text }}</span>
+    </p>
+  </div>
+}

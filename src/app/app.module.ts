@@ -12,6 +12,7 @@ import { HomeComponent } from './home.component';
 import { LoginComponent } from './login.component';
 import { QuestionComponent } from './question.component';
 import { QuizComponent } from './quiz.component';
+import { QuizQuestionAndAnswerComponent } from './quiz-question-and-answer.component';
 import { QuizzesComponent } from './quizzes.component';
 import { ServerStatusComponent } from './server-status.component';
 import { UserHistorySectionsComponent } from './user-history-sections.component';
@@ -39,6 +40,7 @@ import { QuestionResultsService } from './question-results.service';
         HistoryComponent,
         QuizzesComponent,
         QuizComponent,
+        QuizQuestionAndAnswerComponent,
         QuestionComponent,
         UserHistorySectionsComponent,
         LoginComponent,
