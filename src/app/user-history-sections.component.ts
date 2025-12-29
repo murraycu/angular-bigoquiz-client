@@ -93,7 +93,15 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
     }
   }
 
-  // This is not static because it is difficult to call static method from the .html template.
+  public questionTitleForHistoryIsHtml(question: UserQuestionHistory): boolean {
+    if (!question || !question.questionTitle || !question.questionTitle.text) {
+      return false;
+    }
+
+    return question.questionTitle.isHtml;
+  }
+
+    // This is not static because it is difficult to call static method from the .html template.
   /** This checks that each problem question is really still a problem,
    * because it might have been updated locally.
    */

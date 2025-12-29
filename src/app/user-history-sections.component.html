@@ -38,8 +38,13 @@
               <p
                 class="problem-answer clearfix">
                 <span class="problem-answer-score">-{{ question.countAnsweredWrong }}</span>
+                @if (questionTitleForHistoryIsHtml(question)) {
+                  <a class="problem-answer-hyperlink" [routerLink]="['/question']"
+                     [queryParams]="generateQuestionLinkQueryParams(question)" [innerHTML]="questionTitleForHistory(question)"></a>
+                } @else {
                 <a class="problem-answer-hyperlink" [routerLink]="['/question']"
                    [queryParams]="generateQuestionLinkQueryParams(question)">{{ questionTitleForHistory(question) }}</a>
+                }
               </p>
             }
 
