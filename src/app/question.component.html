@@ -37,10 +37,18 @@
     @if (question.text && question.text.text) {
       <p>
         @if (question.link) {
-          <a href="{{question.link}}">{{question.text.text}}</a>
+          @if (question.text.isHtml) {
+            <a href={{question.link}} [innerHTML]="question.text.text"></a>
+          } @else {
+            <a href={{question.link}}>{{ question.text.text }}</a>
+          }
         }
-        @if (!question.link) {
-          {{question.text.text}}
+        @if (!(question.link)) {
+          @if (question.text.isHtml) {
+            <span [innerHTML]="question.text.text"></span>
+          } @else {
+            {{ question.text.text }}
+          }
         }
       </p>
     }
@@ -52,8 +60,14 @@
               [ngClass]="{'question-radio-button-correct': showAnswer && choiceIsCorrect(choice.text), 'question-radio-button-wrong': submissionResult && choiceIsWrongAnswer(choice.text) }">
               <input [id]="'id'+i" name="choices" value="on" type="radio" (click)="onChoiceClicked(choice.text)"
                 [disabled]="!enableChoices"/>
-              <label [for]="'id'+i"
-              [ngClass]="{'question-label-disabled': !enableChoices }">{{choice.text}}</label>
+              @if (choice.isHtml) {
+                <label [for]="'id'+i"
+                       [ngClass]="{'question-label-disabled': !enableChoices }" [innerHTML]="choice.text"></label>
+              } @else {
+                <label [for]="'id'+i"
+                    [ngClass]="{'question-label-disabled': !enableChoices }">{{choice.text}}
+                </label>
+              }
             </span>
           }
         </div>
