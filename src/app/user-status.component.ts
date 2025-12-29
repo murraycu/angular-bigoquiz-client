@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnInit, inject } from '@angular/core';
 
 import { Config } from './config';
 import { LoginInfo } from './data-structure/login-info';
@@ -11,6 +11,9 @@ import { UserService } from './rest-api-clients/user.service';
     standalone: false
 })
 export class UserStatusComponent implements OnInit {
+  private userService = inject(UserService);
+  private zone = inject(NgZone);
+
 
   private static redirectSuffix = `?redirect=${Config.baseUrl}/user`;
   // We don't want to show the logout button in the header,
@@ -22,8 +25,6 @@ export class UserStatusComponent implements OnInit {
   public googleLoginUrl = `${Config.googleLoginPrefix}${UserStatusComponent.redirectSuffix}`;
   public gitHubLoginUrl = `${Config.gitHubLoginPrefix}${UserStatusComponent.redirectSuffix}`;
   public facebookLoginUrl = `${Config.facebookLoginPrefix}${UserStatusComponent.redirectSuffix}`;
-
-  constructor(private userService: UserService, private zone: NgZone) { }
 
   public ngOnInit(): void {
     // This only gives us part of the URL, such as "/quiz/algorithms".

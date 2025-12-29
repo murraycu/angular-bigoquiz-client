@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnInit, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -17,6 +17,10 @@ declare let gapi: any;
     standalone: false
 })
 export class LoginComponent extends BaseComponent implements OnInit {
+  private userService = inject(UserService);
+  private zone = inject(NgZone);
+  private route = inject(ActivatedRoute);
+
 
   private static redirectSuffix = `?redirect=${Config.baseUrl}/user`;
   // We don't want to show the logout button in the header,
@@ -29,10 +33,9 @@ export class LoginComponent extends BaseComponent implements OnInit {
   public gitHubLoginUrl = `${Config.gitHubLoginPrefix}${LoginComponent.redirectSuffix}`;
   public facebookLoginUrl = `${Config.facebookLoginPrefix}${LoginComponent.redirectSuffix}`;
 
-  constructor(private userService: UserService,
-              private zone: NgZone,
-              private route: ActivatedRoute,
-              titleService: Title) {
+  constructor() {
+    const titleService = inject(Title);
+
     super(titleService);
   }
 

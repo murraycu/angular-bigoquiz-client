@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { BaseComponent } from './base.component';
@@ -13,14 +13,17 @@ import { UserHistorySectionsComponent } from './user-history-sections.component'
     standalone: false
 })
 export class HistoryComponent extends BaseComponent {
+  private userHistoryService = inject(UserHistoryService);
+
 
   public quizId = "";
   public quizTitle = "";
   @ViewChild(UserHistorySectionsComponent, { static: true })
   private sectionsComponent: UserHistorySectionsComponent;
 
-  constructor(private userHistoryService: UserHistoryService,
-              titleService: Title) {
+  constructor() {
+   const titleService = inject(Title);
+
    super(titleService);
   }
 

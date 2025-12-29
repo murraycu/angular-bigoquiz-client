@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { Config } from '../config';
 import { Submission } from '../data-structure/submission';
@@ -9,7 +9,8 @@ import { UserHistorySections} from '../data-structure/user-history-sections';
 
 @Injectable()
 export class UserHistoryService {
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
+
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);

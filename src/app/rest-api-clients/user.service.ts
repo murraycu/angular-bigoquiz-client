@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { LoginInfo} from '../data-structure/login-info';
 
@@ -7,7 +7,8 @@ import { Config } from '../config';
 
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
+
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { BaseComponent } from './base.component';
@@ -12,10 +12,13 @@ import { UserHistoryService } from './rest-api-clients/user-history.service';
     standalone: false
 })
 export class UserComponent extends BaseComponent implements OnInit {
+  private userHistoryService = inject(UserHistoryService);
+
   public userHistoryQuizzes: UserHistoryQuizzes;
 
-  constructor(private userHistoryService: UserHistoryService,
-              titleService: Title) {
+  constructor() {
+   const titleService = inject(Title);
+
    super(titleService);
   }
 
