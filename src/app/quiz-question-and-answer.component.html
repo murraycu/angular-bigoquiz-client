@@ -3,27 +3,30 @@
     class="quiz-question-answer">
     <p>
       <span class="quiz-question-title">Question:</span>
-      @if (qa.question.link) {
-        @if (qa.question.text.isHtml) {
-          <a class="quiz-question" href={{qa.question.link}} [innerHTML]="qa.question.text.text"></a>
+      @let question = qa.question;
+      @if (question.link) {
+        @if (question.text.isHtml) {
+          <a class="quiz-question" href={{question.link}} [innerHTML]="question.text.text"></a>
         } @else {
-          <a class="quiz-question" href={{qa.question.link}}>{{ qa.question.text.text }}</a>
+          <a class="quiz-question" href={{question.link}}>{{ question.text.text }}</a>
         }
       }
-      @if (!(qa.question.link)) {
-        @if (qa.question.text.isHtml) {
-          <span class="quiz-question" [innerHTML]="qa.question.text.text"></span>
+
+      @if (!(question.link)) {
+        @if (question.text.isHtml) {
+          <span class="quiz-question" [innerHTML]="question.text.text"></span>
         } @else {
-          <span class="quiz-question">{{ qa.question.text.text }}</span>
+          <span class="quiz-question">{{ question.text.text }}</span>
         }
       }
     </p>
     <p>
       <span class="quiz-answer-title">Answer:</span>
-      @if (qa.answer.isHtml) {
-        <span class="quiz-answer" [innerHTML]="qa.answer.text"></span>
+      @let answer = qa.answer;
+      @if (answer.isHtml) {
+        <span class="quiz-answer" [innerHTML]="answer.text"></span>
       } @else {
-        <span class="quiz-answer">{{ qa.answer.text }}</span>
+        <span class="quiz-answer">{{ answer.text }}</span>
       }
     </p>
   </div>
