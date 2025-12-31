@@ -140,8 +140,8 @@ export class QuestionComponent extends BaseComponent implements OnInit {
           }
         }
       }))
-      .subscribe(
-        (question) => {
+      .subscribe({
+        next: (question) => {
           this.setServerSuccess();
 
           if (this.questionId) {
@@ -160,10 +160,11 @@ export class QuestionComponent extends BaseComponent implements OnInit {
             });
           }
         },
-        (err) => {
+        error: (err) => {
           this.setServerFailed();
           this.question = undefined;
-        });
+        }
+      });
   }
 
   public getSections(): void {
