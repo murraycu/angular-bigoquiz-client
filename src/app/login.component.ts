@@ -1,6 +1,6 @@
 import { Component, Input, NgZone, OnInit, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 
 import { BaseComponent } from './base.component';
 import { Config } from './config';
@@ -14,7 +14,7 @@ declare let gapi: any;
     selector: "app-login",
     styleUrls: ["./login.component.css"],
     templateUrl: "./login.component.html",
-    standalone: false
+    imports: [RouterLink]
 })
 export class LoginComponent extends BaseComponent implements OnInit {
   private userService = inject(UserService);
