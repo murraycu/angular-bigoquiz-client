@@ -1,6 +1,7 @@
 import { QuizQuestion } from './quiz-question';
 import { UserHistorySections } from './user-history-sections';
 import { UserStats } from './user-stats';
+import {LoginInfo} from "./login-info";
 
 describe('UserHistorySections without the TestBed', () => {
 
@@ -49,5 +50,18 @@ describe('UserHistorySections without the TestBed', () => {
     expect(result).toBeTruthy();
     expect(result.sectionId).toBe(sectionId);
     expect(result.sectionTitle).toBe(changedSectionTitle);
+  });
+
+  it('isEmpty() should return true for new instance', () => {
+    const sections: UserHistorySections = new UserHistorySections();
+
+    expect(sections.isEmpty()).toBe(true);
+  });
+
+  it('isEmpty() should return false if it has a loginInfo', () => {
+    const sections: UserHistorySections = new UserHistorySections();
+    sections.loginInfo = new LoginInfo();
+
+    expect(sections.isEmpty()).toBe(false);
   });
 });

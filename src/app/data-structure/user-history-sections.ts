@@ -17,6 +17,8 @@ export class UserHistorySections {
   // This is built from stats
   public statsMap: Map<string, UserStats> = new Map<string, UserStats>();
 
+  public isEmpty(): boolean { return this.loginInfo === null; }
+
   public static fromJson(obj: any): UserHistorySections {
     const result: UserHistorySections = plainToInstance(UserHistorySections, obj as Record<string, unknown>);
 
