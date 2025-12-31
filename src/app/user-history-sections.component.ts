@@ -45,7 +45,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
     switchMap((params: ParamMap) => {
       const paramQuizId: string = params.get('quiz-id') ?? "";
 
-      if (this.quizId === paramQuizId && this.userHistorySections) {
+      if (this.quizId === paramQuizId && this.userHistorySections && !this.userHistorySections.isEmpty()) {
         // Use the existing data:
         this.setServerSuccess();
         return new Promise<UserHistorySections>((resolve) => resolve(this.userHistorySections));
