@@ -165,6 +165,7 @@ export class QuestionComponent extends BaseComponent implements OnInit {
           }
         },
         error: (err) => {
+          console.log('Error getting question: ' + err);
           this.setServerFailed();
           this.question = undefined;
         }

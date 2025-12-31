@@ -35,6 +35,7 @@ export class UserComponent extends BaseComponent implements OnInit {
         this.userHistoryQuizzes = userHistoryQuizzes;
       },
       (err) => {
+        console.log('Error getting user history for quizzes: ' + err);
         this.setServerFailed();
       });
   }

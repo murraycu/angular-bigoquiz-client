@@ -35,6 +35,7 @@ export class QuizzesComponent extends BaseComponent implements OnInit {
         this.quizzes = quizzes;
       },
       (err) => {
+        console.log('Error getting quizzes: ' + err);
         this.setServerFailed();
       });
   }

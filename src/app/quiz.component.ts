@@ -42,6 +42,7 @@ export class QuizComponent extends BaseComponent implements OnInit {
           this.setTitle('Quiz: ' + this.quiz.title);
         },
         error: (err) => {
+          console.log('Error getting quiz: ' + err);
           this.setServerFailed();
           this.setTitle('Quiz');
         }
