@@ -10,7 +10,7 @@ import { UserHistorySectionsComponent } from './user-history-sections.component'
     selector: "app-history",
     styleUrls: ["./history.component.css"],
     templateUrl: "./history.component.html",
-    standalone: false
+    imports: [UserHistorySectionsComponent]
 })
 export class HistoryComponent extends BaseComponent {
   private userHistoryService = inject(UserHistoryService);
