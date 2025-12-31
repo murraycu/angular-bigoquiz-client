@@ -66,6 +66,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
         this.jsonParsed.emit();
       },
       error: (err) => {
+        console.log('Error getting user history sections for quiz: ' + err);
         this.setServerFailed();
       },
     });

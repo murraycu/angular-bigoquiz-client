@@ -30,8 +30,7 @@ export class UserStatusComponent implements OnInit {
   public ngOnInit(): void {
     // This only gives us part of the URL, such as "/quiz/algorithms".
     // let currentUrl: string = this.location.prepareExternalUrl(this.location.path());
-
-    const currentUrl: string = window.location.href;
+    // const currentUrl: string = window.location.href;
 
     this.userService.getUser().then((loginInfo) => this.loginInfo = loginInfo);
   }
