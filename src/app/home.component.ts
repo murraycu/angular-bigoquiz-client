@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,7 +7,5 @@ import { RouterLink } from '@angular/router';
     templateUrl: "./home.component.html",
     imports: [RouterLink]
 })
-export class HomeComponent implements OnInit {
-  public ngOnInit(): void {
-  }
+export class HomeComponent {
 }
