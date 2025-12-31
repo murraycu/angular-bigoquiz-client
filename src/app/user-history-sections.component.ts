@@ -27,7 +27,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
   private questionResultsService = inject(QuestionResultsService);
   private route = inject(ActivatedRoute);
 
-  @Output() public onJsonParsed = new EventEmitter<void>();
+  @Output() public jsonParsed = new EventEmitter<void>();
   public userHistorySections: UserHistorySections = new UserHistorySections();
 
   public readonly maxproblemquestions: number = 5;
@@ -63,7 +63,7 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
       next: (userHistorySections) => {
         this.setServerSuccess();
         this.userHistorySections = userHistorySections;
-        this.onJsonParsed.emit();
+        this.jsonParsed.emit();
       },
       error: (err) => {
         this.setServerFailed();
