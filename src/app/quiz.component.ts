@@ -31,15 +31,17 @@ export class QuizComponent extends BaseComponent implements OnInit {
     this.setServerLoading();
     this.route.queryParamMap.pipe(
       switchMap((params: ParamMap) => this.quizService.getQuiz(params.get('quiz-id') ?? "")))
-      .subscribe(
-        (quiz) => {
+      .subscribe({
+
+        next: (quiz) => {
           this.setServerSuccess();
           this.quiz = quiz;
           this.setTitle('Quiz: ' + this.quiz.title);
         },
-        (err) => {
+        error: (err) => {
           this.setServerFailed();
           this.setTitle('Quiz');
-        });
+        }
+      });
    }
 }

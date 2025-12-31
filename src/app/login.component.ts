@@ -47,10 +47,12 @@ export class LoginComponent extends BaseComponent implements OnInit {
     // change the parameters programatically.
     // this.loginFailed = this.route.snapshot.queryParams.failed;
 
-    this.route.queryParamMap.subscribe((params: ParamMap) => {
-        const str = params.get('failed') || '';
-        this.loginFailed = (str === 'true');
-      });
+    this.route.queryParamMap.subscribe({
+    next: (params: ParamMap) => {
+      const str = params.get('failed') || '';
+      this.loginFailed = (str === 'true');
+    }
+  });
 
     // Get the login info from the server:
     this.userService.getUser().then((loginInfo) => this.loginInfo = loginInfo);

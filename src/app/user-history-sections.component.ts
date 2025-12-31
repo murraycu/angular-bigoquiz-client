@@ -57,16 +57,16 @@ export class UserHistorySectionsComponent extends BaseComponent implements OnIni
       this.setServerLoading();
       return this.userHistoryService.getUserHistorySectionsForQuiz(this.quizId);
     }))
-    .subscribe(
-      (userHistorySections) => {
+    .subscribe({
+      next: (userHistorySections) => {
         this.setServerSuccess();
         this.userHistorySections = userHistorySections;
         this.onJsonParsed.emit();
       },
-      (err) => {
+      error: (err) => {
         this.setServerFailed();
       },
-    );
+    });
 
     this.subscriptionQuestionResultsService =
       this.questionResultsService.notifyObservable$.subscribe((result) => {
