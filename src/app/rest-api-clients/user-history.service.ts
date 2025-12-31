@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
 import { Config } from '../config';
 import { Submission } from '../data-structure/submission';
@@ -36,8 +37,7 @@ export class UserHistoryService {
   public getUserHistorySectionsForQuiz(quizId: string): Promise<UserHistorySections> {
     // Note: We must use backticks: This is a template literal.
     const url = `${Config.baseApiUrl}/api/user-history/${quizId}`;
-    return this.http.get(url, {withCredentials: true})
-      .toPromise()
+    return firstValueFrom(this.http.get(url, {withCredentials: true}))
       .then((response) => UserHistorySections.fromJson(response))
       .catch(UserHistoryService.handleError);
       }
@@ -47,8 +47,7 @@ export class UserHistoryService {
       public getUserHistoryForQuizzes(): Promise<UserHistoryQuizzes> {
         // Note: We must use backticks: This is a template literal.
         const url = `${Config.baseApiUrl}/api/user-history`;
-        return this.http.get(url, {withCredentials: true})
-        .toPromise()
+        return firstValueFrom(this.http.get(url, {withCredentials: true}))
         .then((response) => UserHistoryQuizzes.fromJson(response))
         .catch(UserHistoryService.handleError);
         }
@@ -61,11 +60,10 @@ export class UserHistoryService {
           const submission = new Submission();
           submission.answer = answerText;
 
-          return this.http.post(url, submission, {
+          return firstValueFrom(this.http.post(url, submission, {
           params: p,
           withCredentials: true,
-          })
-          .toPromise()
+          }))
           .then((response) => UserHistorySections.fromJson(response))
           .catch(UserHistoryService.handleError);
           }
@@ -76,11 +74,10 @@ export class UserHistoryService {
             const url = `${Config.baseApiUrl}/api/user-history/submit-dont-know-answer`;
             const p: HttpParams = UserHistoryService.createSubmitQueryParams(quizId, questionId, nextQuestionSectionId);
 
-            return this.http.post(url, '', {
+            return firstValueFrom(this.http.post(url, '', {
             params: p,
             withCredentials: true,
-            })
-            .toPromise()
+            }))
             .then((response) => SubmissionResult.fromJson(response))
             .catch(UserHistoryService.handleError);
             }
@@ -91,11 +88,10 @@ export class UserHistoryService {
               let p = new HttpParams();
               p = p.set('quiz-id', quizId);
 
-              return this.http.post(url, '', {
+              return firstValueFrom(this.http.post(url, '', {
               params: p,
               withCredentials: true,
-              })
-              .toPromise()
+              }))
               .then((response) => true)
       .catch(UserHistoryService.handleError);
   }
