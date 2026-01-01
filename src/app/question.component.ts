@@ -16,12 +16,16 @@ import { UserHistoryService } from './rest-api-clients/user-history.service';
 
 import { QuestionResultEvent } from './question-result-event';
 import { QuestionResultsService } from './question-results.service';
+import { ServerStatusComponent } from './server-status.component';
+import { FormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
+import { UserHistorySectionsComponent } from './user-history-sections.component';
 
 @Component({
     selector: "app-question",
     styleUrls: ["./question.component.css"],
     templateUrl: "./question.component.html",
-    standalone: false
+    imports: [ServerStatusComponent, FormsModule, NgClass, UserHistorySectionsComponent]
 })
 export class QuestionComponent extends BaseComponent implements OnInit {
   private quizService = inject(QuizService);
