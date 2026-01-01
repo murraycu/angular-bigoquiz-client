@@ -1,7 +1,5 @@
 import 'reflect-metadata';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
 
 import { environment } from './environments/environment';
 import { UserService } from './app/rest-api-clients/user.service';
