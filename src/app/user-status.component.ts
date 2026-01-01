@@ -3,12 +3,13 @@ import { Component, Input, NgZone, OnInit, inject } from '@angular/core';
 import { Config } from './config';
 import { LoginInfo } from './data-structure/login-info';
 import { UserService } from './rest-api-clients/user.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: "app-user-status",
     styleUrls: ["./user-status.component.css"],
     templateUrl: "./user-status.component.html",
-    standalone: false
+    imports: [RouterLink]
 })
 export class UserStatusComponent implements OnInit {
   private userService = inject(UserService);
