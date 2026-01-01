@@ -29,11 +29,10 @@ import { QuestionResultsService } from './question-results.service';
 @NgModule({ bootstrap: [
         AppComponent,
         UserStatusComponent,
-    ],
-    declarations: [
-        AppComponent,
-        UserStatusComponent,
-        ServerStatusComponent,
+    ], declarations: [AppComponent,
+        UserStatusComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule, ServerStatusComponent,
         HomeComponent,
         AboutComponent,
         UserComponent,
@@ -43,10 +42,7 @@ import { QuestionResultsService } from './question-results.service';
         QuizQuestionAndAnswerComponent,
         QuestionComponent,
         UserHistorySectionsComponent,
-        LoginComponent,
-    ], imports: [BrowserModule,
-        AppRoutingModule,
-        FormsModule], providers: [
+        LoginComponent], providers: [
         UserService,
         QuizService,
         QuestionService,
