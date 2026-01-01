@@ -5,7 +5,8 @@ import { BaseComponent } from './base.component';
 
 @Component({
     selector: "app-about",
-    templateUrl: "./about.component.html"
+    templateUrl: "./about.component.html",
+    standalone: false
 })
 export class AboutComponent extends BaseComponent implements OnInit {
   constructor() {
