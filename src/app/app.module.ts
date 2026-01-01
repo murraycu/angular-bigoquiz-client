@@ -27,8 +27,9 @@ import {UserService} from './rest-api-clients/user.service';
 import {QuestionResultsService} from './question-results.service';
 
 @NgModule({
-  bootstrap: [],
-  imports: [
+  bootstrap: [
+    AppComponent,
+  ], imports: [
     AppComponent,
     BrowserModule,
     AppRoutingModule,
@@ -42,8 +43,7 @@ import {QuestionResultsService} from './question-results.service';
     QuizQuestionAndAnswerComponent,
     QuestionComponent,
     UserHistorySectionsComponent,
-    LoginComponent],
-  providers: [
+    LoginComponent], providers: [
     UserService,
     QuizService,
     QuestionService,
