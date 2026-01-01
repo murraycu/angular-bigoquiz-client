@@ -1,7 +1,7 @@
 
 import { Component, EventEmitter, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 
@@ -13,14 +13,12 @@ import { UserHistoryService } from './rest-api-clients/user-history.service';
 
 import { QuestionResultEvent } from './question-result-event';
 import { QuestionResultsService } from './question-results.service';
-import { ServerStatusComponent } from './server-status.component';
-import { NgStyle, SlicePipe, KeyValuePipe } from '@angular/common';
 
 @Component({
     selector: "app-user-history-sections",
     styleUrls: ["./user-history-sections.component.css"],
     templateUrl: "./user-history-sections.component.html",
-    imports: [ServerStatusComponent, RouterLink, NgStyle, SlicePipe, KeyValuePipe]
+    standalone: false
 })
 export class UserHistorySectionsComponent extends BaseComponent implements OnInit, OnDestroy {
   private userHistoryService = inject(UserHistoryService);

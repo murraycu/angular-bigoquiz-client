@@ -2,21 +2,18 @@
 import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 
 import { BaseComponent } from './base.component';
 import { Quiz } from './data-structure/quiz';
 import { QuizService } from './rest-api-clients/quiz.service';
-import { ServerStatusComponent } from './server-status.component';
-import { QuizQuestionAndAnswerComponent } from './quiz-question-and-answer.component';
-import { UserHistorySectionsComponent } from './user-history-sections.component';
 
 @Component({
     selector: "app-quiz",
     styleUrls: ["./quiz.component.css"],
     templateUrl: "./quiz.component.html",
-    imports: [ServerStatusComponent, RouterLink, QuizQuestionAndAnswerComponent, UserHistorySectionsComponent]
+    standalone: false
 })
 export class QuizComponent extends BaseComponent implements OnInit {
   private quizService = inject(QuizService);
