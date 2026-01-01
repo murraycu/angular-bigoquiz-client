@@ -12,11 +12,13 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { AppRoutingModule } from './app/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app/app.component';
+import { UserStatusComponent } from './app/user-status.component';
 
 if (environment.production) {
   enableProdMode();
 }
 
+// So we can use <app-root> in index.html.
 bootstrapApplication(AppComponent, {
     providers: [
         importProvidersFrom(BrowserModule, AppRoutingModule, FormsModule),
@@ -29,4 +31,7 @@ bootstrapApplication(AppComponent, {
         provideHttpClient(withInterceptorsFromDi())
     ]
 })
+  // So we can use <app-user> in index.html too.
+  .then(appRef => appRef.bootstrap(UserStatusComponent))
   .catch(err => console.error(err));
+
